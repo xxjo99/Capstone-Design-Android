@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?> <!-- 옵션 선택 리스트 -->
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_margin="7dp"
+    android:orientation="vertical">
+
+    <!-- 옵션 이름 -->
+    <TextView
+        android:id="@+id/optionNameTV"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="10dp"
+        android:text="@string/optionName"
+        android:textSize="20sp"
+        android:textStyle="bold" />
+
+    <!-- 옵션 내용 리사이클러뷰 -->
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/optionContentRecyclerView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+
+</LinearLayout>

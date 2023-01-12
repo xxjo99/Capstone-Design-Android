@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="utf-8"?> <!-- 이메일 인증 -->
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:padding="25dp"
+    tools:context=".register.AuthRegisterActivity">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:orientation="horizontal">
+
+        <!-- 이메일 TextView -->
+        <TextView
+            android:id="@+id/emailTV"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="2"
+            android:padding="13dp"
+            android:textColor="@color/black" />
+
+        <!-- 인증번호 전송 Button -->
+        <Button
+            android:id="@+id/sendAuthNumBtn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:enabled="true"
+            android:text="@string/sendAuthNum" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:orientation="horizontal">
+
+        <!-- 인증번호 EditText -->
+        <EditText
+            android:id="@+id/authNumET"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_weight="2"
+            android:background="@drawable/edit_text_border_basic"
+            android:enabled="false"
+            android:hint="@string/authNumInput"
+            android:inputType="textEmailAddress"
+            android:padding="13dp" />
+
+        <!-- 인증번호 검사 Button -->
+        <Button
+            android:id="@+id/checkAuthNumBtn"
+            android:layout_width="100dp"
+            android:layout_height="wrap_content"
+            android:enabled="false"
+            android:text="@string/confirm" />
+
+    </LinearLayout>
+
+    <!-- 다음 액티비티 이동 Button -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:gravity="bottom">
+
+        <Button
+            android:id="@+id/nextBtn"
+            android:layout_width="380dp"
+            android:layout_height="55dp"
+            android:text="@string/next"
+            android:visibility="visible" />
+
+    </LinearLayout>
+
+</LinearLayout>
