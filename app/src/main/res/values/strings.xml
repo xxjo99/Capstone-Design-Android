@@ -3,7 +3,8 @@
 
     <string name="emailInput">첫번째 단계에요!🌳\n이제 *** 아이디를 설정합니다!\n이메일을 입력해주세요!</string>
     <string name="pwInput">두번째 단계에요!🌳\n비밀번호를 설정해주세요!</string>
-    <string name="joinInput">마지막 단계에요!🌳\n이메일 인증이 필요해요! </string>
+    <string name="joinInput">세번째 단계에요!🌳\n이메일 인증이 필요해요! </string>
+    <string name="joinprivacy">마지막 단계에요!🌳\n닉네임, 생년월일, 휴대폰번호를 입력해주세요! </string>
     <string name="loginemailInput">이메일을 입력해주세요.</string>
     <string name="emailhint">이메일을 입력해주세요</string>
     <string name="loginpwInput">비밀번호를 입력해주세요</string>
