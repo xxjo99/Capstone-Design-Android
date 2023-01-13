@@ -10,6 +10,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.delivery.mydelivery.R;
@@ -57,7 +58,7 @@ public class EmailRegisterActivity extends AppCompatActivity {
                 if (email.isEmpty()) { // 공백
                     Toast.makeText(EmailRegisterActivity.this, "이메일을 입력해주세요", Toast.LENGTH_SHORT).show();
                     nextBtn.setVisibility(View.INVISIBLE);
-                } else if (regExFlag == false) { // 정규식 검사 실패
+                } else if (!regExFlag) { // 정규식 검사 실패
                     Toast.makeText(EmailRegisterActivity.this, "이메일을 올바르게 입력해주세요", Toast.LENGTH_SHORT).show();
                     nextBtn.setVisibility(View.INVISIBLE);
                 } else { // 검사 성공
@@ -101,7 +102,7 @@ public class EmailRegisterActivity extends AppCompatActivity {
                 String email = emailET.getText().toString();
                 boolean flag = ckEmailRegEx(email);
 
-                if (flag == true) { // 정규식 검사 성공시 색상 변경, regExFlag를 true로 설정
+                if (flag) { // 정규식 검사 성공시 색상 변경, regExFlag를 true로 설정
                     emailET.setBackgroundResource(R.drawable.edit_text_border_green);
                     regExFlag = true;
                 } else { // 실패시
@@ -138,10 +139,10 @@ public class EmailRegisterActivity extends AppCompatActivity {
         api.duplicateEmailCk(email)
                 .enqueue(new Callback<Boolean>() {
                     @Override
-                    public void onResponse(Call<Boolean> call, Response<Boolean> response) {
+                    public void onResponse(@NonNull Call<Boolean> call, @NonNull Response<Boolean> response) {
                         boolean duplicateCkResult = response.body(); // 중복여부 저장
 
-                        if (duplicateCkResult == true) { // 중복되지 않은 이메일
+                        if (duplicateCkResult) { // 중복되지 않은 이메일
                             Toast.makeText(EmailRegisterActivity.this, "사용가능한 이메일입니다.", Toast.LENGTH_SHORT).show();
                             nextBtn.setVisibility(View.VISIBLE);
                         } else {
@@ -151,7 +152,7 @@ public class EmailRegisterActivity extends AppCompatActivity {
                     }
 
                     @Override
-                    public void onFailure(Call<Boolean> call, Throwable t) {
+                    public void onFailure(@NonNull Call<Boolean> call, @NonNull Throwable t) {
                     }
                 });
     }

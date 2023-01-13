@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.ListView;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -82,13 +83,13 @@ public class StoreListActivity extends AppCompatActivity {
         homeApi.getCategoryList()
                 .enqueue(new Callback<List<CategoryVO>>() {
                     @Override
-                    public void onResponse(Call<List<CategoryVO>> call, Response<List<CategoryVO>> response) {
+                    public void onResponse(@NonNull Call<List<CategoryVO>> call, @NonNull Response<List<CategoryVO>> response) {
                         categoryList = response.body();
                         storeCategoryAdapter.setCategoryList(categoryList);
                     }
 
                     @Override
-                    public void onFailure(Call<List<CategoryVO>> call, Throwable t) {
+                    public void onFailure(@NonNull Call<List<CategoryVO>> call, @NonNull Throwable t) {
                     }
                 });
     }
@@ -101,14 +102,14 @@ public class StoreListActivity extends AppCompatActivity {
         storeApi.getStoreList(category)
                 .enqueue(new Callback<List<StoreVO>>() {
                     @Override
-                    public void onResponse(Call<List<StoreVO>> call, Response<List<StoreVO>> response) {
+                    public void onResponse(@NonNull Call<List<StoreVO>> call, @NonNull Response<List<StoreVO>> response) {
                         storeList = response.body(); // api를 통해 호출된 매장 리스트 저장
                         storeListadapter = new StoreListAdapter(context, storeList); // 어댑터에 매장 리스트 추가
                         storeListView.setAdapter(storeListadapter); // 리스트뷰에 어댑터 연결
                     }
 
                     @Override
-                    public void onFailure(Call<List<StoreVO>> call, Throwable t) {
+                    public void onFailure(@NonNull Call<List<StoreVO>> call, @NonNull Throwable t) {
 
                     }
                 });

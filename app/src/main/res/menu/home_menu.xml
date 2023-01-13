@@ -6,7 +6,7 @@
     <item
         android:id="@+id/menu_category"
         android:enabled="true"
-        android:icon="@drawable/ic_android_black_24dp"
+        android:icon="@drawable/home_bottom_navigation_list"
         android:title="@string/category"
         app:showAsAction="always" />
 
@@ -14,7 +14,7 @@
     <item
         android:id="@+id/menu_post"
         android:enabled="true"
-        android:icon="@drawable/ic_android_black_24dp"
+        android:icon="@drawable/home_bottom_navigation_group"
         android:title="@string/post"
         app:showAsAction="always" />
 
@@ -22,7 +22,7 @@
     <item
         android:id="@+id/menu_myPost"
         android:enabled="true"
-        android:icon="@drawable/ic_android_black_24dp"
+        android:icon="@drawable/home_bottom_navigation_calendar"
         android:title="@string/myPost"
         app:showAsAction="always" />
 
@@ -30,7 +30,7 @@
     <item
         android:id="@+id/menu_myInfo"
         android:enabled="true"
-        android:icon="@drawable/ic_android_black_24dp"
+        android:icon="@drawable/home_bottom_navigation_myinfo"
         android:title="@string/myInfo"
         app:showAsAction="always" />
 

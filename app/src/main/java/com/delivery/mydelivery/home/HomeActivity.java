@@ -1,6 +1,5 @@
 package com.delivery.mydelivery.home;
 
-import android.annotation.SuppressLint;
 import android.os.Bundle;
 import android.view.MenuItem;
 

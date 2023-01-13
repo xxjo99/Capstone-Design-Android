@@ -19,6 +19,7 @@
             android:layout_width="350dp"
             android:layout_height="60dp"
             android:layout_marginBottom="15dp"
+            android:fontFamily="@font/bmjua_font"
             android:gravity="center"
             android:text="@string/login" />
 
@@ -28,6 +29,7 @@
             android:layout_width="350dp"
             android:layout_height="60dp"
             android:layout_marginBottom="100dp"
+            android:fontFamily="@font/bmjua_font"
             android:text="@string/register" />
 
     </LinearLayout>

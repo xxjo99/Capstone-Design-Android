@@ -7,6 +7,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.delivery.mydelivery.MainActivity;
@@ -73,7 +74,7 @@ public class PrivacyRegisterActivity extends AppCompatActivity {
         registerApi.register(userVO)
                 .enqueue(new Callback<UserVO>() {
                     @Override
-                    public void onResponse(Call<UserVO> call, Response<UserVO> response) { // 회원가입 성공
+                    public void onResponse(@NonNull Call<UserVO> call, @NonNull Response<UserVO> response) { // 회원가입 성공
                         Toast.makeText(PrivacyRegisterActivity.this, "회원가입 성공", Toast.LENGTH_SHORT).show();
 
                         // 메인액티비티로 넘어가고 종료
@@ -83,7 +84,7 @@ public class PrivacyRegisterActivity extends AppCompatActivity {
                     }
 
                     @Override
-                    public void onFailure(Call<UserVO> call, Throwable t) { // 회원가입 실패
+                    public void onFailure(@NonNull Call<UserVO> call, @NonNull Throwable t) { // 회원가입 실패
                     }
                 });
     }

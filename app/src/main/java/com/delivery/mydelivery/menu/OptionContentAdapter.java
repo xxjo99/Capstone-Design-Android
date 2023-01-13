@@ -5,7 +5,6 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.CheckBox;
-import android.widget.CompoundButton;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -44,6 +43,7 @@ public class OptionContentAdapter extends RecyclerView.Adapter<OptionContentAdap
         holder.optionCheckBox.setText(optionContent.getOptionContentName());
         holder.optionPriceTV.setText(optionContent.getOptionPrice() + "");
 
+        // 옵션 선택 이벤트
         holder.optionCheckBox.setOnClickListener(new View.OnClickListener() {
 
             @Override

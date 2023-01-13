@@ -8,6 +8,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.delivery.mydelivery.MainActivity;
@@ -56,7 +57,7 @@ public class LoginActivity extends AppCompatActivity {
                 String pw = pwET.getText().toString();
 
                 // 유효성 검사
-                if (email.isEmpty() || pw.isEmpty()) {
+                if (email.isEmpty() && pw.isEmpty()) {
                     Toast.makeText(LoginActivity.this, "이메일과 비밀번호를 입력해주세요.", Toast.LENGTH_SHORT).show();
                 } else if (email.isEmpty()) {
                     Toast.makeText(LoginActivity.this, "이메일을 입력해주세요.", Toast.LENGTH_SHORT).show();
@@ -78,7 +79,7 @@ public class LoginActivity extends AppCompatActivity {
         api.login(email, pw)
                 .enqueue(new Callback<UserVO>() {
                     @Override
-                    public void onResponse(Call<UserVO> call, Response<UserVO> response) {
+                    public void onResponse(@NonNull Call<UserVO> call, @NonNull Response<UserVO> response) {
                         Toast.makeText(LoginActivity.this, "로그인 성공", Toast.LENGTH_SHORT).show();
 
                         UserVO userInfo = response.body(); // 유저 정보를 받아옴
@@ -99,7 +100,7 @@ public class LoginActivity extends AppCompatActivity {
                     }
 
                     @Override
-                    public void onFailure(Call<UserVO> call, Throwable t) { // 로그인 실패시
+                    public void onFailure(@NonNull Call<UserVO> call, @NonNull Throwable t) { // 로그인 실패시
                         Toast.makeText(LoginActivity.this, "이메일 또는 비밀번호를 다시 입력해주세요.", Toast.LENGTH_SHORT).show();
                     }
                 });

@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -80,14 +81,14 @@ public class OptionActivity extends AppCompatActivity {
         api.getMenuOptionList(menuId)
                 .enqueue(new Callback<List<OptionVO>>() {
                     @Override
-                    public void onResponse(Call<List<OptionVO>> call, Response<List<OptionVO>> response) {
+                    public void onResponse(@NonNull Call<List<OptionVO>> call, @NonNull Response<List<OptionVO>> response) {
                         optionList = response.body();
                         optionAdapter = new OptionAdapter(optionList, context);
                         optionRecyclerView.setAdapter(optionAdapter);
                     }
 
                     @Override
-                    public void onFailure(Call<List<OptionVO>> call, Throwable t) {
+                    public void onFailure(@NonNull Call<List<OptionVO>> call, @NonNull Throwable t) {
                     }
                 });
     }

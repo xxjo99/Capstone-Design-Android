@@ -17,7 +17,7 @@ public class PreferenceManager {
         SharedPreferences prefs = getPreferences(context);
         SharedPreferences.Editor editor = prefs.edit();
 
-        editor.putString("userInfo", userInfoJson.toString());
+        editor.putString("userInfo", userInfoJson);
 
         editor.apply();
     }

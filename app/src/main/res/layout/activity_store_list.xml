@@ -12,14 +12,16 @@
         android:id="@+id/categoryRecyclerView"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginBottom="20dp"
+        android:fontFamily="@font/bmjua_font"
         android:orientation="horizontal"
-        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-        android:layout_marginBottom="20dp"/>
+        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager" />
 
     <!-- 매장 리스트 ListView -->
     <ListView
         android:id="@+id/storeListView"
         android:layout_width="match_parent"
-        android:layout_height="match_parent" />
+        android:layout_height="match_parent"
+        android:fontFamily="@font/bmjua_font" />
 
 </LinearLayout>

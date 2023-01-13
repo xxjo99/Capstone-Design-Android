@@ -93,14 +93,14 @@ public class OptionAdapter extends RecyclerView.Adapter<OptionAdapter.ViewHolder
         api.getMenuOptionContentList(menuOptionId)
                 .enqueue(new Callback<List<OptionContentVO>>() {
                     @Override
-                    public void onResponse(Call<List<OptionContentVO>> call, Response<List<OptionContentVO>> response) {
+                    public void onResponse(@NonNull Call<List<OptionContentVO>> call, @NonNull Response<List<OptionContentVO>> response) {
                         optionContentList = response.body();
                         optionContentAdapter = new OptionContentAdapter(optionContentList, context);
                         holder.optionContentRecyclerView.setAdapter(optionContentAdapter);
                     }
 
                     @Override
-                    public void onFailure(Call<List<OptionContentVO>> call, Throwable t) {
+                    public void onFailure(@NonNull Call<List<OptionContentVO>> call, @NonNull Throwable t) {
 
                     }
                 });

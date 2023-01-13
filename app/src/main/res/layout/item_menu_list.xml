@@ -27,6 +27,7 @@
                 android:id="@+id/menuNameTV"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:fontFamily="@font/bmjua_font"
                 android:text="@string/menuName"
                 android:textSize="20sp"
                 android:textStyle="bold" />
@@ -36,6 +37,7 @@
                 android:id="@+id/menuInfoTV"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:fontFamily="@font/bmjua_font"
                 android:text="@string/menuInfo" />
 
             <!-- 메뉴 가격 -->
@@ -43,6 +45,7 @@
                 android:id="@+id/menuPriceTV"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:fontFamily="@font/bmjua_font"
                 android:text="@string/menuPrice" />
 
         </LinearLayout>

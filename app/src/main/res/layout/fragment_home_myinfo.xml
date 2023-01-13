@@ -9,18 +9,21 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:fontFamily="@font/bmjua_font"
         android:text="내정보 프래그먼트" />
 
     <TextView
         android:id="@+id/jsonTextTV"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:fontFamily="@font/bmjua_font"
         android:text="json 테스트" />
 
     <Button
         android:id="@+id/logoutBtn"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:fontFamily="@font/bmjua_font"
         android:text="@string/logout" />
 
 </LinearLayout>

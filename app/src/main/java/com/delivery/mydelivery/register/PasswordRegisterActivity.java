@@ -73,7 +73,7 @@ public class PasswordRegisterActivity extends AppCompatActivity {
 
                 boolean flag = ckPwRegEx(pw); // 정규식 검사 성공 여부 확인 메소드
 
-                if (flag == true) { // 정규식 검사 성공시 초록색으로 색상 변경, 비밀번호 확인 입력창 가능하게 변경, pwFlag를 true로 설정
+                if (flag) { // 정규식 검사 성공시 초록색으로 색상 변경, 비밀번호 확인 입력창 가능하게 변경, pwFlag를 true로 설정
                     pwET.setBackgroundResource(R.drawable.edit_text_border_green);
                     pwCkET.setEnabled(true);
                     pwFlag = true;
@@ -89,7 +89,7 @@ public class PasswordRegisterActivity extends AppCompatActivity {
                 }
 
                 // 정규식 검사 통과, 비밀번호 일치시 이동버튼 보이도록 설정
-                if (pwFlag == true && pwCkFlag == true) {
+                if (pwFlag && pwCkFlag) {
                     nextBtn.setVisibility(View.VISIBLE);
                 } else {
                     nextBtn.setVisibility(View.GONE);
@@ -137,7 +137,7 @@ public class PasswordRegisterActivity extends AppCompatActivity {
                     pwCkFlag = false;
                 }
 
-                if (pwFlag == true && pwCkFlag == true) {
+                if (pwFlag && pwCkFlag) {
                     nextBtn.setVisibility(View.VISIBLE);
                 } else {
                     nextBtn.setVisibility(View.GONE);

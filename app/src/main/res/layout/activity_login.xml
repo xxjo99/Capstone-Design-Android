@@ -20,7 +20,8 @@
             android:id="@+id/emailET"
             android:layout_width="350dp"
             android:layout_height="wrap_content"
-            android:hint="@string/emailInput" />
+            android:fontFamily="@font/bmjua_font"
+            android:hint="@string/loginemailInput" />
 
     </com.google.android.material.textfield.TextInputLayout>
 
@@ -35,7 +36,8 @@
             android:id="@+id/pwET"
             android:layout_width="350dp"
             android:layout_height="wrap_content"
-            android:hint="@string/pwInput"
+            android:fontFamily="@font/bmjua_font"
+            android:hint="@string/loginpwInput"
             android:inputType="textPassword" />
 
     </com.google.android.material.textfield.TextInputLayout>
@@ -51,6 +53,7 @@
             android:layout_width="350dp"
             android:layout_height="55dp"
             android:layout_marginTop="10dp"
+            android:fontFamily="@font/bmjua_font"
             android:text="@string/login" />
 
     </LinearLayout>

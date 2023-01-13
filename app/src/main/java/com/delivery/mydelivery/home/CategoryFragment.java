@@ -6,6 +6,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.GridLayoutManager;
@@ -61,13 +62,13 @@ public class CategoryFragment extends Fragment {
         api.getCategoryList()
                 .enqueue(new Callback<List<CategoryVO>>() {
                     @Override
-                    public void onResponse(Call<List<CategoryVO>> call, Response<List<CategoryVO>> response) {
+                    public void onResponse(@NonNull Call<List<CategoryVO>> call, @NonNull Response<List<CategoryVO>> response) {
                         categoryList = response.body();
                         homeCategoryAdapter.setCategoryList(categoryList);
                     }
 
                     @Override
-                    public void onFailure(Call<List<CategoryVO>> call, Throwable t) {
+                    public void onFailure(@NonNull Call<List<CategoryVO>> call, @NonNull Throwable t) {
                     }
                 });
     }

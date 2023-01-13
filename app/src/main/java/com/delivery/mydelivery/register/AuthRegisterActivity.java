@@ -8,6 +8,7 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.delivery.mydelivery.R;
@@ -108,7 +109,7 @@ public class AuthRegisterActivity extends AppCompatActivity {
         api.sendAuthNum(email)
                 .enqueue(new Callback<String>() {
                     @Override
-                    public void onResponse(Call<String> call, Response<String> response) {
+                    public void onResponse(@NonNull Call<String> call, @NonNull Response<String> response) {
                         Toast.makeText(AuthRegisterActivity.this, "인증번호를 전송했습니다.", Toast.LENGTH_SHORT).show();
 
                         // 인증번호 전송버튼 막고 인증번호 입력, 검증 버튼 활성화
@@ -120,7 +121,7 @@ public class AuthRegisterActivity extends AppCompatActivity {
                     }
 
                     @Override
-                    public void onFailure(Call<String> call, Throwable t) {
+                    public void onFailure(@NonNull Call<String> call, @NonNull Throwable t) {
                     }
                 });
     }
