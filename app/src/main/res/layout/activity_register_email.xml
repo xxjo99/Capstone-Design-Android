@@ -6,17 +6,24 @@
     android:layout_margin="15dp"
     android:orientation="vertical"
     tools:context=".register.EmailRegisterActivity">
+    <ImageButton
+        android:id="@+id/go_back_main"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/arrow_back_ios_new_fill0_wght400_grad0_opsz48"
+        android:background="@color/white">
+    </ImageButton>
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="0dp"
-        android:layout_marginTop="50dp"
+        android:layout_marginTop="30dp"
         android:layout_marginBottom="15dp"
         android:fontFamily="@font/bmjua_font"
         android:text="@string/emailInput"
         android:textColor="@color/black"
-        android:textSize="20sp" />
+        android:textSize="25sp" />
 
     <LinearLayout
         android:layout_width="match_parent"

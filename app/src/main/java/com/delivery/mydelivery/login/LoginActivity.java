@@ -1,11 +1,13 @@
 package com.delivery.mydelivery.login;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageButton;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -30,6 +32,7 @@ public class LoginActivity extends AppCompatActivity {
     EditText emailET;
     EditText pwET;
     Button loginBtn;
+    ImageButton back_main; // mainActivity로 이동
 
     RetrofitService retrofitService;
     LoginApi api;
@@ -37,6 +40,7 @@ public class LoginActivity extends AppCompatActivity {
 
     Context context;
 
+    @SuppressLint("MissingInflatedId")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -48,6 +52,7 @@ public class LoginActivity extends AppCompatActivity {
         emailET = findViewById(R.id.emailET);
         pwET = findViewById(R.id.pwET);
         loginBtn = findViewById(R.id.loginBtn);
+        back_main = findViewById(R.id.back_main);
 
         // 로그인 버튼 이벤트
         loginBtn.setOnClickListener(new View.OnClickListener() {
@@ -66,6 +71,15 @@ public class LoginActivity extends AppCompatActivity {
                 } else { // 유효성 검사 통과시 로그인 진행
                     login(email, pw);
                 }
+            }
+        });
+
+        back_main.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent go_back_main = new Intent(LoginActivity.this, MainActivity.class);
+                startActivity(go_back_main);
+                finish();
             }
         });
     }
@@ -104,5 +118,6 @@ public class LoginActivity extends AppCompatActivity {
                         Toast.makeText(LoginActivity.this, "이메일 또는 비밀번호를 다시 입력해주세요.", Toast.LENGTH_SHORT).show();
                     }
                 });
+
     }
 }

@@ -1,10 +1,13 @@
 package com.delivery.mydelivery.register;
 
+import android.annotation.SuppressLint;
 import android.content.Intent;
+import android.media.Image;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageButton;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -25,12 +28,14 @@ public class PrivacyRegisterActivity extends AppCompatActivity {
     EditText birthET;
     EditText phoneNumET;
     Button registerBtn;
+    ImageButton go_back_password;
 
     UserVO userVO; // 데이터를 담을 객체
 
     RetrofitService retrofitService;
     RegisterApi registerApi;
 
+    @SuppressLint({"WrongViewCast", "MissingInflatedId"})
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_register_privacy);
@@ -40,6 +45,7 @@ public class PrivacyRegisterActivity extends AppCompatActivity {
         birthET = findViewById(R.id.birthET);
         phoneNumET = findViewById(R.id.phoneNumET);
         registerBtn = findViewById(R.id.registerBtn);
+        go_back_password = findViewById(R.id.go_back_password);
 
         // 회원가입 버튼
         registerBtn.setOnClickListener(new View.OnClickListener() {
@@ -54,6 +60,15 @@ public class PrivacyRegisterActivity extends AppCompatActivity {
                 } else {
                     register(name, birth, phoneNum);
                 }
+            }
+        });
+
+        go_back_password.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent go_back_password = new Intent(PrivacyRegisterActivity.this, PasswordRegisterActivity.class);
+                startActivity(go_back_password);
+                finish();
             }
         });
     }

@@ -1,5 +1,6 @@
 package com.delivery.mydelivery.register;
 
+import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
 import android.text.Editable;
@@ -7,6 +8,7 @@ import android.text.TextWatcher;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageButton;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -20,12 +22,14 @@ public class PasswordRegisterActivity extends AppCompatActivity {
     EditText pwET;
     EditText pwCkET;
     Button nextBtn;
+    ImageButton go_back_email;
 
     UserVO userVO; // 데이터를 담을 객체
 
     Boolean pwFlag = false; // 비밀번호 검사 통과
     Boolean pwCkFlag = false; // 비밀번호확인 검사 통과
 
+    @SuppressLint("MissingInflatedId")
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_register_password);
@@ -33,6 +37,7 @@ public class PasswordRegisterActivity extends AppCompatActivity {
         // xml변수 초기화
         pwET = findViewById(R.id.pwET);
         nextBtn = findViewById(R.id.nextBtn);
+        go_back_email = findViewById(R.id.go_back_email);
 
         pwRegExCk(); // 실시간 비밀번호 정규식 검사 메소드
         pwMatchingCk(); // 실시간 비밀번호 일치 검사 메소드
@@ -50,6 +55,15 @@ public class PasswordRegisterActivity extends AppCompatActivity {
                 Intent intent = new Intent(PasswordRegisterActivity.this, PrivacyRegisterActivity.class);
                 intent.putExtra("userVO", userVO);
                 startActivity(intent);
+                finish();
+            }
+        });
+
+        go_back_email.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent go_back_email = new Intent(PasswordRegisterActivity.this, EmailRegisterActivity.class);
+                startActivity(go_back_email);
                 finish();
             }
         });
