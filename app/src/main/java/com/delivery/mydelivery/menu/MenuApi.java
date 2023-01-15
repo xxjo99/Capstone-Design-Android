@@ -1,9 +1,13 @@
 package com.delivery.mydelivery.menu;
 
+import com.delivery.mydelivery.order.OrderVO;
+
 import java.util.List;
 
 import retrofit2.Call;
+import retrofit2.http.Body;
 import retrofit2.http.GET;
+import retrofit2.http.POST;
 import retrofit2.http.Path;
 
 public interface MenuApi {

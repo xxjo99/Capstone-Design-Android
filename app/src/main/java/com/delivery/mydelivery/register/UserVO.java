@@ -59,4 +59,16 @@ public class UserVO implements Serializable {
     public void setPhoneNum(String phoneNum) {
         this.phoneNum = phoneNum;
     }
+
+    @Override
+    public String toString() {
+        return "UserVO{" +
+                "userId=" + userId +
+                ", email='" + email + '\'' +
+                ", pw='" + pw + '\'' +
+                ", name='" + name + '\'' +
+                ", birth='" + birth + '\'' +
+                ", phoneNum='" + phoneNum + '\'' +
+                '}';
+    }
 }

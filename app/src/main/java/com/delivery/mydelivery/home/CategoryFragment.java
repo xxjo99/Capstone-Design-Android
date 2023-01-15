@@ -1,10 +1,12 @@
 package com.delivery.mydelivery.home;
 
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -13,6 +15,7 @@ import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.delivery.mydelivery.R;
+import com.delivery.mydelivery.order.OrderListActivity;
 import com.delivery.mydelivery.retrofit.RetrofitService;
 
 import java.util.List;
@@ -36,6 +39,9 @@ public class CategoryFragment extends Fragment {
     View view;
     Context context;
 
+    // 임시, 장바구니 이동 버튼
+    Button moveCartBtn;
+
     @Nullable
     @Override
     public View onCreateView(@Nullable LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -50,6 +56,16 @@ public class CategoryFragment extends Fragment {
         homeCategoryAdapter = new HomeCategoryAdapter();
         categoryView.setAdapter(homeCategoryAdapter);
         setCategory();
+
+        // 버튼 이벤트
+        moveCartBtn = view.findViewById(R.id.moveCartBtn);
+        moveCartBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(context, OrderListActivity.class);
+                startActivity(intent);
+            }
+        });
 
         return view;
     }

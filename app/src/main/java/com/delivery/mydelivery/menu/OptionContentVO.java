@@ -3,6 +3,7 @@ package com.delivery.mydelivery.menu;
 public class OptionContentVO {
 
     private int menuOptionContentId; // pk
+    private int storeId; // fk
     private int menuOptionId; // fk
     private int menuId; // fk
     private String optionContentName; // 옵션 내용 이름
@@ -14,6 +15,14 @@ public class OptionContentVO {
 
     public void setMenuOptionContentId(int menuOptionContentId) {
         this.menuOptionContentId = menuOptionContentId;
+    }
+
+    public int getStoreId() {
+        return storeId;
+    }
+
+    public void setStoreId(int storeId) {
+        this.storeId = storeId;
     }
 
     public int getMenuOptionId() {

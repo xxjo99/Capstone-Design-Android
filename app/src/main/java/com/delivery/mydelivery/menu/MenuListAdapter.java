@@ -72,20 +72,25 @@ public class MenuListAdapter extends RecyclerView.Adapter<MenuListAdapter.ViewHo
                 public void onClick(View view) {
                     int position = getAbsoluteAdapterPosition();
 
-                    // 옵션 리스트로 이동, 메뉴 id, 이미지주소, 이름, 정보 넘겨쥼
+                    // 옵션 리스트로 이동, 매장id, 메뉴 id, 이미지주소, 이름, 정보, 가격 넘겨쥼
                     if (position != RecyclerView.NO_POSITION) {
                         Intent intent = new Intent(context, OptionActivity.class);
 
                         MenuVO menu = menuList.get(position);
+
+                        int storeId = menu.getStoreId();
                         int menuId = menu.getMenuId();
                         String menuImageUrl  = menu.getMenuPicUrl();
                         String menuName  = menu.getMenuName();
                         String menuInfo  = menu.getMenuInfo();
+                        int menuPrice = menu.getMenuPrice();
 
+                        intent.putExtra("storeId", storeId);
                         intent.putExtra("menuId", menuId);
                         intent.putExtra("menuImageUrl", menuImageUrl);
                         intent.putExtra("menuName", menuName);
                         intent.putExtra("menuInfo", menuInfo);
+                        intent.putExtra("menuPrice", menuPrice);
 
                         context.startActivity(intent);
                     }
@@ -98,7 +103,7 @@ public class MenuListAdapter extends RecyclerView.Adapter<MenuListAdapter.ViewHo
             Glide.with(itemView).load(menu.getMenuPicUrl()).placeholder(R.drawable.ic_launcher_background).into(menuIV);
             menuNameTV.setText(menu.getMenuName());
             menuInfoTV.setText(menu.getMenuInfo());
-            menuPriceTV.setText(menu.getMenuPrice());
+            menuPriceTV.setText(menu.getMenuPrice() + "");
         }
     }
 
