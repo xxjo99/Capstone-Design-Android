@@ -1,13 +1,9 @@
 package com.delivery.mydelivery.menu;
 
-import com.delivery.mydelivery.order.OrderVO;
-
 import java.util.List;
 
 import retrofit2.Call;
-import retrofit2.http.Body;
 import retrofit2.http.GET;
-import retrofit2.http.POST;
 import retrofit2.http.Path;
 
 public interface MenuApi {
@@ -23,5 +19,8 @@ public interface MenuApi {
     // menuId를 통해 옵션의 내용을 가져옴
     @GET("/menu/option/content/{menuOptionId}")
     Call<List<OptionContentVO>> getMenuOptionContentList(@Path("menuOptionId") int menuOptionId);
+
+    @GET("/menu/menuList/{menuId}")
+    Call<String> getMenuName(@Path("menuId") int menuId);
 
 }

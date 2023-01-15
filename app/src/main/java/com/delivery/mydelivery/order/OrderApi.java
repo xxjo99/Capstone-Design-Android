@@ -22,4 +22,7 @@ public interface OrderApi {
     // 장바구니에 담긴 메뉴 가져옴
     @GET("/order/getOrderList/{userId}")
     Call<List<OrderVO>> getOrderList(@Path("userId") int userId);
+
+    @GET("/order/contentNameList/{contentIdList}")
+    Call<List<String>> getContentNameList(@Path("contentIdList") String contentIdList);
 }

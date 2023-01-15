@@ -61,8 +61,9 @@
     <string name="optionName">옵션이름</string>
     <string name="option">옵션</string>
     <string name="optionPrice">옵션가격</string>
-    <string name="foodAmount">수량</string>
+    <string name="amount">수량</string>
     <string name="addMenu">장바구니에 담기</string>
 
+    <string name="changeOption">옵션 변경</string>
 
 </resources>

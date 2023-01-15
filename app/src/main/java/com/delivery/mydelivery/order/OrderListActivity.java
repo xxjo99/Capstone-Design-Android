@@ -1,7 +1,6 @@
 package com.delivery.mydelivery.order;
 
 import android.content.Context;
-import android.content.Intent;
 import android.os.Bundle;
 import android.widget.TextView;
 
@@ -22,7 +21,9 @@ import retrofit2.Callback;
 import retrofit2.Response;
 
 public class OrderListActivity extends AppCompatActivity {
-    TextView storeDetailTV; // 매장 상세정보
+
+    // 매장 이름
+    public static TextView storeNameTV;
 
     // 리사이클러뷰, 어댑터, 리스트
     RecyclerView orderRecyclerView;
@@ -55,6 +56,9 @@ public class OrderListActivity extends AppCompatActivity {
 
         // 담은 메뉴 가져옴
         setOrder(userId);
+
+        // 선택한 메뉴의 매장 이름 세팅
+        storeNameTV = findViewById(R.id.storeNameTV);
     }
 
     private void setOrder(int userId) {
