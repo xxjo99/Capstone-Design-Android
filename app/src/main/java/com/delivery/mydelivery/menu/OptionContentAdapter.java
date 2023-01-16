@@ -1,5 +1,6 @@
 package com.delivery.mydelivery.menu;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -14,9 +15,10 @@ import com.delivery.mydelivery.R;
 
 import java.util.List;
 
+@SuppressLint("SetTextI18n")
 public class OptionContentAdapter extends RecyclerView.Adapter<OptionContentAdapter.ViewHolder> {
 
-    private List<OptionContentVO> optionContentList; // 옵션 내용 리스트
+    private final List<OptionContentVO> optionContentList; // 옵션 내용 리스트
     Context context;
 
     // 생성자
@@ -46,19 +48,16 @@ public class OptionContentAdapter extends RecyclerView.Adapter<OptionContentAdap
         holder.optionPriceTV.setText(optionPrice + "");
 
         // 옵션 선택 이벤트
-        holder.optionCheckBox.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                int price = OptionActivity.menuPrice;
-                String optionContentId = Integer.toString(optionContent.getMenuOptionContentId());
+        holder.optionCheckBox.setOnClickListener(view -> {
+            int price = OptionActivity.menuPrice;
+            String optionContentId = Integer.toString(optionContent.getMenuOptionContentId());
 
-                if (((CheckBox)view).isChecked()) { // 옵션 선택
-                    price += optionPrice;
-                    OptionActivity.modifyPrice(price, optionContentId, 1);
-                } else { // 옵션 선택 해제
-                    price -= optionPrice;
-                    OptionActivity.modifyPrice(price, optionContentId, 0);
-                }
+            if (((CheckBox) view).isChecked()) { // 옵션 선택
+                price += optionPrice;
+                OptionActivity.modifyPrice(price, optionContentId, 1);
+            } else { // 옵션 선택 해제
+                price -= optionPrice;
+                OptionActivity.modifyPrice(price, optionContentId, 0);
             }
         });
     }
@@ -72,7 +71,7 @@ public class OptionContentAdapter extends RecyclerView.Adapter<OptionContentAdap
         }
     }
 
-    public class ViewHolder extends RecyclerView.ViewHolder {
+    public static class ViewHolder extends RecyclerView.ViewHolder {
 
         CheckBox optionCheckBox;
         TextView optionPriceTV;

@@ -64,6 +64,8 @@
     <string name="amount">수량</string>
     <string name="addMenu">장바구니에 담기</string>
 
-    <string name="changeOption">옵션 변경</string>
+    <string name="totalPrice">총 주문금액</string>
+    <string name="upload">글 등록하기</string>
+
 
 </resources>

@@ -54,46 +54,37 @@ public class AuthRegisterActivity extends AppCompatActivity {
         emailTV.setText(email);
 
         // 인증번호 전송
-        sendAuthNumBtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                sendAuthNum(email); // 해당 이메일로 인증번호 전송
-            }
+        sendAuthNumBtn.setOnClickListener(view -> {
+            sendAuthNum(email); // 해당 이메일로 인증번호 전송
         });
 
         // 인증번호 일치 여부 확인
-        checkAuthNumBtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                String authNum = authNumET.getText().toString();
+        checkAuthNumBtn.setOnClickListener(view -> {
+            String authNum = authNumET.getText().toString();
 
-                if (authNum.isEmpty()) { // 공백
-                    Toast.makeText(AuthRegisterActivity.this, "인증번호를 입력해주세요.", Toast.LENGTH_SHORT).show();
-                } else {
-                    if (authNum.equals(sentAuthNum)) { // 인증에 성공시
-                        Toast.makeText(AuthRegisterActivity.this, "인증에 성공했습니다.", Toast.LENGTH_SHORT).show();
+            if (authNum.isEmpty()) { // 공백
+                Toast.makeText(AuthRegisterActivity.this, "인증번호를 입력해주세요.", Toast.LENGTH_SHORT).show();
+            } else {
+                if (authNum.equals(sentAuthNum)) { // 인증에 성공시
+                    Toast.makeText(AuthRegisterActivity.this, "인증에 성공했습니다.", Toast.LENGTH_SHORT).show();
 
-                        authNumET.setEnabled(false); // 인증번호를 입력하지 못하도록 입력창 비활성화
-                        checkAuthNumBtn.setEnabled(false); // 인증번호 검사버튼 비활성화
-                        nextBtn.setVisibility(View.VISIBLE); // 다음 액티비티 이동버튼 활성화
-                    } else { // 인증에 실패시
-                        Toast.makeText(AuthRegisterActivity.this, "인증번호를 다시 입력해주세요.", Toast.LENGTH_SHORT).show();
-                    }
+                    authNumET.setEnabled(false); // 인증번호를 입력하지 못하도록 입력창 비활성화
+                    checkAuthNumBtn.setEnabled(false); // 인증번호 검사버튼 비활성화
+                    nextBtn.setVisibility(View.VISIBLE); // 다음 액티비티 이동버튼 활성화
+                } else { // 인증에 실패시
+                    Toast.makeText(AuthRegisterActivity.this, "인증번호를 다시 입력해주세요.", Toast.LENGTH_SHORT).show();
                 }
             }
         });
 
         // 다음페이지로 이동
-        nextBtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                userVO = (UserVO) getIntent().getSerializableExtra("userVO"); // 전 액티비티에서 넘어온 객체를 받아서 새로 생성
+        nextBtn.setOnClickListener(view -> {
+            userVO = (UserVO) getIntent().getSerializableExtra("userVO"); // 전 액티비티에서 넘어온 객체를 받아서 새로 생성
 
-                Intent intent = new Intent(AuthRegisterActivity.this, PasswordRegisterActivity.class);
-                intent.putExtra("userVO", userVO);
-                startActivity(intent);
-                finish();
-            }
+            Intent intent = new Intent(AuthRegisterActivity.this, PasswordRegisterActivity.class);
+            intent.putExtra("userVO", userVO);
+            startActivity(intent);
+            finish();
         });
     }
 

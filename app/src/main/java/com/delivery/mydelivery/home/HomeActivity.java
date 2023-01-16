@@ -1,9 +1,8 @@
 package com.delivery.mydelivery.home;
 
+import android.annotation.SuppressLint;
 import android.os.Bundle;
-import android.view.MenuItem;
 
-import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.delivery.mydelivery.R;
@@ -18,6 +17,7 @@ public class HomeActivity extends AppCompatActivity {
     private MyPostFragment myPostFragment;
     private MyInfoFragment myInfoFragment;
 
+    @SuppressLint("NonConstantResourceId")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -34,29 +34,26 @@ public class HomeActivity extends AppCompatActivity {
         NavigationBarView navigation = findViewById(R.id.bottomNavigationView); // 하단바
 
         // 네비게이션 클릭 이벤트
-        navigation.setOnItemSelectedListener(new NavigationBarView.OnItemSelectedListener() {
-            @Override
-            public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+        navigation.setOnItemSelectedListener(item -> {
 
-                switch (item.getItemId()) {
-                    case R.id.menu_category: // 카테고리 이동
-                        getSupportFragmentManager().beginTransaction().replace(R.id.homeFragmentFrame, categoryFragment).commit();
-                        return true;
+            switch (item.getItemId()) {
+                case R.id.menu_category: // 카테고리 이동
+                    getSupportFragmentManager().beginTransaction().replace(R.id.homeFragmentFrame, categoryFragment).commit();
+                    return true;
 
-                    case R.id.menu_post: // 모집글 리스트 이동
-                        getSupportFragmentManager().beginTransaction().replace(R.id.homeFragmentFrame, postFragment).commit();
-                        return true;
+                case R.id.menu_post: // 모집글 리스트 이동
+                    getSupportFragmentManager().beginTransaction().replace(R.id.homeFragmentFrame, postFragment).commit();
+                    return true;
 
-                    case R.id.menu_myPost: // 내 모집글 이동
-                        getSupportFragmentManager().beginTransaction().replace(R.id.homeFragmentFrame, myPostFragment).commit();
-                        return true;
+                case R.id.menu_myPost: // 내 모집글 이동
+                    getSupportFragmentManager().beginTransaction().replace(R.id.homeFragmentFrame, myPostFragment).commit();
+                    return true;
 
-                    case R.id.menu_myInfo: // 내 정보 이동
-                        getSupportFragmentManager().beginTransaction().replace(R.id.homeFragmentFrame, myInfoFragment).commit();
-                        return true;
-                }
-                return false;
+                case R.id.menu_myInfo: // 내 정보 이동
+                    getSupportFragmentManager().beginTransaction().replace(R.id.homeFragmentFrame, myInfoFragment).commit();
+                    return true;
             }
+            return false;
         });
     }
 }

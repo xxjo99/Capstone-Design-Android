@@ -24,8 +24,7 @@ public class PreferenceManager {
 
     public static String getLoginInfo(Context context) {
         SharedPreferences prefs = getPreferences(context);
-        String loginInfo = prefs.getString("userInfo", "");
-        return loginInfo;
+        return prefs.getString("userInfo", "");
     }
 
     public static void logout(Context context) {

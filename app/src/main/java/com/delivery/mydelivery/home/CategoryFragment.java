@@ -45,7 +45,9 @@ public class CategoryFragment extends Fragment {
     @Nullable
     @Override
     public View onCreateView(@Nullable LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
+        assert inflater != null;
         view = inflater.inflate(R.layout.fragment_home_category, container, false);
+        assert container != null;
         context = container.getContext();
 
         // 그리드뷰로 설정
@@ -59,12 +61,9 @@ public class CategoryFragment extends Fragment {
 
         // 버튼 이벤트
         moveCartBtn = view.findViewById(R.id.moveCartBtn);
-        moveCartBtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent(context, OrderListActivity.class);
-                startActivity(intent);
-            }
+        moveCartBtn.setOnClickListener(view -> {
+            Intent intent = new Intent(context, OrderListActivity.class);
+            startActivity(intent);
         });
 
         return view;

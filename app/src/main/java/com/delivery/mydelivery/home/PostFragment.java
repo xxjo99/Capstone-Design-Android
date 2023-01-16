@@ -17,6 +17,7 @@ public class PostFragment extends Fragment {
     @Nullable
     @Override
     public View onCreateView(@Nullable LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
+        assert inflater != null;
         view = inflater.inflate(R.layout.fragment_home_post, container, false); // view 초기화
 
         return view;

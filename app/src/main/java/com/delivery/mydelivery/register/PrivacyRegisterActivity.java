@@ -2,7 +2,6 @@ package com.delivery.mydelivery.register;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
@@ -42,18 +41,15 @@ public class PrivacyRegisterActivity extends AppCompatActivity {
         registerBtn = findViewById(R.id.registerBtn);
 
         // 회원가입 버튼
-        registerBtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                String name = nameET.getText().toString();
-                String birth = birthET.getText().toString();
-                String phoneNum = phoneNumET.getText().toString();
+        registerBtn.setOnClickListener(view -> {
+            String name = nameET.getText().toString();
+            String birth = birthET.getText().toString();
+            String phoneNum = phoneNumET.getText().toString();
 
-                if (name.isEmpty() || birth.isEmpty() || phoneNum.isEmpty()) { // 입력칸중 하나라도 비어있을경우
-                    Toast.makeText(PrivacyRegisterActivity.this, "빈칸 입력", Toast.LENGTH_SHORT).show();
-                } else {
-                    register(name, birth, phoneNum);
-                }
+            if (name.isEmpty() || birth.isEmpty() || phoneNum.isEmpty()) { // 입력칸중 하나라도 비어있을경우
+                Toast.makeText(PrivacyRegisterActivity.this, "빈칸 입력", Toast.LENGTH_SHORT).show();
+            } else {
+                register(name, birth, phoneNum);
             }
         });
     }

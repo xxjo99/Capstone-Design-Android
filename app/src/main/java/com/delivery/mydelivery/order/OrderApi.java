@@ -25,4 +25,7 @@ public interface OrderApi {
 
     @GET("/order/contentNameList/{contentIdList}")
     Call<List<String>> getContentNameList(@Path("contentIdList") String contentIdList);
+
+    @POST("/order/modifyAmount")
+    Call<OrderVO> modifyAmount(@Body OrderVO order);
 }

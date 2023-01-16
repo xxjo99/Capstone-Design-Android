@@ -3,9 +3,9 @@ package com.delivery.mydelivery.menu;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
-import android.widget.Button;
 import android.widget.TextView;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -29,9 +29,6 @@ public class MenuListActivity extends AppCompatActivity {
     RecyclerView menuRecyclerView;
     MenuListAdapter menuListAdapter;
     List<MenuVO> menuList;
-
-    // 하단 메뉴 담기 버튼
-    public static Button addMenuBtn;
 
     // 레트로핏, api
     RetrofitService retrofitService;
@@ -69,14 +66,14 @@ public class MenuListActivity extends AppCompatActivity {
         storeApi.getStore(storeId)
                 .enqueue(new Callback<StoreVO>() {
                     @Override
-                    public void onResponse(Call<StoreVO> call, Response<StoreVO> response) {
+                    public void onResponse(@NonNull Call<StoreVO> call, @NonNull Response<StoreVO> response) {
                         StoreVO store = response.body();
                         storeDetailTV = findViewById(R.id.storeDetailTV);
                         storeDetailTV.setText(store.toString());
                     }
 
                     @Override
-                    public void onFailure(Call<StoreVO> call, Throwable t) {
+                    public void onFailure(@NonNull Call<StoreVO> call, @NonNull Throwable t) {
                     }
                 });
     }
@@ -89,13 +86,13 @@ public class MenuListActivity extends AppCompatActivity {
         menuApi.getMenuList(storeId)
                 .enqueue(new Callback<List<MenuVO>>() {
                     @Override
-                    public void onResponse(Call<List<MenuVO>> call, Response<List<MenuVO>> response) {
+                    public void onResponse(@NonNull Call<List<MenuVO>> call, @NonNull Response<List<MenuVO>> response) {
                         menuList = response.body();
                         menuListAdapter.setMenuList(menuList);
                     }
 
                     @Override
-                    public void onFailure(Call<List<MenuVO>> call, Throwable t) {
+                    public void onFailure(@NonNull Call<List<MenuVO>> call, @NonNull Throwable t) {
                     }
                 });
     }

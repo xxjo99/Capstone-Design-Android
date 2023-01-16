@@ -1,5 +1,6 @@
 package com.delivery.mydelivery.store;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.Intent;
 import android.view.LayoutInflater;
@@ -16,6 +17,7 @@ import com.delivery.mydelivery.menu.MenuListActivity;
 import java.util.List;
 
 // 매장 리스트 어댑터
+@SuppressLint("SetTextI18n")
 public class StoreListAdapter extends BaseAdapter {
 
     Context context;
@@ -66,13 +68,10 @@ public class StoreListAdapter extends BaseAdapter {
         deliveryTipTV.setText(store.getDeliveryTip());
 
         // 매장 클릭 이벤트
-        view.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent(context, MenuListActivity.class);
-                intent.putExtra("storeId", store.getStoreId());
-                context.startActivity(intent);
-            }
+        view.setOnClickListener(view1 -> {
+            Intent intent = new Intent(context, MenuListActivity.class);
+            intent.putExtra("storeId", store.getStoreId());
+            context.startActivity(intent);
         });
 
         return view;

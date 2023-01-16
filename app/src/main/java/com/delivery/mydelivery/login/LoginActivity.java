@@ -3,7 +3,6 @@ package com.delivery.mydelivery.login;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
-import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
@@ -50,22 +49,19 @@ public class LoginActivity extends AppCompatActivity {
         loginBtn = findViewById(R.id.loginBtn);
 
         // 로그인 버튼 이벤트
-        loginBtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                String email = emailET.getText().toString();
-                String pw = pwET.getText().toString();
+        loginBtn.setOnClickListener(view -> {
+            String email = emailET.getText().toString();
+            String pw = pwET.getText().toString();
 
-                // 유효성 검사
-                if (email.isEmpty() && pw.isEmpty()) {
-                    Toast.makeText(LoginActivity.this, "이메일과 비밀번호를 입력해주세요.", Toast.LENGTH_SHORT).show();
-                } else if (email.isEmpty()) {
-                    Toast.makeText(LoginActivity.this, "이메일을 입력해주세요.", Toast.LENGTH_SHORT).show();
-                } else if (pw.isEmpty()) {
-                    Toast.makeText(LoginActivity.this, "비밀번호를 입력해주세요.", Toast.LENGTH_SHORT).show();
-                } else { // 유효성 검사 통과시 로그인 진행
-                    login(email, pw);
-                }
+            // 유효성 검사
+            if (email.isEmpty() && pw.isEmpty()) {
+                Toast.makeText(LoginActivity.this, "이메일과 비밀번호를 입력해주세요.", Toast.LENGTH_SHORT).show();
+            } else if (email.isEmpty()) {
+                Toast.makeText(LoginActivity.this, "이메일을 입력해주세요.", Toast.LENGTH_SHORT).show();
+            } else if (pw.isEmpty()) {
+                Toast.makeText(LoginActivity.this, "비밀번호를 입력해주세요.", Toast.LENGTH_SHORT).show();
+            } else { // 유효성 검사 통과시 로그인 진행
+                login(email, pw);
             }
         });
     }
@@ -94,7 +90,7 @@ public class LoginActivity extends AppCompatActivity {
                         // 어플 홈화면 진입후 로그인 종료
                         Intent intent = new Intent(LoginActivity.this, HomeActivity.class);
                         startActivity(intent);
-                        MainActivity mainActivity = (MainActivity) MainActivity.mainActivity;
+                        MainActivity mainActivity = MainActivity.mainActivity;
                         mainActivity.finish();
                         finish();
                     }

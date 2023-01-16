@@ -38,20 +38,17 @@ public class PasswordRegisterActivity extends AppCompatActivity {
         pwMatchingCk(); // 실시간 비밀번호 일치 검사 메소드
 
         // 다음 페이지 이동
-        nextBtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                String pw = pwET.getText().toString(); // 입력한 비밀번호 받아옴
+        nextBtn.setOnClickListener(view -> {
+            String pw = pwET.getText().toString(); // 입력한 비밀번호 받아옴
 
-                userVO = (UserVO) getIntent().getSerializableExtra("userVO"); // 전 액티비티에서 넘어온 객체를 받아서 새로 생성
-                userVO.setPw(pw); // 객체에 비밀번호 저장
+            userVO = (UserVO) getIntent().getSerializableExtra("userVO"); // 전 액티비티에서 넘어온 객체를 받아서 새로 생성
+            userVO.setPw(pw); // 객체에 비밀번호 저장
 
-                // 객체 데이터 받아서 다음 액티비티로 전달
-                Intent intent = new Intent(PasswordRegisterActivity.this, PrivacyRegisterActivity.class);
-                intent.putExtra("userVO", userVO);
-                startActivity(intent);
-                finish();
-            }
+            // 객체 데이터 받아서 다음 액티비티로 전달
+            Intent intent = new Intent(PasswordRegisterActivity.this, PrivacyRegisterActivity.class);
+            intent.putExtra("userVO", userVO);
+            startActivity(intent);
+            finish();
         });
     }
 

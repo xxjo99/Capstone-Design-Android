@@ -31,7 +31,9 @@ public class MyInfoFragment extends Fragment {
     @Nullable
     @Override
     public View onCreateView(@Nullable LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
+        assert inflater != null;
         view = inflater.inflate(R.layout.fragment_home_myinfo, container, false); // view 설정
+        assert container != null;
         context = container.getContext(); // context 초기화
 
         jsonTextTV = view.findViewById(R.id.jsonTextTV);
@@ -49,16 +51,13 @@ public class MyInfoFragment extends Fragment {
         }
 
         // 로그아웃 이벤트
-        logoutBtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                PreferenceManager.logout(context);
+        logoutBtn.setOnClickListener(view -> {
+            PreferenceManager.logout(context);
 
-                // 프래그먼트 종료
-                Intent intent = new Intent(getActivity(), MainActivity.class);
-                startActivity(intent);
-                getActivity().finish();
-            }
+            // 프래그먼트 종료
+            Intent intent = new Intent(getActivity(), MainActivity.class);
+            startActivity(intent);
+            getActivity().finish();
         });
 
         return view;

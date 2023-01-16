@@ -1,5 +1,6 @@
 package com.delivery.mydelivery.menu;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -21,9 +22,10 @@ import retrofit2.Callback;
 import retrofit2.Response;
 
 // 카테고리 어댑터
+@SuppressLint("SetTextI18n")
 public class OptionAdapter extends RecyclerView.Adapter<OptionAdapter.ViewHolder> {
 
-    private List<OptionVO> optionList; // 옵션 리스트
+    private final List<OptionVO> optionList; // 옵션 리스트
 
     private List<OptionContentVO> optionContentList; // 옵션 내용 리스트
     Context context; // context
@@ -82,7 +84,7 @@ public class OptionAdapter extends RecyclerView.Adapter<OptionAdapter.ViewHolder
         }
     }
 
-    public class ViewHolder extends RecyclerView.ViewHolder {
+    public static class ViewHolder extends RecyclerView.ViewHolder {
         TextView optionNameTV;
         RecyclerView optionContentRecyclerView;
 
