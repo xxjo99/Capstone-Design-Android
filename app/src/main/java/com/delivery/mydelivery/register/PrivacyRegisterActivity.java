@@ -82,6 +82,8 @@ public class PrivacyRegisterActivity extends AppCompatActivity {
         userVO.setBirth(birth);
         userVO.setPhoneNum(phoneNum);
 
+        System.out.println(userVO.toString());
+
         // 레트로핏, api 초기화
         retrofitService = new RetrofitService();
         registerApi = retrofitService.getRetrofit().create(RegisterApi.class);

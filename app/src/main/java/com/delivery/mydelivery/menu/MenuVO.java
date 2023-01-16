@@ -5,7 +5,7 @@ public class MenuVO {
     private int menuId; // pk
     private int storeId; // fk
     private String menuName; // 메뉴 이름
-    private String menuPrice; // 메뉴 가격
+    private int menuPrice; // 메뉴 가격
     private String menuPicUrl; // 메뉴 이미지 주소
     private String menuInfo; // 메뉴 설명
 
@@ -33,11 +33,11 @@ public class MenuVO {
         this.menuName = menuName;
     }
 
-    public String getMenuPrice() {
+    public int getMenuPrice() {
         return menuPrice;
     }
 
-    public void setMenuPrice(String menuPrice) {
+    public void setMenuPrice(int menuPrice) {
         this.menuPrice = menuPrice;
     }
 

@@ -6,7 +6,6 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.CheckBox;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
@@ -40,16 +39,25 @@ public class OptionContentAdapter extends RecyclerView.Adapter<OptionContentAdap
     public void onBindViewHolder(@NonNull OptionContentAdapter.ViewHolder holder, int position) {
         OptionContentVO optionContent = optionContentList.get(position);
 
-        holder.optionCheckBox.setText(optionContent.getOptionContentName());
-        holder.optionPriceTV.setText(optionContent.getOptionPrice() + "");
+        String optionContentName = optionContent.getOptionContentName(); // 옵션내용
+        int optionPrice = optionContent.getOptionPrice(); // 옵션 가격
+
+        holder.optionCheckBox.setText(optionContentName);
+        holder.optionPriceTV.setText(optionPrice + "");
 
         // 옵션 선택 이벤트
         holder.optionCheckBox.setOnClickListener(new View.OnClickListener() {
-
             @Override
             public void onClick(View view) {
-                if (((CheckBox)view).isChecked()) {
-                    Toast.makeText(context, optionContent.getOptionContentName(), Toast.LENGTH_SHORT).show();
+                int price = OptionActivity.menuPrice;
+                String optionContentId = Integer.toString(optionContent.getMenuOptionContentId());
+
+                if (((CheckBox)view).isChecked()) { // 옵션 선택
+                    price += optionPrice;
+                    OptionActivity.modifyPrice(price, optionContentId, 1);
+                } else { // 옵션 선택 해제
+                    price -= optionPrice;
+                    OptionActivity.modifyPrice(price, optionContentId, 0);
                 }
             }
         });

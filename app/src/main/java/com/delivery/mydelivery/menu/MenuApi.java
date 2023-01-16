@@ -20,4 +20,7 @@ public interface MenuApi {
     @GET("/menu/option/content/{menuOptionId}")
     Call<List<OptionContentVO>> getMenuOptionContentList(@Path("menuOptionId") int menuOptionId);
 
+    @GET("/menu/menuList/{menuId}")
+    Call<String> getMenuName(@Path("menuId") int menuId);
+
 }

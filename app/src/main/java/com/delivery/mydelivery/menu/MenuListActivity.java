@@ -3,6 +3,7 @@ package com.delivery.mydelivery.menu;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.widget.Button;
 import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -28,6 +29,9 @@ public class MenuListActivity extends AppCompatActivity {
     RecyclerView menuRecyclerView;
     MenuListAdapter menuListAdapter;
     List<MenuVO> menuList;
+
+    // 하단 메뉴 담기 버튼
+    public static Button addMenuBtn;
 
     // 레트로핏, api
     RetrofitService retrofitService;

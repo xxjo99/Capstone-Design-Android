@@ -1,6 +1,7 @@
 package com.delivery.mydelivery.retrofit;
 
 import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
 
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
@@ -17,9 +18,11 @@ public class RetrofitService {
 
     // 레트로핏 설정
     public void init() {
+        Gson gson = new GsonBuilder().setLenient().create();
+
         retrofit = new Retrofit.Builder()
                 .baseUrl("http://1.254.120.139:50000") // 주소
-                .addConverterFactory(GsonConverterFactory.create(new Gson()))
+                .addConverterFactory(GsonConverterFactory.create(gson))
                 .build();
     }
 

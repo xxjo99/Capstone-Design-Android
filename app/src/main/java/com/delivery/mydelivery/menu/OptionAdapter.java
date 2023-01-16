@@ -24,6 +24,7 @@ import retrofit2.Response;
 public class OptionAdapter extends RecyclerView.Adapter<OptionAdapter.ViewHolder> {
 
     private List<OptionVO> optionList; // 옵션 리스트
+
     private List<OptionContentVO> optionContentList; // 옵션 내용 리스트
     Context context; // context
 
@@ -49,7 +50,18 @@ public class OptionAdapter extends RecyclerView.Adapter<OptionAdapter.ViewHolder
     public void onBindViewHolder(@NonNull OptionAdapter.ViewHolder holder, int position) {
         OptionVO option = optionList.get(position);
 
-        holder.optionNameTV.setText(option.getOptionName());
+        String optionName = option.getOptionName(); // 옵션 이름
+        int minimumSelection = option.getMinimumSelection(); // 최소 선택 개수
+        int maximumSelection = option.getMaximumSelection(); // 최대 선택 개수
+
+        // 최소, 최대 선택 개수에 따른 텍스트와 타입 설정
+        if (minimumSelection == 0 && maximumSelection != 0) {
+            holder.optionNameTV.setText(optionName + " (최대 " + maximumSelection + "개)");
+        } else if (minimumSelection != 0 && maximumSelection == 0 || minimumSelection == maximumSelection) {
+            holder.optionNameTV.setText(optionName + " (최소 " + minimumSelection + "개 선택)");
+        } else {
+            holder.optionNameTV.setText(optionName + " (최소 " + minimumSelection + "개, 최대 " + maximumSelection + "개 선택)");
+        }
 
         // 옵션 내용 리사이클러뷰 생성, 설정
         RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(context, LinearLayoutManager.VERTICAL, false);
@@ -104,7 +116,6 @@ public class OptionAdapter extends RecyclerView.Adapter<OptionAdapter.ViewHolder
 
                     }
                 });
-
     }
 
 }

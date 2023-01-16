@@ -50,6 +50,9 @@
         <activity android:name=".menu.MenuListActivity" />
         <activity android:name=".menu.OptionActivity"/>
 
+        <!-- order -->
+        <activity android:name=".order.OrderListActivity" />
+
     </application>
 
 </manifest>
