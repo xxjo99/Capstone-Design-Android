@@ -1,13 +1,22 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<com.sothree.slidinguppanel.SlidingUpPanelLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/slidingUpPanelLayout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical">
+    android:gravity="bottom"
+    android:orientation="vertical"
+    app:umanoDragView="@id/recruitLayout"
+    app:umanoOverlay="false"
+    app:umanoPanelHeight="70dp"
+    app:umanoParallaxOffset="200dp"
+    app:umanoShadowHeight="10dp"
+    tools:context=".order.OrderListActivity">
 
     <androidx.core.widget.NestedScrollView
         android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="1">
+        android:layout_height="match_parent">
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -53,20 +62,113 @@
 
     </androidx.core.widget.NestedScrollView>
 
+    <!-- 모집글 등록 뷰 -->
     <LinearLayout
+        android:id="@+id/recruitLayout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@drawable/option_layout_border_top"
-        android:orientation="horizontal">
+        android:orientation="vertical">
 
+        <!-- 뷰 열기/닫기 버튼 -->
         <Button
-            android:id="@+id/uploadBtn"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
+            android:id="@+id/slidingOpenBtn"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
             android:layout_margin="10dp"
             android:layout_weight="1"
             android:text="@string/upload" />
 
+        <!-- 시간선택 -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="10dp"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="시간선택" />
+
+            <View
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:layout_weight="1" />
+
+            <TextView
+                android:id="@+id/selectTimeTV"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="시간선택 임시" />
+
+        </LinearLayout>
+
+        <!-- 인원 선택 -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="10dp"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/selectPerson" />
+
+            <View
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:layout_weight="1" />
+
+            <Button
+                android:id="@+id/minusPersonBtn"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="-" />
+
+            <TextView
+                android:id="@+id/selectPersonTV"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/selectPerson" />
+
+            <Button
+                android:id="@+id/addPersonBtn"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="+" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="10dp"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/selectPlace" />
+
+            <View
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:layout_weight="1" />
+
+            <EditText
+                android:id="@+id/selectPlaceET"
+                android:layout_width="200dp"
+                android:layout_height="wrap_content" />
+
+        </LinearLayout>
+
+        <Button
+            android:id="@+id/registerBtn"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:text="등록하기" />
+
     </LinearLayout>
 
-</LinearLayout>
+</com.sothree.slidinguppanel.SlidingUpPanelLayout>

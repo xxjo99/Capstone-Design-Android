@@ -66,6 +66,9 @@
 
     <string name="totalPrice">총 주문금액</string>
     <string name="upload">글 등록하기</string>
+    <string name="selectTime">시간 선택</string>
+    <string name="selectPerson">인원 선택</string>
+    <string name="selectPlace">장소 선택</string>
 
 
 </resources>

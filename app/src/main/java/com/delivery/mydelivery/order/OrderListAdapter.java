@@ -1,14 +1,13 @@
 package com.delivery.mydelivery.order;
 
 import android.annotation.SuppressLint;
-import android.app.Activity;
 import android.content.Context;
-import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
@@ -58,7 +57,7 @@ public class OrderListAdapter extends RecyclerView.Adapter<OrderListAdapter.View
     @Override
     public void onBindViewHolder(@NonNull OrderListAdapter.ViewHolder holder, int position) {
         OrderVO order = orderList.get(position);
-
+        OrderListActivity.storeId = order.getStoreId();
         // 매장이름, 선택한 옵션, 가격, 개수 세팅
         setStoreName(order.getStoreId()); // 매장 이름
         setMenuName(order.getMenuId(), holder); // 메뉴 이름
@@ -102,6 +101,7 @@ public class OrderListAdapter extends RecyclerView.Adapter<OrderListAdapter.View
             OrderListActivity.totalPrice += (order.getTotalPrice() / order.getAmount());
             OrderListActivity.totalPriceTV.setText(OrderListActivity.totalPrice + "원");
         });
+
     }
 
     @Override
@@ -120,6 +120,7 @@ public class OrderListAdapter extends RecyclerView.Adapter<OrderListAdapter.View
         TextView amountTV;
         Button decreaseBtn;
         Button increaseBtn;
+        Button deleteBtn;
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
@@ -130,6 +131,7 @@ public class OrderListAdapter extends RecyclerView.Adapter<OrderListAdapter.View
             amountTV = itemView.findViewById(R.id.amountTV);
             decreaseBtn = itemView.findViewById(R.id.decreaseBtn);
             increaseBtn = itemView.findViewById(R.id.increaseBtn);
+            deleteBtn = itemView.findViewById(R.id.deleteBtn);
         }
     }
 
@@ -219,6 +221,25 @@ public class OrderListAdapter extends RecyclerView.Adapter<OrderListAdapter.View
                     }
                 });
 
+    }
+
+    // 메뉴 삭제
+    private void deleteOrder(int orderId, int position) {
+        retrofitService = new RetrofitService();
+        orderApi = retrofitService.getRetrofit().create(OrderApi.class);
+
+        orderApi.deleteOrder(orderId)
+                .enqueue(new Callback<Void>() {
+                    @Override
+                    public void onResponse(@NonNull Call<Void> call, @NonNull Response<Void> response) {
+                        Toast.makeText(context, "삭제 성공", Toast.LENGTH_SHORT).show();
+                    }
+
+                    @Override
+                    public void onFailure(@NonNull Call<Void> call, @NonNull Throwable t) {
+
+                    }
+                });
     }
 
 }

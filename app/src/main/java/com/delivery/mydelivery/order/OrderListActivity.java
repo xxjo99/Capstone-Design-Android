@@ -4,7 +4,9 @@ import android.annotation.SuppressLint;
 import android.content.Context;
 import android.os.Bundle;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -16,6 +18,7 @@ import com.delivery.mydelivery.preferenceManager.PreferenceManager;
 import com.delivery.mydelivery.register.UserVO;
 import com.delivery.mydelivery.retrofit.RetrofitService;
 import com.google.gson.Gson;
+import com.sothree.slidinguppanel.SlidingUpPanelLayout;
 
 import java.util.List;
 
@@ -23,9 +26,11 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
+@SuppressLint("SetTextI18n")
 public class OrderListActivity extends AppCompatActivity {
 
-    // 매장 이름
+    // 매장 아이디, 이름
+    public static int storeId;
     @SuppressLint("StaticFieldLeak")
     public static TextView storeNameTV;
 
@@ -34,11 +39,25 @@ public class OrderListActivity extends AppCompatActivity {
     OrderListAdapter orderListAdapter;
     List<OrderVO> orderList;
 
-    // 총 금액 텍스트뷰, 글 등록 이동 버튼
+    // 총 금액 텍스트뷰
+    @SuppressLint("StaticFieldLeak")
     public static TextView totalPriceTV;
-    Button uploadBtn;
-
     public static int totalPrice;
+
+    // 모집글 등록 레이아웃, 레이아웃 펼치기 / 닫기 버튼
+    SlidingUpPanelLayout slidingUpPanelLayout;
+    Button slidingOpenBtn;
+
+    // 시간, 인원, 장소선택, 등록 버튼
+    TextView selectTimeTV;
+    TextView selectPersonTV;
+    Button minusPersonBtn;
+    Button addPersonBtn;
+    EditText selectPlaceET;
+    Button registerBtn;
+
+    // 초기 인원수
+    int person = 1;
 
     // 레트로핏, api
     RetrofitService retrofitService;
@@ -52,10 +71,13 @@ public class OrderListActivity extends AppCompatActivity {
         setContentView(R.layout.activity_order_list);
         context = this; // context 지정
 
-        // 매장이름, 총 주문금액, 버튼
+        // 매장이름, 총 주문금액, 레이아웃, 버튼
         storeNameTV = findViewById(R.id.storeNameTV);
         totalPriceTV = findViewById(R.id.totalPriceTV);
-        uploadBtn = findViewById(R.id.uploadBtn);
+        slidingUpPanelLayout = findViewById(R.id.slidingUpPanelLayout);
+        slidingOpenBtn = findViewById(R.id.slidingOpenBtn);
+
+        // 매장 아이디 초기화
 
         // 리사이클러뷰 설정
         orderRecyclerView = findViewById(R.id.orderRecyclerView);
@@ -71,6 +93,60 @@ public class OrderListActivity extends AppCompatActivity {
 
         // 담은 메뉴 가져옴
         setOrder(userId);
+
+        // 모집글 등록 펼치기 버튼
+        slidingOpenBtn.setOnClickListener(view -> {
+            if (slidingUpPanelLayout.getPanelState() == SlidingUpPanelLayout.PanelState.COLLAPSED) {
+                slidingUpPanelLayout.setPanelState(SlidingUpPanelLayout.PanelState.ANCHORED);
+                slidingOpenBtn.setText("닫기");
+            } else {
+                slidingUpPanelLayout.setPanelState(SlidingUpPanelLayout.PanelState.COLLAPSED);
+                slidingOpenBtn.setText("글 등록하기");
+            }
+        });
+
+        selectTimeTV = findViewById(R.id.selectTimeTV);
+        selectPersonTV = findViewById(R.id.selectPersonTV);
+        minusPersonBtn = findViewById(R.id.minusPersonBtn);
+        addPersonBtn = findViewById(R.id.addPersonBtn);
+        selectPlaceET = findViewById(R.id.selectPlaceET);
+        registerBtn = findViewById(R.id.registerBtn);
+
+        // 초기인원수 지정
+        selectPersonTV.setText(person + "명");
+
+        // 인원 추가, 감소
+        minusPersonBtn.setOnClickListener(view -> {
+            if (person != 1) {
+                person--;
+                selectPersonTV.setText(person + "명");
+            }
+        });
+
+        addPersonBtn.setOnClickListener(view -> {
+            person++;
+            selectPersonTV.setText(person + "명");
+        });
+
+        // 모집글 등록
+        registerBtn.setOnClickListener(view -> {
+
+            if (selectPlaceET.getText().toString().length() == 0) {
+                Toast.makeText(context, "장소를 입력해주세요", Toast.LENGTH_SHORT).show();
+            } else {
+                // 객체 생성, 객체에 필요한 데이터 추가
+                RecruitVO recruit = new RecruitVO();
+
+                recruit.setUserId(userId); // 회원 아이디
+                recruit.setStoreId(storeId); // 매장 아이디
+                recruit.setDeliveryTime(selectTimeTV.getText().toString()); // 시간
+                recruit.setPlace(selectPlaceET.getText().toString()); // 장소
+                recruit.setPerson(person); // 모집인원
+
+                registerRecruit(recruit); // 모집글 등록
+            }
+        });
+
     }
 
     // 장바구니 목록 불러옴
@@ -101,8 +177,24 @@ public class OrderListActivity extends AppCompatActivity {
                 });
     }
 
-    // 총 가격 수정
-    public static void modifyPrice(int modifyPrice) {
+    // 모집글 등록
+    private void registerRecruit(RecruitVO recruit) {
+        retrofitService = new RetrofitService();
+        api = retrofitService.getRetrofit().create(OrderApi.class);
 
+        api.registerRecruit(recruit)
+                .enqueue(new Callback<RecruitVO>() {
+                    @Override
+                    public void onResponse(Call<RecruitVO> call, Response<RecruitVO> response) {
+                        Toast.makeText(context, "등록 완료", Toast.LENGTH_SHORT).show();
+                        finish();
+                    }
+
+                    @Override
+                    public void onFailure(Call<RecruitVO> call, Throwable t) {
+
+                    }
+                });
     }
+
 }

@@ -68,7 +68,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:fontFamily="@font/bmjua_font"
-                    android:text="수량" />
+                    android:text="@string/amount" />
 
                 <View
                     android:layout_width="0dp"
