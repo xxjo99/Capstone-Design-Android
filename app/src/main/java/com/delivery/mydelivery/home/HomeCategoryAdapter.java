@@ -1,5 +1,6 @@
 package com.delivery.mydelivery.home;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.Intent;
 import android.view.LayoutInflater;
@@ -24,6 +25,7 @@ public class HomeCategoryAdapter extends RecyclerView.Adapter<HomeCategoryAdapte
     Context context; // context
 
     // 카테고리 리스트에 데이터 추가
+    @SuppressLint("NotifyDataSetChanged")
     public void setCategoryList(List<CategoryVO> categoryList) {
         this.categoryList = categoryList;
         notifyDataSetChanged();
@@ -64,15 +66,12 @@ public class HomeCategoryAdapter extends RecyclerView.Adapter<HomeCategoryAdapte
             categoryTV = itemView.findViewById(R.id.categoryTV);
 
             // 클릭 이벤트
-            itemView.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View view) {
-                    int position = getAbsoluteAdapterPosition();
+            itemView.setOnClickListener(view -> {
+                int position = getAbsoluteAdapterPosition();
 
-                    if (position != RecyclerView.NO_POSITION) {
-                        String category = categoryList.get(position).getCategoryName();
-                        changeView(category);
-                    }
+                if (position != RecyclerView.NO_POSITION) {
+                    String category = categoryList.get(position).getCategoryName();
+                    changeView(category);
                 }
             });
         }

@@ -44,4 +44,8 @@ dependencies {
     // 글라이드 라이브러리 사용
     implementation 'com.github.bumptech.glide:glide:4.12.0'
     annotationProcessor 'com.github.bumptech.glide:compiler:4.12.0'
+    // 슬라이딩 레이아웃
+    implementation 'com.sothree.slidinguppanel:library:3.4.0'
+    // 카드뷰
+    implementation 'androidx.cardview:cardview:1.0.0'
 }

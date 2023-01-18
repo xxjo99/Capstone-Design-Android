@@ -1,8 +1,8 @@
 package com.delivery.mydelivery;
 
+import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
-import android.view.View;
 import android.widget.Button;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -17,6 +17,7 @@ public class MainActivity extends AppCompatActivity {
     Button registerFormBtn; // 회원가입 이동버튼
     Button loginFormBtn; // 로그인 이동 버튼
 
+    @SuppressLint("StaticFieldLeak")
     public static MainActivity mainActivity; // 현재 액티비티를 전역변수로 설정
 
     @Override
@@ -37,21 +38,15 @@ public class MainActivity extends AppCompatActivity {
         loginFormBtn = findViewById(R.id.loginFormBtn);
 
         // 회원가입 액티비티 이동
-        registerFormBtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent(MainActivity.this, EmailRegisterActivity.class);
-                startActivity(intent);
-            }
+        registerFormBtn.setOnClickListener(view -> {
+            Intent intent = new Intent(MainActivity.this, EmailRegisterActivity.class);
+            startActivity(intent);
         });
 
         // 로그인 액티비티 이동
-        loginFormBtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent(MainActivity.this, LoginActivity.class);
-                startActivity(intent);
-            }
+        loginFormBtn.setOnClickListener(view -> {
+            Intent intent = new Intent(MainActivity.this, LoginActivity.class);
+            startActivity(intent);
         });
 
     }

@@ -4,7 +4,6 @@ import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
-import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -20,7 +19,7 @@ import com.delivery.mydelivery.R;
 import com.delivery.mydelivery.order.OrderApi;
 import com.delivery.mydelivery.order.OrderVO;
 import com.delivery.mydelivery.preferenceManager.PreferenceManager;
-import com.delivery.mydelivery.register.UserVO;
+import com.delivery.mydelivery.user.UserVO;
 import com.delivery.mydelivery.retrofit.RetrofitService;
 import com.google.gson.Gson;
 
@@ -31,6 +30,7 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
+@SuppressLint("SetTextI18n")
 public class OptionActivity extends AppCompatActivity {
 
     // 메뉴정보
@@ -49,6 +49,7 @@ public class OptionActivity extends AppCompatActivity {
     Button decreaseBtn;
 
     public static int menuPrice; // 메뉴의 총 가격
+    @SuppressLint("StaticFieldLeak")
     public static Button addMenuBtn; // 장바구니 담기 버튼
     public static List<String> selectOptionList; // 선택한 옵션의 리스트
 
@@ -61,7 +62,6 @@ public class OptionActivity extends AppCompatActivity {
 
     Context context;
 
-    @SuppressLint("SetTextI18n")
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_menu_option);
@@ -109,62 +109,52 @@ public class OptionActivity extends AppCompatActivity {
         selectOptionList = new ArrayList<>();
 
         // 개수 증가, 감소 이벤트
-        decreaseBtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
+        decreaseBtn.setOnClickListener(view -> {
 
-                if (amount == 1) {
-                    Toast.makeText(context, "감소 불가", Toast.LENGTH_SHORT).show();
-                } else {
-                    int price = menuPrice / amount;
-                    menuPrice -= price;
-                    addMenuBtn.setText(menuPrice + "원 담기");
-
-                    amount -= 1;
-                    amountTV.setText(amount + "개");
-                }
-            }
-        });
-
-        increaseBtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
+            if (amount == 1) {
+                Toast.makeText(context, "감소 불가", Toast.LENGTH_SHORT).show();
+            } else {
                 int price = menuPrice / amount;
-                menuPrice += price;
+                menuPrice -= price;
                 addMenuBtn.setText(menuPrice + "원 담기");
 
-                amount += 1;
+                amount -= 1;
                 amountTV.setText(amount + "개");
             }
         });
 
+        increaseBtn.setOnClickListener(view -> {
+            int price = menuPrice / amount;
+            menuPrice += price;
+            addMenuBtn.setText(menuPrice + "원 담기");
+
+            amount += 1;
+            amountTV.setText(amount + "개");
+        });
+
         // 장바구니 추가 버튼
-        addMenuBtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                OrderVO order = new OrderVO(); // 주문 객체 생성
+        addMenuBtn.setOnClickListener(view -> {
+            OrderVO order = new OrderVO(); // 주문 객체 생성
 
-                // 사용자의 id를 받아옴
-                String loginInfo = PreferenceManager.getLoginInfo(context);
-                Gson gson = new Gson();
-                UserVO user = gson.fromJson(loginInfo, UserVO.class);
-                int userId = user.getUserId();
+            // 사용자의 id를 받아옴
+            String loginInfo = PreferenceManager.getLoginInfo(context);
+            Gson gson = new Gson();
+            UserVO user = gson.fromJson(loginInfo, UserVO.class);
+            int userId = user.getUserId();
 
-                // 객체에 필요한 데이터 추가
-                order.setStoreId(storeId);
-                order.setUserId(userId); // 사용자 아이디
-                order.setMenuId(menuId); // 메뉴id
-                order.setAmount(amount); // 메뉴 개수
-                order.setTotalPrice(menuPrice); // 최종 메뉴 가격
+            // 객체에 필요한 데이터 추가
+            order.setStoreId(storeId);
+            order.setUserId(userId); // 사용자 아이디
+            order.setMenuId(menuId); // 메뉴id
+            order.setAmount(amount); // 메뉴 개수
+            order.setTotalPrice(menuPrice); // 최종 메뉴 가격
 
-                // 선택한 옵션을 텍스트로 변환후 저장
-                String selectOptionStr = String.join(",", selectOptionList);
-                order.setSelectOption(selectOptionStr);
+            // 선택한 옵션을 텍스트로 변환후 저장
+            String selectOptionStr = String.join(",", selectOptionList);
+            order.setSelectOption(selectOptionStr);
 
-                // 장바구니에 다른 매장의 메뉴가 들어있는지 확인후 없다면 장바구니에 메뉴 추가
-                addMenu(userId, storeId, order);
-            }
-
+            // 장바구니에 다른 매장의 메뉴가 들어있는지 확인후 없다면 장바구니에 메뉴 추가
+            addMenu(userId, storeId, order);
         });
     }
 
@@ -213,29 +203,30 @@ public class OptionActivity extends AppCompatActivity {
         orderApi.findStoreInCart(userId, storeId)
                 .enqueue(new Callback<List<OrderVO>>() {
                     @Override
-                    public void onResponse(Call<List<OrderVO>> call, Response<List<OrderVO>> response) {
+                    public void onResponse(@NonNull Call<List<OrderVO>> call, @NonNull Response<List<OrderVO>> response) {
                         List<OrderVO> orderList = response.body();
 
+                        assert orderList != null;
                         if (orderList.size() != 0) {
                             Toast.makeText(context, "다른 매장의 메뉴 추가 불가", Toast.LENGTH_SHORT).show();
                         } else {
                             orderApi.addMenu(order)
                                     .enqueue(new Callback<OrderVO>() {
                                         @Override
-                                        public void onResponse(Call<OrderVO> call, Response<OrderVO> response) {
+                                        public void onResponse(@NonNull Call<OrderVO> call, @NonNull Response<OrderVO> response) {
                                             Toast.makeText(OptionActivity.this, "장바구니에 메뉴 추가 완료", Toast.LENGTH_SHORT).show();
                                             finish();
                                         }
 
                                         @Override
-                                        public void onFailure(Call<OrderVO> call, Throwable t) {
+                                        public void onFailure(@NonNull Call<OrderVO> call, @NonNull Throwable t) {
                                         }
                                     });
                         }
                     }
 
                     @Override
-                    public void onFailure(Call<List<OrderVO>> call, Throwable t) {
+                    public void onFailure(@NonNull Call<List<OrderVO>> call, @NonNull Throwable t) {
                     }
                 });
     }

@@ -13,7 +13,7 @@ public interface StoreApi {
     @GET("/store/{category}")
     Call<List<StoreVO>> getStoreList(@Path("category") String category);
 
-    // 식별자를 통해 해당 매장의 상세정보 불러옴
+    // 식별자를 통해 해당 매장검색
     @GET("/store/detail/{storeId}")
     Call<StoreVO> getStore(@Path("storeId") int storeId);
 }

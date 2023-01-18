@@ -94,4 +94,19 @@ public class StoreVO {
         this.minimumDeliveryPrice = minimumDeliveryPrice;
     }
 
+    @Override
+    public String toString() {
+        return "StoreVO{" +
+                "storeId=" + storeId +
+                ", storeName='" + storeName + '\'' +
+                ", category='" + category + '\'' +
+                ", storePhoneNum='" + storePhoneNum + '\'' +
+                ", openTime='" + openTime + '\'' +
+                ", closeTime='" + closeTime + '\'' +
+                ", storeImageUrl='" + storeImageUrl + '\'' +
+                ", storeAddress='" + storeAddress + '\'' +
+                ", deliveryTip='" + deliveryTip + '\'' +
+                ", minimumDeliveryPrice=" + minimumDeliveryPrice +
+                '}';
+    }
 }

@@ -1,4 +1,6 @@
-package com.delivery.mydelivery.register;
+package com.delivery.mydelivery.user;
+
+import androidx.annotation.NonNull;
 
 import java.io.Serializable;
 
@@ -60,6 +62,7 @@ public class UserVO implements Serializable {
         this.phoneNum = phoneNum;
     }
 
+    @NonNull
     @Override
     public String toString() {
         return "UserVO{" +

@@ -3,7 +3,6 @@ package com.delivery.mydelivery.store;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
-import android.view.View;
 import android.widget.ListView;
 
 import androidx.annotation.NonNull;
@@ -45,7 +44,7 @@ public class StoreListActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_store_list);
+        setContentView(R.layout.activity_store_store_list);
         context = this; // context 지정
 
         // 리사이클러뷰 가로뷰로 설정
@@ -65,13 +64,7 @@ public class StoreListActivity extends AppCompatActivity {
         setStoreList(category); // 매장 리스트 가져오는 메소드
 
         // 카테고리 클릭 이벤트 구현
-        storeCategoryAdapter.setOnItemClickListener(new StoreCategoryAdapter.OnItemClickListener() {
-            @Override
-            public void onItemClicked(View v, int position) {
-                setStoreList(categoryList.get(position).getCategoryName());
-            }
-        });
-
+        storeCategoryAdapter.setOnItemClickListener((v, position) -> setStoreList(categoryList.get(position).getCategoryName()));
     }
 
     // 카테고리 리스트 가져오는 api

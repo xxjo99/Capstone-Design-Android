@@ -1,5 +1,6 @@
 package com.delivery.mydelivery.store;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -32,6 +33,7 @@ public class StoreCategoryAdapter extends RecyclerView.Adapter<StoreCategoryAdap
     }
 
     // 카테고리 리스트에 데이터 추가
+    @SuppressLint("NotifyDataSetChanged")
     public void setCategoryList(List<CategoryVO> categoryList) {
         this.categoryList = categoryList;
         notifyDataSetChanged();
@@ -69,14 +71,11 @@ public class StoreCategoryAdapter extends RecyclerView.Adapter<StoreCategoryAdap
             categoryTV = itemView.findViewById(R.id.categoryTV);
 
             // 클릭 이벤트
-            itemView.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View view) {
-                    int position = getAbsoluteAdapterPosition();
+            itemView.setOnClickListener(view -> {
+                int position = getAbsoluteAdapterPosition();
 
-                    if (clickListener != null) {
-                        clickListener.onItemClicked(view, position);
-                    }
+                if (clickListener != null) {
+                    clickListener.onItemClicked(view, position);
                 }
             });
         }

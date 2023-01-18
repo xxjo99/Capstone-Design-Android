@@ -18,6 +18,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import com.delivery.mydelivery.MainActivity;
 import com.delivery.mydelivery.R;
 import com.delivery.mydelivery.retrofit.RetrofitService;
+import com.delivery.mydelivery.user.UserVO;
 
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -56,39 +57,33 @@ public class EmailRegisterActivity extends AppCompatActivity {
         go_back_main = findViewById(R.id.go_back_main);
 
         // 중복검사 이벤트
-        duplicationCkBtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                String email = emailET.getText().toString();
+        duplicationCkBtn.setOnClickListener(view -> {
+            String email = emailET.getText().toString();
 
-                if (email.isEmpty()) { // 공백
-                    Toast.makeText(EmailRegisterActivity.this, "이메일을 입력해주세요", Toast.LENGTH_SHORT).show();
-                    nextBtn.setVisibility(View.INVISIBLE);
-                } else if (!regExFlag) { // 정규식 검사 실패
-                    Toast.makeText(EmailRegisterActivity.this, "이메일을 올바르게 입력해주세요", Toast.LENGTH_SHORT).show();
-                    nextBtn.setVisibility(View.INVISIBLE);
-                } else { // 검사 성공
-                    callDuplicateCkApi(email); // 중복검사 api 호출
-                }
+            if (email.isEmpty()) { // 공백
+                Toast.makeText(EmailRegisterActivity.this, "이메일을 입력해주세요", Toast.LENGTH_SHORT).show();
+                nextBtn.setVisibility(View.INVISIBLE);
+            } else if (!regExFlag) { // 정규식 검사 실패
+                Toast.makeText(EmailRegisterActivity.this, "이메일을 올바르게 입력해주세요", Toast.LENGTH_SHORT).show();
+                nextBtn.setVisibility(View.INVISIBLE);
+            } else { // 검사 성공
+                callDuplicateCkApi(email); // 중복검사 api 호출
             }
         });
 
         // 다음 액티비티로 이동 이벤트
-        nextBtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                String email = emailET.getText().toString();
+        nextBtn.setOnClickListener(view -> {
+            String email = emailET.getText().toString();
 
-                // registerVO에 입력한 이메일을 저장
-                userVO = new UserVO();
-                userVO.setEmail(email);
+            // registerVO에 입력한 이메일을 저장
+            userVO = new UserVO();
+            userVO.setEmail(email);
 
-                // 다음 액티비티로 이동
-                Intent intent = new Intent(EmailRegisterActivity.this, AuthRegisterActivity.class);
-                intent.putExtra("userVO", userVO);
-                startActivity(intent);
-                finish();
-            }
+            // 다음 액티비티로 이동
+            Intent intent = new Intent(EmailRegisterActivity.this, AuthRegisterActivity.class);
+            intent.putExtra("userVO", userVO);
+            startActivity(intent);
+            finish();
         });
         go_back_main.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -135,11 +130,8 @@ public class EmailRegisterActivity extends AppCompatActivity {
         Pattern pattern = Patterns.EMAIL_ADDRESS;
         Matcher matcher = pattern.matcher(email);
 
-        if (matcher.find()) { // 이메일 형식이 맞을경우
-            return true;
-        } else {
-            return false;
-        }
+        // 이메일 형식이 맞을경우 true 반환
+        return matcher.find();
     }
 
     // 중복검사 api 호출
@@ -153,7 +145,7 @@ public class EmailRegisterActivity extends AppCompatActivity {
                 .enqueue(new Callback<Boolean>() {
                     @Override
                     public void onResponse(@NonNull Call<Boolean> call, @NonNull Response<Boolean> response) {
-                        boolean duplicateCkResult = response.body(); // 중복여부 저장
+                        boolean duplicateCkResult = Boolean.TRUE.equals(response.body()); // 중복여부 저장
 
                         if (duplicateCkResult) { // 중복되지 않은 이메일
                             Toast.makeText(EmailRegisterActivity.this, "사용가능한 이메일입니다.", Toast.LENGTH_SHORT).show();

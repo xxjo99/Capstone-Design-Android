@@ -1,8 +1,10 @@
-<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8"?> <!-- 모집글 리스트 -->
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical">
+    android:orientation="vertical"
+    tools:context=".home.RecruitListFragment">
 
     <androidx.core.widget.NestedScrollView
         android:layout_width="match_parent"
@@ -13,19 +15,11 @@
             android:layout_height="match_parent"
             android:orientation="vertical">
 
-            <TextView
-                android:id="@+id/storeNameTV"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="@string/storeName"
-                android:textSize="30sp" />
-
             <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/orderRecyclerView"
+                android:id="@+id/recruitListRecyclerView"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:nestedScrollingEnabled="false" />
-
 
         </LinearLayout>
 
