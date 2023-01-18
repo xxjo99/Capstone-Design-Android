@@ -9,14 +9,13 @@
     android:orientation="vertical"
     app:umanoDragView="@id/recruitLayout"
     app:umanoOverlay="false"
-    app:umanoPanelHeight="70dp"
-    app:umanoParallaxOffset="200dp"
-    app:umanoShadowHeight="10dp"
+    app:umanoParallaxOffset="100dp"
+    app:umanoShadowHeight="4dp"
     tools:context=".order.OrderListActivity">
 
     <androidx.core.widget.NestedScrollView
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="wrap_content">
 
         <LinearLayout
             android:layout_width="match_parent"

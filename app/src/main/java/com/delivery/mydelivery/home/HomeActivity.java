@@ -21,7 +21,7 @@ public class HomeActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_home);
+        setContentView(R.layout.activity_home_home);
 
         // 프래그먼트 초기화
         categoryFragment = new CategoryFragment();

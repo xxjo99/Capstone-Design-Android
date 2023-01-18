@@ -68,7 +68,7 @@ public class OrderListActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_order_list);
+        setContentView(R.layout.activity_order_order_list);
         context = this; // context 지정
 
         // 매장이름, 총 주문금액, 레이아웃, 버튼
@@ -77,7 +77,7 @@ public class OrderListActivity extends AppCompatActivity {
         slidingUpPanelLayout = findViewById(R.id.slidingUpPanelLayout);
         slidingOpenBtn = findViewById(R.id.slidingOpenBtn);
 
-        // 매장 아이디 초기화
+        slidingUpPanelLayout.setTouchEnabled(false);
 
         // 리사이클러뷰 설정
         orderRecyclerView = findViewById(R.id.orderRecyclerView);

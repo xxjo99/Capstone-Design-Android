@@ -44,7 +44,7 @@ public class StoreListActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_store_list);
+        setContentView(R.layout.activity_store_store_list);
         context = this; // context 지정
 
         // 리사이클러뷰 가로뷰로 설정

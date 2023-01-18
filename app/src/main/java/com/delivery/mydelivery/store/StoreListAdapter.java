@@ -49,7 +49,7 @@ public class StoreListAdapter extends BaseAdapter {
         // 뷰가 비어있다면 뷰 세팅, 매장 리스트 아이템 추가
         if (view == null) {
             LayoutInflater layoutInflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE); // LayoutInflater 설정
-            view = layoutInflater.inflate(R.layout.item_store_list, viewGroup, false); // view에 item_store_list.xml 지정
+            view = layoutInflater.inflate(R.layout.item_store_store_list, viewGroup, false); // view에 item_store_list.xml 지정
         }
 
         // 매장의 이미지, 이름, 최소주문금액, 배달팁 xml 변수 초기화

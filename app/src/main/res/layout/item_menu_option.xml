@@ -1,26 +1,34 @@
-<?xml version="1.0" encoding="utf-8"?> <!-- 옵션 선택 리스트 -->
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:card_view="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:layout_margin="7dp"
-    android:orientation="vertical">
+    android:layout_margin="5dp"
+    card_view:cardUseCompatPadding="true">
 
-    <!-- 옵션 이름 -->
-    <TextView
-        android:id="@+id/optionNameTV"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="10dp"
-        android:text="@string/optionName"
-        android:textSize="20sp"
-        android:textStyle="bold" />
-
-    <!-- 옵션 내용 리사이클러뷰 -->
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/optionContentRecyclerView"
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:nestedScrollingEnabled="false"
-        android:overScrollMode="never" />
+        android:orientation="vertical">
 
-</LinearLayout>
+        <!-- 옵션 이름 -->
+        <TextView
+            android:id="@+id/optionNameTV"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="10dp"
+            android:text="@string/optionName"
+            android:textSize="20sp"
+            android:textStyle="bold" />
+
+        <!-- 옵션 내용 리사이클러뷰 -->
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/optionContentRecyclerView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:nestedScrollingEnabled="false"
+            android:overScrollMode="never" />
+
+    </LinearLayout>
+
+</androidx.cardview.widget.CardView>

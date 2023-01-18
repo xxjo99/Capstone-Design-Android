@@ -40,7 +40,7 @@ public class MenuListActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_menu_list);
+        setContentView(R.layout.activity_menu_menu_list);
         context = this; // context 지정
 
         // 매장Id를 받아와서 매장 검색, 정보 출력
