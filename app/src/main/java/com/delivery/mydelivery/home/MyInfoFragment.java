@@ -15,7 +15,7 @@ import androidx.fragment.app.Fragment;
 import com.delivery.mydelivery.MainActivity;
 import com.delivery.mydelivery.R;
 import com.delivery.mydelivery.preferenceManager.PreferenceManager;
-import com.delivery.mydelivery.register.UserVO;
+import com.delivery.mydelivery.user.UserVO;
 import com.google.gson.Gson;
 
 // 내정보 프래그먼트

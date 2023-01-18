@@ -70,6 +70,7 @@
     <string name="selectPerson">인원 선택</string>
     <string name="selectPlace">장소 선택</string>
 
+    <string name="registrant">등록자</string>
     <string name="deliveryTime">배달시간</string>
     <string name="recruitPerson">모집인원</string>
     <string name="place">장소</string>

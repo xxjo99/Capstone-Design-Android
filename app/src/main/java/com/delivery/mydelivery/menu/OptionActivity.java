@@ -19,7 +19,7 @@ import com.delivery.mydelivery.R;
 import com.delivery.mydelivery.order.OrderApi;
 import com.delivery.mydelivery.order.OrderVO;
 import com.delivery.mydelivery.preferenceManager.PreferenceManager;
-import com.delivery.mydelivery.register.UserVO;
+import com.delivery.mydelivery.user.UserVO;
 import com.delivery.mydelivery.retrofit.RetrofitService;
 import com.google.gson.Gson;
 

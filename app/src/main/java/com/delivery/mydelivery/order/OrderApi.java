@@ -1,5 +1,7 @@
 package com.delivery.mydelivery.order;
 
+import com.delivery.mydelivery.home.RecruitVO;
+
 import java.util.List;
 
 import retrofit2.Call;

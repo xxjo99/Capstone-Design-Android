@@ -1,10 +1,10 @@
-<?xml version="1.0" encoding="utf-8"?> <!-- 카테고리 -->
+<?xml version="1.0" encoding="utf-8"?> <!-- 모집글 리스트 -->
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context=".home.CategoryFragment">
+    tools:context=".home.RecruitListFragment">
 
     <androidx.core.widget.NestedScrollView
         android:layout_width="match_parent"
@@ -15,18 +15,11 @@
             android:layout_height="match_parent"
             android:orientation="vertical">
 
-            <!-- 카테고리 리사이클러뷰 -->
             <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/categoryRecyclerView"
+                android:id="@+id/recruitListRecyclerView"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:nestedScrollingEnabled="false" />
-
-            <Button
-                android:id="@+id/moveCartBtn"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="장바구니 이동" />
 
         </LinearLayout>
 

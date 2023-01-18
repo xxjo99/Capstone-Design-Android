@@ -12,6 +12,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import com.delivery.mydelivery.MainActivity;
 import com.delivery.mydelivery.R;
 import com.delivery.mydelivery.retrofit.RetrofitService;
+import com.delivery.mydelivery.user.UserVO;
 
 import retrofit2.Call;
 import retrofit2.Callback;

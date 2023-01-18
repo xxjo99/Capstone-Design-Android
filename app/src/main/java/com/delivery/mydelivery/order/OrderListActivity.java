@@ -14,8 +14,9 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.delivery.mydelivery.R;
+import com.delivery.mydelivery.home.RecruitVO;
 import com.delivery.mydelivery.preferenceManager.PreferenceManager;
-import com.delivery.mydelivery.register.UserVO;
+import com.delivery.mydelivery.user.UserVO;
 import com.delivery.mydelivery.retrofit.RetrofitService;
 import com.google.gson.Gson;
 import com.sothree.slidinguppanel.SlidingUpPanelLayout;
@@ -44,7 +45,7 @@ public class OrderListActivity extends AppCompatActivity {
     public static TextView totalPriceTV;
     public static int totalPrice;
 
-    // 모집글 등록 레이아웃, 레이아웃 펼치기 / 닫기 버튼
+    // 모집글 등록 레이아웃, 슬라이딩패널 펼치기 / 닫기 버튼
     SlidingUpPanelLayout slidingUpPanelLayout;
     Button slidingOpenBtn;
 
@@ -77,6 +78,7 @@ public class OrderListActivity extends AppCompatActivity {
         slidingUpPanelLayout = findViewById(R.id.slidingUpPanelLayout);
         slidingOpenBtn = findViewById(R.id.slidingOpenBtn);
 
+        // 슬라이딩패널 설정
         slidingUpPanelLayout.setTouchEnabled(false);
 
         // 리사이클러뷰 설정
@@ -149,7 +151,7 @@ public class OrderListActivity extends AppCompatActivity {
 
     }
 
-    // 장바구니 목록 불러옴
+    // 장바구니 목록 생성
     private void setOrder(int userId) {
         retrofitService = new RetrofitService();
         api = retrofitService.getRetrofit().create(OrderApi.class);

@@ -3,7 +3,8 @@
     xmlns:card_view="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:layout_margin="5dp"
+    card_view:contentPadding="10dp"
+    card_view:cardElevation="10dp"
     card_view:cardUseCompatPadding="true">
 
     <LinearLayout
@@ -26,6 +27,28 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:text="@string/registrant" />
+
+            <View
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:layout_weight="1" />
+
+            <TextView
+                android:id="@+id/registrantTV"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/registrant" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
                 android:text="@string/deliveryTime" />
 
             <View
@@ -34,6 +57,7 @@
                 android:layout_weight="1" />
 
             <TextView
+                android:id="@+id/deliveryTimeTV"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/deliveryTime" />
@@ -55,6 +79,7 @@
                 android:layout_weight="1" />
 
             <TextView
+                android:id="@+id/recruitPersonTV"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/recruitPerson" />
@@ -76,12 +101,12 @@
                 android:layout_weight="1" />
 
             <TextView
+                android:id="@+id/placeTV"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/place" />
 
         </LinearLayout>
-
 
     </LinearLayout>
 

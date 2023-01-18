@@ -1,6 +1,6 @@
 package com.delivery.mydelivery.login;
 
-import com.delivery.mydelivery.register.UserVO;
+import com.delivery.mydelivery.user.UserVO;
 
 import retrofit2.Call;
 import retrofit2.http.GET;

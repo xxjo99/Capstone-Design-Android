@@ -1,4 +1,4 @@
-package com.delivery.mydelivery.register;
+package com.delivery.mydelivery.user;
 
 import androidx.annotation.NonNull;
 
