@@ -62,6 +62,7 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:gravity="center"
                 android:orientation="horizontal">
 
                 <TextView
@@ -75,12 +76,12 @@
                     android:layout_height="0dp"
                     android:layout_weight="1" />
 
-                <Button
+                <ImageButton
                     android:id="@+id/decreaseBtn"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:fontFamily="@font/bmjua_font"
-                    android:text="감소" />
+                    android:src="@drawable/do_not_disturb_on_fill0_wght400_grad0_opsz48"
+                    android:background="@color/white"/>
 
                 <TextView
                     android:id="@+id/amountTV"
@@ -89,12 +90,12 @@
                     android:fontFamily="@font/bmjua_font"
                     android:text="개수" />
 
-                <Button
+                <ImageButton
                     android:id="@+id/increaseBtn"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:fontFamily="@font/bmjua_font"
-                    android:text="증가" />
+                    android:src="@drawable/plus"
+                    android:background="@color/white"/>
 
             </LinearLayout>
 
@@ -113,6 +114,7 @@
             android:layout_height="wrap_content"
             android:layout_margin="10dp"
             android:layout_weight="1"
+            android:fontFamily="@font/bmjua_font"
             android:text="@string/addMenu" />
 
     </LinearLayout>
