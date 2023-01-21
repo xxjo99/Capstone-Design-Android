@@ -46,6 +46,7 @@ public class MenuListActivity extends AppCompatActivity {
         // 매장Id를 받아와서 매장 검색, 정보 출력
         Intent intent = getIntent();
         int storeId = intent.getIntExtra("storeId", 0);
+        String participantType = intent.getStringExtra("participantType"); // 등록 or 참가 확인
         setStore(storeId);
 
         // 리사이클러뷰 설정

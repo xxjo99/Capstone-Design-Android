@@ -10,7 +10,7 @@ import androidx.fragment.app.Fragment;
 
 import com.delivery.mydelivery.R;
 
-public class MyPostFragment extends Fragment {
+public class SearchFragment extends Fragment {
 
     View view; // 해당 view에 지정한 프래그먼트 추가
 
@@ -18,7 +18,7 @@ public class MyPostFragment extends Fragment {
     @Override
     public View onCreateView(@Nullable LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         assert inflater != null;
-        view = inflater.inflate(R.layout.fragment_home_mypost, container, false); // view 초기화
+        view = inflater.inflate(R.layout.fragment_home_search, container, false); // view 초기화
 
         return view;
     }

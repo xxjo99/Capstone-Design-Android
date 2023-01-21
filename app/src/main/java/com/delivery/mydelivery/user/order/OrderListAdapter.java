@@ -1,4 +1,4 @@
-package com.delivery.mydelivery.order;
+package com.delivery.mydelivery.user.order;
 
 import android.annotation.SuppressLint;
 import android.content.Context;
@@ -6,6 +6,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -118,8 +119,8 @@ public class OrderListAdapter extends RecyclerView.Adapter<OrderListAdapter.View
         TextView optionListTV;
         TextView menuPriceTV;
         TextView amountTV;
-        Button decreaseBtn;
-        Button increaseBtn;
+        ImageButton decreaseBtn;
+        ImageButton increaseBtn;
         Button deleteBtn;
 
         public ViewHolder(@NonNull View itemView) {

@@ -12,6 +12,7 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.delivery.mydelivery.R;
+import com.delivery.mydelivery.recruit.RecruitVO;
 import com.delivery.mydelivery.retrofit.RetrofitService;
 import com.delivery.mydelivery.store.StoreApi;
 import com.delivery.mydelivery.store.StoreVO;
@@ -130,17 +131,17 @@ public class RecruitListAdapter extends RecyclerView.Adapter<RecruitListAdapter.
         userApi.getUser(userId)
                 .enqueue(new Callback<UserVO>() {
                     @Override
-                    public void onResponse(Call<UserVO> call, Response<UserVO> response) {
+                    public void onResponse(@NonNull Call<UserVO> call, @NonNull Response<UserVO> response) {
                         UserVO user = response.body();
+                        assert user != null;
                         holder.registrantTV.setText(user.getName());
                     }
 
                     @Override
-                    public void onFailure(Call<UserVO> call, Throwable t) {
+                    public void onFailure(@NonNull Call<UserVO> call, @NonNull Throwable t) {
 
                     }
                 });
 
     }
-
 }

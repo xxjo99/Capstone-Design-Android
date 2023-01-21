@@ -4,33 +4,33 @@
 
     <!-- 카테고리 -->
     <item
-        android:id="@+id/menu_category"
+        android:id="@+id/menu_home_home"
         android:enabled="true"
-        android:icon="@drawable/home_bottom_navigation_list"
-        android:title="@string/category"
+        android:icon="@drawable/home_menu_home"
+        android:title="@string/home"
         app:showAsAction="always" />
 
     <!-- 등록글 리스트 -->
     <item
-        android:id="@+id/menu_post"
+        android:id="@+id/menu_home_post"
         android:enabled="true"
-        android:icon="@drawable/home_bottom_navigation_group"
+        android:icon="@drawable/home_menu_list"
         android:title="@string/post"
         app:showAsAction="always" />
 
-    <!-- 내 등록글 -->
+    <!-- 검색 -->
     <item
-        android:id="@+id/menu_myPost"
+        android:id="@+id/menu_home_search"
         android:enabled="true"
-        android:icon="@drawable/home_bottom_navigation_calendar"
-        android:title="@string/myPost"
+        android:icon="@drawable/home_menu_search"
+        android:title="@string/find"
         app:showAsAction="always" />
 
     <!-- 내정보 -->
     <item
-        android:id="@+id/menu_myInfo"
+        android:id="@+id/menu_home_myInfo"
         android:enabled="true"
-        android:icon="@drawable/home_bottom_navigation_myinfo"
+        android:icon="@drawable/home_menu_myinfo"
         android:title="@string/myInfo"
         app:showAsAction="always" />
 

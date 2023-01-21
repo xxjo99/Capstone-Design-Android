@@ -1,4 +1,4 @@
-package com.delivery.mydelivery.order;
+package com.delivery.mydelivery.user.order;
 
 public class OrderVO {
 

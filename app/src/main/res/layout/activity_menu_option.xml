@@ -75,12 +75,12 @@
                     android:layout_height="0dp"
                     android:layout_weight="1" />
 
-                <Button
+                <ImageButton
                     android:id="@+id/decreaseBtn"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:fontFamily="@font/bmjua_font"
-                    android:text="감소" />
+                    android:background="@color/white"
+                    android:src="@drawable/minus_btn" />
 
                 <TextView
                     android:id="@+id/amountTV"
@@ -89,12 +89,12 @@
                     android:fontFamily="@font/bmjua_font"
                     android:text="개수" />
 
-                <Button
+                <ImageButton
                     android:id="@+id/increaseBtn"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:fontFamily="@font/bmjua_font"
-                    android:text="증가" />
+                    android:background="@color/white"
+                    android:src="@drawable/plus_btn" />
 
             </LinearLayout>
 
@@ -102,9 +102,9 @@
     </androidx.core.widget.NestedScrollView>
 
     <LinearLayout
-        android:background="@drawable/option_layout_border_top"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:background="@drawable/option_layout_border_top"
         android:orientation="horizontal">
 
         <Button
@@ -113,6 +113,7 @@
             android:layout_height="wrap_content"
             android:layout_margin="10dp"
             android:layout_weight="1"
+            android:fontFamily="@font/bmjua_font"
             android:text="@string/addMenu" />
 
     </LinearLayout>
