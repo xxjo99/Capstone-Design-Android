@@ -16,4 +16,7 @@ public interface RecruitApi {
     @GET("/recruit/findRecruit/user/{userId}")
     Call<Boolean> findRecruit(@Path("userId") int userId);
 
+    @GET("/recruit/getParticipantCount/{recruitId}")
+    Call<Integer> getParticipantCount(@Path("recruitId") int recruitId);
+
 }

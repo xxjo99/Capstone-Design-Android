@@ -51,7 +51,7 @@
         <activity android:name=".menu.OptionActivity"/>
 
         <!-- order -->
-        <activity android:name=".user.order.OrderListActivity" />
+        <activity android:name=".order.OrderListActivity" />
 
     </application>
 

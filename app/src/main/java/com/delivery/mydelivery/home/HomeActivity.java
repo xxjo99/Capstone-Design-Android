@@ -11,7 +11,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
 import com.delivery.mydelivery.R;
-import com.delivery.mydelivery.user.order.OrderListActivity;
+import com.delivery.mydelivery.order.OrderListActivity;
 import com.google.android.material.navigation.NavigationBarView;
 
 import java.util.Objects;
