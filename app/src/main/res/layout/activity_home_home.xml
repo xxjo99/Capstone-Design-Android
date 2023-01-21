@@ -7,6 +7,8 @@
     android:orientation="vertical"
     tools:context=".home.HomeActivity">
 
+    <include layout="@layout/toolbar_home"/>
+
     <!-- 홈화면 FrameLayout -->
     <FrameLayout
         android:id="@+id/homeFragmentFrame"
@@ -21,7 +23,8 @@
         android:layout_height="wrap_content"
         android:layout_gravity="bottom"
         app:itemBackground="@color/white"
+        app:itemIconTint="@drawable/home_menu_select_color"
+        app:itemTextColor="@drawable/home_menu_select_color"
         app:menu="@menu/home_menu" />
-
 
 </LinearLayout>

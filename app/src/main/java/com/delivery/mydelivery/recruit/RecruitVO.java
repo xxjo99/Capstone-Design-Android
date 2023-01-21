@@ -1,4 +1,4 @@
-package com.delivery.mydelivery.home;
+package com.delivery.mydelivery.recruit;
 
 public class RecruitVO {
 

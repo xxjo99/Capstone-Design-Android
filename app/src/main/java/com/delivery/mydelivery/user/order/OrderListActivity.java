@@ -1,4 +1,4 @@
-package com.delivery.mydelivery.order;
+package com.delivery.mydelivery.user.order;
 
 import android.annotation.SuppressLint;
 import android.content.Context;
@@ -14,7 +14,8 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.delivery.mydelivery.R;
-import com.delivery.mydelivery.home.RecruitVO;
+import com.delivery.mydelivery.recruit.RecruitApi;
+import com.delivery.mydelivery.recruit.RecruitVO;
 import com.delivery.mydelivery.preferenceManager.PreferenceManager;
 import com.delivery.mydelivery.user.UserVO;
 import com.delivery.mydelivery.retrofit.RetrofitService;
@@ -62,7 +63,8 @@ public class OrderListActivity extends AppCompatActivity {
 
     // 레트로핏, api
     RetrofitService retrofitService;
-    OrderApi api;
+    OrderApi orderApi;
+    RecruitApi recruitApi;
 
     Context context;
 
@@ -145,7 +147,7 @@ public class OrderListActivity extends AppCompatActivity {
                 recruit.setPlace(selectPlaceET.getText().toString()); // 장소
                 recruit.setPerson(person); // 모집인원
 
-                registerRecruit(recruit); // 모집글 등록
+                findRecruit(userId, recruit);// 모집글 등록
             }
         });
 
@@ -154,9 +156,9 @@ public class OrderListActivity extends AppCompatActivity {
     // 장바구니 목록 생성
     private void setOrder(int userId) {
         retrofitService = new RetrofitService();
-        api = retrofitService.getRetrofit().create(OrderApi.class);
+        orderApi = retrofitService.getRetrofit().create(OrderApi.class);
 
-        api.getOrderList(userId)
+        orderApi.getOrderList(userId)
                 .enqueue(new Callback<List<OrderVO>>() {
                     @Override
                     public void onResponse(@NonNull Call<List<OrderVO>> call, @NonNull Response<List<OrderVO>> response) {
@@ -179,21 +181,46 @@ public class OrderListActivity extends AppCompatActivity {
                 });
     }
 
+    // 해당 사용자의 등록글이 있는지 검색 후 없다면 글 등록
+    public void findRecruit(int userId, RecruitVO recruit) {
+        retrofitService = new RetrofitService();
+        recruitApi = retrofitService.getRetrofit().create(RecruitApi.class);
+
+        recruitApi.findRecruit(userId)
+                .enqueue(new Callback<Boolean>() {
+                    @Override
+                    public void onResponse(@NonNull Call<Boolean> call, @NonNull Response<Boolean> response) {
+                        boolean flag = Boolean.TRUE.equals(response.body());
+
+                        if (flag) {
+                            registerRecruit(recruit);
+                        } else {
+                            Toast.makeText(context, "하나의 글만 등록가능", Toast.LENGTH_SHORT).show();
+                        }
+                    }
+
+                    @Override
+                    public void onFailure(@NonNull Call<Boolean> call, @NonNull Throwable t) {
+
+                    }
+                });
+    }
+
     // 모집글 등록
     private void registerRecruit(RecruitVO recruit) {
         retrofitService = new RetrofitService();
-        api = retrofitService.getRetrofit().create(OrderApi.class);
+        orderApi = retrofitService.getRetrofit().create(OrderApi.class);
 
-        api.registerRecruit(recruit)
-                .enqueue(new Callback<RecruitVO>() {
+        orderApi.registerRecruit(recruit)
+                .enqueue(new Callback<Void>() {
                     @Override
-                    public void onResponse(Call<RecruitVO> call, Response<RecruitVO> response) {
+                    public void onResponse(Call<Void> call, Response<Void> response) {
                         Toast.makeText(context, "등록 완료", Toast.LENGTH_SHORT).show();
                         finish();
                     }
 
                     @Override
-                    public void onFailure(Call<RecruitVO> call, Throwable t) {
+                    public void onFailure(Call<Void> call, Throwable t) {
 
                     }
                 });

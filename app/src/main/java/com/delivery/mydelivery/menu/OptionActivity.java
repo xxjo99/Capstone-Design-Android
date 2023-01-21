@@ -17,8 +17,8 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
 import com.delivery.mydelivery.R;
-import com.delivery.mydelivery.order.OrderApi;
-import com.delivery.mydelivery.order.OrderVO;
+import com.delivery.mydelivery.user.order.OrderApi;
+import com.delivery.mydelivery.user.order.OrderVO;
 import com.delivery.mydelivery.preferenceManager.PreferenceManager;
 import com.delivery.mydelivery.user.UserVO;
 import com.delivery.mydelivery.retrofit.RetrofitService;
