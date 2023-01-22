@@ -12,7 +12,8 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.delivery.mydelivery.R;
-import com.delivery.mydelivery.order.OrderApi;
+import com.delivery.mydelivery.recruit.RecruitApi;
+import com.delivery.mydelivery.recruit.RecruitVO;
 import com.delivery.mydelivery.retrofit.RetrofitService;
 
 import java.util.List;

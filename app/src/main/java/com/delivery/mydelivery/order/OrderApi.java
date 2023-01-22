@@ -1,6 +1,6 @@
 package com.delivery.mydelivery.order;
 
-import com.delivery.mydelivery.home.RecruitVO;
+import com.delivery.mydelivery.recruit.RecruitVO;
 
 import java.util.List;
 
@@ -39,5 +39,5 @@ public interface OrderApi {
 
     // 모집글 등록
     @POST("/order/register/recruit")
-    Call<RecruitVO> registerRecruit(@Body RecruitVO recruit);
+    Call<Void> registerRecruit(@Body RecruitVO recruit);
 }

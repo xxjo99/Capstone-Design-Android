@@ -5,6 +5,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -45,8 +46,8 @@ public class OptionActivity extends AppCompatActivity {
 
     // 개수 텍스트뷰, 증가, 감소 버튼
     TextView amountTV;
-    Button increaseBtn;
-    Button decreaseBtn;
+    ImageButton increaseBtn;
+    ImageButton decreaseBtn;
 
     public static int menuPrice; // 메뉴의 총 가격
     @SuppressLint("StaticFieldLeak")

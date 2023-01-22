@@ -71,6 +71,7 @@ public class StoreListAdapter extends BaseAdapter {
         view.setOnClickListener(view1 -> {
             Intent intent = new Intent(context, MenuListActivity.class);
             intent.putExtra("storeId", store.getStoreId());
+            intent.putExtra("participantType", "등록자"); // 등록자 or 참가자인지 확인
             context.startActivity(intent);
         });
 

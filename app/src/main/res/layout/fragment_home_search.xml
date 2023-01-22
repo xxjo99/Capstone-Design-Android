@@ -4,11 +4,11 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context=".home.MyPostFragment">
+    tools:context=".home.SearchFragment">
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="내가 올린 모집글" />
+        android:text="@string/find" />
 
 </LinearLayout>

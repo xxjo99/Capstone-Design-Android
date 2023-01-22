@@ -1,7 +1,6 @@
 package com.delivery.mydelivery.home;
 
 import android.content.Context;
-import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -15,7 +14,6 @@ import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.delivery.mydelivery.R;
-import com.delivery.mydelivery.order.OrderListActivity;
 import com.delivery.mydelivery.retrofit.RetrofitService;
 
 import java.util.List;
@@ -24,7 +22,7 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-public class CategoryFragment extends Fragment {
+public class HomeFragment extends Fragment {
 
     // 리사이클러뷰, 어댑터, 리스트
     RecyclerView categoryView;
@@ -46,7 +44,7 @@ public class CategoryFragment extends Fragment {
     @Override
     public View onCreateView(@Nullable LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         assert inflater != null;
-        view = inflater.inflate(R.layout.fragment_home_category, container, false);
+        view = inflater.inflate(R.layout.fragment_home_home, container, false);
         assert container != null;
         context = container.getContext();
 
@@ -58,13 +56,6 @@ public class CategoryFragment extends Fragment {
         homeCategoryAdapter = new HomeCategoryAdapter();
         categoryView.setAdapter(homeCategoryAdapter);
         setCategory();
-
-        // 버튼 이벤트
-        moveCartBtn = view.findViewById(R.id.moveCartBtn);
-        moveCartBtn.setOnClickListener(view -> {
-            Intent intent = new Intent(context, OrderListActivity.class);
-            startActivity(intent);
-        });
 
         return view;
     }

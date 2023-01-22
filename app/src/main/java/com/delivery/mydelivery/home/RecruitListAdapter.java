@@ -6,12 +6,13 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.delivery.mydelivery.R;
+import com.delivery.mydelivery.recruit.RecruitApi;
+import com.delivery.mydelivery.recruit.RecruitVO;
 import com.delivery.mydelivery.retrofit.RetrofitService;
 import com.delivery.mydelivery.store.StoreApi;
 import com.delivery.mydelivery.store.StoreVO;
@@ -35,6 +36,7 @@ public class RecruitListAdapter extends RecyclerView.Adapter<RecruitListAdapter.
     RetrofitService retrofitService;
     StoreApi storeApi;
     UserApi userApi;
+    RecruitApi recruitApi;
 
     // 생성자
     public RecruitListAdapter(List<RecruitVO> recruitList, Context context) {
@@ -63,9 +65,23 @@ public class RecruitListAdapter extends RecyclerView.Adapter<RecruitListAdapter.
 
         setStoreName(storeId, holder); // 매장이름
         setRegistrantName(userId, holder); // 등록자 이름
-        holder.deliveryTimeTV.setText(deliveryTime);
-        holder.recruitPersonTV.setText(person + "명");
-        holder.placeTV.setText(place);
+        holder.deliveryTimeTV.setText(deliveryTime); // 배달 시간
+        holder.recruitPersonTV.setText(person + "명"); // 모집 인원
+        holder.placeTV.setText(place); // 배달 장소
+
+        // 참가자수 구하기
+        getParticipantCount(recruit.getRecruitId(), holder);
+
+        // 클릭시 다이얼로그 열기
+        holder.itemView.setOnClickListener(view -> {
+            ParticipateDialog participateDialog = new ParticipateDialog(context);
+
+            String storeName = holder.storeNameTv.getText().toString(); // 매장 이름
+            String participantCount = holder.participantCount + " / " + person; // 참가자 수 / 모집인원
+
+            participateDialog.setData(storeName, participantCount, place, deliveryTime, holder.deliveryTip + "원");
+            participateDialog.callDialog();
+        });
     }
 
     @Override
@@ -84,6 +100,10 @@ public class RecruitListAdapter extends RecyclerView.Adapter<RecruitListAdapter.
         TextView recruitPersonTV;
         TextView placeTV;
 
+        // 다이얼로그에 사용
+        String deliveryTip; // 배달팁
+        Integer participantCount; // 참가자 수
+
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
 
@@ -92,12 +112,6 @@ public class RecruitListAdapter extends RecyclerView.Adapter<RecruitListAdapter.
             deliveryTimeTV = itemView.findViewById(R.id.deliveryTimeTV);
             recruitPersonTV = itemView.findViewById(R.id.recruitPersonTV);
             placeTV = itemView.findViewById(R.id.placeTV);
-            
-            // 클릭 이벤트
-            itemView.setOnClickListener(view -> {
-                int position = getAbsoluteAdapterPosition();
-                Toast.makeText(itemView.getContext(), "position : " + position, Toast.LENGTH_SHORT).show();
-            });
         }
     }
 
@@ -113,6 +127,7 @@ public class RecruitListAdapter extends RecyclerView.Adapter<RecruitListAdapter.
                         StoreVO store = response.body();
                         assert store != null;
                         holder.storeNameTv.setText(store.getStoreName());
+                        holder.deliveryTip = store.getDeliveryTip();
                     }
 
                     @Override
@@ -130,17 +145,34 @@ public class RecruitListAdapter extends RecyclerView.Adapter<RecruitListAdapter.
         userApi.getUser(userId)
                 .enqueue(new Callback<UserVO>() {
                     @Override
-                    public void onResponse(Call<UserVO> call, Response<UserVO> response) {
+                    public void onResponse(@NonNull Call<UserVO> call, @NonNull Response<UserVO> response) {
                         UserVO user = response.body();
+                        assert user != null;
                         holder.registrantTV.setText(user.getName());
                     }
 
                     @Override
-                    public void onFailure(Call<UserVO> call, Throwable t) {
+                    public void onFailure(@NonNull Call<UserVO> call, @NonNull Throwable t) {
 
                     }
                 });
-
     }
 
+    // 해당 등록글의 현재 참가자수 반환
+    private void getParticipantCount(int recruitId, RecruitListAdapter.ViewHolder holder) {
+        retrofitService = new RetrofitService();
+        recruitApi = retrofitService.getRetrofit().create(RecruitApi.class);
+
+        recruitApi.getParticipantCount(recruitId)
+                .enqueue(new Callback<Integer>() {
+                    @Override
+                    public void onResponse(@NonNull Call<Integer> call, @NonNull Response<Integer> response) {
+                        holder.participantCount = response.body();
+                    }
+
+                    @Override
+                    public void onFailure(@NonNull Call<Integer> call, @NonNull Throwable t) {
+                    }
+                });
+    }
 }
