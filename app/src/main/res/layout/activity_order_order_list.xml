@@ -11,7 +11,7 @@
     app:umanoOverlay="false"
     app:umanoParallaxOffset="100dp"
     app:umanoShadowHeight="4dp"
-    tools:context=".user.order.OrderListActivity">
+    tools:context=".order.OrderListActivity">
 
     <androidx.core.widget.NestedScrollView
         android:layout_width="match_parent"
