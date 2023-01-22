@@ -53,6 +53,9 @@
         <!-- order -->
         <activity android:name=".order.OrderListActivity" />
 
+        <!-- recruit -->
+        <activity android:name=".recruit.RecruitActivity" />
+
     </application>
 
 </manifest>

@@ -78,4 +78,6 @@
     <string name="recruitPerson">모집인원</string>
     <string name="place">장소</string>
 
+    <string name="recruitInfo">모집안내</string>
+
 </resources>
