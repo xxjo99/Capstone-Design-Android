@@ -3,6 +3,13 @@
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <item
+        android:id="@+id/preBtn"
+        android:enabled="true"
+        android:icon="@drawable/previous"
+        android:title="장바구니"
+        app:showAsAction="always" />
+
+    <item
         android:id="@+id/cartBtn"
         android:enabled="true"
         android:icon="@drawable/cart_btn"
