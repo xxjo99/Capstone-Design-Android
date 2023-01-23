@@ -2,6 +2,7 @@ package com.delivery.mydelivery.home;
 
 import android.annotation.SuppressLint;
 import android.content.Context;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -11,6 +12,8 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.delivery.mydelivery.R;
+import com.delivery.mydelivery.preferenceManager.PreferenceManager;
+import com.delivery.mydelivery.recruit.RecruitActivity;
 import com.delivery.mydelivery.recruit.RecruitApi;
 import com.delivery.mydelivery.recruit.RecruitVO;
 import com.delivery.mydelivery.retrofit.RetrofitService;
@@ -18,6 +21,7 @@ import com.delivery.mydelivery.store.StoreApi;
 import com.delivery.mydelivery.store.StoreVO;
 import com.delivery.mydelivery.user.UserApi;
 import com.delivery.mydelivery.user.UserVO;
+import com.google.gson.Gson;
 
 import java.util.List;
 
@@ -74,13 +78,15 @@ public class RecruitListAdapter extends RecyclerView.Adapter<RecruitListAdapter.
 
         // 클릭시 다이얼로그 열기
         holder.itemView.setOnClickListener(view -> {
-            ParticipateDialog participateDialog = new ParticipateDialog(context);
 
-            String storeName = holder.storeNameTv.getText().toString(); // 매장 이름
-            String participantCount = holder.participantCount + " / " + person; // 참가자 수 / 모집인원
+            String loginInfo = PreferenceManager.getLoginInfo(context);
+            Gson gson = new Gson();
+            UserVO user = gson.fromJson(loginInfo, UserVO.class);
 
-            participateDialog.setData(storeName, participantCount, place, deliveryTime, holder.deliveryTip + "원");
-            participateDialog.callDialog();
+            int recruitId = recruit.getRecruitId();
+            int participateUserId = user.getUserId();
+
+            checkParticipate(recruitId, participateUserId, holder, person, place, deliveryTime);
         });
     }
 
@@ -154,6 +160,36 @@ public class RecruitListAdapter extends RecyclerView.Adapter<RecruitListAdapter.
                     @Override
                     public void onFailure(@NonNull Call<UserVO> call, @NonNull Throwable t) {
 
+                    }
+                });
+    }
+
+    // 해당 참가글에 참가했는지 아닌지 구분, 다이얼로그 열기
+    private void checkParticipate(int recruitId, int participantId, RecruitListAdapter.ViewHolder holder, int person, String place, String deliveryTime) {
+        retrofitService = new RetrofitService();
+        recruitApi = retrofitService.getRetrofit().create(RecruitApi.class);
+
+        recruitApi.findUserInRecruit(recruitId, participantId)
+                .enqueue(new Callback<Boolean>() {
+                    @Override
+                    public void onResponse(@NonNull Call<Boolean> call, @NonNull Response<Boolean> response) {
+
+                        if (Boolean.TRUE.equals(response.body())) { // 참가되어있는 상태
+                            Intent intent = new Intent(context, RecruitActivity.class);
+                            context.startActivity(intent);
+                        } else {
+                            ParticipateDialog participateDialog = new ParticipateDialog(context);
+
+                            String storeName = holder.storeNameTv.getText().toString(); // 매장 이름
+
+                            // 매장 이름, 모집인원 수, 현재 참가자 수 , 장소, 배달시간, 배달팁, 모집글 아이디, 참가자 아이디
+                            participateDialog.setData(storeName, holder.participantCount, person, place, deliveryTime, holder.deliveryTip, recruitId, participantId);
+                            participateDialog.callDialog();
+                        }
+                    }
+
+                    @Override
+                    public void onFailure(@NonNull Call<Boolean> call, @NonNull Throwable t) {
                     }
                 });
     }

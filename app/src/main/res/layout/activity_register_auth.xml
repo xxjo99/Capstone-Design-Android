@@ -34,7 +34,8 @@
             android:fontFamily="@font/bmjua_font"
             android:hint="@string/loginemailInput"
             android:inputType="textEmailAddress"
-            android:padding="13dp" />
+            android:padding="13dp"
+            android:textSize="18sp" />
 
         <!-- 인증번호 전송 Button -->
         <Button
