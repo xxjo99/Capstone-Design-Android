@@ -3,6 +3,7 @@ package com.delivery.mydelivery.home;
 import android.annotation.SuppressLint;
 import android.app.Dialog;
 import android.content.Context;
+import android.content.Intent;
 import android.view.View;
 import android.view.Window;
 import android.widget.Button;
@@ -14,6 +15,7 @@ import androidx.annotation.NonNull;
 
 import com.delivery.mydelivery.R;
 import com.delivery.mydelivery.recruit.ParticipantVO;
+import com.delivery.mydelivery.recruit.RecruitActivity;
 import com.delivery.mydelivery.recruit.RecruitApi;
 import com.delivery.mydelivery.retrofit.RetrofitService;
 
@@ -110,6 +112,10 @@ public class ParticipateDialog {
                     public void onResponse(@NonNull Call<ParticipantVO> call, @NonNull Response<ParticipantVO> response) {
                         Toast.makeText(context, "참가 완료", Toast.LENGTH_SHORT).show();
                         dialog.dismiss();
+
+                        // 모집글 상세페이지 이동
+                        Intent intent = new Intent(context, RecruitActivity.class);
+                        context.startActivity(intent);
                     }
 
                     @Override

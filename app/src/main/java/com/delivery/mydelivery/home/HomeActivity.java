@@ -22,6 +22,7 @@ public class HomeActivity extends AppCompatActivity {
     // 보여질 프래그먼트
     private HomeFragment homeFragment;
     private RecruitListFragment recruitListFragment;
+    private MyPostFragment myPostFragment;
     private SearchFragment searchFragment;
     private MyInfoFragment myInfoFragment;
 
@@ -34,6 +35,7 @@ public class HomeActivity extends AppCompatActivity {
         // 프래그먼트 초기화
         homeFragment = new HomeFragment();
         recruitListFragment = new RecruitListFragment();
+        myPostFragment = new MyPostFragment();
         searchFragment = new SearchFragment();
         myInfoFragment = new MyInfoFragment();
 
@@ -56,6 +58,10 @@ public class HomeActivity extends AppCompatActivity {
 
                 case R.id.menu_home_post: // 모집글 리스트 이동
                     getSupportFragmentManager().beginTransaction().replace(R.id.homeFragmentFrame, recruitListFragment).commit();
+                    return true;
+
+                case R.id.menu_home_myPost: // 모집글 리스트 이동
+                    getSupportFragmentManager().beginTransaction().replace(R.id.homeFragmentFrame, myPostFragment).commit();
                     return true;
 
                 case R.id.menu_home_search: // 검색 이동

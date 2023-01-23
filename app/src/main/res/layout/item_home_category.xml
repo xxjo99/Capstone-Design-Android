@@ -15,15 +15,17 @@
             android:id="@+id/categoryIV"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_gravity="center" />
+            android:layout_gravity="center"
+            android:layout_marginBottom="10dp"/>
 
         <TextView
+            android:textStyle="bold"
             android:id="@+id/categoryTV"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:text="@string/category"
-            android:textSize="13sp" />
+            android:textSize="9sp" />
 
     </LinearLayout>
 
