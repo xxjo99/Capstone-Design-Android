@@ -7,6 +7,29 @@
     android:orientation="vertical"
     tools:context=".store.StoreListActivity">
 
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/storeToolbar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/white"
+        app:contentInsetStart="0dp"
+        app:menu="@menu/store_toolbar">
+
+        <ImageButton
+            android:id="@+id/backBtn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:backgroundTint="@color/white"
+            android:src="@drawable/back" />
+
+    </androidx.appcompat.widget.Toolbar>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_marginBottom="6dp"
+        android:background="@color/gray" />
+
     <!-- 매장리스트 카테고리 버튼 -->
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/categoryRecyclerView"

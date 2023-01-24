@@ -26,6 +26,9 @@ public class HomeActivity extends AppCompatActivity {
     private SearchFragment searchFragment;
     private MyInfoFragment myInfoFragment;
 
+    // 툴바
+    Toolbar toolbar;
+
     @SuppressLint("NonConstantResourceId")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -42,7 +45,7 @@ public class HomeActivity extends AppCompatActivity {
         getSupportFragmentManager().beginTransaction().replace(R.id.homeFragmentFrame, homeFragment).commit(); // 처음 보여질 프래그먼트
 
         // 툴바
-        Toolbar toolbar = findViewById(R.id.toolbar);
+        toolbar = findViewById(R.id.homeToolbar);
         setSupportActionBar(toolbar);
         Objects.requireNonNull(getSupportActionBar()).setDisplayShowTitleEnabled(false);
 
@@ -76,9 +79,10 @@ public class HomeActivity extends AppCompatActivity {
         });
     }
 
+    // 툴바 설정
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-        getMenuInflater().inflate(R.menu.home_toolbar_menu, menu);
+        getMenuInflater().inflate(R.menu.home_toolbar, menu);
         return true;
     }
 

@@ -12,6 +12,7 @@ import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -26,6 +27,7 @@ import com.google.gson.Gson;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -56,6 +58,10 @@ public class OptionActivity extends AppCompatActivity {
 
     int amount; // 현재 메뉴 개수
 
+    // 툴바, 툴바 버튼
+    Toolbar toolbar;
+    ImageButton backBtn;
+
     // 레트로핏, api
     RetrofitService retrofitService;
     MenuApi menuApi;
@@ -67,6 +73,15 @@ public class OptionActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_menu_option);
         context = this; // context 지정
+
+        // 툴바
+        toolbar = findViewById(R.id.optionToolbar);
+        setSupportActionBar(toolbar);
+        Objects.requireNonNull(getSupportActionBar()).setDisplayShowTitleEnabled(false);
+
+        // 뒤로가기 버튼
+        backBtn = findViewById(R.id.backBtn);
+        backBtn.setOnClickListener(view -> finish());
 
         // 전 액티비티에서 넘겨받은 값
         Intent intent = getIntent();

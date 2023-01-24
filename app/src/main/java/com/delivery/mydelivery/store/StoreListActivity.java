@@ -1,21 +1,28 @@
 package com.delivery.mydelivery.store;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.Menu;
+import android.view.MenuItem;
+import android.widget.ImageButton;
 import android.widget.ListView;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.delivery.mydelivery.R;
 import com.delivery.mydelivery.home.CategoryVO;
 import com.delivery.mydelivery.home.HomeApi;
+import com.delivery.mydelivery.order.OrderListActivity;
 import com.delivery.mydelivery.retrofit.RetrofitService;
 
 import java.util.List;
+import java.util.Objects;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -34,6 +41,10 @@ public class StoreListActivity extends AppCompatActivity {
     StoreListAdapter storeListadapter;
     List<StoreVO> storeList;
 
+    // 툴바, 툴바 버튼
+    Toolbar toolbar;
+    ImageButton backBtn;
+
     // 레트로핏, api
     RetrofitService retrofitService;
     HomeApi homeApi;
@@ -46,6 +57,15 @@ public class StoreListActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_store_store_list);
         context = this; // context 지정
+
+        // 툴바
+        toolbar = findViewById(R.id.storeToolbar);
+        setSupportActionBar(toolbar);
+        Objects.requireNonNull(getSupportActionBar()).setDisplayShowTitleEnabled(false);
+
+        // 뒤로가기 버튼
+        backBtn = findViewById(R.id.backBtn);
+        backBtn.setOnClickListener(view -> finish());
 
         // 리사이클러뷰 가로뷰로 설정
         categoryView = findViewById(R.id.categoryRecyclerView);
@@ -106,5 +126,28 @@ public class StoreListActivity extends AppCompatActivity {
 
                     }
                 });
+    }
+
+    // 툴바 설정
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.store_toolbar, menu);
+        return true;
+    }
+
+    // 툴바 메뉴 버튼 이벤트
+    @SuppressLint("NonConstantResourceId")
+    @Override
+    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+
+        switch (item.getItemId()) {
+            case R.id.cartBtn:
+                Intent intent = new Intent(this, OrderListActivity.class);
+                startActivity(intent);
+                break;
+
+        }
+
+        return super.onOptionsItemSelected(item);
     }
 }

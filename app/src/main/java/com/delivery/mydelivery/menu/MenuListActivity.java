@@ -1,21 +1,28 @@
 package com.delivery.mydelivery.menu;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.Menu;
+import android.view.MenuItem;
+import android.widget.ImageButton;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.delivery.mydelivery.R;
+import com.delivery.mydelivery.order.OrderListActivity;
 import com.delivery.mydelivery.retrofit.RetrofitService;
 import com.delivery.mydelivery.store.StoreApi;
 import com.delivery.mydelivery.store.StoreVO;
 
 import java.util.List;
+import java.util.Objects;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -30,6 +37,10 @@ public class MenuListActivity extends AppCompatActivity {
     MenuListAdapter menuListAdapter;
     List<MenuVO> menuList;
 
+    // 툴바, 툴바 버튼
+    Toolbar toolbar;
+    ImageButton backBtn;
+
     // 레트로핏, api
     RetrofitService retrofitService;
     StoreApi storeApi;
@@ -42,6 +53,15 @@ public class MenuListActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_menu_menu_list);
         context = this; // context 지정
+
+        // 툴바
+        toolbar = findViewById(R.id.menuToolbar);
+        setSupportActionBar(toolbar);
+        Objects.requireNonNull(getSupportActionBar()).setDisplayShowTitleEnabled(false);
+
+        // 뒤로가기 버튼
+        backBtn = findViewById(R.id.backBtn);
+        backBtn.setOnClickListener(view -> finish());
 
         // 매장Id를 받아와서 매장 검색, 정보 출력
         Intent intent = getIntent();
@@ -70,6 +90,7 @@ public class MenuListActivity extends AppCompatActivity {
                     public void onResponse(@NonNull Call<StoreVO> call, @NonNull Response<StoreVO> response) {
                         StoreVO store = response.body();
                         storeDetailTV = findViewById(R.id.storeDetailTV);
+                        assert store != null;
                         storeDetailTV.setText(store.toString());
                     }
 
@@ -96,6 +117,29 @@ public class MenuListActivity extends AppCompatActivity {
                     public void onFailure(@NonNull Call<List<MenuVO>> call, @NonNull Throwable t) {
                     }
                 });
+    }
+
+    // 툴바 설정
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.menu_toolbar, menu);
+        return true;
+    }
+
+    // 툴바 메뉴 버튼 이벤트
+    @SuppressLint("NonConstantResourceId")
+    @Override
+    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+
+        switch (item.getItemId()) {
+            case R.id.cartBtn:
+                Intent intent = new Intent(this, OrderListActivity.class);
+                startActivity(intent);
+                break;
+
+        }
+
+        return super.onOptionsItemSelected(item);
     }
 
 }
