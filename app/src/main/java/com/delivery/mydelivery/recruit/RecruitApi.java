@@ -27,4 +27,7 @@ public interface RecruitApi {
     @POST("/recruit/participate")
     Call<ParticipantVO> participate(@Body ParticipantVO participant);
 
+    // 해당 유저가 참가한 글 검색
+    @GET("/recruit/findRecruitList/{userId}")
+    Call<List<RecruitVO>> findRecruitList(@Path("userId") int userId);
 }
