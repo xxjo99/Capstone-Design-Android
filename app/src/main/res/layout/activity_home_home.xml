@@ -7,13 +7,19 @@
     android:orientation="vertical"
     tools:context=".home.HomeActivity">
 
-    <include layout="@layout/toolbar_home"/>
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/homeToolbar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/white"
+        app:contentInsetStart="0dp"
+        app:menu="@menu/home_toolbar" />
 
     <View
         android:layout_width="match_parent"
         android:layout_height="1dp"
-        android:background="@color/gray"
-        android:layout_marginBottom="6dp"/>
+        android:layout_marginBottom="6dp"
+        android:background="@color/gray" />
 
     <!-- 홈화면 FrameLayout -->
     <FrameLayout
