@@ -43,7 +43,7 @@
         <!-- 닉네임 입력 -->
         <EditText
             android:id="@+id/nameET"
-            android:layout_width="380dp"
+            android:layout_width="350dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="10dp"
             android:background="@drawable/edit_text_border_basic"
@@ -69,20 +69,35 @@
             android:text="@string/birth"
             android:textColor="@color/black"
             android:textSize="20sp" />
-
+    </LinearLayout>
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:gravity="center"
+            >
         <!-- 생년월일 입력 -->
         <EditText
             android:id="@+id/birthET"
-            android:layout_width="380dp"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
+            android:layout_width="270dp"
+            android:layout_height="40dp"
             android:background="@drawable/edit_text_border_basic"
             android:fontFamily="@font/bmjua_font"
             android:hint="예) 19990101"
             android:padding="13dp"
             android:textSize="12sp" />
 
-    </LinearLayout>
+            <Button
+                android:id="@+id/birthBT"
+                android:layout_width="80dp"
+                android:layout_height="45dp"
+                android:fontFamily="@font/bmjua_font"
+                android:onClick="showDatePicker"
+                android:text="생일 입력하기"></Button>
+
+        </LinearLayout>
+
+
 
     <!-- 휴대폰번호 EditText -->
     <LinearLayout
@@ -102,7 +117,7 @@
         <!-- 휴대폰번호 입력 -->
         <EditText
             android:id="@+id/phoneNumET"
-            android:layout_width="380dp"
+            android:layout_width="350dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="10dp"
             android:background="@drawable/edit_text_border_basic"
@@ -136,7 +151,7 @@
         <!-- 학교 입력 -->
         <EditText
             android:id="@+id/schoolname"
-            android:layout_width="300dp"
+            android:layout_width="270dp"
             android:layout_height="wrap_content"
             android:background="@drawable/edit_text_border_basic"
             android:hint="학교를 입력해주세요"
@@ -152,44 +167,6 @@
             />
 
     </LinearLayout>
-
-    <LinearLayout
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="20dp"
-        android:orientation="vertical">
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:fontFamily="@font/bmjua_font"
-            android:text="@string/school"
-            android:textColor="@color/black"
-            android:textSize="20sp" />
-    </LinearLayout>
-
-    <LinearLayout
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:gravity="center"
-        android:orientation="horizontal">
-
-        <!-- 학교 입력 -->
-        <EditText
-            android:id="@+id/schoolname"
-            android:layout_width="300dp"
-            android:layout_height="wrap_content"
-            android:background="@drawable/edit_text_border_basic"
-            android:fontFamily="@font/bmjua_font"
-            android:hint="학교를 입력해주세요"
-            android:padding="13dp"
-            android:textSize="12sp" />
-
-        <Button
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:fontFamily="@font/bmjua_font"
-            android:text="학교 찾기" />
 
         <!-- 회원가입 Button -->
         <LinearLayout
@@ -207,6 +184,5 @@
 
         </LinearLayout>
 
-    </LinearLayout>
-
 </LinearLayout>
+

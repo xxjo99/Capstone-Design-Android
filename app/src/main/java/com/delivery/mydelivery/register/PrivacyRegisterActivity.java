@@ -1,17 +1,20 @@
 package com.delivery.mydelivery.register;
 
 import android.annotation.SuppressLint;
+import android.app.DatePickerDialog;
 import android.content.Intent;
 import android.media.Image;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.DialogFragment;
 
 import com.delivery.mydelivery.MainActivity;
 import com.delivery.mydelivery.R;
@@ -26,10 +29,11 @@ import retrofit2.Response;
 public class PrivacyRegisterActivity extends AppCompatActivity {
 
     EditText nameET;
-    EditText birthET;
+    EditText birthET; // 생일
     EditText phoneNumET;
-    Button registerBtn;
+    Button registerBtn,birthBT;
     ImageButton go_back_password;
+
 
     UserVO userVO; // 데이터를 담을 객체
 
@@ -47,6 +51,8 @@ public class PrivacyRegisterActivity extends AppCompatActivity {
         phoneNumET = findViewById(R.id.phoneNumET);
         registerBtn = findViewById(R.id.registerBtn);
         go_back_password = findViewById(R.id.go_back_password);
+        birthBT = findViewById(R.id.birthBT);
+
 
         // 회원가입 버튼
         registerBtn.setOnClickListener(view -> {
@@ -103,4 +109,19 @@ public class PrivacyRegisterActivity extends AppCompatActivity {
                     }
                 });
     }
+    public void showDatePicker(View view) {
+        DialogFragment newFragment = new DatePickerFragment();
+        newFragment.show(getSupportFragmentManager(),"datePicker");
+    }
+
+    public void processDatePickerResult(int year, int month, int day){
+        String month_string = Integer.toString(month+1);
+        String day_string = Integer.toString(day);
+        String year_string = Integer.toString(year);
+        String dateMessage = (month_string + "/" + day_string + "/" + year_string);
+
+        Toast.makeText(this,"Date: "+dateMessage,Toast.LENGTH_SHORT).show();
+    }
+
+
 }
