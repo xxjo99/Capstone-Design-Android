@@ -109,18 +109,19 @@ public class PrivacyRegisterActivity extends AppCompatActivity {
                     }
                 });
     }
+    // 생일 표시
     public void showDatePicker(View view) {
         DialogFragment newFragment = new DatePickerFragment();
         newFragment.show(getSupportFragmentManager(),"datePicker");
     }
-
+    // 생일 표시
     public void processDatePickerResult(int year, int month, int day){
         String month_string = Integer.toString(month+1);
         String day_string = Integer.toString(day);
         String year_string = Integer.toString(year);
         String dateMessage = (month_string + "/" + day_string + "/" + year_string);
 
-        Toast.makeText(this,"Date: "+dateMessage,Toast.LENGTH_SHORT).show();
+        birthET.setText(year_string+"."+day_string+"."+month_string);
     }
 
 

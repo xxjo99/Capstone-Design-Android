@@ -43,8 +43,8 @@
         <!-- 닉네임 입력 -->
         <EditText
             android:id="@+id/nameET"
-            android:layout_width="350dp"
-            android:layout_height="wrap_content"
+            android:layout_width="360dp"
+            android:layout_height="45dp"
             android:layout_marginTop="10dp"
             android:background="@drawable/edit_text_border_basic"
             android:fontFamily="@font/bmjua_font"
@@ -79,8 +79,8 @@
         <!-- 생년월일 입력 -->
         <EditText
             android:id="@+id/birthET"
-            android:layout_width="270dp"
-            android:layout_height="40dp"
+            android:layout_width="280dp"
+            android:layout_height="45dp"
             android:background="@drawable/edit_text_border_basic"
             android:fontFamily="@font/bmjua_font"
             android:hint="예) 19990101"
@@ -90,10 +90,10 @@
             <Button
                 android:id="@+id/birthBT"
                 android:layout_width="80dp"
-                android:layout_height="45dp"
+                android:layout_height="55dp"
                 android:fontFamily="@font/bmjua_font"
                 android:onClick="showDatePicker"
-                android:text="생일 입력하기"></Button>
+                android:text="생일\n 입력하기"></Button>
 
         </LinearLayout>
 
@@ -118,7 +118,7 @@
         <EditText
             android:id="@+id/phoneNumET"
             android:layout_width="350dp"
-            android:layout_height="wrap_content"
+            android:layout_height="45dp"
             android:layout_marginTop="10dp"
             android:background="@drawable/edit_text_border_basic"
             android:fontFamily="@font/bmjua_font"
@@ -151,8 +151,8 @@
         <!-- 학교 입력 -->
         <EditText
             android:id="@+id/schoolname"
-            android:layout_width="270dp"
-            android:layout_height="wrap_content"
+            android:layout_width="280dp"
+            android:layout_height="45dp"
             android:background="@drawable/edit_text_border_basic"
             android:hint="학교를 입력해주세요"
             android:fontFamily="@font/bmjua_font"
@@ -160,11 +160,10 @@
             android:textSize="12sp" />
 
         <Button
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="80dp"
+            android:layout_height="55dp"
             android:text="학교 찾기"
-            android:fontFamily="@font/bmjua_font"
-            />
+            android:fontFamily="@font/bmjua_font" />
 
     </LinearLayout>
 
