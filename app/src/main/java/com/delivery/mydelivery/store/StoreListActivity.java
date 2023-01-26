@@ -8,6 +8,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.ImageButton;
 import android.widget.ListView;
+import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -19,7 +20,10 @@ import com.delivery.mydelivery.R;
 import com.delivery.mydelivery.home.CategoryVO;
 import com.delivery.mydelivery.home.HomeApi;
 import com.delivery.mydelivery.order.OrderListActivity;
+import com.delivery.mydelivery.preferenceManager.PreferenceManager;
 import com.delivery.mydelivery.retrofit.RetrofitService;
+import com.delivery.mydelivery.user.UserVO;
+import com.google.gson.Gson;
 
 import java.util.List;
 import java.util.Objects;
@@ -41,9 +45,10 @@ public class StoreListActivity extends AppCompatActivity {
     StoreListAdapter storeListadapter;
     List<StoreVO> storeList;
 
-    // 툴바, 툴바 버튼
+    // 툴바, 툴바 버튼, 학교 텍스트
     Toolbar toolbar;
     ImageButton backBtn;
+    TextView schoolTV;
 
     // 레트로핏, api
     RetrofitService retrofitService;
@@ -58,6 +63,11 @@ public class StoreListActivity extends AppCompatActivity {
         setContentView(R.layout.activity_store_store_list);
         context = this; // context 지정
 
+        // 유저 정보
+        String loginInfo = PreferenceManager.getLoginInfo(this);
+        Gson gson = new Gson();
+        UserVO user = gson.fromJson(loginInfo, UserVO.class);
+
         // 툴바
         toolbar = findViewById(R.id.storeToolbar);
         setSupportActionBar(toolbar);
@@ -66,6 +76,10 @@ public class StoreListActivity extends AppCompatActivity {
         // 뒤로가기 버튼
         backBtn = findViewById(R.id.backBtn);
         backBtn.setOnClickListener(view -> finish());
+
+        // 학교
+        schoolTV = findViewById(R.id.schoolTV);
+        schoolTV.setText(user.getSchool());
 
         // 리사이클러뷰 가로뷰로 설정
         categoryView = findViewById(R.id.categoryRecyclerView);

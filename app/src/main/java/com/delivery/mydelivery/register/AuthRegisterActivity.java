@@ -2,6 +2,7 @@ package com.delivery.mydelivery.register;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.KeyEvent;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -28,6 +29,8 @@ public class AuthRegisterActivity extends AppCompatActivity {
     Button checkAuthNumBtn;
     Button nextBtn;
 
+    RegisterDialog registerDialog;
+
     // 레트로핏, api
     RetrofitService retrofitService;
     RegisterApi api;
@@ -43,6 +46,9 @@ public class AuthRegisterActivity extends AppCompatActivity {
 
         userVO = (UserVO) getIntent().getSerializableExtra("userVO"); // 전 액티비티에서 넘어온 객체를 받아서 새로 생성
         String email = userVO.getEmail(); // 전 액티비티에서 넘어온 이메일을 가져옴
+
+        // dialog
+        registerDialog = new RegisterDialog(this);
 
         // xml 변수 초기화
         emailTV = findViewById(R.id.emailTV);
@@ -116,5 +122,17 @@ public class AuthRegisterActivity extends AppCompatActivity {
                     public void onFailure(@NonNull Call<String> call, @NonNull Throwable t) {
                     }
                 });
+    }
+
+    // 뒤로가기시 팝업창 출력
+    @Override
+    public boolean onKeyDown(int keycode, KeyEvent event) {
+
+        if(keycode ==KeyEvent.KEYCODE_BACK) {
+            registerDialog.callDialog();
+            return true;
+        }
+
+        return false;
     }
 }

@@ -16,6 +16,5 @@ public class RecruitActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_recruit_recruit);
 
-
     }
 }

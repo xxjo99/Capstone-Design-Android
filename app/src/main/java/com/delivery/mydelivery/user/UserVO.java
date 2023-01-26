@@ -11,8 +11,8 @@ public class UserVO implements Serializable {
     private String email; // 사용자 이메일
     private String pw; // 사용자 비밀번호
     private String name; // 사용자 이름
-    private String birth; // 사용자 생일
     private String phoneNum; // 사용자 휴대폰 번호
+    private String school; // 학교
 
     public int getUserId() {
         return userId;
@@ -46,14 +46,6 @@ public class UserVO implements Serializable {
         this.name = name;
     }
 
-    public String getBirth() {
-        return birth;
-    }
-
-    public void setBirth(String birth) {
-        this.birth = birth;
-    }
-
     public String getPhoneNum() {
         return phoneNum;
     }
@@ -62,7 +54,14 @@ public class UserVO implements Serializable {
         this.phoneNum = phoneNum;
     }
 
-    @NonNull
+    public String getSchool() {
+        return school;
+    }
+
+    public void setSchool(String school) {
+        this.school = school;
+    }
+
     @Override
     public String toString() {
         return "UserVO{" +
@@ -70,8 +69,8 @@ public class UserVO implements Serializable {
                 ", email='" + email + '\'' +
                 ", pw='" + pw + '\'' +
                 ", name='" + name + '\'' +
-                ", birth='" + birth + '\'' +
                 ", phoneNum='" + phoneNum + '\'' +
+                ", school='" + school + '\'' +
                 '}';
     }
 }

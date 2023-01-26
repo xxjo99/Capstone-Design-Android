@@ -2,14 +2,19 @@ package com.delivery.mydelivery.order;
 
 import android.annotation.SuppressLint;
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageButton;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -23,6 +28,7 @@ import com.google.gson.Gson;
 import com.sothree.slidinguppanel.SlidingUpPanelLayout;
 
 import java.util.List;
+import java.util.Objects;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -61,6 +67,10 @@ public class OrderListActivity extends AppCompatActivity {
     // 초기 인원수
     int person = 1;
 
+    // 툴바, 뒤로가기 버튼
+    Toolbar toolbar;
+    ImageButton backBtn;
+
     // 레트로핏, api
     RetrofitService retrofitService;
     OrderApi orderApi;
@@ -82,6 +92,15 @@ public class OrderListActivity extends AppCompatActivity {
 
         // 슬라이딩패널 설정
         slidingUpPanelLayout.setTouchEnabled(false);
+
+        // 툴바
+        toolbar = findViewById(R.id.orderToolbar);
+        setSupportActionBar(toolbar);
+        Objects.requireNonNull(getSupportActionBar()).setDisplayShowTitleEnabled(false);
+
+        // 뒤로가기 버튼
+        backBtn = findViewById(R.id.backBtn);
+        backBtn.setOnClickListener(view -> finish());
 
         // 리사이클러뷰 설정
         orderRecyclerView = findViewById(R.id.orderRecyclerView);
