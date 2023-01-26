@@ -11,8 +11,8 @@ import retrofit2.http.Path;
 public interface RecruitApi {
 
     // 모든 모집글 조회
-    @GET("/recruit/getAllRecruit")
-    Call<List<RecruitVO>> getRecruitList();
+    @GET("/recruit/getRecruitList/{registrantPlace}")
+    Call<List<RecruitVO>> getRecruitList(@Path("registrantPlace") String registrantPlace);
 
     // 해당 사용자의 등록글 존재여부 검색
     @GET("/recruit/findRecruit/user/{userId}")

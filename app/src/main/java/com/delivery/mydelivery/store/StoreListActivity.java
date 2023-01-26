@@ -92,13 +92,16 @@ public class StoreListActivity extends AppCompatActivity {
 
         storeListView = findViewById(R.id.storeListView);
 
-        // 전 액티비티에서 눌러진 카테고리 데이터를 받아와서 카테고리에 맞는 매장 리스트를 출력
+        // 전 액티비티에서 눌러진 카테고리 데이터를 받아옴
         Intent intent = getIntent();
         String category = intent.getStringExtra("category");
-        setStoreList(category); // 매장 리스트 가져오는 메소드
+
+        // 접속한 유저의 대학정보를 통해 해당 지역의 매장을 가져옴
+        String school = user.getSchool();
+        setStoreList(category, school);
 
         // 카테고리 클릭 이벤트 구현
-        storeCategoryAdapter.setOnItemClickListener((v, position) -> setStoreList(categoryList.get(position).getCategoryName()));
+        storeCategoryAdapter.setOnItemClickListener((v, position) -> setStoreList(categoryList.get(position).getCategoryName(), school));
     }
 
     // 카테고리 리스트 가져오는 api
@@ -122,11 +125,11 @@ public class StoreListActivity extends AppCompatActivity {
     }
 
     // 매장 리스트 전환 메소드, api 호출
-    public void setStoreList(String category) {
+    public void setStoreList(String category, String deliveryAvailablePlace) {
         retrofitService = new RetrofitService();
         storeApi = retrofitService.getRetrofit().create(StoreApi.class);
 
-        storeApi.getStoreList(category)
+        storeApi.getStoreList(category, deliveryAvailablePlace)
                 .enqueue(new Callback<List<StoreVO>>() {
                     @Override
                     public void onResponse(@NonNull Call<List<StoreVO>> call, @NonNull Response<List<StoreVO>> response) {
@@ -159,7 +162,6 @@ public class StoreListActivity extends AppCompatActivity {
                 Intent intent = new Intent(this, OrderListActivity.class);
                 startActivity(intent);
                 break;
-
         }
 
         return super.onOptionsItemSelected(item);

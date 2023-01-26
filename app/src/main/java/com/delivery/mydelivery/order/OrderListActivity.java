@@ -2,10 +2,7 @@ package com.delivery.mydelivery.order;
 
 import android.annotation.SuppressLint;
 import android.content.Context;
-import android.content.Intent;
 import android.os.Bundle;
-import android.view.Menu;
-import android.view.MenuItem;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
@@ -161,9 +158,10 @@ public class OrderListActivity extends AppCompatActivity {
                 RecruitVO recruit = new RecruitVO();
 
                 recruit.setUserId(userId); // 회원 아이디
+                recruit.setRegistrantPlace(user.getSchool()); // 등록자 위치
                 recruit.setStoreId(storeId); // 매장 아이디
                 recruit.setDeliveryTime(selectTimeTV.getText().toString()); // 시간
-                recruit.setPlace(selectPlaceET.getText().toString()); // 장소
+                recruit.setPlace(selectPlaceET.getText().toString()); // 배달장소
                 recruit.setPerson(person); // 모집인원
 
                 findRecruit(userId, recruit);// 모집글 등록
@@ -233,13 +231,13 @@ public class OrderListActivity extends AppCompatActivity {
         orderApi.registerRecruit(recruit)
                 .enqueue(new Callback<Void>() {
                     @Override
-                    public void onResponse(Call<Void> call, Response<Void> response) {
+                    public void onResponse(@NonNull Call<Void> call, @NonNull Response<Void> response) {
                         Toast.makeText(context, "등록 완료", Toast.LENGTH_SHORT).show();
                         finish();
                     }
 
                     @Override
-                    public void onFailure(Call<Void> call, Throwable t) {
+                    public void onFailure(@NonNull Call<Void> call, @NonNull Throwable t) {
 
                     }
                 });

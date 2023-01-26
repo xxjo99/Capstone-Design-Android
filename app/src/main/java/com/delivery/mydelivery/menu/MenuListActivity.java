@@ -3,6 +3,8 @@ package com.delivery.mydelivery.menu;
 import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -58,6 +60,7 @@ public class MenuListActivity extends AppCompatActivity {
         toolbar = findViewById(R.id.menuToolbar);
         setSupportActionBar(toolbar);
         Objects.requireNonNull(getSupportActionBar()).setDisplayShowTitleEnabled(false);
+
 
         // 뒤로가기 버튼
         backBtn = findViewById(R.id.backBtn);
