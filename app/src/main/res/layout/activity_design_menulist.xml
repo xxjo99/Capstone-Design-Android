@@ -1,0 +1,280 @@
+<?xml version="1.0" encoding="utf-8"?> <!-- 매장 메뉴 리스트 -->
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="101dp"
+        android:orientation="vertical">
+
+        <!-- 매장 정보 -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="100dp"
+            android:orientation="vertical">
+
+            <ImageView
+                android:id="@+id/storeImage"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                tools:srcCompat="@tools:sample/backgrounds/scenic" />
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="15dp"
+        android:layout_marginRight="15dp"
+        android:layout_marginBottom="15dp">
+
+        <TextView
+            android:id="@+id/storeID"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/bmjua_"
+            android:text="No."
+            android:textSize="35sp" />
+
+        <EditText
+            android:id="@+id/storeIdNum"
+            android:layout_width="30dp"
+            android:layout_height="wrap_content"
+            android:layout_marginRight="5dp"
+            android:background="@null"
+            android:ems="10"
+            android:fontFamily="@font/bmjua_"
+            android:inputType="textPersonName"
+            android:textSize="35sp" />
+
+        <EditText
+            android:id="@+id/storeName"
+            android:layout_width="277dp"
+            android:layout_height="wrap_content"
+            android:background="@null"
+            android:ems="10"
+            android:fontFamily="@font/bmjua_"
+            android:gravity="left"
+            android:inputType="textPersonName"
+            android:text="가게이름"
+            android:textSize="36sp" />
+
+        <ImageButton
+            android:id="@+id/url"
+            android:layout_width="20dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:background="#FFFFFF"
+            app:srcCompat="@drawable/url" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="21dp"
+        android:layout_marginLeft="15dp"
+        android:layout_marginRight="15dp"
+        android:layout_marginBottom="10dp">
+
+        <TextView
+            android:id="@+id/phoneNum"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginRight="15dp"
+            android:fontFamily="@font/bmjua_"
+            android:text="전화번호"
+            android:textSize="21sp" />
+
+        <EditText
+            android:id="@+id/storePN"
+            android:layout_width="245dp"
+            android:layout_height="wrap_content"
+            android:background="@null"
+            android:ems="10"
+            android:fontFamily="@font/bmjua_"
+            android:gravity="left"
+            android:inputType="phone"
+            android:textColor="#000000"
+            android:textSize="21sp" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="21dp"
+        android:layout_marginLeft="15dp"
+        android:layout_marginRight="15dp"
+        android:layout_marginBottom="10dp">
+
+        <TextView
+            android:id="@+id/storeOT"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginRight="15dp"
+            android:fontFamily="@font/bmjua_"
+            android:text="운영시간"
+            android:textSize="21sp" />
+
+        <EditText
+            android:id="@+id/openTime"
+            android:layout_width="97dp"
+            android:layout_height="wrap_content"
+            android:background="@null"
+            android:ems="10"
+            android:fontFamily="@font/bmjua_"
+            android:gravity="left"
+            android:inputType="phone"
+            android:textColor="#000000"
+            android:textSize="21sp" />
+
+        <TextView
+            android:id="@+id/To"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/bmjua_"
+            android:text="~"
+            android:textColor="#000000"
+            android:textSize="21sp" />
+
+        <EditText
+            android:id="@+id/closeTime"
+            android:layout_width="97dp"
+            android:layout_height="wrap_content"
+            android:background="@null"
+            android:ems="10"
+            android:fontFamily="@font/bmjua_"
+            android:gravity="left"
+            android:inputType="phone"
+            android:textColor="#000000"
+            android:textSize="21sp" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="21dp"
+        android:layout_marginLeft="15dp"
+        android:layout_marginRight="15dp"
+        android:layout_marginBottom="10dp">
+
+        <TextView
+            android:id="@+id/storeAdd"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginRight="15dp"
+            android:fontFamily="@font/bmjua_"
+            android:text="가게주소"
+            android:textSize="21sp" />
+
+        <EditText
+            android:id="@+id/storeAddress"
+            android:layout_width="300dp"
+            android:layout_height="wrap_content"
+            android:background="@null"
+            android:ems="10"
+            android:fontFamily="@font/bmjua_"
+            android:gravity="left"
+            android:inputType="textPostalAddress"
+            android:textColor="#000000"
+            android:textSize="21sp" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="21dp"
+        android:layout_marginLeft="15dp"
+        android:layout_marginRight="15dp"
+        android:layout_marginBottom="10dp">
+
+        <TextView
+            android:id="@+id/delieveryTip"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginRight="15dp"
+            android:fontFamily="@font/bmjua_"
+            android:text="배달요금"
+            android:textSize="21sp" />
+
+        <TextView
+            android:id="@+id/startTip"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/bmjua_"
+            android:text="0원"
+            android:textColor="#000000"
+            android:textSize="21sp" />
+
+        <TextView
+            android:id="@+id/To"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/bmjua_"
+            android:text="~"
+            android:textColor="#000000"
+            android:textSize="21sp" />
+
+        <EditText
+            android:id="@+id/MaximumTip"
+            android:layout_width="97dp"
+            android:layout_height="wrap_content"
+            android:background="@null"
+            android:ems="10"
+            android:fontFamily="@font/bmjua_"
+            android:gravity="left"
+            android:inputType="number"
+            android:textColor="#000000"
+            android:textSize="21sp" />
+
+        <TextView
+            android:id="@+id/won"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/bmjua_"
+            android:text="원"
+            android:textColor="#000000"
+            android:textSize="21sp" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="21dp"
+        android:layout_marginLeft="15dp"
+        android:layout_marginRight="15dp"
+        android:layout_marginBottom="10dp">
+
+        <TextView
+            android:id="@+id/minimumTip"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginRight="15dp"
+            android:fontFamily="@font/bmjua_"
+            android:text="최소주문"
+            android:textSize="21sp" />
+
+        <EditText
+            android:id="@+id/MiniTip"
+            android:layout_width="97dp"
+            android:layout_height="wrap_content"
+            android:background="@null"
+            android:ems="10"
+            android:fontFamily="@font/bmjua_"
+            android:gravity="left"
+            android:inputType="number"
+            android:textColor="#000000"
+            android:textSize="21sp" />
+
+        <TextView
+            android:id="@+id/won2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/bmjua_"
+            android:text="원"
+            android:textColor="#000000"
+            android:textSize="21sp" />
+    </LinearLayout>
+
+</LinearLayout>
