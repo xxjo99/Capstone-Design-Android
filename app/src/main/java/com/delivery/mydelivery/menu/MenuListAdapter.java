@@ -69,6 +69,7 @@ public class MenuListAdapter extends RecyclerView.Adapter<MenuListAdapter.ViewHo
             menuInfoTV = itemView.findViewById(R.id.menuInfoTV);
             menuPriceTV = itemView.findViewById(R.id.menuPriceTV);
 
+            menuIV.setClipToOutline(true);
             // 클릭 이벤트
             itemView.setOnClickListener(view -> {
                 int position = getAbsoluteAdapterPosition();
@@ -100,10 +101,11 @@ public class MenuListAdapter extends RecyclerView.Adapter<MenuListAdapter.ViewHo
 
         // 메뉴 정보 출력
         void onBind(MenuVO menu) {
-            Glide.with(itemView).load(menu.getMenuPicUrl()).placeholder(R.drawable.ic_launcher_background).into(menuIV);
+            String text = "https://img1.daumcdn.net/thumb/R1280x0/?scode=mtistory&fname=https://k.kakaocdn.net/dn/EShJF/btquPLT192D/SRxSvXqcWjHRTju3kHcOQK/img.png";
+            Glide.with(itemView).load(/*menu.getMenuPicUrl()*/ text).placeholder(R.drawable.ic_launcher_background).into(menuIV);
             menuNameTV.setText(menu.getMenuName());
             menuInfoTV.setText(menu.getMenuInfo());
-            menuPriceTV.setText(menu.getMenuPrice() + "");
+            menuPriceTV.setText(menu.getMenuPrice() + "원");
         }
     }
 

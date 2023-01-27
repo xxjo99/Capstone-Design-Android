@@ -2,6 +2,7 @@ package com.delivery.mydelivery.order;
 
 import android.annotation.SuppressLint;
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.widget.Button;
 import android.widget.EditText;
@@ -16,6 +17,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.delivery.mydelivery.R;
+import com.delivery.mydelivery.menu.MenuListActivity;
 import com.delivery.mydelivery.recruit.RecruitApi;
 import com.delivery.mydelivery.recruit.RecruitVO;
 import com.delivery.mydelivery.preferenceManager.PreferenceManager;
@@ -48,6 +50,9 @@ public class OrderListActivity extends AppCompatActivity {
     @SuppressLint("StaticFieldLeak")
     public static TextView totalPriceTV;
     public static int totalPrice;
+
+    // 메뉴 추가 버튼
+    Button addMenuBtn;
 
     // 모집글 등록 레이아웃, 슬라이딩패널 펼치기 / 닫기 버튼
     SlidingUpPanelLayout slidingUpPanelLayout;
@@ -113,6 +118,15 @@ public class OrderListActivity extends AppCompatActivity {
 
         // 담은 메뉴 가져옴
         setOrder(userId);
+
+        // 메뉴 추가 버튼, 해당 매장 액티비티로 이동
+        addMenuBtn = findViewById(R.id.addMenuBtn);
+        addMenuBtn.setOnClickListener(view -> {
+            Intent intent = new Intent(OrderListActivity.this, MenuListActivity.class);
+            intent.putExtra("storeId", storeId);
+            intent.putExtra("participantType", "등록자"); // 등록자 or 참가자인지 확인
+            startActivity(intent);
+        });
 
         // 모집글 등록 펼치기 버튼
         slidingOpenBtn.setOnClickListener(view -> {

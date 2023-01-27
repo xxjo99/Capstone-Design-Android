@@ -5,7 +5,6 @@ import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -27,6 +26,7 @@ import retrofit2.Callback;
 import retrofit2.Response;
 
 // 장바구니 어댑터
+@SuppressLint("SetTextI18n")
 public class OrderListAdapter extends RecyclerView.Adapter<OrderListAdapter.ViewHolder> {
 
     private final List<OrderVO> orderList; // 주문 리스트
@@ -54,7 +54,6 @@ public class OrderListAdapter extends RecyclerView.Adapter<OrderListAdapter.View
     }
 
     // 데이터 셋팅
-    @SuppressLint("SetTextI18n")
     @Override
     public void onBindViewHolder(@NonNull OrderListAdapter.ViewHolder holder, int position) {
         OrderVO order = orderList.get(position);
@@ -69,7 +68,7 @@ public class OrderListAdapter extends RecyclerView.Adapter<OrderListAdapter.View
             holder.optionListTV.setVisibility(View.GONE);
         }
 
-        holder.menuPriceTV.setText(order.getTotalPrice() + ""); // 메뉴 총 가격
+        holder.menuPriceTV.setText(order.getTotalPrice() + "원"); // 메뉴 총 가격
         holder.amountTV.setText(order.getAmount() + ""); // 메뉴 개수
 
         // 메뉴 개수 수정 이벤트
@@ -103,6 +102,8 @@ public class OrderListAdapter extends RecyclerView.Adapter<OrderListAdapter.View
             OrderListActivity.totalPriceTV.setText(OrderListActivity.totalPrice + "원");
         });
 
+        holder.deleteBtn.setOnClickListener(view -> deleteOrder(order.getOrderId(), order.getTotalPrice(), position));
+
     }
 
     @Override
@@ -121,7 +122,7 @@ public class OrderListAdapter extends RecyclerView.Adapter<OrderListAdapter.View
         TextView amountTV;
         ImageButton decreaseBtn;
         ImageButton increaseBtn;
-        Button deleteBtn;
+        ImageButton deleteBtn;
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
@@ -225,20 +226,24 @@ public class OrderListAdapter extends RecyclerView.Adapter<OrderListAdapter.View
     }
 
     // 메뉴 삭제
-    private void deleteOrder(int orderId, int position) {
+    private void deleteOrder(int orderId, int orderPrice, int position) {
         retrofitService = new RetrofitService();
         orderApi = retrofitService.getRetrofit().create(OrderApi.class);
 
         orderApi.deleteOrder(orderId)
                 .enqueue(new Callback<Void>() {
+                    @SuppressLint("NotifyDataSetChanged")
                     @Override
                     public void onResponse(@NonNull Call<Void> call, @NonNull Response<Void> response) {
                         Toast.makeText(context, "삭제 성공", Toast.LENGTH_SHORT).show();
+                        OrderListActivity.totalPrice -= orderPrice;
+                        OrderListActivity.totalPriceTV.setText(OrderListActivity.totalPrice + "원");
+                        orderList.remove(position);
+                        notifyDataSetChanged();
                     }
 
                     @Override
                     public void onFailure(@NonNull Call<Void> call, @NonNull Throwable t) {
-
                     }
                 });
     }

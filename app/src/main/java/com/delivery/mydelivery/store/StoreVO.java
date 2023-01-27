@@ -14,6 +14,8 @@ public class StoreVO {
     private String storeAddress; // 매장 주소
     private String deliveryTip; // 배달팁
     private int minimumDeliveryPrice; // 최소배달금액
+    private String storeInfo; // 매장 정보
+    private String deliveryTime; // 배달 시간
 
     public int getStoreId() {
         return storeId;
@@ -103,6 +105,22 @@ public class StoreVO {
         this.minimumDeliveryPrice = minimumDeliveryPrice;
     }
 
+    public String getStoreInfo() {
+        return storeInfo;
+    }
+
+    public void setStoreInfo(String storeInfo) {
+        this.storeInfo = storeInfo;
+    }
+
+    public String getDeliveryTime() {
+        return deliveryTime;
+    }
+
+    public void setDeliveryTime(String deliveryTime) {
+        this.deliveryTime = deliveryTime;
+    }
+
     @Override
     public String toString() {
         return "StoreVO{" +
@@ -117,6 +135,8 @@ public class StoreVO {
                 ", storeAddress='" + storeAddress + '\'' +
                 ", deliveryTip='" + deliveryTip + '\'' +
                 ", minimumDeliveryPrice=" + minimumDeliveryPrice +
+                ", storeInfo='" + storeInfo + '\'' +
+                ", deliveryTime='" + deliveryTime + '\'' +
                 '}';
     }
 }
