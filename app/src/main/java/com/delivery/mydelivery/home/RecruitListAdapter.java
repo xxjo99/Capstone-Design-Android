@@ -86,7 +86,7 @@ public class RecruitListAdapter extends RecyclerView.Adapter<RecruitListAdapter.
             int recruitId = recruit.getRecruitId();
             int participateUserId = user.getUserId();
 
-            checkParticipate(recruitId, participateUserId, holder, person, place, deliveryTime);
+            checkParticipate(recruitId, participateUserId, holder, person, place, deliveryTime, storeId);
         });
     }
 
@@ -100,7 +100,7 @@ public class RecruitListAdapter extends RecyclerView.Adapter<RecruitListAdapter.
     }
 
     public static class ViewHolder extends RecyclerView.ViewHolder {
-        TextView storeNameTv;
+        TextView storeNameTV;
         TextView registrantTV;
         TextView deliveryTimeTV;
         TextView recruitPersonTV;
@@ -113,7 +113,7 @@ public class RecruitListAdapter extends RecyclerView.Adapter<RecruitListAdapter.
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
 
-            storeNameTv = itemView.findViewById(R.id.storeNameTV);
+            storeNameTV = itemView.findViewById(R.id.storeNameTV);
             registrantTV = itemView.findViewById(R.id.registrantTV);
             deliveryTimeTV = itemView.findViewById(R.id.deliveryTimeTV);
             recruitPersonTV = itemView.findViewById(R.id.recruitPersonTV);
@@ -132,7 +132,7 @@ public class RecruitListAdapter extends RecyclerView.Adapter<RecruitListAdapter.
                     public void onResponse(@NonNull Call<StoreVO> call, @NonNull Response<StoreVO> response) {
                         StoreVO store = response.body();
                         assert store != null;
-                        holder.storeNameTv.setText(store.getStoreName());
+                        holder.storeNameTV.setText(store.getStoreName());
                         holder.deliveryTip = store.getDeliveryTip();
                     }
 
@@ -165,7 +165,7 @@ public class RecruitListAdapter extends RecyclerView.Adapter<RecruitListAdapter.
     }
 
     // 해당 참가글에 참가했는지 아닌지 구분, 다이얼로그 열기
-    private void checkParticipate(int recruitId, int participantId, RecruitListAdapter.ViewHolder holder, int person, String place, String deliveryTime) {
+    private void checkParticipate(int recruitId, int participantId, RecruitListAdapter.ViewHolder holder, int person, String place, String deliveryTime, int storeId) {
         retrofitService = new RetrofitService();
         recruitApi = retrofitService.getRetrofit().create(RecruitApi.class);
 
@@ -176,14 +176,16 @@ public class RecruitListAdapter extends RecyclerView.Adapter<RecruitListAdapter.
 
                         if (Boolean.TRUE.equals(response.body())) { // 참가되어있는 상태
                             Intent intent = new Intent(context, RecruitActivity.class);
+                            intent.putExtra("recruitId", recruitId);
+                            intent.putExtra("storeId", storeId);
                             context.startActivity(intent);
                         } else {
                             ParticipateDialog participateDialog = new ParticipateDialog(context);
 
-                            String storeName = holder.storeNameTv.getText().toString(); // 매장 이름
+                            String storeName = holder.storeNameTV.getText().toString(); // 매장 이름
 
                             // 매장 이름, 모집인원 수, 현재 참가자 수 , 장소, 배달시간, 배달팁, 모집글 아이디, 참가자 아이디
-                            participateDialog.setData(storeName, holder.participantCount, person, place, deliveryTime, holder.deliveryTip, recruitId, participantId);
+                            participateDialog.setData(storeName, holder.participantCount, person, place, deliveryTime, holder.deliveryTip, recruitId, participantId, storeId);
                             participateDialog.callDialog();
                         }
                     }

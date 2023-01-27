@@ -68,6 +68,15 @@ public class MyPostAdapter extends RecyclerView.Adapter<MyPostAdapter.ViewHolder
         holder.deliveryTimeTV.setText(deliveryTime); // 배달 시간
         holder.recruitPersonTV.setText(person + "명"); // 모집 인원
         holder.placeTV.setText(place); // 배달 장소
+
+        // 상세페이지 이동
+        holder.itemView.setOnClickListener(view -> {
+            Intent intent = new Intent(context, RecruitActivity.class);
+            intent.putExtra("recruitId", recruit.getRecruitId());
+            intent.putExtra("storeId", storeId);
+            context.startActivity(intent);
+        });
+
     }
 
     @Override
@@ -94,11 +103,6 @@ public class MyPostAdapter extends RecyclerView.Adapter<MyPostAdapter.ViewHolder
             deliveryTimeTV = itemView.findViewById(R.id.deliveryTimeTV);
             recruitPersonTV = itemView.findViewById(R.id.recruitPersonTV);
             placeTV = itemView.findViewById(R.id.placeTV);
-
-            itemView.setOnClickListener(view -> {
-                Intent intent = new Intent(itemView.getContext(), RecruitActivity.class);
-                itemView.getContext().startActivity(intent);
-            });
 
         }
     }
