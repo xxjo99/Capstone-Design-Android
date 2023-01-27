@@ -18,6 +18,14 @@
         android:title="@string/post"
         app:showAsAction="always" />
 
+    <!-- 나의 참가 / 등록글 -->
+    <item
+        android:id="@+id/menu_home_myPost"
+        android:enabled="true"
+        android:icon="@drawable/home_menu_list"
+        android:title="@string/myPost"
+        app:showAsAction="always" />
+
     <!-- 검색 -->
     <item
         android:id="@+id/menu_home_search"

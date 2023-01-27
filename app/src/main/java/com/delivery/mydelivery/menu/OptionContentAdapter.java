@@ -45,7 +45,7 @@ public class OptionContentAdapter extends RecyclerView.Adapter<OptionContentAdap
         int optionPrice = optionContent.getOptionPrice(); // 옵션 가격
 
         holder.optionCheckBox.setText(optionContentName);
-        holder.optionPriceTV.setText(optionPrice + "");
+        holder.optionPriceTV.setText("+" + optionPrice + "원");
 
         // 옵션 선택 이벤트
         holder.optionCheckBox.setOnClickListener(view -> {

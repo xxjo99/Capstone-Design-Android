@@ -5,11 +5,13 @@ import android.content.Context;
 import android.os.Bundle;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageButton;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -23,6 +25,7 @@ import com.google.gson.Gson;
 import com.sothree.slidinguppanel.SlidingUpPanelLayout;
 
 import java.util.List;
+import java.util.Objects;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -61,6 +64,10 @@ public class OrderListActivity extends AppCompatActivity {
     // 초기 인원수
     int person = 1;
 
+    // 툴바, 뒤로가기 버튼
+    Toolbar toolbar;
+    ImageButton backBtn;
+
     // 레트로핏, api
     RetrofitService retrofitService;
     OrderApi orderApi;
@@ -82,6 +89,15 @@ public class OrderListActivity extends AppCompatActivity {
 
         // 슬라이딩패널 설정
         slidingUpPanelLayout.setTouchEnabled(false);
+
+        // 툴바
+        toolbar = findViewById(R.id.orderToolbar);
+        setSupportActionBar(toolbar);
+        Objects.requireNonNull(getSupportActionBar()).setDisplayShowTitleEnabled(false);
+
+        // 뒤로가기 버튼
+        backBtn = findViewById(R.id.backBtn);
+        backBtn.setOnClickListener(view -> finish());
 
         // 리사이클러뷰 설정
         orderRecyclerView = findViewById(R.id.orderRecyclerView);
@@ -142,9 +158,10 @@ public class OrderListActivity extends AppCompatActivity {
                 RecruitVO recruit = new RecruitVO();
 
                 recruit.setUserId(userId); // 회원 아이디
+                recruit.setRegistrantPlace(user.getSchool()); // 등록자 위치
                 recruit.setStoreId(storeId); // 매장 아이디
                 recruit.setDeliveryTime(selectTimeTV.getText().toString()); // 시간
-                recruit.setPlace(selectPlaceET.getText().toString()); // 장소
+                recruit.setPlace(selectPlaceET.getText().toString()); // 배달장소
                 recruit.setPerson(person); // 모집인원
 
                 findRecruit(userId, recruit);// 모집글 등록
@@ -214,13 +231,13 @@ public class OrderListActivity extends AppCompatActivity {
         orderApi.registerRecruit(recruit)
                 .enqueue(new Callback<Void>() {
                     @Override
-                    public void onResponse(Call<Void> call, Response<Void> response) {
+                    public void onResponse(@NonNull Call<Void> call, @NonNull Response<Void> response) {
                         Toast.makeText(context, "등록 완료", Toast.LENGTH_SHORT).show();
                         finish();
                     }
 
                     @Override
-                    public void onFailure(Call<Void> call, Throwable t) {
+                    public void onFailure(@NonNull Call<Void> call, @NonNull Throwable t) {
 
                     }
                 });

@@ -10,6 +10,7 @@ public class StoreVO {
     private String openTime; // 오픈시간
     private String closeTime; // 마감시간
     private String storeImageUrl; // 매장 이미지
+    private String deliveryAvailablePlace;
     private String storeAddress; // 매장 주소
     private String deliveryTip; // 배달팁
     private int minimumDeliveryPrice; // 최소배달금액
@@ -70,6 +71,14 @@ public class StoreVO {
         this.storeImageUrl = storeImageUrl;
     }
 
+    public String getDeliveryAvailablePlace() {
+        return deliveryAvailablePlace;
+    }
+
+    public void setDeliveryAvailablePlace(String deliveryAvailablePlace) {
+        this.deliveryAvailablePlace = deliveryAvailablePlace;
+    }
+
     public String getStoreAddress() {
         return storeAddress;
     }
@@ -104,6 +113,7 @@ public class StoreVO {
                 ", openTime='" + openTime + '\'' +
                 ", closeTime='" + closeTime + '\'' +
                 ", storeImageUrl='" + storeImageUrl + '\'' +
+                ", deliveryAvailablePlace='" + deliveryAvailablePlace + '\'' +
                 ", storeAddress='" + storeAddress + '\'' +
                 ", deliveryTip='" + deliveryTip + '\'' +
                 ", minimumDeliveryPrice=" + minimumDeliveryPrice +

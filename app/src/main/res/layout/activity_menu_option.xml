@@ -1,8 +1,25 @@
 <?xml version="1.0" encoding="utf-8"?> <!-- 메뉴 상세, 옵션 선택 -->
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical">
+
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/optionToolbar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@android:color/transparent"
+        app:contentInsetStart="0dp">
+
+        <ImageButton
+            android:id="@+id/backBtn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:backgroundTint="@color/white"
+            android:src="@drawable/back" />
+
+    </androidx.appcompat.widget.Toolbar>
 
     <androidx.core.widget.NestedScrollView
         android:layout_width="match_parent"
@@ -18,94 +35,119 @@
             <ImageView
                 android:id="@+id/menuIV"
                 android:layout_width="match_parent"
-                android:layout_height="200dp"
-                android:layout_marginBottom="20dp" />
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="20dp"
+                android:scaleType="centerCrop" />
 
             <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="20dp"
-                android:layout_marginRight="20dp"
-                android:layout_marginBottom="20dp"
-                android:orientation="vertical">
-
-                <!-- 메뉴 이름 -->
-                <TextView
-                    android:id="@+id/menuNameTV"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginBottom="10dp"
-                    android:fontFamily="@font/bmjua_font"
-                    android:text="@string/menuName"
-                    android:textSize="25sp" />
-
-                <!-- 메뉴 설명 -->
-                <TextView
-                    android:id="@+id/menuInfoTV"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:fontFamily="@font/bmjua_font"
-                    android:text="@string/menuInfo"
-                    android:textSize="22sp" />
-
-            </LinearLayout>
-
-            <!-- 옵션 리사이클러뷰 -->
-            <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/optionRecyclerView"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:layout_marginLeft="20dp"
-                android:layout_marginRight="20dp"
-                android:fontFamily="@font/bmjua_font"
-                android:nestedScrollingEnabled="false"
-                android:orientation="vertical"
-                android:overScrollMode="never" />
+                android:orientation="vertical">
 
-            <!-- 메뉴 수량 -->
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal">
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="12dp"
+                    android:layout_marginRight="12dp"
+                    android:layout_marginBottom="20dp"
+                    android:orientation="vertical">
 
-                <TextView
-                    android:layout_width="55dp"
-                    android:layout_height="match_parent"
-                    android:layout_marginLeft="15dp"
-                    android:fontFamily="@font/bmjua_font"
-                    android:gravity="center"
-                    android:text="@string/amount"
-                    android:textSize="22sp" />
+                    <!-- 메뉴 이름 -->
+                    <TextView
+                        android:id="@+id/menuNameTV"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="10dp"
+                        android:fontFamily="@font/bmjua_font"
+                        android:text="@string/menuName"
+                        android:textColor="@color/black"
+                        android:textSize="25sp" />
+
+                    <!-- 메뉴 설명 -->
+                    <TextView
+                        android:id="@+id/menuInfoTV"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/bmjua_font"
+                        android:text="@string/menuInfo"
+                        android:textColor="@color/black"
+                        android:textSize="15sp" />
+
+                </LinearLayout>
 
                 <View
-                    android:layout_width="0dp"
-                    android:layout_height="0dp"
-                    android:layout_weight="1" />
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:background="@color/gray" />
 
-                <ImageButton
-                    android:id="@+id/decreaseBtn"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:background="@color/white"
-                    android:src="@drawable/minus_btn" />
-
-                <TextView
-                    android:id="@+id/amountTV"
-                    android:layout_width="wrap_content"
-                    android:layout_height="32dp"
+                <!-- 옵션 리사이클러뷰 -->
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/optionRecyclerView"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
                     android:fontFamily="@font/bmjua_font"
-                    android:gravity="center"
-                    android:text="개수"
-                    android:textSize="18sp" />
+                    android:nestedScrollingEnabled="false"
+                    android:orientation="vertical"
+                    android:overScrollMode="never" />
 
-                <ImageButton
-                    android:id="@+id/increaseBtn"
-                    android:layout_width="wrap_content"
+                <!-- 메뉴 수량 -->
+                <LinearLayout
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginRight="20dp"
-                    android:background="@color/white"
-                    android:src="@drawable/plus_btn" />
+                    android:orientation="horizontal"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginBottom="10dp">
 
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:layout_marginStart="15dp"
+                        android:fontFamily="@font/bmjua_font"
+                        android:textColor="@color/black"
+                        android:gravity="center"
+                        android:text="@string/amount"
+                        android:textSize="15sp" />
+
+                    <View
+                        android:layout_width="0dp"
+                        android:layout_height="0dp"
+                        android:layout_weight="1" />
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal">
+
+                        <ImageButton
+                            android:id="@+id/decreaseBtn"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:background="@color/white"
+                            android:src="@drawable/minus_btn" />
+
+                        <TextView
+                            android:id="@+id/amountTV"
+                            android:layout_width="wrap_content"
+                            android:layout_height="32dp"
+                            android:fontFamily="@font/bmjua_font"
+                            android:gravity="center"
+                            android:text="개수"
+                            android:textColor="@color/black"
+                            android:layout_marginRight="15dp"
+                            android:layout_marginLeft="15dp"
+                            android:textSize="15sp" />
+
+                        <ImageButton
+                            android:id="@+id/increaseBtn"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginEnd="20dp"
+                            android:background="@color/white"
+                            android:src="@drawable/plus_btn" />
+
+                    </LinearLayout>
+
+                </LinearLayout>
             </LinearLayout>
 
         </LinearLayout>
@@ -123,9 +165,10 @@
             android:layout_height="59dp"
             android:layout_margin="10dp"
             android:layout_weight="1"
-            android:backgroundTint="#A5E2F4"
+            android:backgroundTint="@color/purple"
             android:fontFamily="@font/bmjua_font"
             android:text="@string/addMenu"
+            android:textColor="@color/white"
             android:textSize="20sp" />
 
     </LinearLayout>

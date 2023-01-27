@@ -6,6 +6,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -25,11 +26,11 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-public class RecruitListFragment extends Fragment {
+public class MyPostFragment extends Fragment {
 
     // 리사이클러뷰, 어댑터, 리스트
-    RecyclerView recruitListRecyclerView;
-    RecruitListAdapter recruitListAdapter;
+    RecyclerView myPostListRecyclerView;
+    MyPostAdapter myPostAdapter;
     List<RecruitVO> recruitList;
 
     // view, context
@@ -44,43 +45,43 @@ public class RecruitListFragment extends Fragment {
     @Override
     public View onCreateView(@Nullable LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         assert inflater != null;
-        view = inflater.inflate(R.layout.fragment_home_recruit_list, container, false); // view 초기화
+        view = inflater.inflate(R.layout.fragment_home_my_post, container, false); // view 초기화
         assert container != null;
         context = container.getContext();
 
-        // 유저 정보
+        // 리사이클러뷰 설정
+        myPostListRecyclerView = view.findViewById(R.id.myPostListRecyclerView);
+        RecyclerView.LayoutManager manager = new LinearLayoutManager(context);
+        myPostListRecyclerView.setLayoutManager(manager);
+        myPostListRecyclerView.setHasFixedSize(true);
+
+        // 유저id
         String loginInfo = PreferenceManager.getLoginInfo(context);
         Gson gson = new Gson();
         UserVO user = gson.fromJson(loginInfo, UserVO.class);
+        int userId = user.getUserId();
 
-        // 리사이클러뷰 설정
-        recruitListRecyclerView = view.findViewById(R.id.recruitListRecyclerView);
-        RecyclerView.LayoutManager manager = new LinearLayoutManager(context);
-        recruitListRecyclerView.setLayoutManager(manager);
-        recruitListRecyclerView.setHasFixedSize(true);
-
-        // 모집글 목록 불러옴
-        setRecruitList(user.getSchool());
+        // 등록 또는 참여한 모집글 목록 불러옴
+        setRecruitList(userId);
 
         return view;
     }
 
-    // 모집글 목록 생성
-    private void setRecruitList(String registrantPlace) {
+    private void setRecruitList(int userId) {
         retrofitService = new RetrofitService();
         api = retrofitService.getRetrofit().create(RecruitApi.class);
 
-        api.getRecruitList(registrantPlace)
+        api.findRecruitList(userId)
                 .enqueue(new Callback<List<RecruitVO>>() {
                     @Override
-                    public void onResponse(Call<List<RecruitVO>> call, Response<List<RecruitVO>> response) {
+                    public void onResponse(@NonNull Call<List<RecruitVO>> call, @NonNull Response<List<RecruitVO>> response) {
                         recruitList = response.body();
-                        recruitListAdapter = new RecruitListAdapter(recruitList, context);
-                        recruitListRecyclerView.setAdapter(recruitListAdapter);
+                        myPostAdapter = new MyPostAdapter(recruitList, context);
+                        myPostListRecyclerView.setAdapter(myPostAdapter);
                     }
 
                     @Override
-                    public void onFailure(Call<List<RecruitVO>> call, Throwable t) {
+                    public void onFailure(@NonNull Call<List<RecruitVO>> call, @NonNull Throwable t) {
 
                     }
                 });

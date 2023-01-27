@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.util.Patterns;
+import android.view.KeyEvent;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -39,6 +40,9 @@ public class EmailRegisterActivity extends AppCompatActivity {
 
     Boolean regExFlag = false; // 정규식 검사 성공 여부
 
+    // 종료 확인 dialog
+    RegisterDialog registerDialog;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -49,6 +53,9 @@ public class EmailRegisterActivity extends AppCompatActivity {
         emailET = findViewById(R.id.emailET);
         duplicationCkBtn = findViewById(R.id.duplicationCkBtn);
         nextBtn = findViewById(R.id.nextBtn);
+
+        // dialog
+        registerDialog = new RegisterDialog(this);
 
         // 중복검사 이벤트
         duplicationCkBtn.setOnClickListener(view -> {
@@ -147,6 +154,18 @@ public class EmailRegisterActivity extends AppCompatActivity {
                     public void onFailure(@NonNull Call<Boolean> call, @NonNull Throwable t) {
                     }
                 });
+    }
+
+    // 뒤로가기시 팝업창 출력
+    @Override
+    public boolean onKeyDown(int keycode, KeyEvent event) {
+
+        if(keycode ==KeyEvent.KEYCODE_BACK) {
+            registerDialog.callDialog();
+            return true;
+        }
+
+        return false;
     }
 
 }

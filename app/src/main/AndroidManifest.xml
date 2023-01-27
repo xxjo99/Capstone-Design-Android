@@ -36,6 +36,7 @@
         <activity android:name=".register.AuthRegisterActivity" />
         <activity android:name=".register.PasswordRegisterActivity" />
         <activity android:name=".register.PrivacyRegisterActivity" />
+        <activity android:name=".register.CompleteActivity"/>
 
         <!-- login -->
         <activity android:name=".login.LoginActivity" />
@@ -52,6 +53,9 @@
 
         <!-- order -->
         <activity android:name=".order.OrderListActivity" />
+
+        <!-- recruit -->
+        <activity android:name=".recruit.RecruitActivity" />
 
     </application>
 

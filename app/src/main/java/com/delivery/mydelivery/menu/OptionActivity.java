@@ -1,9 +1,15 @@
 package com.delivery.mydelivery.menu;
 
 import android.annotation.SuppressLint;
+import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.Color;
+import android.graphics.Point;
+import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
+import android.view.Display;
+import android.view.Window;
 import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.ImageView;
@@ -12,6 +18,7 @@ import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -26,6 +33,7 @@ import com.google.gson.Gson;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -56,6 +64,10 @@ public class OptionActivity extends AppCompatActivity {
 
     int amount; // 현재 메뉴 개수
 
+    // 툴바, 툴바 버튼
+    Toolbar toolbar;
+    ImageButton backBtn;
+
     // 레트로핏, api
     RetrofitService retrofitService;
     MenuApi menuApi;
@@ -67,6 +79,15 @@ public class OptionActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_menu_option);
         context = this; // context 지정
+
+        // 툴바
+        toolbar = findViewById(R.id.optionToolbar);
+        setSupportActionBar(toolbar);
+        Objects.requireNonNull(getSupportActionBar()).setDisplayShowTitleEnabled(false);
+
+        // 뒤로가기 버튼
+        backBtn = findViewById(R.id.backBtn);
+        backBtn.setOnClickListener(view -> finish());
 
         // 전 액티비티에서 넘겨받은 값
         Intent intent = getIntent();
@@ -84,8 +105,13 @@ public class OptionActivity extends AppCompatActivity {
         decreaseBtn = findViewById(R.id.decreaseBtn);
         increaseBtn = findViewById(R.id.increaseBtn);
 
+        String text = "https://img1.daumcdn.net/thumb/R1280x0/?scode=mtistory&fname=https://k.kakaocdn.net/dn/EShJF/btquPLT192D/SRxSvXqcWjHRTju3kHcOQK/img.png";
+
+        // 디바이스 넓이 구하기
+        int width = getWidth(this);
+
         // 메뉴 이미지, 이름, 설명 삽입
-        Glide.with(this).load(menuImage).placeholder(R.drawable.ic_launcher_background).override(500, 500).into(menuIV);
+        Glide.with(this).load(text).placeholder(R.drawable.ic_launcher_background).override(width, 600).into(menuIV);
         menuNameTV.setText(menuName);
         menuInfoTV.setText(menuInfo);
 
@@ -157,6 +183,14 @@ public class OptionActivity extends AppCompatActivity {
             // 장바구니에 다른 매장의 메뉴가 들어있는지 확인후 없다면 장바구니에 메뉴 추가
             addMenu(userId, storeId, order);
         });
+    }
+
+    // 디바이스 넓이 구하기
+    public int getWidth(Activity activity) {
+        Display display = activity.getWindowManager().getDefaultDisplay();  // in Activity
+        Point size = new Point();
+        display.getRealSize(size); // or getSize(size)
+        return size.x;
     }
 
     // 옵션 목록을 가져오는 api

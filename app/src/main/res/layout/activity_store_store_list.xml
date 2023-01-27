@@ -7,6 +7,33 @@
     android:orientation="vertical"
     tools:context=".store.StoreListActivity">
 
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/storeToolbar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/white"
+        app:contentInsetStart="0dp"
+        app:menu="@menu/store_toolbar">
+
+        <ImageButton
+            android:id="@+id/backBtn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:backgroundTint="@color/white"
+            android:src="@drawable/back" />
+
+        <TextView
+            android:id="@+id/schoolTV"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:fontFamily="@font/bmjua_font"
+            android:text="@string/school"
+            android:textColor="@color/black"
+            android:textSize="20sp" />
+
+    </androidx.appcompat.widget.Toolbar>
+
     <!-- 매장리스트 카테고리 버튼 -->
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/categoryRecyclerView"

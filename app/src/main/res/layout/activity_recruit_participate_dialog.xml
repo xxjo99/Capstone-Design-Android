@@ -8,20 +8,19 @@
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="#4CCAEF"
-        android:fontFamily="@font/bmjua_"
+        android:fontFamily="@font/bmjua_font"
         android:gravity="center"
         android:includeFontPadding="false"
         android:paddingTop="10dp"
         android:paddingBottom="10dp"
-        android:text="모집안내"
-        android:textColor="#000000"
+        android:text="@string/recruitInfo"
+        android:textColor="@color/black"
         android:textSize="30sp" />
 
     <View
         android:layout_width="match_parent"
         android:layout_height="1dp"
-        android:background="#ced4da" />
+        android:background="@color/gray" />
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -33,7 +32,7 @@
             android:layout_height="wrap_content"
             android:fontFamily="@font/bmjua_font"
             android:text="@string/storeName"
-            android:textColor="#020202"
+            android:textColor="@color/black"
             android:textSize="22sp" />
 
         <View
@@ -47,7 +46,7 @@
             android:layout_height="wrap_content"
             android:fontFamily="@font/bmjua_font"
             android:text="@string/storeName"
-            android:textColor="#020202"
+            android:textColor="@color/black"
             android:textSize="22sp" />
 
     </LinearLayout>
@@ -62,7 +61,7 @@
             android:layout_height="wrap_content"
             android:fontFamily="@font/bmjua_font"
             android:text="@string/recruitPerson"
-            android:textColor="#020202"
+            android:textColor="@color/black"
             android:textSize="22sp" />
 
         <View
@@ -76,7 +75,7 @@
             android:layout_height="wrap_content"
             android:fontFamily="@font/bmjua_font"
             android:text="@string/recruitPerson"
-            android:textColor="#020202"
+            android:textColor="@color/black"
             android:textSize="22sp" />
 
     </LinearLayout>
@@ -91,7 +90,7 @@
             android:layout_height="wrap_content"
             android:fontFamily="@font/bmjua_font"
             android:text="@string/place"
-            android:textColor="#020202"
+            android:textColor="@color/black"
             android:textSize="22sp" />
 
         <View
@@ -105,7 +104,7 @@
             android:layout_height="wrap_content"
             android:fontFamily="@font/bmjua_font"
             android:text="@string/place"
-            android:textColor="#020202"
+            android:textColor="@color/black"
             android:textSize="22sp" />
 
     </LinearLayout>
@@ -120,7 +119,7 @@
             android:layout_height="wrap_content"
             android:fontFamily="@font/bmjua_font"
             android:text="@string/deliveryTime"
-            android:textColor="#020202"
+            android:textColor="@color/black"
             android:textSize="22sp" />
 
         <View
@@ -134,7 +133,7 @@
             android:layout_height="wrap_content"
             android:fontFamily="@font/bmjua_font"
             android:text="@string/deliveryTime"
-            android:textColor="#020202"
+            android:textColor="@color/black"
             android:textSize="22sp" />
 
     </LinearLayout>
@@ -149,7 +148,7 @@
             android:layout_height="wrap_content"
             android:fontFamily="@font/bmjua_font"
             android:text="@string/deliveryTip"
-            android:textColor="#020202"
+            android:textColor="@color/black"
             android:textSize="22sp" />
 
         <View
@@ -163,34 +162,51 @@
             android:layout_height="wrap_content"
             android:fontFamily="@font/bmjua_font"
             android:text="@string/deliveryTip"
-            android:textColor="#020202"
+            android:textColor="@color/black"
             android:textSize="22sp" />
 
     </LinearLayout>
 
     <LinearLayout
+        android:id="@+id/participateBtnLayout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
         <Button
             android:id="@+id/participateBtn"
+            style="?android:attr/buttonBarButtonStyle"
             android:layout_width="wrap_content"
             android:layout_height="55dp"
             android:layout_weight="1"
-            android:backgroundTint="#A5E2F4"
+            android:backgroundTint="@color/green"
             android:fontFamily="@font/bmjua_font"
             android:text="참 가"
             android:textSize="22sp" />
 
         <Button
             android:id="@+id/cancelBtn"
+            style="?android:attr/buttonBarButtonStyle"
             android:layout_width="wrap_content"
             android:layout_height="55dp"
             android:layout_weight="1"
             android:fontFamily="@font/bmjua_font"
             android:text="취 소"
-            android:textColor="#020202"
+            android:textColor="@color/black"
             android:textSize="22sp" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/participateCompleteLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:visibility="gone">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:text="모집완료" />
 
     </LinearLayout>
 

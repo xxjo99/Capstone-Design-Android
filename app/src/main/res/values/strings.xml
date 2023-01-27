@@ -28,13 +28,16 @@
     <string name="next">계속하기</string>
     <string name="next2">거의 다 왔어요!</string>
     <string name="confirm">확인</string>
+    <string name="cancel">취소</string>
+    <string name="quit">나가기</string>
 
     <string name="home">홈</string>
     <string name="find">검색</string>
     <string name="category">카테고리</string>
     <string name="post">등록글 리스트</string>
-    <string name="myPost">나의 등록글</string>
+    <string name="myPost">나의 참가/등록글</string>
     <string name="myInfo">내정보</string>
+    <string name="info">정보</string>
 
     <string name="meat">고기</string>
     <string name="lunch_box">도시락</string>
@@ -72,10 +75,13 @@
     <string name="selectTime">시간 선택</string>
     <string name="selectPerson">인원 선택</string>
     <string name="selectPlace">장소 선택</string>
+    <string name="cart">장바구니</string>
 
     <string name="registrant">등록자</string>
     <string name="deliveryTime">배달시간</string>
     <string name="recruitPerson">모집인원</string>
     <string name="place">장소</string>
+
+    <string name="recruitInfo">모집안내</string>
 
 </resources>
