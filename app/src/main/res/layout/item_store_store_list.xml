@@ -1,87 +1,80 @@
 <?xml version="1.0" encoding="utf-8"?> <!-- 매장 리스트 -->
-<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:card_view="http://schemas.android.com/apk/res-auto"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:layout_margin="5dp"
-    card_view:cardUseCompatPadding="true">
+    android:orientation="vertical">
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_margin="12dp"
         android:orientation="horizontal">
+
+        <!-- 매장 이미지 ImageView -->
+        <ImageView
+            android:id="@+id/storeIV"
+            android:layout_width="80dp"
+            android:layout_height="80dp"
+            android:layout_margin="5dp"
+            android:adjustViewBounds="true"
+            android:background="@drawable/home_menu_search" />
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="match_parent"
+            android:layout_marginLeft="5dp"
+            android:layout_marginTop="3dp"
+            android:orientation="vertical">
 
-            <!-- 매장 이미지 ImageView -->
-            <ImageView
-                android:id="@+id/storeIV"
+            <!-- 매장 이름 TextView -->
+            <TextView
+                android:id="@+id/storeNameTV"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_margin="5dp"
-                android:background="@drawable/home_menu_search" />
+                android:layout_marginBottom="7dp"
+                android:fontFamily="@font/bmjua_font"
+                android:text="@string/storeName"
+                android:textColor="@color/black"
+                android:textSize="17sp"
+                android:textStyle="bold" />
 
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:orientation="vertical">
+            <!-- 매장 간단 정보 -->
+            <TextView
+                android:id="@+id/storeInfoTV"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="5dp"
+                android:fontFamily="@font/bmjua_font"
+                android:text="@string/storeInfo"
+                android:textSize="13sp" />
 
-                <!-- 매장 이름 TextView -->
-                <TextView
-                    android:id="@+id/storeNameTV"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:fontFamily="@font/bmjua_font"
-                    android:text="@string/storeName"
-                    android:textSize="20sp"
-                    android:textStyle="bold" />
+            <!-- 최소 주문 금액, 배달팁 TextView -->
+            <TextView
+                android:id="@+id/storeDeliveryPriceTV"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="5dp"
+                android:fontFamily="@font/bmjua_font"
+                android:text="@string/minimumDeliveryPrice"
+                android:textColor="@color/black"
+                android:textSize="13sp" />
 
-                <!-- 최소 주문 금액 TextView -->
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content">
+            <TextView
+                android:id="@+id/deliveryTimeTV"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/bmjua_font"
+                android:text="@string/deliveryTime"
+                android:textColor="@color/black"
+                android:textSize="13sp" />
 
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:fontFamily="@font/bmjua_font"
-                        android:text="@string/minimumDeliveryPrice" />
-
-                    <TextView
-                        android:id="@+id/minimumDeliveryPriceTV"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginLeft="20dp"
-                        android:fontFamily="@font/bmjua_font"
-                        android:text="@string/minimumDeliveryPrice" />
-
-                </LinearLayout>
-
-                <!-- 배달팁 TextView-->
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content">
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:fontFamily="@font/bmjua_font"
-                        android:text="@string/deliveryTip" />
-
-                    <TextView
-                        android:id="@+id/deliveryTipTV"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginLeft="20dp"
-                        android:fontFamily="@font/bmjua_font"
-                        android:text="@string/deliveryTip" />
-
-                </LinearLayout>
-
-            </LinearLayout>
         </LinearLayout>
 
     </LinearLayout>
-</androidx.cardview.widget.CardView>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="@color/gray" />
+
+</LinearLayout>

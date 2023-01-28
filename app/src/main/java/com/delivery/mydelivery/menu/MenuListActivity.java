@@ -1,12 +1,16 @@
 package com.delivery.mydelivery.menu;
 
 import android.annotation.SuppressLint;
+import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.Point;
 import android.os.Bundle;
+import android.view.Display;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.ImageButton;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -15,6 +19,7 @@ import androidx.appcompat.widget.Toolbar;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.bumptech.glide.Glide;
 import com.delivery.mydelivery.R;
 import com.delivery.mydelivery.order.OrderListActivity;
 import com.delivery.mydelivery.retrofit.RetrofitService;
@@ -30,7 +35,13 @@ import retrofit2.Response;
 
 // 메뉴 리스트 액티비티
 public class MenuListActivity extends AppCompatActivity {
-    TextView storeDetailTV; // 매장 상세정보
+
+    // 매장 정보
+    ImageView storeIV;
+    TextView storeNameTV;
+    TextView deliveryTimeTV;
+    TextView deliveryTipTV;
+    TextView minimumDeliveryPriceTV;
 
     // 리사이클러뷰, 어댑터, 리스트
     RecyclerView menuRecyclerView;
@@ -89,9 +100,23 @@ public class MenuListActivity extends AppCompatActivity {
                     @Override
                     public void onResponse(@NonNull Call<StoreVO> call, @NonNull Response<StoreVO> response) {
                         StoreVO store = response.body();
-                        storeDetailTV = findViewById(R.id.storeDetailTV);
+
+                        storeIV = findViewById(R.id.storeIV);
+                        storeNameTV = findViewById(R.id.storeNameTV);
+                        deliveryTimeTV = findViewById(R.id.deliveryTimeTV);
+                        deliveryTipTV = findViewById(R.id.deliveryTipTV);
+                        minimumDeliveryPriceTV = findViewById(R.id.minimumDeliveryPriceTV);
+
                         assert store != null;
-                        storeDetailTV.setText(store.toString());
+
+                        String text = "https://img1.daumcdn.net/thumb/R1280x0/?scode=mtistory&fname=https://k.kakaocdn.net/dn/EShJF/btquPLT192D/SRxSvXqcWjHRTju3kHcOQK/img.png";
+                        int width = getWidth((Activity) context);
+                        Glide.with(context).load(/*menuImage*/text).placeholder(R.drawable.ic_launcher_background).override(width, 600).into(storeIV);
+
+                        storeNameTV.setText(store.getStoreName());
+                        deliveryTimeTV.setText(store.getDeliveryTime() + "분");
+                        deliveryTipTV.setText(store.getDeliveryTip() + "원");
+                        minimumDeliveryPriceTV.setText(store.getMinimumDeliveryPrice() + "원");
                     }
 
                     @Override
@@ -140,6 +165,14 @@ public class MenuListActivity extends AppCompatActivity {
         }
 
         return super.onOptionsItemSelected(item);
+    }
+
+    // 디바이스 넓이 구하기
+    public int getWidth(Activity activity) {
+        Display display = activity.getWindowManager().getDefaultDisplay();  // in Activity
+        Point size = new Point();
+        display.getRealSize(size); // or getSize(size)
+        return size.x;
     }
 
 }

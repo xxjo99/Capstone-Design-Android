@@ -1,21 +1,19 @@
 package com.delivery.mydelivery.register;
 
-import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.util.Patterns;
+import android.view.KeyEvent;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.ImageButton;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.delivery.mydelivery.MainActivity;
 import com.delivery.mydelivery.R;
 import com.delivery.mydelivery.retrofit.RetrofitService;
 import com.delivery.mydelivery.user.UserVO;
@@ -33,7 +31,6 @@ public class EmailRegisterActivity extends AppCompatActivity {
     EditText emailET;
     Button duplicationCkBtn;
     Button nextBtn;
-    ImageButton go_back_main;
 
     // 레트로핏, api
     RetrofitService retrofitService;
@@ -43,7 +40,9 @@ public class EmailRegisterActivity extends AppCompatActivity {
 
     Boolean regExFlag = false; // 정규식 검사 성공 여부
 
-    @SuppressLint("MissingInflatedId")
+    // 종료 확인 dialog
+    RegisterDialog registerDialog;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -54,7 +53,9 @@ public class EmailRegisterActivity extends AppCompatActivity {
         emailET = findViewById(R.id.emailET);
         duplicationCkBtn = findViewById(R.id.duplicationCkBtn);
         nextBtn = findViewById(R.id.nextBtn);
-        go_back_main = findViewById(R.id.go_back_main);
+
+        // dialog
+        registerDialog = new RegisterDialog(this);
 
         // 중복검사 이벤트
         duplicationCkBtn.setOnClickListener(view -> {
@@ -85,14 +86,7 @@ public class EmailRegisterActivity extends AppCompatActivity {
             startActivity(intent);
             finish();
         });
-        go_back_main.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent go_back_main = new Intent(EmailRegisterActivity.this, MainActivity.class);
-                startActivity(go_back_main);
-                finish();
-            }
-        });
+
     }
 
     // 실시간 이메일 정규식 검사 메소드
@@ -160,6 +154,18 @@ public class EmailRegisterActivity extends AppCompatActivity {
                     public void onFailure(@NonNull Call<Boolean> call, @NonNull Throwable t) {
                     }
                 });
+    }
+
+    // 뒤로가기시 팝업창 출력
+    @Override
+    public boolean onKeyDown(int keycode, KeyEvent event) {
+
+        if(keycode ==KeyEvent.KEYCODE_BACK) {
+            registerDialog.callDialog();
+            return true;
+        }
+
+        return false;
     }
 
 }

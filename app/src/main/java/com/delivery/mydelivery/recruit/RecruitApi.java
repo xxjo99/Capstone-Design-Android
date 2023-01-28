@@ -11,8 +11,8 @@ import retrofit2.http.Path;
 public interface RecruitApi {
 
     // 모든 모집글 조회
-    @GET("/recruit/getAllRecruit")
-    Call<List<RecruitVO>> getRecruitList();
+    @GET("/recruit/getRecruitList/{registrantPlace}")
+    Call<List<RecruitVO>> getRecruitList(@Path("registrantPlace") String registrantPlace);
 
     // 해당 사용자의 등록글 존재여부 검색
     @GET("/recruit/findRecruit/user/{userId}")
@@ -30,4 +30,12 @@ public interface RecruitApi {
     // 해당 유저가 참가한 글 검색
     @GET("/recruit/findRecruitList/{userId}")
     Call<List<RecruitVO>> findRecruitList(@Path("userId") int userId);
+
+    // 해당 글에 참가한 구성원 리스트 반환
+    @GET("/recruit/getParticipantList/{recruitId}")
+    Call<List<ParticipantVO>> getParticipantList(@Path("recruitId") int recruitId);
+
+    // 해당 글의 사용자가 담은 메뉴의 총 금액 반환
+    @GET("/recruit/getOrdersTotalPrice/{recruitId}/{participantId}")
+    Call<Integer> getOrdersTotalPrice(@Path("recruitId") int recruitId, @Path("participantId") int participantId);
 }

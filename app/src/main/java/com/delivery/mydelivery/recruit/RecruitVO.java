@@ -5,6 +5,7 @@ public class RecruitVO {
     private int recruitId;
 
     private int userId;
+    private String registrantPlace;
     private int storeId;
     private String place;
     private String deliveryTime;
@@ -24,6 +25,14 @@ public class RecruitVO {
 
     public void setUserId(int userId) {
         this.userId = userId;
+    }
+
+    public String getRegistrantPlace() {
+        return registrantPlace;
+    }
+
+    public void setRegistrantPlace(String registrantPlace) {
+        this.registrantPlace = registrantPlace;
     }
 
     public int getStoreId() {
@@ -63,6 +72,7 @@ public class RecruitVO {
         return "RecruitVO{" +
                 "recruitId=" + recruitId +
                 ", userId=" + userId +
+                ", registrantPlace='" + registrantPlace + '\'' +
                 ", storeId=" + storeId +
                 ", place='" + place + '\'' +
                 ", deliveryTime='" + deliveryTime + '\'' +

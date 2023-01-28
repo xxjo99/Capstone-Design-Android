@@ -10,9 +10,12 @@ public class StoreVO {
     private String openTime; // 오픈시간
     private String closeTime; // 마감시간
     private String storeImageUrl; // 매장 이미지
+    private String deliveryAvailablePlace;
     private String storeAddress; // 매장 주소
     private String deliveryTip; // 배달팁
     private int minimumDeliveryPrice; // 최소배달금액
+    private String storeInfo; // 매장 정보
+    private String deliveryTime; // 배달 시간
 
     public int getStoreId() {
         return storeId;
@@ -70,6 +73,14 @@ public class StoreVO {
         this.storeImageUrl = storeImageUrl;
     }
 
+    public String getDeliveryAvailablePlace() {
+        return deliveryAvailablePlace;
+    }
+
+    public void setDeliveryAvailablePlace(String deliveryAvailablePlace) {
+        this.deliveryAvailablePlace = deliveryAvailablePlace;
+    }
+
     public String getStoreAddress() {
         return storeAddress;
     }
@@ -94,6 +105,22 @@ public class StoreVO {
         this.minimumDeliveryPrice = minimumDeliveryPrice;
     }
 
+    public String getStoreInfo() {
+        return storeInfo;
+    }
+
+    public void setStoreInfo(String storeInfo) {
+        this.storeInfo = storeInfo;
+    }
+
+    public String getDeliveryTime() {
+        return deliveryTime;
+    }
+
+    public void setDeliveryTime(String deliveryTime) {
+        this.deliveryTime = deliveryTime;
+    }
+
     @Override
     public String toString() {
         return "StoreVO{" +
@@ -104,9 +131,12 @@ public class StoreVO {
                 ", openTime='" + openTime + '\'' +
                 ", closeTime='" + closeTime + '\'' +
                 ", storeImageUrl='" + storeImageUrl + '\'' +
+                ", deliveryAvailablePlace='" + deliveryAvailablePlace + '\'' +
                 ", storeAddress='" + storeAddress + '\'' +
                 ", deliveryTip='" + deliveryTip + '\'' +
                 ", minimumDeliveryPrice=" + minimumDeliveryPrice +
+                ", storeInfo='" + storeInfo + '\'' +
+                ", deliveryTime='" + deliveryTime + '\'' +
                 '}';
     }
 }

@@ -13,13 +13,19 @@
         android:layout_height="wrap_content"
         android:background="@color/white"
         app:contentInsetStart="0dp"
-        app:menu="@menu/home_toolbar" />
+        app:menu="@menu/home_toolbar">
 
-    <View
-        android:layout_width="match_parent"
-        android:layout_height="1dp"
-        android:layout_marginBottom="6dp"
-        android:background="@color/gray" />
+        <TextView
+            android:id="@+id/infoTV"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:textColor="@color/black"
+            android:fontFamily="@font/bmjua_font"
+            android:text="@string/info"
+            android:textSize="20sp" />
+
+    </androidx.appcompat.widget.Toolbar>
 
     <!-- 홈화면 FrameLayout -->
     <FrameLayout

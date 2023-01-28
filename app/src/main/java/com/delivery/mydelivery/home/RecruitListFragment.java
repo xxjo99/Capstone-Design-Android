@@ -12,9 +12,12 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.delivery.mydelivery.R;
+import com.delivery.mydelivery.preferenceManager.PreferenceManager;
 import com.delivery.mydelivery.recruit.RecruitApi;
 import com.delivery.mydelivery.recruit.RecruitVO;
 import com.delivery.mydelivery.retrofit.RetrofitService;
+import com.delivery.mydelivery.user.UserVO;
+import com.google.gson.Gson;
 
 import java.util.List;
 
@@ -45,6 +48,11 @@ public class RecruitListFragment extends Fragment {
         assert container != null;
         context = container.getContext();
 
+        // 유저 정보
+        String loginInfo = PreferenceManager.getLoginInfo(context);
+        Gson gson = new Gson();
+        UserVO user = gson.fromJson(loginInfo, UserVO.class);
+
         // 리사이클러뷰 설정
         recruitListRecyclerView = view.findViewById(R.id.recruitListRecyclerView);
         RecyclerView.LayoutManager manager = new LinearLayoutManager(context);
@@ -52,17 +60,17 @@ public class RecruitListFragment extends Fragment {
         recruitListRecyclerView.setHasFixedSize(true);
 
         // 모집글 목록 불러옴
-        setRecruitList();
+        setRecruitList(user.getSchool());
 
         return view;
     }
 
     // 모집글 목록 생성
-    private void setRecruitList() {
+    private void setRecruitList(String registrantPlace) {
         retrofitService = new RetrofitService();
         api = retrofitService.getRetrofit().create(RecruitApi.class);
 
-        api.getRecruitList()
+        api.getRecruitList(registrantPlace)
                 .enqueue(new Callback<List<RecruitVO>>() {
                     @Override
                     public void onResponse(Call<List<RecruitVO>> call, Response<List<RecruitVO>> response) {

@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
+import android.view.KeyEvent;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -27,6 +28,9 @@ public class PasswordRegisterActivity extends AppCompatActivity {
 
     UserVO userVO; // 데이터를 담을 객체
 
+    RegisterDialog registerDialog;
+
+
     Boolean pwFlag = false; // 비밀번호 검사 통과
     Boolean pwCkFlag = false; // 비밀번호확인 검사 통과
 
@@ -39,6 +43,8 @@ public class PasswordRegisterActivity extends AppCompatActivity {
         pwET = findViewById(R.id.pwET);
         nextBtn = findViewById(R.id.nextBtn);
         go_back_email = findViewById(R.id.go_back_email);
+
+        registerDialog = new RegisterDialog(this);
 
         pwRegExCk(); // 실시간 비밀번호 정규식 검사 메소드
         pwMatchingCk(); // 실시간 비밀번호 일치 검사 메소드
@@ -161,5 +167,17 @@ public class PasswordRegisterActivity extends AppCompatActivity {
             public void afterTextChanged(Editable editable) {
             }
         });
+    }
+
+    // 뒤로가기시 팝업창 출력
+    @Override
+    public boolean onKeyDown(int keycode, KeyEvent event) {
+
+        if(keycode ==KeyEvent.KEYCODE_BACK) {
+            registerDialog.callDialog();
+            return true;
+        }
+
+        return false;
     }
 }

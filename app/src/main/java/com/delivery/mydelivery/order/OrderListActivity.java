@@ -2,18 +2,24 @@ package com.delivery.mydelivery.order;
 
 import android.annotation.SuppressLint;
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageButton;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.delivery.mydelivery.R;
+import com.delivery.mydelivery.menu.MenuListActivity;
 import com.delivery.mydelivery.recruit.RecruitApi;
 import com.delivery.mydelivery.recruit.RecruitVO;
 import com.delivery.mydelivery.preferenceManager.PreferenceManager;
@@ -23,6 +29,7 @@ import com.google.gson.Gson;
 import com.sothree.slidinguppanel.SlidingUpPanelLayout;
 
 import java.util.List;
+import java.util.Objects;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -46,7 +53,11 @@ public class OrderListActivity extends AppCompatActivity {
     public static TextView totalPriceTV;
     public static int totalPrice;
 
-    // 모집글 등록 레이아웃, 슬라이딩패널 펼치기 / 닫기 버튼
+    // 메뉴 추가 버튼
+    Button addMenuBtn;
+
+    // 레이아웃, 슬라이딩패널 펼치기 / 닫기 버튼
+    LinearLayout emptyLayout;
     SlidingUpPanelLayout slidingUpPanelLayout;
     Button slidingOpenBtn;
 
@@ -60,6 +71,10 @@ public class OrderListActivity extends AppCompatActivity {
 
     // 초기 인원수
     int person = 1;
+
+    // 툴바, 뒤로가기 버튼
+    Toolbar toolbar;
+    ImageButton backBtn;
 
     // 레트로핏, api
     RetrofitService retrofitService;
@@ -78,10 +93,20 @@ public class OrderListActivity extends AppCompatActivity {
         storeNameTV = findViewById(R.id.storeNameTV);
         totalPriceTV = findViewById(R.id.totalPriceTV);
         slidingUpPanelLayout = findViewById(R.id.slidingUpPanelLayout);
+        emptyLayout = findViewById(R.id.emptyLayout);
         slidingOpenBtn = findViewById(R.id.slidingOpenBtn);
 
         // 슬라이딩패널 설정
         slidingUpPanelLayout.setTouchEnabled(false);
+
+        // 툴바
+        toolbar = findViewById(R.id.orderToolbar);
+        setSupportActionBar(toolbar);
+        Objects.requireNonNull(getSupportActionBar()).setDisplayShowTitleEnabled(false);
+
+        // 뒤로가기 버튼
+        backBtn = findViewById(R.id.backBtn);
+        backBtn.setOnClickListener(view -> finish());
 
         // 리사이클러뷰 설정
         orderRecyclerView = findViewById(R.id.orderRecyclerView);
@@ -97,6 +122,15 @@ public class OrderListActivity extends AppCompatActivity {
 
         // 담은 메뉴 가져옴
         setOrder(userId);
+
+        // 메뉴 추가 버튼, 해당 매장 액티비티로 이동
+        addMenuBtn = findViewById(R.id.addMenuBtn);
+        addMenuBtn.setOnClickListener(view -> {
+            Intent intent = new Intent(OrderListActivity.this, MenuListActivity.class);
+            intent.putExtra("storeId", storeId);
+            intent.putExtra("participantType", "등록자"); // 등록자 or 참가자인지 확인
+            startActivity(intent);
+        });
 
         // 모집글 등록 펼치기 버튼
         slidingOpenBtn.setOnClickListener(view -> {
@@ -142,9 +176,10 @@ public class OrderListActivity extends AppCompatActivity {
                 RecruitVO recruit = new RecruitVO();
 
                 recruit.setUserId(userId); // 회원 아이디
+                recruit.setRegistrantPlace(user.getSchool()); // 등록자 위치
                 recruit.setStoreId(storeId); // 매장 아이디
                 recruit.setDeliveryTime(selectTimeTV.getText().toString()); // 시간
-                recruit.setPlace(selectPlaceET.getText().toString()); // 장소
+                recruit.setPlace(selectPlaceET.getText().toString()); // 배달장소
                 recruit.setPerson(person); // 모집인원
 
                 findRecruit(userId, recruit);// 모집글 등록
@@ -163,15 +198,27 @@ public class OrderListActivity extends AppCompatActivity {
                     @Override
                     public void onResponse(@NonNull Call<List<OrderVO>> call, @NonNull Response<List<OrderVO>> response) {
                         orderList = response.body();
-                        orderListAdapter = new OrderListAdapter(orderList, context);
-                        orderRecyclerView.setAdapter(orderListAdapter);
 
-                        // 선택한 메뉴의 총 가격을 계산
-                        totalPrice = 0;
-                        for (OrderVO order : orderList) {
-                            totalPrice += order.getTotalPrice();
+                        // 장바구니가 비어있는지 아닌지 확인
+                        assert orderList != null;
+                        if (orderList.isEmpty()) {
+                            emptyLayout.setVisibility(View.VISIBLE);
+                            slidingUpPanelLayout.setVisibility(View.GONE);
+                        } else {
+                            emptyLayout.setVisibility(View.GONE);
+                            slidingUpPanelLayout.setVisibility(View.VISIBLE);
+
+                            orderListAdapter = new OrderListAdapter(orderList, context);
+                            orderRecyclerView.setAdapter(orderListAdapter);
+
+                            // 선택한 메뉴의 총 가격을 계산
+                            totalPrice = 0;
+                            for (OrderVO order : orderList) {
+                                totalPrice += order.getTotalPrice();
+                            }
+                            totalPriceTV.setText(totalPrice + "원");
                         }
-                        totalPriceTV.setText(totalPrice + "원");
+
                     }
 
                     @Override
@@ -214,13 +261,13 @@ public class OrderListActivity extends AppCompatActivity {
         orderApi.registerRecruit(recruit)
                 .enqueue(new Callback<Void>() {
                     @Override
-                    public void onResponse(Call<Void> call, Response<Void> response) {
+                    public void onResponse(@NonNull Call<Void> call, @NonNull Response<Void> response) {
                         Toast.makeText(context, "등록 완료", Toast.LENGTH_SHORT).show();
                         finish();
                     }
 
                     @Override
-                    public void onFailure(Call<Void> call, Throwable t) {
+                    public void onFailure(@NonNull Call<Void> call, @NonNull Throwable t) {
 
                     }
                 });

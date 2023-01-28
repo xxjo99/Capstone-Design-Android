@@ -8,6 +8,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.ImageButton;
 import android.widget.ListView;
+import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -19,7 +20,10 @@ import com.delivery.mydelivery.R;
 import com.delivery.mydelivery.home.CategoryVO;
 import com.delivery.mydelivery.home.HomeApi;
 import com.delivery.mydelivery.order.OrderListActivity;
+import com.delivery.mydelivery.preferenceManager.PreferenceManager;
 import com.delivery.mydelivery.retrofit.RetrofitService;
+import com.delivery.mydelivery.user.UserVO;
+import com.google.gson.Gson;
 
 import java.util.List;
 import java.util.Objects;
@@ -41,9 +45,10 @@ public class StoreListActivity extends AppCompatActivity {
     StoreListAdapter storeListadapter;
     List<StoreVO> storeList;
 
-    // 툴바, 툴바 버튼
+    // 툴바, 툴바 버튼, 학교 텍스트
     Toolbar toolbar;
     ImageButton backBtn;
+    TextView schoolTV;
 
     // 레트로핏, api
     RetrofitService retrofitService;
@@ -58,6 +63,11 @@ public class StoreListActivity extends AppCompatActivity {
         setContentView(R.layout.activity_store_store_list);
         context = this; // context 지정
 
+        // 유저 정보
+        String loginInfo = PreferenceManager.getLoginInfo(this);
+        Gson gson = new Gson();
+        UserVO user = gson.fromJson(loginInfo, UserVO.class);
+
         // 툴바
         toolbar = findViewById(R.id.storeToolbar);
         setSupportActionBar(toolbar);
@@ -66,6 +76,10 @@ public class StoreListActivity extends AppCompatActivity {
         // 뒤로가기 버튼
         backBtn = findViewById(R.id.backBtn);
         backBtn.setOnClickListener(view -> finish());
+
+        // 학교
+        schoolTV = findViewById(R.id.schoolTV);
+        schoolTV.setText(user.getSchool());
 
         // 리사이클러뷰 가로뷰로 설정
         categoryView = findViewById(R.id.categoryRecyclerView);
@@ -78,13 +92,16 @@ public class StoreListActivity extends AppCompatActivity {
 
         storeListView = findViewById(R.id.storeListView);
 
-        // 전 액티비티에서 눌러진 카테고리 데이터를 받아와서 카테고리에 맞는 매장 리스트를 출력
+        // 전 액티비티에서 눌러진 카테고리 데이터를 받아옴
         Intent intent = getIntent();
         String category = intent.getStringExtra("category");
-        setStoreList(category); // 매장 리스트 가져오는 메소드
+
+        // 접속한 유저의 대학정보를 통해 해당 지역의 매장을 가져옴
+        String school = user.getSchool();
+        setStoreList(category, school);
 
         // 카테고리 클릭 이벤트 구현
-        storeCategoryAdapter.setOnItemClickListener((v, position) -> setStoreList(categoryList.get(position).getCategoryName()));
+        storeCategoryAdapter.setOnItemClickListener((v, position) -> setStoreList(categoryList.get(position).getCategoryName(), school));
     }
 
     // 카테고리 리스트 가져오는 api
@@ -108,11 +125,11 @@ public class StoreListActivity extends AppCompatActivity {
     }
 
     // 매장 리스트 전환 메소드, api 호출
-    public void setStoreList(String category) {
+    public void setStoreList(String category, String deliveryAvailablePlace) {
         retrofitService = new RetrofitService();
         storeApi = retrofitService.getRetrofit().create(StoreApi.class);
 
-        storeApi.getStoreList(category)
+        storeApi.getStoreList(category, deliveryAvailablePlace)
                 .enqueue(new Callback<List<StoreVO>>() {
                     @Override
                     public void onResponse(@NonNull Call<List<StoreVO>> call, @NonNull Response<List<StoreVO>> response) {
@@ -145,7 +162,6 @@ public class StoreListActivity extends AppCompatActivity {
                 Intent intent = new Intent(this, OrderListActivity.class);
                 startActivity(intent);
                 break;
-
         }
 
         return super.onOptionsItemSelected(item);

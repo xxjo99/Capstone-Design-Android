@@ -52,20 +52,24 @@ public class StoreListAdapter extends BaseAdapter {
             view = layoutInflater.inflate(R.layout.item_store_store_list, viewGroup, false); // view에 item_store_list.xml 지정
         }
 
-        // 매장의 이미지, 이름, 최소주문금액, 배달팁 xml 변수 초기화
+        // xml 변수 초기화
         ImageView storeImageView = view.findViewById(R.id.storeIV);
         TextView storeNameTV = view.findViewById(R.id.storeNameTV);
-        TextView minimumDeliveryPriceTV = view.findViewById(R.id.minimumDeliveryPriceTV);
-        TextView deliveryTipTV = view.findViewById(R.id.deliveryTipTV);
+        TextView storeDeliveryPriceTV = view.findViewById(R.id.storeDeliveryPriceTV);
+        TextView storeInfoTV = view.findViewById(R.id.storeInfoTV);
+        TextView deliveryTimeTV = view.findViewById(R.id.deliveryTimeTV);
 
         // storeList의 position에 위치한 값 가져옴
         StoreVO store = storeList.get(position);
 
+        String text = "https://img1.daumcdn.net/thumb/R1280x0/?scode=mtistory&fname=https://k.kakaocdn.net/dn/EShJF/btquPLT192D/SRxSvXqcWjHRTju3kHcOQK/img.png";
         // store의 지정된 데이터들을 뷰에 세팅
-        Glide.with(context).load(store.getStoreImageUrl()).placeholder(R.drawable.ic_launcher_background).override(100, 100).into(storeImageView);
+        Glide.with(context).load(/*store.getStoreImageUrl()*/ text).placeholder(R.drawable.ic_launcher_background).override(100, 100).into(storeImageView);
         storeNameTV.setText(store.getStoreName());
-        minimumDeliveryPriceTV.setText(store.getMinimumDeliveryPrice() + "");
-        deliveryTipTV.setText(store.getDeliveryTip());
+        String storeDeliveryPrice = "최소주문 " + store.getMinimumDeliveryPrice() + "원, 배달팁 " + store.getDeliveryTip() + "원";
+        storeDeliveryPriceTV.setText(storeDeliveryPrice);
+        storeInfoTV.setText(store.getStoreInfo());
+        deliveryTimeTV.setText(store.getDeliveryTime() + "분");
 
         // 매장 클릭 이벤트
         view.setOnClickListener(view1 -> {

@@ -1,13 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:card_view="http://schemas.android.com/apk/res-auto"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    card_view:cardUseCompatPadding="true"
-    card_view:contentPadding="5dp">
+    android:layout_height="wrap_content">
 
     <LinearLayout
-        android:padding="5dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical">
@@ -17,25 +13,30 @@
             android:id="@+id/optionNameTV"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginLeft="12dp"
+            android:layout_marginTop="20dp"
+            android:layout_marginRight="12dp"
             android:layout_marginBottom="10dp"
             android:fontFamily="@font/bmjua_font"
             android:text="@string/optionName"
+            android:textColor="@color/black"
             android:textSize="15sp"
             android:textStyle="bold" />
-
-        <View
-            android:layout_width="match_parent"
-            android:layout_height="1dp"
-            android:background="@color/gray"/>
 
         <!-- 옵션 내용 리사이클러뷰 -->
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/optionContentRecyclerView"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginBottom="15dp"
             android:nestedScrollingEnabled="false"
             android:overScrollMode="never" />
 
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="@color/gray" />
+
     </LinearLayout>
 
-</androidx.cardview.widget.CardView>
+</LinearLayout>
