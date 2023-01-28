@@ -4,7 +4,6 @@ import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -24,7 +23,7 @@ import retrofit2.Response;
 // 카테고리 어댑터
 public class MemberAdapter extends RecyclerView.Adapter<MemberAdapter.ViewHolder> {
 
-    private List<ParticipantVO> participantList; // 구성원 리스트
+    private final List<ParticipantVO> participantList; // 구성원 리스트
     Context context; // context
 
     // 레트로핏, api
@@ -42,7 +41,7 @@ public class MemberAdapter extends RecyclerView.Adapter<MemberAdapter.ViewHolder
     @Override
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         LayoutInflater inflater = LayoutInflater.from(parent.getContext());
-        View view = inflater.inflate(R.layout.item_recruit_recruit_member, parent, false);
+        View view = inflater.inflate(R.layout.item_recruit_member, parent, false);
         return new ViewHolder(view);
     }
 
@@ -66,13 +65,11 @@ public class MemberAdapter extends RecyclerView.Adapter<MemberAdapter.ViewHolder
     }
 
     public static class ViewHolder extends RecyclerView.ViewHolder {
-        ImageView memberIV;
         TextView memberNameTV;
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
 
-            memberIV = itemView.findViewById(R.id.memberIV);
             memberNameTV = itemView.findViewById(R.id.memberNameTV);
         }
     }
@@ -84,13 +81,14 @@ public class MemberAdapter extends RecyclerView.Adapter<MemberAdapter.ViewHolder
         userApi.getUser(userId)
                 .enqueue(new Callback<UserVO>() {
                     @Override
-                    public void onResponse(Call<UserVO> call, Response<UserVO> response) {
+                    public void onResponse(@NonNull Call<UserVO> call, @NonNull Response<UserVO> response) {
                         UserVO user = response.body();
+                        assert user != null;
                         holder.memberNameTV.setText(user.getName());
                     }
 
                     @Override
-                    public void onFailure(Call<UserVO> call, Throwable t) {
+                    public void onFailure(@NonNull Call<UserVO> call, @NonNull Throwable t) {
 
                     }
                 });

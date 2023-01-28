@@ -4,9 +4,11 @@ import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -54,7 +56,8 @@ public class OrderListActivity extends AppCompatActivity {
     // 메뉴 추가 버튼
     Button addMenuBtn;
 
-    // 모집글 등록 레이아웃, 슬라이딩패널 펼치기 / 닫기 버튼
+    // 레이아웃, 슬라이딩패널 펼치기 / 닫기 버튼
+    LinearLayout emptyLayout;
     SlidingUpPanelLayout slidingUpPanelLayout;
     Button slidingOpenBtn;
 
@@ -90,6 +93,7 @@ public class OrderListActivity extends AppCompatActivity {
         storeNameTV = findViewById(R.id.storeNameTV);
         totalPriceTV = findViewById(R.id.totalPriceTV);
         slidingUpPanelLayout = findViewById(R.id.slidingUpPanelLayout);
+        emptyLayout = findViewById(R.id.emptyLayout);
         slidingOpenBtn = findViewById(R.id.slidingOpenBtn);
 
         // 슬라이딩패널 설정
@@ -194,15 +198,27 @@ public class OrderListActivity extends AppCompatActivity {
                     @Override
                     public void onResponse(@NonNull Call<List<OrderVO>> call, @NonNull Response<List<OrderVO>> response) {
                         orderList = response.body();
-                        orderListAdapter = new OrderListAdapter(orderList, context);
-                        orderRecyclerView.setAdapter(orderListAdapter);
 
-                        // 선택한 메뉴의 총 가격을 계산
-                        totalPrice = 0;
-                        for (OrderVO order : orderList) {
-                            totalPrice += order.getTotalPrice();
+                        // 장바구니가 비어있는지 아닌지 확인
+                        assert orderList != null;
+                        if (orderList.isEmpty()) {
+                            emptyLayout.setVisibility(View.VISIBLE);
+                            slidingUpPanelLayout.setVisibility(View.GONE);
+                        } else {
+                            emptyLayout.setVisibility(View.GONE);
+                            slidingUpPanelLayout.setVisibility(View.VISIBLE);
+
+                            orderListAdapter = new OrderListAdapter(orderList, context);
+                            orderRecyclerView.setAdapter(orderListAdapter);
+
+                            // 선택한 메뉴의 총 가격을 계산
+                            totalPrice = 0;
+                            for (OrderVO order : orderList) {
+                                totalPrice += order.getTotalPrice();
+                            }
+                            totalPriceTV.setText(totalPrice + "원");
                         }
-                        totalPriceTV.setText(totalPrice + "원");
+
                     }
 
                     @Override

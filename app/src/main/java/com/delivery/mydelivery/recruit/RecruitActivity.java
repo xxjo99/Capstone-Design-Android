@@ -15,14 +15,16 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.recyclerview.widget.GridLayoutManager;
-import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
 import com.delivery.mydelivery.R;
+import com.delivery.mydelivery.preferenceManager.PreferenceManager;
 import com.delivery.mydelivery.retrofit.RetrofitService;
 import com.delivery.mydelivery.store.StoreApi;
 import com.delivery.mydelivery.store.StoreVO;
+import com.delivery.mydelivery.user.UserVO;
+import com.google.gson.Gson;
 
 import java.util.List;
 import java.util.Objects;
@@ -50,6 +52,11 @@ public class RecruitActivity extends AppCompatActivity {
     MemberAdapter memberAdapter;
     List<ParticipantVO> participantList;
 
+    // 나의 배달 정보, 메뉴 확인 텍스트
+    TextView userNameTV;
+    TextView totalPriceTV;
+    TextView checkMenuTV;
+
     // 레트로핏, api
     RetrofitService retrofitService;
     StoreApi storeApi;
@@ -73,12 +80,17 @@ public class RecruitActivity extends AppCompatActivity {
         backBtn = findViewById(R.id.backBtn);
         backBtn.setOnClickListener(view -> finish());
 
+        // 사용자정보
+        String loginInfo = PreferenceManager.getLoginInfo(context);
+        Gson gson = new Gson();
+        UserVO user = gson.fromJson(loginInfo, UserVO.class);
+
         // 전 액티비티에서 넘어온 값
         Intent intent = getIntent();
         int storeId = intent.getIntExtra("storeId", 0);
         int recruitId = intent.getIntExtra("recruitId", 0);
 
-        // 초기화
+        // 매장정보 초기화
         storeIV = findViewById(R.id.storeIV);
         storeNameTV = findViewById(R.id.storeNameTV);
         deliveryTimeTV = findViewById(R.id.deliveryTimeTV);
@@ -94,9 +106,17 @@ public class RecruitActivity extends AppCompatActivity {
         memberRecyclerView.setLayoutManager(manager);
         memberRecyclerView.setHasFixedSize(true);
 
-        // 참가자 목록
+        // 참가자 목록 추가
         setMemberList(recruitId);
 
+        // 나의 배달 정보 초기화
+        userNameTV = findViewById(R.id.userNameTV);
+        totalPriceTV = findViewById(R.id.totalPriceTV);
+        checkMenuTV = findViewById(R.id.checkMenuTV);
+
+        userNameTV.setText(user.getName()); // 사용자 이름
+
+        getOrdersTotalPrice(recruitId, user.getUserId()); // 총 주문금액
     }
 
     // 매장정보 생성
@@ -145,16 +165,41 @@ public class RecruitActivity extends AppCompatActivity {
         recruitApi.getParticipantList(recruitId)
                 .enqueue(new Callback<List<ParticipantVO>>() {
                     @Override
-                    public void onResponse(Call<List<ParticipantVO>> call, Response<List<ParticipantVO>> response) {
+                    public void onResponse(@NonNull Call<List<ParticipantVO>> call, @NonNull Response<List<ParticipantVO>> response) {
                         participantList = response.body();
                         memberAdapter = new MemberAdapter(participantList, context);
                         memberRecyclerView.setAdapter(memberAdapter);
                     }
 
                     @Override
-                    public void onFailure(Call<List<ParticipantVO>> call, Throwable t) {
+                    public void onFailure(@NonNull Call<List<ParticipantVO>> call, @NonNull Throwable t) {
 
                     }
                 });
     }
+
+    private void getOrdersTotalPrice(int recruitId, int userId) {
+        retrofitService = new RetrofitService();
+        recruitApi = retrofitService.getRetrofit().create(RecruitApi.class);
+
+        recruitApi.getOrdersTotalPrice(recruitId, userId)
+                .enqueue(new Callback<Integer>() {
+                    @Override
+                    public void onResponse(@NonNull Call<Integer> call, @NonNull Response<Integer> response) {
+                        Integer totalPrice = response.body();
+
+                        if (totalPrice == null || totalPrice == 0) {
+                            totalPriceTV.setText("담은 메뉴 없음");
+                        } else {
+                            totalPriceTV.setText("총 주문금액 " + totalPrice + "원");
+                        }
+                    }
+
+                    @Override
+                    public void onFailure(@NonNull Call<Integer> call, @NonNull Throwable t) {
+
+                    }
+                });
+    }
+
 }

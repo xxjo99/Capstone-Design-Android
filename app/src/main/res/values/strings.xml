@@ -84,6 +84,9 @@
     <string name="place">장소</string>
 
     <string name="recruitInfo">모집안내</string>
-    <string name="member">구성원</string>
+    <string name="member">파티원</string>
+    <string name="myDeliveryInfo">나의 배달정보</string>
+    <string name="memberDeliveryInfo">파티원 배달정보</string>
+    <string name="checkMenu">담은 메뉴 확인하기 > </string>
 
 </resources>

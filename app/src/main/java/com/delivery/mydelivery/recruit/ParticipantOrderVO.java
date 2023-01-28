@@ -3,7 +3,8 @@ package com.delivery.mydelivery.recruit;
 public class ParticipantOrderVO {
 
     private int participantOrderId;
-    private int userId;
+    private int recruitId;
+    private int participantId;
     private int storeId;
     private int menuId;
     private String selectOption;
@@ -18,12 +19,12 @@ public class ParticipantOrderVO {
         this.participantOrderId = participantOrderId;
     }
 
-    public int getUserId() {
-        return userId;
+    public int getParticipantId() {
+        return participantId;
     }
 
-    public void setUserId(int userId) {
-        this.userId = userId;
+    public void setParticipantId(int participantId) {
+        this.participantId = participantId;
     }
 
     public int getStoreId() {
