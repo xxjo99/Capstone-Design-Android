@@ -1,4 +1,5 @@
 <resources>
+
     <string name="app_name">MyDelivery</string>
 
     <string name="emailInput">첫번째 단계에요!🌳\n이제 *** 아이디를 설정합니다!\n이메일을 입력해주세요!</string>
@@ -83,5 +84,6 @@
     <string name="place">장소</string>
 
     <string name="recruitInfo">모집안내</string>
+    <string name="member">구성원</string>
 
 </resources>

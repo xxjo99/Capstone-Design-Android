@@ -37,6 +37,7 @@ public class ParticipateDialog {
 
     private int recruitId;
     private int userId;
+    private int storeId;
 
     RetrofitService retrofitService;
     RecruitApi api;
@@ -45,7 +46,7 @@ public class ParticipateDialog {
         this.context = context;
     }
 
-    public void setData(String storeName, int currentPersonCount, int recruitPerson, String place, String deliveryTime, String deliveryTip, int recruitId, int userId) {
+    public void setData(String storeName, int currentPersonCount, int recruitPerson, String place, String deliveryTime, String deliveryTip, int recruitId, int userId, int storeId) {
         this.storeName = storeName;
         this.currentPersonCount = currentPersonCount;
         this.recruitPerson = recruitPerson;
@@ -54,6 +55,7 @@ public class ParticipateDialog {
         this.deliveryTip = deliveryTip;
         this.recruitId = recruitId;
         this.userId = userId;
+        this.storeId = storeId;
     }
 
     public void callDialog() {
@@ -115,6 +117,8 @@ public class ParticipateDialog {
 
                         // 모집글 상세페이지 이동
                         Intent intent = new Intent(context, RecruitActivity.class);
+                        intent.putExtra("recruitId", recruitId);
+                        intent.putExtra("storeId", storeId);
                         context.startActivity(intent);
                     }
 
