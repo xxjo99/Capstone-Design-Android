@@ -88,5 +88,8 @@
     <string name="myDeliveryInfo">나의 배달정보</string>
     <string name="memberDeliveryInfo">파티원 배달정보</string>
     <string name="checkMenu">담은 메뉴 확인하기 > </string>
+    <string name="participantType">참가타입</string>
+    <string name="orderPrice">상품금액</string>
+    <string name="finalPayment">결제예정금액</string>
 
 </resources>

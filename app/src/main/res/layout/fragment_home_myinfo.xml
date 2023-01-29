@@ -9,328 +9,290 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:layout_marginTop="15dp"
-        android:layout_marginStart="10dp">
-
-        <ImageView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:src="@drawable/back">
-        </ImageView>
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="내 정보"
-            android:fontFamily="@font/bmjua_font"
-            android:textColor="@color/black"
-            android:textSize="22dp">
-        </TextView>
-
-    </LinearLayout>
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
         android:layout_marginStart="10dp"
-        android:layout_marginTop="20dp">
+        android:layout_marginTop="20dp"
+        android:orientation="horizontal">
 
         <ImageView
             android:layout_width="100dp"
             android:layout_height="50dp"
-            android:src="@drawable/img_logo_diary_128">
-        </ImageView>
+            android:src="@drawable/img_logo_diary_128"></ImageView>
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
-            android:text="이용자, (닉네임)"
-            android:fontFamily="@font/bmjua_font">
-        </TextView>
+            android:fontFamily="@font/bmjua_font"
+            android:text="이용자, (닉네임)"></TextView>
 
     </LinearLayout>
 
     <View
         android:layout_width="match_parent"
         android:layout_height="2dp"
-        android:layout_marginTop="10dp"
         android:layout_centerInParent="true"
-        android:background="@color/gray"/>
+        android:layout_marginTop="10dp"
+        android:background="@color/gray" />
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:orientation="horizontal">
 
         <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:orientation="horizontal">
+            android:layout_marginTop="15dp"
+            android:orientation="vertical">
 
-            <LinearLayout
+            <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:orientation="vertical"
-                android:layout_marginTop="15dp">
+                android:layout_marginBottom="15dp"
+                android:fontFamily="@font/bmjua_font"
+                android:text="포인트"></TextView>
 
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginBottom="15dp"
-                    android:text="포인트"
-                    android:fontFamily="@font/bmjua_font">
-                </TextView>
-                <TextView
-                    android:layout_marginTop="30dp"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="찜"
-                    android:fontFamily="@font/bmjua_font">
-                </TextView>
-            </LinearLayout>
-
-            <View
-                android:layout_width="2dp"
-                android:layout_height="100dp"
-                android:layout_marginLeft="20dp"
-                android:layout_marginRight="20dp"
-                android:layout_centerInParent="true"
-                android:background="@color/gray"/>
-
-                <LinearLayout
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:orientation="vertical"
-                    android:layout_marginTop="15dp">
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginBottom="15dp"
-                        android:text="쿠폰함"
-                        android:fontFamily="@font/bmjua_font">
-                    </TextView>
-
-                    <TextView
-                        android:layout_marginTop="30dp"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="주문내역"
-                        android:fontFamily="@font/bmjua_font">
-                    </TextView>
-                </LinearLayout>
-
-            <View
-                android:layout_width="2dp"
-                android:layout_height="100dp"
-                android:layout_marginLeft="20dp"
-                android:layout_marginRight="20dp"
-                android:layout_centerInParent="true"
-                android:background="@color/gray"/>
-
-            <LinearLayout
+            <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:orientation="vertical"
-                android:layout_marginTop="15dp">
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginBottom="15dp"
-                    android:text="선물함"
-                    android:fontFamily="@font/bmjua_font">
-                </TextView>
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="30dp"
-                    android:text="리뷰관리"
-                    android:fontFamily="@font/bmjua_font">
-                </TextView>
-            </LinearLayout>
+                android:layout_marginTop="30dp"
+                android:fontFamily="@font/bmjua_font"
+                android:text="찜"></TextView>
         </LinearLayout>
 
-    <View
-        android:layout_width="match_parent"
-        android:layout_height="2dp"
-        android:layout_centerInParent="true"
-        android:background="@color/gray"/>
+        <View
+            android:layout_width="2dp"
+            android:layout_height="100dp"
+            android:layout_centerInParent="true"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="20dp"
+            android:background="@color/gray" />
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="15dp"
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="15dp"
+                android:fontFamily="@font/bmjua_font"
+                android:text="쿠폰함"></TextView>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="30dp"
+                android:fontFamily="@font/bmjua_font"
+                android:text="주문내역"></TextView>
+        </LinearLayout>
+
+        <View
+            android:layout_width="2dp"
+            android:layout_height="100dp"
+            android:layout_centerInParent="true"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="20dp"
+            android:background="@color/gray" />
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="15dp"
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="15dp"
+                android:fontFamily="@font/bmjua_font"
+                android:text="선물함"></TextView>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="30dp"
+                android:fontFamily="@font/bmjua_font"
+                android:text="리뷰관리"></TextView>
+        </LinearLayout>
+    </LinearLayout>
 
     <View
-        android:layout_marginTop="10dp"
         android:layout_width="match_parent"
         android:layout_height="2dp"
         android:layout_centerInParent="true"
-        android:background="@color/gray"/>
+        android:background="@color/gray" />
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="2dp"
+        android:layout_centerInParent="true"
+        android:layout_marginTop="10dp"
+        android:background="@color/gray" />
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="horizontal"
+        android:layout_marginStart="10dp"
         android:layout_marginTop="10dp"
-        android:layout_marginStart="10dp">
+        android:orientation="horizontal">
+
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:fontFamily="@font/bmjua_font"
+            android:text="공지사항"
             android:textColor="@color/black"
-            android:textSize="17dp"
-            android:text="공지사항">
-        </TextView>
+            android:textSize="17dp"></TextView>
 
         <ImageButton
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:src="@drawable/arrow_forward_ios_fill0_wght400_grad0_opsz48"
-            android:background="@color/white">
-        </ImageButton>
+            android:background="@color/white"
+            android:src="@drawable/arrow_forward_ios_fill0_wght400_grad0_opsz48"></ImageButton>
 
     </LinearLayout>
 
     <View
-        android:layout_marginTop="10dp"
         android:layout_width="match_parent"
         android:layout_height="2dp"
         android:layout_centerInParent="true"
-        android:background="@color/gray"/>
+        android:layout_marginTop="10dp"
+        android:background="@color/gray" />
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="horizontal"
+        android:layout_marginStart="10dp"
         android:layout_marginTop="10dp"
-        android:layout_marginStart="10dp">
+        android:orientation="horizontal">
+
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:fontFamily="@font/bmjua_font"
+            android:text="이벤트"
             android:textColor="@color/black"
-            android:textSize="17dp"
-            android:text="이벤트">
-        </TextView>
+            android:textSize="17dp"></TextView>
 
         <ImageButton
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:src="@drawable/arrow_forward_ios_fill0_wght400_grad0_opsz48"
-            android:background="@color/white">
-        </ImageButton>
+            android:background="@color/white"
+            android:src="@drawable/arrow_forward_ios_fill0_wght400_grad0_opsz48"></ImageButton>
 
     </LinearLayout>
 
 
     <View
-        android:layout_marginTop="10dp"
         android:layout_width="match_parent"
         android:layout_height="2dp"
         android:layout_centerInParent="true"
-        android:background="@color/gray"/>
+        android:layout_marginTop="10dp"
+        android:background="@color/gray" />
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="horizontal"
+        android:layout_marginStart="10dp"
         android:layout_marginTop="10dp"
-        android:layout_marginStart="10dp">
+        android:orientation="horizontal">
+
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:fontFamily="@font/bmjua_font"
+            android:text="고객센터"
             android:textColor="@color/black"
-            android:textSize="17dp"
-            android:text="고객센터">
-        </TextView>
+            android:textSize="17dp"></TextView>
 
         <ImageButton
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:src="@drawable/arrow_forward_ios_fill0_wght400_grad0_opsz48"
-            android:background="@color/white">
-        </ImageButton>
+            android:background="@color/white"
+            android:src="@drawable/arrow_forward_ios_fill0_wght400_grad0_opsz48"></ImageButton>
 
     </LinearLayout>
 
     <View
-        android:layout_marginTop="10dp"
         android:layout_width="match_parent"
         android:layout_height="2dp"
         android:layout_centerInParent="true"
-        android:background="@color/gray"/>
+        android:layout_marginTop="10dp"
+        android:background="@color/gray" />
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="horizontal"
+        android:layout_marginStart="10dp"
         android:layout_marginTop="10dp"
-        android:layout_marginStart="10dp">
+        android:orientation="horizontal">
+
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:fontFamily="@font/bmjua_font"
+            android:text="환경설정"
             android:textColor="@color/black"
-            android:textSize="17dp"
-            android:text="환경설정">
-        </TextView>
+            android:textSize="17dp"></TextView>
 
         <ImageButton
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:src="@drawable/arrow_forward_ios_fill0_wght400_grad0_opsz48"
-            android:background="@color/white">
-        </ImageButton>
+            android:background="@color/white"
+            android:src="@drawable/arrow_forward_ios_fill0_wght400_grad0_opsz48"></ImageButton>
 
     </LinearLayout>
 
     <View
-        android:layout_marginTop="10dp"
         android:layout_width="match_parent"
         android:layout_height="2dp"
         android:layout_centerInParent="true"
-        android:background="@color/gray"/>
+        android:layout_marginTop="10dp"
+        android:background="@color/gray" />
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="horizontal"
+        android:layout_marginStart="10dp"
         android:layout_marginTop="10dp"
-        android:layout_marginStart="10dp">
+        android:orientation="horizontal">
+
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:fontFamily="@font/bmjua_font"
+            android:text="현재 버전"
             android:textColor="@color/black"
-            android:textSize="17dp"
-            android:text="현재 버전">
-        </TextView>
+            android:textSize="17dp"></TextView>
 
     </LinearLayout>
 
     <View
-        android:layout_marginTop="10dp"
         android:layout_width="match_parent"
         android:layout_height="2dp"
         android:layout_centerInParent="true"
-        android:background="@color/gray"/>
+        android:layout_marginTop="10dp"
+        android:background="@color/gray" />
 
-
-
-   <LinearLayout
-       android:layout_width="wrap_content"
-       android:layout_height="wrap_content">
-    <Button
-        android:id="@+id/logoutBtn"
+    <LinearLayout
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:fontFamily="@font/bmjua_font"
-        android:text="@string/logout" />
-   </LinearLayout>
+        android:layout_height="wrap_content">
 
-
+        <Button
+            android:id="@+id/logoutBtn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/bmjua_font"
+            android:text="@string/logout" />
+    </LinearLayout>
 
 </LinearLayout>

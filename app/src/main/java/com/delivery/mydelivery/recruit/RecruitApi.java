@@ -38,4 +38,8 @@ public interface RecruitApi {
     // 해당 글의 사용자가 담은 메뉴의 총 금액 반환
     @GET("/recruit/getOrdersTotalPrice/{recruitId}/{participantId}")
     Call<Integer> getOrdersTotalPrice(@Path("recruitId") int recruitId, @Path("participantId") int participantId);
+
+    // 자신을 제외한 나머지 참가자 리스트 반환
+    @GET("/recruit/getParticipantListExceptMine/{recruitId}/{userId}")
+    Call<List<ParticipantVO>> getParticipantListExceptMine(@Path("recruitId") int recruitId, @Path("userId") int userId);
 }

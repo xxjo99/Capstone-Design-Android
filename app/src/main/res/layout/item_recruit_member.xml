@@ -17,8 +17,18 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
+        android:layout_marginBottom="5dp"
         android:fontFamily="@font/bmjua_font"
         android:text="@string/member"
+        android:textColor="@color/black" />
+
+    <TextView
+        android:id="@+id/participantTypeTV"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:fontFamily="@font/bmjua_font"
+        android:text="@string/participantType"
         android:textColor="@color/black" />
 
 </LinearLayout>
