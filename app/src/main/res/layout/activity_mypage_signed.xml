@@ -1,0 +1,156 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <TextView
+        android:id="@+id/textView2"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:layout_marginBottom="10dp"
+        android:fontFamily="@font/bmjua_"
+        android:gravity="center"
+        android:text="마이페이지"
+        android:textColor="#000000"
+        android:textSize="23sp" />
+
+    <View
+        android:id="@+id/view2"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="#BFBFBF"
+        android:visibility="visible" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="86dp"
+        android:layout_marginTop="25dp"
+        android:orientation="horizontal">
+
+        <ImageView
+            android:id="@+id/imageView11"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginLeft="35dp"
+            android:layout_marginRight="25dp"
+            app:srcCompat="@drawable/user_icon" />
+
+        <EditText
+            android:id="@+id/editTextTextPersonName2"
+            android:layout_width="89dp"
+            android:layout_height="48dp"
+            android:layout_gravity="center"
+            android:background="@null"
+            android:ems="10"
+            android:fontFamily="@font/bmjua_"
+            android:gravity="right|center_vertical"
+            android:inputType="textPersonName"
+            android:text="닉네임"
+            android:textSize="29sp" />
+
+        <TextView
+            android:id="@+id/textView6"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:fontFamily="@font/bmjua_"
+            android:gravity="left"
+            android:text="님 환영합니다"
+            android:textColor="#000000"
+            android:textSize="29sp" />
+
+    </LinearLayout>
+
+    <View
+        android:id="@+id/view4"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_marginTop="15dp"
+        android:background="#BFBFBF" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="45dp"
+        android:layout_marginTop="27dp"
+        android:orientation="horizontal">
+
+        <ImageView
+            android:id="@+id/imageView16"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:layout_gravity="center_vertical"
+            android:layout_marginLeft="65dp"
+            app:srcCompat="@drawable/keep" />
+
+        <ImageView
+            android:id="@+id/imageView17"
+            android:layout_width="42dp"
+            android:layout_height="42dp"
+            android:layout_gravity="center_vertical"
+            android:layout_marginLeft="75dp"
+            app:srcCompat="@drawable/cart_btn" />
+
+        <ImageView
+            android:id="@+id/imageView18"
+            android:layout_width="48dp"
+            android:layout_height="48dp"
+            android:layout_gravity="center_vertical"
+            android:layout_marginLeft="75dp"
+            android:layout_marginRight="65dp"
+            app:srcCompat="@drawable/mypage_order_list" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="16dp"
+        android:orientation="horizontal">
+
+        <TextView
+            android:id="@+id/textView7"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="62dp"
+            android:fontFamily="@font/bmjua_"
+            android:text="찜 목록"
+            android:textColor="#5E5E5E"
+            android:textSize="18sp" />
+
+        <TextView
+            android:id="@+id/textView8"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="60dp"
+            android:fontFamily="@font/bmjua_"
+            android:text="장바구니"
+            android:textColor="#5E5E5E"
+            android:textSize="18sp" />
+
+        <TextView
+            android:id="@+id/textView9"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="65dp"
+            android:fontFamily="@font/bmjua_"
+            android:text="주문내역"
+            android:textColor="#5E5E5E"
+            android:textSize="18sp" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="415dp"
+        android:orientation="horizontal"></LinearLayout>
+
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/storeToolbar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/white"
+        app:contentInsetStart="0dp"
+        app:menu="@menu/home_menu">
+
+</LinearLayout>
