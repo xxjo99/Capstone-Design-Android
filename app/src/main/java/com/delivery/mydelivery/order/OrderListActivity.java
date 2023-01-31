@@ -211,7 +211,7 @@ public class OrderListActivity extends AppCompatActivity {
                             orderListAdapter = new OrderListAdapter(orderList, context);
                             orderRecyclerView.setAdapter(orderListAdapter);
 
-                            // 선택한 메뉴의 총 가격을 계산
+                            // 총 금액 계산
                             totalPrice = 0;
                             for (OrderVO order : orderList) {
                                 totalPrice += order.getTotalPrice();
@@ -273,4 +273,14 @@ public class OrderListActivity extends AppCompatActivity {
                 });
     }
 
+    @Override
+    protected void onRestart() {
+        finish();
+        overridePendingTransition(0, 0);
+        Intent intent = getIntent();
+        startActivity(intent);
+        overridePendingTransition(0, 0);
+
+        super.onRestart();
+    }
 }

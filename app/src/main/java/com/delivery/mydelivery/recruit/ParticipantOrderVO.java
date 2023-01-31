@@ -19,6 +19,14 @@ public class ParticipantOrderVO {
         this.participantOrderId = participantOrderId;
     }
 
+    public int getRecruitId() {
+        return recruitId;
+    }
+
+    public void setRecruitId(int recruitId) {
+        this.recruitId = recruitId;
+    }
+
     public int getParticipantId() {
         return participantId;
     }

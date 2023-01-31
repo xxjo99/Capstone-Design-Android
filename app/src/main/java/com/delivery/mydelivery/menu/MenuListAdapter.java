@@ -74,7 +74,7 @@ public class MenuListAdapter extends RecyclerView.Adapter<MenuListAdapter.ViewHo
             itemView.setOnClickListener(view -> {
                 int position = getAbsoluteAdapterPosition();
 
-                // 옵션 리스트로 이동, 매장id, 메뉴 id, 이미지주소, 이름, 정보, 가격 넘겨쥼
+                // 필요한 정보를 담아 옵션 리스트로 이동,
                 if (position != RecyclerView.NO_POSITION) {
                     Intent intent = new Intent(context, OptionActivity.class);
 
@@ -93,6 +93,8 @@ public class MenuListAdapter extends RecyclerView.Adapter<MenuListAdapter.ViewHo
                     intent.putExtra("menuName", menuName);
                     intent.putExtra("menuInfo", menuInfo);
                     intent.putExtra("menuPrice", menuPrice);
+                    intent.putExtra("participantType", MenuListActivity.participantType);
+                    intent.putExtra("recruitId", MenuListActivity.recruitId);
 
                     context.startActivity(intent);
                 }

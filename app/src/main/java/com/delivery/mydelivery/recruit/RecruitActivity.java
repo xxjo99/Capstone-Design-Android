@@ -59,7 +59,7 @@ public class RecruitActivity extends AppCompatActivity {
 
     int participantCount; // 참가자수
 
-    // 나의 배달 정보, 메뉴 확인 텍스트
+    // 나의 배달 정보, 메뉴 확인 텍스트버튼
     TextView userNameTV;
     TextView totalPriceTV;
     TextView checkMenuTV;
@@ -127,6 +127,17 @@ public class RecruitActivity extends AppCompatActivity {
         totalPriceTV = findViewById(R.id.totalPriceTV);
         checkMenuTV = findViewById(R.id.checkMenuTV);
 
+        // 담은 메뉴 확인 이동버튼
+        checkMenuTV.setOnClickListener(view -> {
+            Intent checkMenuIntent = new Intent(this, RecruitOrderListActivity.class);
+
+            checkMenuIntent.putExtra("recruitId", recruitId);
+            checkMenuIntent.putExtra("storeId", storeId);
+            checkMenuIntent.putExtra("userId", user.getUserId());
+
+            startActivity(checkMenuIntent);
+        });
+
         userNameTV.setText(user.getName()); // 사용자 이름
 
         getOrdersTotalPrice(recruitId, user.getUserId()); // 총 주문금액
@@ -178,14 +189,6 @@ public class RecruitActivity extends AppCompatActivity {
 
                     }
                 });
-    }
-
-    // 디바이스 넓이 구하기
-    private int getWidth(Activity activity) {
-        Display display = activity.getWindowManager().getDefaultDisplay();
-        Point size = new Point();
-        display.getRealSize(size);
-        return size.x;
     }
 
     // 참가자 리스트 생성
@@ -291,7 +294,7 @@ public class RecruitActivity extends AppCompatActivity {
                         assert store != null;
                         String deliveryTip = store.getDeliveryTip();
                         beforeDeliveryTipTV.setText(deliveryTip + "원");
-                        beforeDeliveryTipTV.setPaintFlags(beforeDeliveryTipTV.getPaintFlags()| Paint.STRIKE_THRU_TEXT_FLAG);
+                        beforeDeliveryTipTV.setPaintFlags(beforeDeliveryTipTV.getPaintFlags() | Paint.STRIKE_THRU_TEXT_FLAG);
 
                         int finalDeliveryTipResult = Integer.parseInt(deliveryTip) / participantCount;
                         finalDeliveryTipTV.setText(finalDeliveryTipResult + "원");
@@ -303,6 +306,39 @@ public class RecruitActivity extends AppCompatActivity {
                     }
                 });
 
+        // 최종결제금액
+        recruitApi.getFinalPayment(recruitId, storeId, userId)
+                .enqueue(new Callback<Integer>() {
+                    @Override
+                    public void onResponse(@NonNull Call<Integer> call, @NonNull Response<Integer> response) {
+                        Integer finalPayment = response.body();
+                        finalPaymentTV.setText(finalPayment + "원");
+                    }
+
+                    @Override
+                    public void onFailure(@NonNull Call<Integer> call, @NonNull Throwable t) {
+
+                    }
+                });
+    }
+
+    // 디바이스 넓이
+    private int getWidth(Activity activity) {
+        Display display = activity.getWindowManager().getDefaultDisplay();
+        Point size = new Point();
+        display.getRealSize(size);
+        return size.x;
+    }
+
+    @Override
+    protected void onRestart() {
+        finish();
+        overridePendingTransition(0, 0);
+        Intent intent = getIntent();
+        startActivity(intent);
+        overridePendingTransition(0, 0);
+
+        super.onRestart();
     }
 
 }

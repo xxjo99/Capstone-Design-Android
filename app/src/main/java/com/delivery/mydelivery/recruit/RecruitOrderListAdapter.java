@@ -1,4 +1,4 @@
-package com.delivery.mydelivery.order;
+package com.delivery.mydelivery.recruit;
 
 import android.annotation.SuppressLint;
 import android.content.Context;
@@ -15,9 +15,9 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.delivery.mydelivery.R;
 import com.delivery.mydelivery.menu.MenuApi;
 import com.delivery.mydelivery.menu.MenuVO;
+import com.delivery.mydelivery.order.OrderApi;
+import com.delivery.mydelivery.order.OrderListActivity;
 import com.delivery.mydelivery.retrofit.RetrofitService;
-import com.delivery.mydelivery.store.StoreApi;
-import com.delivery.mydelivery.store.StoreVO;
 
 import java.util.List;
 import java.util.Objects;
@@ -28,19 +28,19 @@ import retrofit2.Response;
 
 // 장바구니 어댑터
 @SuppressLint("SetTextI18n")
-public class OrderListAdapter extends RecyclerView.Adapter<OrderListAdapter.ViewHolder> {
+public class RecruitOrderListAdapter extends RecyclerView.Adapter<RecruitOrderListAdapter.ViewHolder> {
 
-    private final List<OrderVO> orderList; // 주문 리스트
+    private final List<ParticipantOrderVO> orderList; // 담은 메뉴
     Context context; // context
 
     // 레트로핏, api
     RetrofitService retrofitService;
-    StoreApi storeApi;
     MenuApi menuApi;
     OrderApi orderApi;
+    RecruitApi recruitApi;
 
     // 생성자
-    public OrderListAdapter(List<OrderVO> orderList, Context context) {
+    public RecruitOrderListAdapter(List<ParticipantOrderVO> orderList, Context context) {
         this.orderList = orderList;
         this.context = context;
     }
@@ -50,61 +50,58 @@ public class OrderListAdapter extends RecyclerView.Adapter<OrderListAdapter.View
     @Override
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         LayoutInflater inflater = LayoutInflater.from(parent.getContext());
-        View view = inflater.inflate(R.layout.item_order_order_list, parent, false);
+        View view = inflater.inflate(R.layout.item_recruit_order_list, parent, false);
         return new ViewHolder(view);
     }
 
     // 데이터 셋팅
     @Override
-    public void onBindViewHolder(@NonNull OrderListAdapter.ViewHolder holder, int position) {
-        OrderVO order = orderList.get(position);
-        OrderListActivity.storeId = order.getStoreId();
-        // 매장이름, 선택한 옵션, 가격, 개수 세팅
-        setStoreName(order.getStoreId()); // 매장 이름
-        setMenuName(order.getMenuId(), holder); // 메뉴 이름
+    public void onBindViewHolder(@NonNull RecruitOrderListAdapter.ViewHolder holder, int position) {
+        ParticipantOrderVO order = orderList.get(position);
 
-        if (!order.getSelectOption().equals("")) {
-            setContentNameList(order.getSelectOption(), holder);// 선택 옵션 리스트
-        } else {
-            holder.optionListTV.setVisibility(View.GONE);
-        }
+        int menuId = order.getMenuId(); // 선택한 메뉴의 id
+        String selectedOptionList = order.getSelectOption(); // 선택한 옵션 리스트
+        int price = order.getTotalPrice();
+        int amount = order.getAmount(); // 선택한 메뉴의 개수
 
-        holder.menuPriceTV.setText(order.getTotalPrice() + "원"); // 메뉴 총 가격
-        holder.amountTV.setText(order.getAmount() + ""); // 메뉴 개수
+        setMenuName(menuId, holder);// 메뉴 이름
+        setContentNameList(selectedOptionList, holder);// 선택한 옵션 목록
+        holder.menuPriceTV.setText(price + "원");// 가격
+        holder.amountTV.setText(amount + "");// 개수
 
         // 메뉴 개수 수정
         holder.decreaseBtn.setOnClickListener(view -> {
             if (order.getAmount() != 1) {
-                int amount = order.getAmount() - 1;
-                int price = order.getTotalPrice() - (order.getTotalPrice() / order.getAmount());
+                int menuAmount = amount - 1;
+                int menuPrice = price - (price / amount);
 
-                order.setAmount(amount);
-                order.setTotalPrice(price);
+                order.setAmount(menuAmount);
+                order.setTotalPrice(menuPrice);
 
                 modifyAmount(order);
                 notifyItemChanged(position);
 
-                OrderListActivity.totalPrice -= (order.getTotalPrice() / order.getAmount());
-                OrderListActivity.totalPriceTV.setText(OrderListActivity.totalPrice + "원");
+                RecruitOrderListActivity.totalPrice -= (order.getTotalPrice() / order.getAmount());
+                RecruitOrderListActivity.totalPriceTV.setText(RecruitOrderListActivity.totalPrice + "원");
             }
         });
 
         holder.increaseBtn.setOnClickListener(view -> {
-            int amount = order.getAmount() + 1;
-            int price = order.getTotalPrice() + (order.getTotalPrice() / order.getAmount());
+            int menuAmount = amount + 1;
+            int menuPrice = price + (price / amount);
 
-            order.setAmount(amount);
-            order.setTotalPrice(price);
+            order.setAmount(menuAmount);
+            order.setTotalPrice(menuPrice);
 
             modifyAmount(order);
             notifyItemChanged(position);
 
-            OrderListActivity.totalPrice += (order.getTotalPrice() / order.getAmount());
-            OrderListActivity.totalPriceTV.setText(OrderListActivity.totalPrice + "원");
+            RecruitOrderListActivity.totalPrice += (order.getTotalPrice() / order.getAmount());
+            RecruitOrderListActivity.totalPriceTV.setText(RecruitOrderListActivity.totalPrice + "원");
         });
 
         // 메뉴 삭제
-        holder.deleteBtn.setOnClickListener(view -> deleteOrder(order.getOrderId(), order.getTotalPrice(), position));
+        holder.deleteBtn.setOnClickListener(view -> deleteOrder(order.getParticipantOrderId(), order.getTotalPrice(), position));
     }
 
     @Override
@@ -138,28 +135,8 @@ public class OrderListAdapter extends RecyclerView.Adapter<OrderListAdapter.View
         }
     }
 
-    // 매장이름 지정
-    private void setStoreName(int storeId) {
-        retrofitService = new RetrofitService();
-        storeApi = retrofitService.getRetrofit().create(StoreApi.class);
-
-        storeApi.getStore(storeId)
-                .enqueue(new Callback<StoreVO>() {
-                    @Override
-                    public void onResponse(@NonNull Call<StoreVO> call, @NonNull Response<StoreVO> response) {
-                        StoreVO store = response.body();
-                        assert store != null;
-                        OrderListActivity.storeNameTV.setText(store.getStoreName());
-                    }
-
-                    @Override
-                    public void onFailure(@NonNull Call<StoreVO> call, @NonNull Throwable t) {
-                    }
-                });
-    }
-
-    // 메뉴이름 지정
-    private void setMenuName(int menuId, OrderListAdapter.ViewHolder holder) {
+    // 메뉴이름
+    private void setMenuName(int menuId, RecruitOrderListAdapter.ViewHolder holder) {
         retrofitService = new RetrofitService();
         menuApi = retrofitService.getRetrofit().create(MenuApi.class);
 
@@ -180,7 +157,7 @@ public class OrderListAdapter extends RecyclerView.Adapter<OrderListAdapter.View
     }
 
     // 선택한 옵션의 내용들을 가져옴
-    private void setContentNameList(String contentNameList, @NonNull OrderListAdapter.ViewHolder holder) {
+    private void setContentNameList(String contentNameList, @NonNull RecruitOrderListAdapter.ViewHolder holder) {
         retrofitService = new RetrofitService();
         orderApi = retrofitService.getRetrofit().create(OrderApi.class);
 
@@ -194,6 +171,7 @@ public class OrderListAdapter extends RecyclerView.Adapter<OrderListAdapter.View
 
                         if (contentNameResult != null) {
                             for (int i = 0; i < Objects.requireNonNull(contentNameResult).size(); i++) {
+
                                 if (i == contentNameResult.size() - 1) {
                                     holder.optionListTV.append(contentNameResult.get(i));
                                 } else {
@@ -211,37 +189,36 @@ public class OrderListAdapter extends RecyclerView.Adapter<OrderListAdapter.View
                 });
     }
 
-    // 증가, 감소버튼 눌렀을경우 개수, 가격 변경
-    private void modifyAmount(OrderVO order) {
+    // 개수 수정
+    private void modifyAmount(ParticipantOrderVO order) {
         retrofitService = new RetrofitService();
-        orderApi = retrofitService.getRetrofit().create(OrderApi.class);
+        recruitApi = retrofitService.getRetrofit().create(RecruitApi.class);
 
-        orderApi.modifyAmount(order)
-                .enqueue(new Callback<OrderVO>() {
+        recruitApi.modifyAmount(order)
+                .enqueue(new Callback<ParticipantOrderVO>() {
                     @Override
-                    public void onResponse(@NonNull Call<OrderVO> call, @NonNull Response<OrderVO> response) {
+                    public void onResponse(Call<ParticipantOrderVO> call, Response<ParticipantOrderVO> response) {
                     }
 
                     @Override
-                    public void onFailure(@NonNull Call<OrderVO> call, @NonNull Throwable t) {
-
+                    public void onFailure(Call<ParticipantOrderVO> call, Throwable t) {
                     }
                 });
     }
 
-    // 메뉴 삭제
-    private void deleteOrder(int orderId, int orderPrice, int position) {
+    // 삭제
+    private void deleteOrder(int participantOrderId, int orderPrice, int position) {
         retrofitService = new RetrofitService();
-        orderApi = retrofitService.getRetrofit().create(OrderApi.class);
+        recruitApi = retrofitService.getRetrofit().create(RecruitApi.class);
 
-        orderApi.deleteOrder(orderId)
+        recruitApi.deleteOrder(participantOrderId)
                 .enqueue(new Callback<Void>() {
                     @SuppressLint("NotifyDataSetChanged")
                     @Override
                     public void onResponse(@NonNull Call<Void> call, @NonNull Response<Void> response) {
                         Toast.makeText(context, "삭제 성공", Toast.LENGTH_SHORT).show();
-                        OrderListActivity.totalPrice -= orderPrice;
-                        OrderListActivity.totalPriceTV.setText(OrderListActivity.totalPrice + "원");
+                        RecruitOrderListActivity.totalPrice -= orderPrice;
+                        RecruitOrderListActivity.totalPriceTV.setText(RecruitOrderListActivity.totalPrice + "원");
                         orderList.remove(position);
                         notifyDataSetChanged();
                     }
@@ -251,5 +228,4 @@ public class OrderListAdapter extends RecyclerView.Adapter<OrderListAdapter.View
                     }
                 });
     }
-
 }
