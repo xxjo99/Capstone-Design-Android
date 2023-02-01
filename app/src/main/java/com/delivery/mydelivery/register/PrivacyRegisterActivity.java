@@ -30,7 +30,7 @@ public class PrivacyRegisterActivity extends AppCompatActivity {
     EditText phoneNumET;
     EditText schoolET;
     Button registerBtn;
-    private List<String> list;
+    private List<String> list; // 학교 검색
 
     // dialog
     RegisterDialog registerDialog;
@@ -46,7 +46,7 @@ public class PrivacyRegisterActivity extends AppCompatActivity {
 
         list = new ArrayList<String>();
 
-        settingList();
+        settingList(); // 학교 검색 함수
 
         final AutoCompleteTextView autoCompleteTextView = (AutoCompleteTextView) findViewById(R.id.schoollist);
 

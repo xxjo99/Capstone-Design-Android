@@ -6,9 +6,26 @@
     android:orientation="vertical"
     tools:context=".home.SearchFragment">
 
-    <TextView
-        android:layout_width="wrap_content"
+    <LinearLayout
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="@string/find" />
+        android:gravity="center">
+
+    <AutoCompleteTextView
+        android:id="@+id/search_menu"
+        android:layout_width="350dp"
+        android:layout_gravity="center"
+        android:background="@drawable/edit_text_border_basic"
+        android:layout_height="45dp"
+        android:layout_marginTop="10dp"
+        android:fontFamily="@font/bmjua_font"
+        android:gravity="center_vertical"
+        android:padding="13dp"
+        android:textSize="18sp"
+        android:hint="검색할 내용을 입력하세요"
+        android:drawableLeft="@drawable/search_fill0_wght400_grad0_opsz48"
+        android:inputType="text"
+        android:completionThreshold="1" />
+    </LinearLayout>
 
 </LinearLayout>
