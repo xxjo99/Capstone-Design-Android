@@ -116,7 +116,8 @@
             android:layout_width="380dp"
             android:layout_height="55dp"
             android:fontFamily="@font/bmjua_font"
-            android:text="@string/register" />
+            android:text="@string/register"
+            android:visibility="gone" />
 
     </LinearLayout>
 

@@ -8,6 +8,7 @@ import android.graphics.Paint;
 import android.graphics.Point;
 import android.os.Bundle;
 import android.view.Display;
+import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -69,6 +70,9 @@ public class RecruitActivity extends AppCompatActivity {
     TextView beforeDeliveryTipTV;
     TextView finalDeliveryTipTV;
     TextView finalPaymentTV;
+
+    // 결제버튼
+    Button paymentBtn;
 
     // 레트로핏, api
     RetrofitService retrofitService;
@@ -159,6 +163,12 @@ public class RecruitActivity extends AppCompatActivity {
 
         // 최종금액계산 추가
         setPayment(storeId, recruitId, user.getUserId());
+
+        // 결제버튼
+        paymentBtn = findViewById(R.id.paymentBtn);
+        paymentBtn.setOnClickListener(view -> {
+
+        });
     }
 
     // 매장정보 생성
@@ -295,6 +305,10 @@ public class RecruitActivity extends AppCompatActivity {
                         String deliveryTip = store.getDeliveryTip();
                         beforeDeliveryTipTV.setText(deliveryTip + "원");
                         beforeDeliveryTipTV.setPaintFlags(beforeDeliveryTipTV.getPaintFlags() | Paint.STRIKE_THRU_TEXT_FLAG);
+
+                        if (participantCount == 0) {
+                            participantCount = 1;
+                        }
 
                         int finalDeliveryTipResult = Integer.parseInt(deliveryTip) / participantCount;
                         finalDeliveryTipTV.setText(finalDeliveryTipResult + "원");

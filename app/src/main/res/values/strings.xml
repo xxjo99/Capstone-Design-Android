@@ -91,5 +91,10 @@
     <string name="participantType">참가타입</string>
     <string name="orderPrice">상품금액</string>
     <string name="finalPayment">결제예정금액</string>
+    <string name="delete">삭제하기</string>
+    <string name="payment">결제하기</string>
+    
+    <string name="request">요청사항</string>
+    <string name="paymentPrice">결제금액</string>
 
 </resources>
