@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools">
-
     <!-- 네트워크 사용위한 퍼미션 -->
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
@@ -29,35 +28,20 @@
             <meta-data
                 android:name="android.app.lib_name"
                 android:value="" />
-        </activity>
-
-        <!-- register -->
+        </activity> <!-- register -->
         <activity android:name=".register.EmailRegisterActivity" />
         <activity android:name=".register.AuthRegisterActivity" />
         <activity android:name=".register.PasswordRegisterActivity" />
         <activity android:name=".register.PrivacyRegisterActivity" />
-        <activity android:name=".register.CompleteActivity" />
-
-        <!-- login -->
-        <activity android:name=".login.LoginActivity" />
-
-        <!-- home -->
-        <activity android:name=".home.HomeActivity" />
-
-        <!-- store -->
-        <activity android:name=".store.StoreListActivity" />
-
-        <!-- menu -->
+        <activity android:name=".register.CompleteActivity" /> <!-- login -->
+        <activity android:name=".login.LoginActivity" /> <!-- home -->
+        <activity android:name=".home.HomeActivity" /> <!-- store -->
+        <activity android:name=".store.StoreListActivity" /> <!-- menu -->
         <activity android:name=".menu.MenuListActivity" />
-        <activity android:name=".menu.OptionActivity" />
-
-        <!-- order -->
-        <activity android:name=".order.OrderListActivity" />
-
-        <!-- recruit -->
+        <activity android:name=".menu.OptionActivity" /> <!-- order -->
+        <activity android:name=".order.OrderListActivity" /> <!-- recruit -->
         <activity android:name=".recruit.RecruitActivity" />
         <activity android:name=".recruit.RecruitOrderListActivity" />
-
     </application>
 
 </manifest>
