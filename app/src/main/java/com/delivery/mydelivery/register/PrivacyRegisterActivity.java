@@ -3,6 +3,8 @@ package com.delivery.mydelivery.register;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.KeyEvent;
+import android.widget.ArrayAdapter;
+import android.widget.AutoCompleteTextView;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
@@ -15,17 +17,20 @@ import com.delivery.mydelivery.R;
 import com.delivery.mydelivery.retrofit.RetrofitService;
 import com.delivery.mydelivery.user.UserVO;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
 // 개인정보 등록 액티비티
 public class PrivacyRegisterActivity extends AppCompatActivity {
-
     EditText nameET;
     EditText phoneNumET;
     EditText schoolET;
     Button registerBtn;
+    private List<String> list;
 
     // dialog
     RegisterDialog registerDialog;
@@ -39,13 +44,23 @@ public class PrivacyRegisterActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_register_privacy);
 
+        list = new ArrayList<String>();
+
+        settingList();
+
+        final AutoCompleteTextView autoCompleteTextView = (AutoCompleteTextView) findViewById(R.id.schoollist);
+
+        // AutoCompleteTextView 에 아답터를 연결한다.
+        autoCompleteTextView.setAdapter(new ArrayAdapter<String>(this,
+                android.R.layout.simple_dropdown_item_1line,  list));
+
         // xml 변수 초기화
         nameET = findViewById(R.id.nameET);
         phoneNumET = findViewById(R.id.phoneNumET);
-        schoolET = findViewById(R.id.schoolET);
         registerBtn = findViewById(R.id.registerBtn);
 
         registerDialog = new RegisterDialog(this);
+
 
         // 회원가입 버튼
         registerBtn.setOnClickListener(view -> {
@@ -64,6 +79,11 @@ public class PrivacyRegisterActivity extends AppCompatActivity {
             startActivity(intent);
             finish();
         });
+
+    }
+    private void settingList(){
+        list.add("울산대학교");
+        list.add("부산대학교");
     }
 
     // 회원가입 api 호출
