@@ -4,6 +4,7 @@ import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.Paint;
 import android.graphics.Point;
 import android.os.Bundle;
 import android.view.Display;
@@ -15,6 +16,7 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.recyclerview.widget.GridLayoutManager;
+import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
@@ -51,11 +53,22 @@ public class RecruitActivity extends AppCompatActivity {
     RecyclerView memberRecyclerView;
     MemberAdapter memberAdapter;
     List<ParticipantVO> participantList;
+    RecyclerView memberDeliveryInfoRecyclerView;
+    MemberDeliveryInfoAdapter memberDeliveryInfoAdapter;
+    List<ParticipantVO> participantDeliveryInfoList;
 
-    // 나의 배달 정보, 메뉴 확인 텍스트
+    int participantCount; // 참가자수
+
+    // 나의 배달 정보, 메뉴 확인 텍스트버튼
     TextView userNameTV;
     TextView totalPriceTV;
     TextView checkMenuTV;
+
+    // 결제금액계산
+    TextView orderPriceTV;
+    TextView beforeDeliveryTipTV;
+    TextView finalDeliveryTipTV;
+    TextView finalPaymentTV;
 
     // 레트로핏, api
     RetrofitService retrofitService;
@@ -102,8 +115,8 @@ public class RecruitActivity extends AppCompatActivity {
 
         // 리사이클러뷰 설정
         memberRecyclerView = findViewById(R.id.memberRecyclerView);
-        RecyclerView.LayoutManager manager = new GridLayoutManager(context, 4);
-        memberRecyclerView.setLayoutManager(manager);
+        RecyclerView.LayoutManager gridLayoutManager = new GridLayoutManager(context, 4);
+        memberRecyclerView.setLayoutManager(gridLayoutManager);
         memberRecyclerView.setHasFixedSize(true);
 
         // 참가자 목록 추가
@@ -114,9 +127,38 @@ public class RecruitActivity extends AppCompatActivity {
         totalPriceTV = findViewById(R.id.totalPriceTV);
         checkMenuTV = findViewById(R.id.checkMenuTV);
 
+        // 담은 메뉴 확인 이동버튼
+        checkMenuTV.setOnClickListener(view -> {
+            Intent checkMenuIntent = new Intent(this, RecruitOrderListActivity.class);
+
+            checkMenuIntent.putExtra("recruitId", recruitId);
+            checkMenuIntent.putExtra("storeId", storeId);
+            checkMenuIntent.putExtra("userId", user.getUserId());
+
+            startActivity(checkMenuIntent);
+        });
+
         userNameTV.setText(user.getName()); // 사용자 이름
 
         getOrdersTotalPrice(recruitId, user.getUserId()); // 총 주문금액
+
+        // 리사이클러뷰 설정
+        memberDeliveryInfoRecyclerView = findViewById(R.id.memberDeliveryInfoRecyclerView);
+        RecyclerView.LayoutManager linearLayoutManager = new LinearLayoutManager(this);
+        memberDeliveryInfoRecyclerView.setLayoutManager(linearLayoutManager);
+        memberDeliveryInfoRecyclerView.setHasFixedSize(true);
+
+        // 자신을 제외한 참가자 정보
+        getParticipantListExceptMine(recruitId, user.getUserId());
+
+        // 결제금액계산 초기화
+        orderPriceTV = findViewById(R.id.orderPriceTV);
+        beforeDeliveryTipTV = findViewById(R.id.beforeDeliveryTipTV);
+        finalDeliveryTipTV = findViewById(R.id.finalDeliveryTipTV);
+        finalPaymentTV = findViewById(R.id.finalPaymentTV);
+
+        // 최종금액계산 추가
+        setPayment(storeId, recruitId, user.getUserId());
     }
 
     // 매장정보 생성
@@ -149,14 +191,6 @@ public class RecruitActivity extends AppCompatActivity {
                 });
     }
 
-    // 디바이스 넓이 구하기
-    private int getWidth(Activity activity) {
-        Display display = activity.getWindowManager().getDefaultDisplay();  // in Activity
-        Point size = new Point();
-        display.getRealSize(size); // or getSize(size)
-        return size.x;
-    }
-
     // 참가자 리스트 생성
     private void setMemberList(int recruitId) {
         retrofitService = new RetrofitService();
@@ -167,6 +201,11 @@ public class RecruitActivity extends AppCompatActivity {
                     @Override
                     public void onResponse(@NonNull Call<List<ParticipantVO>> call, @NonNull Response<List<ParticipantVO>> response) {
                         participantList = response.body();
+
+                        // 참가자 수 추가
+                        assert participantList != null;
+                        participantCount = participantList.size();
+
                         memberAdapter = new MemberAdapter(participantList, context);
                         memberRecyclerView.setAdapter(memberAdapter);
                     }
@@ -178,6 +217,7 @@ public class RecruitActivity extends AppCompatActivity {
                 });
     }
 
+    // 총 주문금액
     private void getOrdersTotalPrice(int recruitId, int userId) {
         retrofitService = new RetrofitService();
         recruitApi = retrofitService.getRetrofit().create(RecruitApi.class);
@@ -200,6 +240,105 @@ public class RecruitActivity extends AppCompatActivity {
 
                     }
                 });
+    }
+
+    // 자신을 제외한 나머지 참가자 리스트 반환
+    private void getParticipantListExceptMine(int recruitId, int userId) {
+        retrofitService = new RetrofitService();
+        recruitApi = retrofitService.getRetrofit().create(RecruitApi.class);
+
+        recruitApi.getParticipantListExceptMine(recruitId, userId)
+                .enqueue(new Callback<List<ParticipantVO>>() {
+                    @Override
+                    public void onResponse(@NonNull Call<List<ParticipantVO>> call, @NonNull Response<List<ParticipantVO>> response) {
+                        participantDeliveryInfoList = response.body();
+                        memberDeliveryInfoAdapter = new MemberDeliveryInfoAdapter(participantDeliveryInfoList, context);
+                        memberDeliveryInfoRecyclerView.setAdapter(memberDeliveryInfoAdapter);
+                    }
+
+                    @Override
+                    public void onFailure(@NonNull Call<List<ParticipantVO>> call, @NonNull Throwable t) {
+
+                    }
+                });
+    }
+
+    // 결제금액계산 세팅
+    private void setPayment(int storeId, int recruitId, int userId) {
+        retrofitService = new RetrofitService();
+        storeApi = retrofitService.getRetrofit().create(StoreApi.class);
+        recruitApi = retrofitService.getRetrofit().create(RecruitApi.class);
+
+        // 상품금액
+        recruitApi.getOrdersTotalPrice(recruitId, userId)
+                .enqueue(new Callback<Integer>() {
+                    @Override
+                    public void onResponse(@NonNull Call<Integer> call, @NonNull Response<Integer> response) {
+                        Integer orderPriceResult = response.body();
+                        orderPriceTV.setText(orderPriceResult + "원");
+                    }
+
+                    @Override
+                    public void onFailure(@NonNull Call<Integer> call, @NonNull Throwable t) {
+
+                    }
+                });
+
+        // 배달팁
+        storeApi.getStore(storeId)
+                .enqueue(new Callback<StoreVO>() {
+                    @Override
+                    public void onResponse(@NonNull Call<StoreVO> call, @NonNull Response<StoreVO> response) {
+                        StoreVO store = response.body();
+
+                        assert store != null;
+                        String deliveryTip = store.getDeliveryTip();
+                        beforeDeliveryTipTV.setText(deliveryTip + "원");
+                        beforeDeliveryTipTV.setPaintFlags(beforeDeliveryTipTV.getPaintFlags() | Paint.STRIKE_THRU_TEXT_FLAG);
+
+                        int finalDeliveryTipResult = Integer.parseInt(deliveryTip) / participantCount;
+                        finalDeliveryTipTV.setText(finalDeliveryTipResult + "원");
+                    }
+
+                    @Override
+                    public void onFailure(@NonNull Call<StoreVO> call, @NonNull Throwable t) {
+
+                    }
+                });
+
+        // 최종결제금액
+        recruitApi.getFinalPayment(recruitId, storeId, userId)
+                .enqueue(new Callback<Integer>() {
+                    @Override
+                    public void onResponse(@NonNull Call<Integer> call, @NonNull Response<Integer> response) {
+                        Integer finalPayment = response.body();
+                        finalPaymentTV.setText(finalPayment + "원");
+                    }
+
+                    @Override
+                    public void onFailure(@NonNull Call<Integer> call, @NonNull Throwable t) {
+
+                    }
+                });
+    }
+
+    // 디바이스 넓이
+    private int getWidth(Activity activity) {
+        Display display = activity.getWindowManager().getDefaultDisplay();
+        Point size = new Point();
+        display.getRealSize(size);
+        return size.x;
+    }
+
+    @Override
+    protected void onRestart() {
+        finish();
+        overridePendingTransition(0, 0);
+        Intent intent = getIntent();
+        startActivity(intent);
+        overridePendingTransition(0, 0);
+
+        super.onRestart();
     }
 
 }

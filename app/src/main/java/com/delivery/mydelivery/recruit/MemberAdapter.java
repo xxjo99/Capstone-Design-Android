@@ -23,7 +23,7 @@ import retrofit2.Response;
 // 카테고리 어댑터
 public class MemberAdapter extends RecyclerView.Adapter<MemberAdapter.ViewHolder> {
 
-    private final List<ParticipantVO> participantList; // 구성원 리스트
+    private final List<ParticipantVO> participantList; // 참가자 리스트
     Context context; // context
 
     // 레트로핏, api
@@ -53,6 +53,14 @@ public class MemberAdapter extends RecyclerView.Adapter<MemberAdapter.ViewHolder
         int userId = participant.getUserId();
         setParticipantName(userId, holder);
 
+        // 참가타입
+        String participantType = participant.getParticipantType();
+
+        if (participantType.equals("registrant")) {
+            holder.participantTypeTV.setText("파티장");
+        } else {
+            holder.participantTypeTV.setText("파티원");
+        }
     }
 
     @Override
@@ -66,11 +74,13 @@ public class MemberAdapter extends RecyclerView.Adapter<MemberAdapter.ViewHolder
 
     public static class ViewHolder extends RecyclerView.ViewHolder {
         TextView memberNameTV;
+        TextView participantTypeTV;
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
 
             memberNameTV = itemView.findViewById(R.id.memberNameTV);
+            participantTypeTV = itemView.findViewById(R.id.participantTypeTV);
         }
     }
 

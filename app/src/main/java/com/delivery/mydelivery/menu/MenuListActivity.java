@@ -34,6 +34,7 @@ import retrofit2.Callback;
 import retrofit2.Response;
 
 // 메뉴 리스트 액티비티
+@SuppressLint("SetTextI18n")
 public class MenuListActivity extends AppCompatActivity {
 
     // 매장 정보
@@ -57,6 +58,9 @@ public class MenuListActivity extends AppCompatActivity {
     StoreApi storeApi;
     MenuApi menuApi;
 
+    public static String participantType; // 등록자, 참가자 구분
+    public static int recruitId; // 모집글 아이디
+
     Context context;
 
     @Override
@@ -77,7 +81,8 @@ public class MenuListActivity extends AppCompatActivity {
         // 매장Id를 받아와서 매장 검색, 정보 출력
         Intent intent = getIntent();
         int storeId = intent.getIntExtra("storeId", 0);
-        String participantType = intent.getStringExtra("participantType"); // 등록 or 참가 확인
+        participantType = intent.getStringExtra("participantType");
+        recruitId = intent.getIntExtra("recruitId", 0);
         setStore(storeId);
 
         // 리사이클러뷰 설정
