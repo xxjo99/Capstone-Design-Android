@@ -100,7 +100,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:fontFamily="@font/bmjua_font"
-                    android:hint="요청사항을 입력해주세요"
+                    android:hint="@string/enter_request"
                     android:textSize="15sp" />
 
             </LinearLayout>
