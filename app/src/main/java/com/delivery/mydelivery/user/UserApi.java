@@ -12,6 +12,6 @@ public interface UserApi {
     Call<UserVO> getUser(@Path("userId") int userId);
 
     @GET("/user/getAllSchool")
-    Call<List<SchoolVO>> getAllSchool();
+    Call<List<String>> getAllSchool();
 
 }

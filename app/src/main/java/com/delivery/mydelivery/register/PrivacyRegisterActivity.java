@@ -1,8 +1,11 @@
 package com.delivery.mydelivery.register;
 
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.KeyEvent;
+import android.widget.ArrayAdapter;
+import android.widget.AutoCompleteTextView;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
@@ -13,7 +16,10 @@ import androidx.appcompat.app.AppCompatActivity;
 import com.delivery.mydelivery.MainActivity;
 import com.delivery.mydelivery.R;
 import com.delivery.mydelivery.retrofit.RetrofitService;
+import com.delivery.mydelivery.user.UserApi;
 import com.delivery.mydelivery.user.UserVO;
+
+import java.util.List;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -24,34 +30,43 @@ public class PrivacyRegisterActivity extends AppCompatActivity {
 
     EditText nameET;
     EditText phoneNumET;
-    EditText schoolET;
     Button registerBtn;
+    AutoCompleteTextView schoolAutoCompleteTV;
 
-    // dialog
-    RegisterDialog registerDialog;
+    private List<String> schoolList; // 학교 리스트
+
+    RegisterDialog registerDialog; // dialog
 
     UserVO userVO; // 데이터를 담을 객체
 
     RetrofitService retrofitService;
+    UserApi userApi;
     RegisterApi registerApi;
+
+    Context context;
 
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_register_privacy);
+        context = this;
 
-        // xml 변수 초기화
+        // dialog
+        registerDialog = new RegisterDialog(this);
+
+        // 초기화
         nameET = findViewById(R.id.nameET);
         phoneNumET = findViewById(R.id.phoneNumET);
-        schoolET = findViewById(R.id.schoolET);
         registerBtn = findViewById(R.id.registerBtn);
+        schoolAutoCompleteTV = findViewById(R.id.schoolAutoCompleteTV);
 
-        registerDialog = new RegisterDialog(this);
+        // 학교리스트 추가, 어댑터 연결
+        setSchoolAutoCompleteTV();
 
         // 회원가입 버튼
         registerBtn.setOnClickListener(view -> {
             String name = nameET.getText().toString();
             String phoneNum = phoneNumET.getText().toString();
-            String school = schoolET.getText().toString();
+            String school = schoolAutoCompleteTV.getText().toString();
 
 //            if (name.isEmpty() || phoneNum.isEmpty() || school.isEmpty()) { // 입력칸중 하나라도 비어있을경우
 //                Toast.makeText(PrivacyRegisterActivity.this, "빈칸 입력", Toast.LENGTH_SHORT).show();
@@ -64,6 +79,25 @@ public class PrivacyRegisterActivity extends AppCompatActivity {
             startActivity(intent);
             finish();
         });
+    }
+
+    // 리스트 추가후 schoolAutoCompleteTV에 어댑터 연결
+    private void setSchoolAutoCompleteTV() {
+        retrofitService = new RetrofitService();
+        userApi = retrofitService.getRetrofit().create(UserApi.class);
+
+        userApi.getAllSchool()
+                .enqueue(new Callback<List<String>>() {
+                    @Override
+                    public void onResponse(@NonNull Call<List<String>> call, @NonNull Response<List<String>> response) {
+                        schoolList = response.body();
+                        schoolAutoCompleteTV.setAdapter(new ArrayAdapter<>(context, android.R.layout.simple_dropdown_item_1line, schoolList));
+                    }
+
+                    @Override
+                    public void onFailure(@NonNull Call<List<String>> call, @NonNull Throwable t) {
+                    }
+                });
     }
 
     // 회원가입 api 호출
@@ -103,7 +137,7 @@ public class PrivacyRegisterActivity extends AppCompatActivity {
     @Override
     public boolean onKeyDown(int keycode, KeyEvent event) {
 
-        if(keycode ==KeyEvent.KEYCODE_BACK) {
+        if (keycode == KeyEvent.KEYCODE_BACK) {
             registerDialog.callDialog();
             return true;
         }

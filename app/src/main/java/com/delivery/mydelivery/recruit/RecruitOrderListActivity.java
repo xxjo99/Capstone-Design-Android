@@ -18,6 +18,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.delivery.mydelivery.R;
 import com.delivery.mydelivery.menu.MenuListActivity;
+import com.delivery.mydelivery.payment.PaymentActivity;
 import com.delivery.mydelivery.retrofit.RetrofitService;
 import com.delivery.mydelivery.store.StoreApi;
 import com.delivery.mydelivery.store.StoreVO;
@@ -108,6 +109,7 @@ public class RecruitOrderListActivity extends AppCompatActivity {
             storeMoveIntent.putExtra("recruitId", recruitId);
             startActivity(storeMoveIntent);
         });
+
     }
 
     // 매장이름추가

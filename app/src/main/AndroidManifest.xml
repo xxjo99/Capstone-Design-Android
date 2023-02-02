@@ -58,6 +58,9 @@
         <activity android:name=".recruit.RecruitActivity" />
         <activity android:name=".recruit.RecruitOrderListActivity" />
 
+        <!-- payment -->
+        <activity android:name=".payment.PaymentActivity"/>
+
     </application>
 
 </manifest>

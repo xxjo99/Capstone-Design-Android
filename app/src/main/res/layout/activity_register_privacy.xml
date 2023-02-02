@@ -77,13 +77,13 @@
     </LinearLayout>
 
     <LinearLayout
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="20dp"
         android:orientation="vertical">
 
         <TextView
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:fontFamily="@font/bmjua_font"
             android:text="@string/school"
@@ -91,14 +91,17 @@
             android:textSize="20sp" />
 
         <!-- 학교 입력 -->
-        <EditText
-            android:id="@+id/schoolET"
-            android:layout_width="380dp"
-            android:layout_height="wrap_content"
+        <AutoCompleteTextView
+            android:id="@+id/schoolAutoCompleteTV"
+            android:layout_width="match_parent"
+            android:layout_height="45dp"
             android:layout_marginTop="10dp"
             android:background="@drawable/edit_text_border_basic"
+            android:completionThreshold="1"
             android:fontFamily="@font/bmjua_font"
-            android:hint="학교를 입력해주세요"
+            android:gravity="center_vertical"
+            android:hint="학교를 입력하세요!"
+            android:inputType="text"
             android:padding="13dp"
             android:textSize="18sp" />
 

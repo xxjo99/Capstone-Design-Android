@@ -111,7 +111,7 @@
                         android:background="@color/white"
                         android:fontFamily="@font/bmjua_font"
                         android:stateListAnimator="@null"
-                        android:text="메뉴 추가하기" />
+                        android:text="@string/addMenu" />
 
                     <View
                         android:layout_width="match_parent"

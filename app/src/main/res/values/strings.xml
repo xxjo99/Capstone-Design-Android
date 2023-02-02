@@ -31,6 +31,8 @@
     <string name="confirm">확인</string>
     <string name="cancel">취소</string>
     <string name="quit">나가기</string>
+    <string name="findPw">비밀번호 찾기</string>
+    <string name="division">|</string>
 
     <string name="home">홈</string>
     <string name="find">검색</string>
@@ -69,7 +71,7 @@
     <string name="option">옵션</string>
     <string name="optionPrice">옵션가격</string>
     <string name="amount">수량</string>
-    <string name="addMenu">장바구니에 담기</string>
+    <string name="addCart">장바구니에 담기</string>
 
     <string name="totalPrice">총 주문금액</string>
     <string name="upload">글 등록하기</string>
@@ -82,6 +84,7 @@
     <string name="deliveryTime">배달시간</string>
     <string name="recruitPerson">모집인원</string>
     <string name="place">장소</string>
+    <string name="addMenu">메뉴 추가하기</string>
 
     <string name="recruitInfo">모집안내</string>
     <string name="member">파티원</string>
