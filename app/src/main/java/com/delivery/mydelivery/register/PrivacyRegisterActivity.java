@@ -8,10 +8,12 @@ import android.widget.ArrayAdapter;
 import android.widget.AutoCompleteTextView;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageButton;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
 
 import com.delivery.mydelivery.MainActivity;
 import com.delivery.mydelivery.R;
@@ -20,6 +22,7 @@ import com.delivery.mydelivery.user.UserApi;
 import com.delivery.mydelivery.user.UserVO;
 
 import java.util.List;
+import java.util.Objects;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -28,20 +31,26 @@ import retrofit2.Response;
 // 개인정보 등록 액티비티
 public class PrivacyRegisterActivity extends AppCompatActivity {
 
+    // 회원가입 종료 dialog
+    RegisterDialog registerDialog;
+
+    // 툴바, 툴바 버튼
+    Toolbar toolbar;
+    ImageButton closeBtn;
+
     EditText nameET;
     EditText phoneNumET;
     Button registerBtn;
     AutoCompleteTextView schoolAutoCompleteTV;
 
-    private List<String> schoolList; // 학교 리스트
-
-    RegisterDialog registerDialog; // dialog
-
-    UserVO userVO; // 데이터를 담을 객체
-
+    // 레트로핏, api
     RetrofitService retrofitService;
     UserApi userApi;
     RegisterApi registerApi;
+
+    private List<String> schoolList; // 학교 리스트
+
+    UserVO userVO; // 데이터를 담을 객체
 
     Context context;
 
@@ -52,6 +61,15 @@ public class PrivacyRegisterActivity extends AppCompatActivity {
 
         // dialog
         registerDialog = new RegisterDialog(this);
+
+        // 툴바
+        toolbar = findViewById(R.id.registerToolbar);
+        setSupportActionBar(toolbar);
+        Objects.requireNonNull(getSupportActionBar()).setDisplayShowTitleEnabled(false);
+
+        // 회원가입 종료 버튼
+        closeBtn = findViewById(R.id.closeBtn);
+        closeBtn.setOnClickListener(view -> registerDialog.callDialog());
 
         // 초기화
         nameET = findViewById(R.id.nameET);
@@ -74,7 +92,7 @@ public class PrivacyRegisterActivity extends AppCompatActivity {
 //                register(name, phoneNum, school);
 //            }
 
-            // 삭제할거
+            // 삭제할거 ******************
             Intent intent = new Intent(PrivacyRegisterActivity.this, CompleteActivity.class);
             startActivity(intent);
             finish();
@@ -100,7 +118,7 @@ public class PrivacyRegisterActivity extends AppCompatActivity {
                 });
     }
 
-    // 회원가입 api 호출
+    // 회원가입
     private void register(String name, String phoneNum, String school) {
         userVO = (UserVO) getIntent().getSerializableExtra("userVO"); // 이전 액티비티에서 넘어온 데이터들을 생성한 객체에 저장
 

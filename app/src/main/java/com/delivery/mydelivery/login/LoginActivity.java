@@ -1,15 +1,18 @@
 package com.delivery.mydelivery.login;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageButton;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
 
 import com.delivery.mydelivery.MainActivity;
 import com.delivery.mydelivery.R;
@@ -21,12 +24,18 @@ import com.delivery.mydelivery.retrofit.RetrofitService;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 
+import java.util.Objects;
+
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
 // 로그인 액티비티
 public class LoginActivity extends AppCompatActivity {
+
+    // 툴바, 툴바 버튼
+    Toolbar toolbar;
+    ImageButton backBtn;
 
     EditText emailET;
     EditText pwET;
@@ -47,6 +56,15 @@ public class LoginActivity extends AppCompatActivity {
         setContentView(R.layout.activity_login_login);
 
         context = this; // context 지정
+
+        // 툴바
+        toolbar = findViewById(R.id.loginToolbar);
+        setSupportActionBar(toolbar);
+        Objects.requireNonNull(getSupportActionBar()).setDisplayShowTitleEnabled(false);
+
+        // 뒤로가기 버튼
+        backBtn = findViewById(R.id.backBtn);
+        backBtn.setOnClickListener(view -> finish());
 
         // 초기화
         emailET = findViewById(R.id.emailET);

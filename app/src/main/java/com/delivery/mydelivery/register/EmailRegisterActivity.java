@@ -9,15 +9,18 @@ import android.view.KeyEvent;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageButton;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
 
 import com.delivery.mydelivery.R;
 import com.delivery.mydelivery.retrofit.RetrofitService;
 import com.delivery.mydelivery.user.UserVO;
 
+import java.util.Objects;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -25,8 +28,15 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-// 이메일 등록 액티비티
+// 이메일 입력 액티비티
 public class EmailRegisterActivity extends AppCompatActivity {
+
+    // 회원가입 종료 dialog
+    RegisterDialog registerDialog;
+
+    // 툴바, 툴바 버튼
+    Toolbar toolbar;
+    ImageButton closeBtn;
 
     EditText emailET;
     Button duplicationCkBtn;
@@ -40,24 +50,31 @@ public class EmailRegisterActivity extends AppCompatActivity {
 
     Boolean regExFlag = false; // 정규식 검사 성공 여부
 
-    // 종료 확인 dialog
-    RegisterDialog registerDialog;
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_register_email);
 
-        emailRegExCk(); // 실시간 이메일 정규식 검사 메소드
+        // dialog
+        registerDialog = new RegisterDialog(this);
 
+        // 툴바
+        toolbar = findViewById(R.id.registerToolbar);
+        setSupportActionBar(toolbar);
+        Objects.requireNonNull(getSupportActionBar()).setDisplayShowTitleEnabled(false);
+
+        // 회원가입 종료 버튼
+        closeBtn = findViewById(R.id.closeBtn);
+        closeBtn.setOnClickListener(view -> registerDialog.callDialog());
+
+        // 초기화
         emailET = findViewById(R.id.emailET);
         duplicationCkBtn = findViewById(R.id.duplicationCkBtn);
         nextBtn = findViewById(R.id.nextBtn);
 
-        // dialog
-        registerDialog = new RegisterDialog(this);
+        emailRegExCk(); // 실시간 이메일 정규식 검사
 
-        // 중복검사 이벤트
+        // 중복검사
         duplicationCkBtn.setOnClickListener(view -> {
             String email = emailET.getText().toString();
 
@@ -67,12 +84,12 @@ public class EmailRegisterActivity extends AppCompatActivity {
             } else if (!regExFlag) { // 정규식 검사 실패
                 Toast.makeText(EmailRegisterActivity.this, "이메일을 올바르게 입력해주세요", Toast.LENGTH_SHORT).show();
                 nextBtn.setVisibility(View.INVISIBLE);
-            } else { // 검사 성공
+            } else { // 정규식 통과
                 callDuplicateCkApi(email); // 중복검사 api 호출
             }
         });
 
-        // 다음 액티비티로 이동 이벤트
+        // 다음 액티비티로 이동
         nextBtn.setOnClickListener(view -> {
             String email = emailET.getText().toString();
 
@@ -80,7 +97,6 @@ public class EmailRegisterActivity extends AppCompatActivity {
             userVO = new UserVO();
             userVO.setEmail(email);
 
-            // 다음 액티비티로 이동
             Intent intent = new Intent(EmailRegisterActivity.this, AuthRegisterActivity.class);
             intent.putExtra("userVO", userVO);
             startActivity(intent);
@@ -89,7 +105,7 @@ public class EmailRegisterActivity extends AppCompatActivity {
 
     }
 
-    // 실시간 이메일 정규식 검사 메소드
+    // 실시간 이메일 정규식 검사
     private void emailRegExCk() {
         emailET = findViewById(R.id.emailET);
 
@@ -128,7 +144,7 @@ public class EmailRegisterActivity extends AppCompatActivity {
         return matcher.find();
     }
 
-    // 중복검사 api 호출
+    // 중복검사
     private void callDuplicateCkApi(String email) {
         retrofitService = new RetrofitService();
         api = retrofitService.getRetrofit().create(RegisterApi.class);
@@ -160,7 +176,7 @@ public class EmailRegisterActivity extends AppCompatActivity {
     @Override
     public boolean onKeyDown(int keycode, KeyEvent event) {
 
-        if(keycode ==KeyEvent.KEYCODE_BACK) {
+        if (keycode == KeyEvent.KEYCODE_BACK) {
             registerDialog.callDialog();
             return true;
         }

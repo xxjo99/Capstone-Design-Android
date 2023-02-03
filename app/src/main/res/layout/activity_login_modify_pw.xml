@@ -1,48 +1,32 @@
-<?xml version="1.0" encoding="utf-8"?> <!-- 비밀번호 입력 -->
+<?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
-    tools:context=".register.PasswordRegisterActivity">
+    android:orientation="vertical">
 
     <androidx.appcompat.widget.Toolbar
-        android:id="@+id/registerToolbar"
+        android:id="@+id/modifyPwToolbar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@color/white"
         app:contentInsetStart="0dp">
 
         <ImageButton
-            android:id="@+id/closeBtn"
+            android:id="@+id/backBtn"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_gravity="right"
-            android:layout_marginEnd="20dp"
-            android:background="@color/white"
-            android:src="@drawable/close"
-            tools:ignore="RtlHardcoded" />
+            android:backgroundTint="@color/white"
+            android:src="@drawable/back" />
 
     </androidx.appcompat.widget.Toolbar>
 
+    <!-- 비밀번호 -->
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="wrap_content"
         android:orientation="vertical">
 
-        <TextView
-            android:id="@+id/password_text"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="0dp"
-            android:layout_marginTop="35dp"
-            android:fontFamily="@font/bmjua_font"
-            android:text="@string/pwInput"
-            android:textColor="@color/black"
-            android:textSize="20sp" />
-
-        <!-- 비밀번호 EditText -->
         <com.google.android.material.textfield.TextInputLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -63,7 +47,6 @@
 
         </com.google.android.material.textfield.TextInputLayout>
 
-        <!-- 비밀번호 확인 EditText -->
         <com.google.android.material.textfield.TextInputLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -84,23 +67,24 @@
 
         </com.google.android.material.textfield.TextInputLayout>
 
-        <!-- 다음 액티비티 이동 Button -->
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:layout_weight="1"
-            android:gravity="bottom">
+    </LinearLayout>
 
-            <Button
-                android:id="@+id/nextBtn"
-                android:layout_width="380dp"
-                android:layout_height="55dp"
-                android:fontFamily="@font/bmjua_font"
-                android:text="@string/next2"
-                android:visibility="visible" />
+    <!-- 수정 버튼-->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:gravity="bottom|center">
 
-        </LinearLayout>
+        <Button
+            android:id="@+id/modifyBtn"
+            android:layout_width="380dp"
+            android:layout_height="55dp"
+            android:fontFamily="@font/bmjua_font"
+            android:text="@string/modifyPw"
+            android:visibility="visible" />
 
     </LinearLayout>
+
 
 </LinearLayout>

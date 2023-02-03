@@ -40,6 +40,7 @@
 
         <!-- login -->
         <activity android:name=".login.LoginActivity" />
+        <activity android:name=".login.FindPwActivity" />
 
         <!-- home -->
         <activity android:name=".home.HomeActivity" />
