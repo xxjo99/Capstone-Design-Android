@@ -19,10 +19,6 @@ public interface RegisterApi {
     @GET("/register/sendAuthNum/{email}")
     Call<String> sendAuthNum(@Path("email") String email);
 
-    // 인증번호 전송 - 비밀번호 찾기
-    @GET("findPw/{email}")
-    Call<String> sendAuthNumFind(@Path("email") String email);
-
     // 회원가입
     @POST("/register")
     Call<UserVO> register(@Body UserVO user);

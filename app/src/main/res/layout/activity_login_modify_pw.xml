@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical">
@@ -13,11 +14,14 @@
         app:contentInsetStart="0dp">
 
         <ImageButton
-            android:id="@+id/backBtn"
+            android:id="@+id/closeBtn"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:backgroundTint="@color/white"
-            android:src="@drawable/back" />
+            android:layout_gravity="right"
+            android:layout_marginEnd="20dp"
+            android:background="@color/white"
+            android:src="@drawable/close"
+            tools:ignore="RtlHardcoded" />
 
     </androidx.appcompat.widget.Toolbar>
 
@@ -77,9 +81,10 @@
         android:gravity="bottom|center">
 
         <Button
-            android:id="@+id/modifyBtn"
+            android:id="@+id/modifyPwBtn"
             android:layout_width="380dp"
             android:layout_height="55dp"
+            android:enabled="false"
             android:fontFamily="@font/bmjua_font"
             android:text="@string/modifyPw"
             android:visibility="visible" />

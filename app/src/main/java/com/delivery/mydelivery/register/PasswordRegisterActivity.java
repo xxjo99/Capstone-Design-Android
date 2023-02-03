@@ -54,6 +54,7 @@ public class PasswordRegisterActivity extends AppCompatActivity {
         closeBtn = findViewById(R.id.closeBtn);
         closeBtn.setOnClickListener(view -> registerDialog.callDialog());
 
+        // 초기화
         pwET = findViewById(R.id.pwET);
         nextBtn = findViewById(R.id.nextBtn);
 
@@ -77,9 +78,6 @@ public class PasswordRegisterActivity extends AppCompatActivity {
 
     // 실시간 비밀번호 정규식 검사 메소드
     private void pwRegExCk() {
-        pwET = findViewById(R.id.pwET);
-        pwCkET = findViewById(R.id.pwCkET);
-
         pwET.addTextChangedListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
@@ -129,11 +127,6 @@ public class PasswordRegisterActivity extends AppCompatActivity {
 
     // 실시간 비밀번호 확인 일치 검사
     private void pwMatchingCk() {
-        pwET = findViewById(R.id.pwET);
-        pwCkET = findViewById(R.id.pwCkET);
-
-        nextBtn = findViewById(R.id.nextBtn);
-
         pwCkET.addTextChangedListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {

@@ -15,6 +15,7 @@ import androidx.appcompat.widget.Toolbar;
 import com.delivery.mydelivery.R;
 import com.delivery.mydelivery.register.RegisterApi;
 import com.delivery.mydelivery.retrofit.RetrofitService;
+import com.delivery.mydelivery.user.UserApi;
 
 import java.util.Objects;
 
@@ -39,6 +40,7 @@ public class FindPwActivity extends AppCompatActivity {
     // 레트로핏, api
     RetrofitService retrofitService;
     RegisterApi registerApi;
+    UserApi userApi;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -79,6 +81,7 @@ public class FindPwActivity extends AppCompatActivity {
 
             if (authNum.equals(sentAuthNum)) { // 입력한 인증번호와 전송된 인증번호가 같을경우
                 Toast.makeText(this, "인증에 성공했습니다.", Toast.LENGTH_SHORT).show();
+                authNumET.setEnabled(false);
                 modifyPwBtn.setVisibility(View.VISIBLE);
             } else {
                 Toast.makeText(this, "인증번호를 확인해주세요", Toast.LENGTH_SHORT).show();
@@ -89,16 +92,18 @@ public class FindPwActivity extends AppCompatActivity {
         // 비밀번호 수정 이동
         modifyPwBtn.setOnClickListener(view -> {
             Intent intent = new Intent(FindPwActivity.this, ModifyPwActivity.class);
+            intent.putExtra("email", emailET.getText().toString());
             startActivity(intent);
             finish();
         });
 
-
     }
 
+    // 인증번호 전송
     private void sendAuthNum(String email) {
         retrofitService = new RetrofitService();
         registerApi = retrofitService.getRetrofit().create(RegisterApi.class);
+        userApi = retrofitService.getRetrofit().create(UserApi.class);
 
         // 등록된 이메일인지 확인
         registerApi.duplicateEmailCk(email)
@@ -111,7 +116,7 @@ public class FindPwActivity extends AppCompatActivity {
                             Toast.makeText(FindPwActivity.this, "이메일 주소를 확인해주세요.", Toast.LENGTH_SHORT).show();
                         } else { // 등록된 이메일이 있을경우 입력한 이메일로 인증번호 전송
 
-                            registerApi.sendAuthNumFind(email)
+                            userApi.sendAuthNum(email)
                                     .enqueue(new Callback<String>() {
                                         @Override
                                         public void onResponse(@NonNull Call<String> call, @NonNull Response<String> response) {

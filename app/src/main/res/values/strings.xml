@@ -34,6 +34,7 @@
     <string name="findPw">비밀번호 찾기</string>
     <string name="division">|</string>
     <string name="modifyPw">비밀번호 재설정</string>
+    <string name="finish">완료</string>
 
     <string name="home">홈</string>
     <string name="find">검색</string>

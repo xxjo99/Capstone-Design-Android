@@ -41,6 +41,7 @@
         <!-- login -->
         <activity android:name=".login.LoginActivity" />
         <activity android:name=".login.FindPwActivity" />
+        <activity android:name=".login.ModifyPwActivity" />
 
         <!-- home -->
         <activity android:name=".home.HomeActivity" />
@@ -60,7 +61,7 @@
         <activity android:name=".recruit.RecruitOrderListActivity" />
 
         <!-- payment -->
-        <activity android:name=".payment.PaymentActivity"/>
+        <activity android:name=".payment.PaymentActivity" />
 
     </application>
 
