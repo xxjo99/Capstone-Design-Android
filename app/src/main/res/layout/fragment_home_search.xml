@@ -1,14 +1,47 @@
 <?xml version="1.0" encoding="utf-8"?> <!-- 내가 올린 모집글 -->
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
     tools:context=".home.SearchFragment">
 
-    <TextView
-        android:layout_width="wrap_content"
+    <!-- 검색 -->
+    <LinearLayout
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="@string/find" />
+        android:orientation="horizontal">
+
+        <EditText
+            android:id="@+id/searchET"
+            android:layout_width="350dp"
+            android:layout_height="45dp"
+            android:layout_marginEnd="10dp"
+            android:imeOptions="actionSearch"
+            android:inputType="text" />
+
+    </LinearLayout>
+
+    <!-- 검색결과 -->
+    <LinearLayout
+        android:id="@+id/searchResultLayout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:visibility="gone">
+
+        <com.google.android.material.tabs.TabLayout
+            android:id="@+id/searchTabLayout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:tabIndicatorColor="@color/black" />
+
+        <androidx.viewpager2.widget.ViewPager2
+            android:id="@+id/searchResultViewPager"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
+
+    </LinearLayout>
 
 </LinearLayout>

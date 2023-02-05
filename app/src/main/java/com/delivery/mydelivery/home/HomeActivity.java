@@ -5,11 +5,13 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
+import androidx.fragment.app.FragmentTransaction;
 
 import com.delivery.mydelivery.R;
 import com.delivery.mydelivery.order.OrderListActivity;
@@ -71,26 +73,33 @@ public class HomeActivity extends AppCompatActivity {
             switch (item.getItemId()) {
                 case R.id.menu_home_home: // 카테고리 이동
                     getSupportFragmentManager().beginTransaction().replace(R.id.homeFragmentFrame, homeFragment).commit();
+                    toolbar.setVisibility(View.VISIBLE);
                     infoTV.setText(school);
                     return true;
 
                 case R.id.menu_home_post: // 모집글 리스트 이동
                     getSupportFragmentManager().beginTransaction().replace(R.id.homeFragmentFrame, recruitListFragment).commit();
+                    toolbar.setVisibility(View.VISIBLE);
                     infoTV.setText(school);
                     return true;
 
                 case R.id.menu_home_myPost: // 나의 모집 / 등록글 이동
                     getSupportFragmentManager().beginTransaction().replace(R.id.homeFragmentFrame, myPostFragment).commit();
+                    toolbar.setVisibility(View.VISIBLE);
                     infoTV.setText(school);
                     return true;
 
                 case R.id.menu_home_search: // 검색 이동
-                    getSupportFragmentManager().beginTransaction().replace(R.id.homeFragmentFrame, searchFragment).commit();
-                    infoTV.setText("검색");
+                    FragmentTransaction fT = getSupportFragmentManager().beginTransaction();
+                    fT.replace(R.id.homeFragmentFrame, searchFragment);
+                    fT.addToBackStack(null);
+                    fT.commit();
+                    toolbar.setVisibility(View.GONE);
                     return true;
 
                 case R.id.menu_home_myInfo: // 내 정보 이동
                     getSupportFragmentManager().beginTransaction().replace(R.id.homeFragmentFrame, myInfoFragment).commit();
+                    toolbar.setVisibility(View.VISIBLE);
                     infoTV.setText("내정보");
                     return true;
             }

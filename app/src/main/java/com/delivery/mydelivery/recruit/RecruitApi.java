@@ -1,7 +1,5 @@
 package com.delivery.mydelivery.recruit;
 
-import com.delivery.mydelivery.order.OrderVO;
-
 import java.util.List;
 
 import retrofit2.Call;
@@ -65,4 +63,8 @@ public interface RecruitApi {
     // 장바구니에 메뉴 추가
     @POST("/recruit/save")
     Call<ParticipantOrderVO> addMenu(@Body ParticipantOrderVO order);
+
+    // 모집글 검색
+    @GET("/recruit/search/{keyword}/{deliveryAvailablePlace}")
+    Call<List<RecruitVO>> searchRecruit(@Path("keyword") String keyword, @Path("deliveryAvailablePlace") String deliveryAvailablePlace);
 }
