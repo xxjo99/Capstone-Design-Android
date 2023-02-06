@@ -1,100 +1,127 @@
 <?xml version="1.0" encoding="utf-8"?> <!-- 이메일 인증 -->
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:padding="25dp"
     tools:context=".register.AuthRegisterActivity">
 
-    <TextView
-        android:layout_width="wrap_content"
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/registerToolbar"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="15dp"
-        android:fontFamily="@font/bmjua_font"
-        android:text="@string/joinInput"
-        android:textColor="@color/black"
-        android:textSize="20sp" />
+        android:background="@color/white"
+        app:contentInsetStart="0dp">
+
+        <ImageButton
+            android:id="@+id/closeBtn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="right"
+            android:layout_marginEnd="20dp"
+            android:background="@color/white"
+            android:src="@drawable/close"
+            tools:ignore="RtlHardcoded" />
+
+    </androidx.appcompat.widget.Toolbar>
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:orientation="horizontal">
+        android:layout_height="match_parent"
+        android:orientation="vertical">
 
-        <!-- 이메일 TextView -->
         <TextView
-            android:id="@+id/emailTV"
-            android:layout_width="0dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="15dp"
+            android:fontFamily="@font/bmjua_font"
+            android:text="@string/joinInput"
+            android:textColor="@color/black"
+            android:textSize="20sp" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
-            android:layout_weight="2"
-            android:background="@drawable/edit_text_border_basic"
-            android:enabled="false"
-            android:fontFamily="@font/bmjua_font"
-            android:hint="@string/loginemailInput"
-            android:inputType="textEmailAddress"
-            android:padding="13dp"
-            android:textSize="18sp" />
+            android:orientation="horizontal">
 
-        <!-- 인증번호 전송 Button -->
-        <Button
-            android:id="@+id/sendAuthNumBtn"
-            android:layout_width="100dp"
-            android:layout_height="55dp"
-            android:layout_marginStart="10dp"
-            android:enabled="true"
-            android:fontFamily="@font/bmjua_font"
-            android:text="@string/sendAuthNum" />
+            <!-- 이메일 TextView -->
+            <TextView
+                android:id="@+id/emailTV"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_weight="2"
+                android:background="@drawable/edit_text_border_basic"
+                android:enabled="false"
+                android:fontFamily="@font/bmjua_font"
+                android:hint="@string/loginemailInput"
+                android:inputType="textEmailAddress"
+                android:padding="13dp"
+                android:textSize="18sp" />
 
-    </LinearLayout>
+            <!-- 인증번호 전송 Button -->
+            <Button
+                android:id="@+id/sendAuthNumBtn"
+                android:layout_width="100dp"
+                android:layout_height="55dp"
+                android:layout_marginStart="10dp"
+                android:enabled="true"
+                android:fontFamily="@font/bmjua_font"
+                android:text="@string/sendAuthNum" />
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:orientation="horizontal">
+        </LinearLayout>
 
-        <!-- 인증번호 EditText -->
-        <EditText
-            android:id="@+id/authNumET"
-            android:layout_width="0dp"
+        <LinearLayout
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
-            android:layout_weight="2"
-            android:background="@drawable/edit_text_border_basic"
-            android:enabled="false"
-            android:fontFamily="@font/bmjua_font"
-            android:hint="@string/authNumInput"
-            android:inputType="phone"
-            android:padding="13dp" />
+            android:orientation="horizontal">
 
-        <!-- 인증번호 검사 Button -->
-        <Button
-            android:id="@+id/checkAuthNumBtn"
-            android:layout_width="100dp"
-            android:layout_height="55dp"
-            android:layout_marginStart="10dp"
-            android:enabled="false"
-            android:text="@string/confirm" />
+            <!-- 인증번호 EditText -->
+            <EditText
+                android:id="@+id/authNumET"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_weight="2"
+                android:background="@drawable/edit_text_border_basic"
+                android:enabled="false"
+                android:fontFamily="@font/bmjua_font"
+                android:hint="@string/authNumInput"
+                android:inputType="phone"
+                android:padding="13dp" />
+
+            <!-- 인증번호 검사 Button -->
+            <Button
+                android:id="@+id/checkAuthNumBtn"
+                android:layout_width="100dp"
+                android:layout_height="55dp"
+                android:layout_marginStart="10dp"
+                android:enabled="false"
+                android:text="@string/confirm" />
+
+        </LinearLayout>
+
+        <!-- 다음 액티비티 이동 -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:gravity="bottom">
+
+            <Button
+                android:id="@+id/nextBtn"
+                android:layout_width="380dp"
+                android:layout_height="55dp"
+                android:fontFamily="@font/bmjua_font"
+                android:text="@string/next"
+                android:visibility="visible" />
+
+        </LinearLayout>
 
     </LinearLayout>
 
-    <!-- 다음 액티비티 이동 Button -->
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="1"
-        android:gravity="bottom">
-
-        <Button
-            android:id="@+id/nextBtn"
-            android:layout_width="380dp"
-            android:layout_height="55dp"
-            android:fontFamily="@font/bmjua_font"
-            android:text="@string/next"
-            android:visibility="visible" />
-
-    </LinearLayout>
 
 </LinearLayout>

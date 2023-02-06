@@ -4,57 +4,113 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:layout_margin="15dp"
-    android:gravity="center"
     android:orientation="vertical"
     tools:context=".login.LoginActivity">
 
-    <!-- 아이디 EditText  -->
-    <com.google.android.material.textfield.TextInputLayout
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/loginToolbar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:gravity="center"
-        app:passwordToggleEnabled="false">
+        android:background="@color/white"
+        app:contentInsetStart="0dp">
 
-        <EditText
-            android:id="@+id/emailET"
-            android:layout_width="350dp"
+        <ImageButton
+            android:id="@+id/backBtn"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:fontFamily="@font/bmjua_font"
-            android:hint="@string/loginemailInput" />
+            android:backgroundTint="@color/white"
+            android:src="@drawable/back" />
 
-    </com.google.android.material.textfield.TextInputLayout>
+    </androidx.appcompat.widget.Toolbar>
 
-    <!-- 비밀번호 EditText -->
-    <com.google.android.material.textfield.TextInputLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:gravity="center"
-        app:passwordToggleEnabled="true">
-
-        <EditText
-            android:id="@+id/pwET"
-            android:layout_width="350dp"
-            android:layout_height="wrap_content"
-            android:fontFamily="@font/bmjua_font"
-            android:hint="@string/loginpwInput"
-            android:inputType="textPassword" />
-
-    </com.google.android.material.textfield.TextInputLayout>
-
-    <!-- 로그인 Button -->
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:gravity="center">
+        android:layout_height="match_parent"
+        android:gravity="center"
+        android:orientation="vertical">
 
-        <Button
-            android:id="@+id/loginBtn"
-            android:layout_width="350dp"
-            android:layout_height="55dp"
+        <!-- 이메일 EditText  -->
+        <com.google.android.material.textfield.TextInputLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            app:passwordToggleEnabled="false">
+
+            <EditText
+                android:id="@+id/emailET"
+                android:layout_width="350dp"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/bmjua_font"
+                android:hint="@string/loginemailInput" />
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <!-- 비밀번호 EditText -->
+        <com.google.android.material.textfield.TextInputLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            app:passwordToggleEnabled="true">
+
+            <EditText
+                android:id="@+id/pwET"
+                android:layout_width="350dp"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/bmjua_font"
+                android:hint="@string/loginpwInput"
+                android:inputType="textPassword" />
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <!-- 로그인 Button -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
             android:layout_marginTop="10dp"
-            android:fontFamily="@font/bmjua_font"
-            android:text="@string/login" />
+            android:layout_marginBottom="10dp"
+            android:gravity="center">
+
+            <Button
+                android:id="@+id/loginBtn"
+                android:layout_width="350dp"
+                android:layout_height="55dp"
+                android:fontFamily="@font/bmjua_font"
+                android:text="@string/login" />
+
+        </LinearLayout>
+
+        <!-- 회원가입, 비밀번호 찾기 -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center">
+
+            <TextView
+                android:id="@+id/registerTV"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/bmjua_font"
+                android:text="@string/register"
+                android:textSize="12sp" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"
+                android:text="@string/division"
+                android:textColor="@color/gray"
+                android:textSize="12sp" />
+
+            <TextView
+                android:id="@+id/findPwTV"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/bmjua_font"
+                android:text="@string/findPw"
+                android:textSize="12sp" />
+
+        </LinearLayout>
 
     </LinearLayout>
 

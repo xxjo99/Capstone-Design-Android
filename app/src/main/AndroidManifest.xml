@@ -36,10 +36,12 @@
         <activity android:name=".register.AuthRegisterActivity" />
         <activity android:name=".register.PasswordRegisterActivity" />
         <activity android:name=".register.PrivacyRegisterActivity" />
-        <activity android:name=".register.CompleteActivity"/>
+        <activity android:name=".register.CompleteActivity" />
 
         <!-- login -->
         <activity android:name=".login.LoginActivity" />
+        <activity android:name=".login.FindPwActivity" />
+        <activity android:name=".login.ModifyPwActivity" />
 
         <!-- home -->
         <activity android:name=".home.HomeActivity" />
@@ -49,13 +51,17 @@
 
         <!-- menu -->
         <activity android:name=".menu.MenuListActivity" />
-        <activity android:name=".menu.OptionActivity"/>
+        <activity android:name=".menu.OptionActivity" />
 
         <!-- order -->
         <activity android:name=".order.OrderListActivity" />
 
         <!-- recruit -->
         <activity android:name=".recruit.RecruitActivity" />
+        <activity android:name=".recruit.RecruitOrderListActivity" />
+
+        <!-- payment -->
+        <activity android:name=".payment.PaymentActivity" />
 
     </application>
 

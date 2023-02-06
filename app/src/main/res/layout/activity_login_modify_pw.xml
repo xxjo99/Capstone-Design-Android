@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/modifyPwToolbar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/white"
+        app:contentInsetStart="0dp">
+
+        <ImageButton
+            android:id="@+id/closeBtn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="right"
+            android:layout_marginEnd="20dp"
+            android:background="@color/white"
+            android:src="@drawable/close"
+            tools:ignore="RtlHardcoded" />
+
+    </androidx.appcompat.widget.Toolbar>
+
+    <!-- 비밀번호 -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:gravity="center"
+            app:passwordToggleEnabled="true">
+
+            <EditText
+                android:id="@+id/pwET"
+                android:layout_width="380dp"
+                android:layout_height="wrap_content"
+                android:background="@drawable/edit_text_border_basic"
+                android:fontFamily="@font/bmjua_font"
+                android:hint="@string/pwReg"
+                android:inputType="textPassword"
+                android:padding="20dp"
+                android:textSize="18sp" />
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:gravity="center"
+            app:passwordToggleEnabled="true">
+
+            <EditText
+                android:id="@+id/pwCkET"
+                android:layout_width="380dp"
+                android:layout_height="wrap_content"
+                android:background="@drawable/edit_text_border_basic"
+                android:fontFamily="@font/bmjua_font"
+                android:hint="@string/pwCkInput"
+                android:inputType="textPassword"
+                android:padding="20dp"
+                android:textSize="18sp" />
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+    </LinearLayout>
+
+    <!-- 수정 버튼-->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:gravity="bottom|center">
+
+        <Button
+            android:id="@+id/modifyPwBtn"
+            android:layout_width="380dp"
+            android:layout_height="55dp"
+            android:enabled="false"
+            android:fontFamily="@font/bmjua_font"
+            android:text="@string/modifyPw"
+            android:visibility="visible" />
+
+    </LinearLayout>
+
+
+</LinearLayout>

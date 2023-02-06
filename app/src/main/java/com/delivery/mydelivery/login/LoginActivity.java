@@ -1,23 +1,30 @@
 package com.delivery.mydelivery.login;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageButton;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
 
 import com.delivery.mydelivery.MainActivity;
 import com.delivery.mydelivery.R;
 import com.delivery.mydelivery.home.HomeActivity;
 import com.delivery.mydelivery.preferenceManager.PreferenceManager;
+import com.delivery.mydelivery.register.EmailRegisterActivity;
 import com.delivery.mydelivery.user.UserVO;
 import com.delivery.mydelivery.retrofit.RetrofitService;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
+
+import java.util.Objects;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -26,9 +33,16 @@ import retrofit2.Response;
 // 로그인 액티비티
 public class LoginActivity extends AppCompatActivity {
 
+    // 툴바, 툴바 버튼
+    Toolbar toolbar;
+    ImageButton backBtn;
+
     EditText emailET;
     EditText pwET;
     Button loginBtn;
+
+    TextView registerTV;
+    TextView findPwTV;
 
     RetrofitService retrofitService;
     LoginApi api;
@@ -43,7 +57,16 @@ public class LoginActivity extends AppCompatActivity {
 
         context = this; // context 지정
 
-        // xml 변수 초기화
+        // 툴바
+        toolbar = findViewById(R.id.loginToolbar);
+        setSupportActionBar(toolbar);
+        Objects.requireNonNull(getSupportActionBar()).setDisplayShowTitleEnabled(false);
+
+        // 뒤로가기 버튼
+        backBtn = findViewById(R.id.backBtn);
+        backBtn.setOnClickListener(view -> finish());
+
+        // 초기화
         emailET = findViewById(R.id.emailET);
         pwET = findViewById(R.id.pwET);
         loginBtn = findViewById(R.id.loginBtn);
@@ -63,6 +86,21 @@ public class LoginActivity extends AppCompatActivity {
             } else { // 유효성 검사 통과시 로그인 진행
                 login(email, pw);
             }
+        });
+
+        // 회원가입 이동
+        registerTV = findViewById(R.id.registerTV);
+        registerTV.setOnClickListener(view -> {
+            Intent intent = new Intent(LoginActivity.this, EmailRegisterActivity.class);
+            startActivity(intent);
+            finish();
+        });
+
+        // 비밀번호 찾기 이동
+        findPwTV = findViewById(R.id.findPwTV);
+        findPwTV.setOnClickListener(view -> {
+            Intent intent = new Intent(LoginActivity.this, FindPwActivity.class);
+            startActivity(intent);
         });
     }
 

@@ -164,6 +164,24 @@ public class RecruitListAdapter extends RecyclerView.Adapter<RecruitListAdapter.
                 });
     }
 
+    // 해당 등록글의 현재 참가자수 반환
+    private void getParticipantCount(int recruitId, RecruitListAdapter.ViewHolder holder) {
+        retrofitService = new RetrofitService();
+        recruitApi = retrofitService.getRetrofit().create(RecruitApi.class);
+
+        recruitApi.getParticipantCount(recruitId)
+                .enqueue(new Callback<Integer>() {
+                    @Override
+                    public void onResponse(@NonNull Call<Integer> call, @NonNull Response<Integer> response) {
+                        holder.participantCount = response.body();
+                    }
+
+                    @Override
+                    public void onFailure(@NonNull Call<Integer> call, @NonNull Throwable t) {
+                    }
+                });
+    }
+
     // 해당 참가글에 참가했는지 아닌지 구분, 다이얼로그 열기
     private void checkParticipate(int recruitId, int participantId, RecruitListAdapter.ViewHolder holder, int person, String place, String deliveryTime, int storeId) {
         retrofitService = new RetrofitService();
@@ -192,24 +210,6 @@ public class RecruitListAdapter extends RecyclerView.Adapter<RecruitListAdapter.
 
                     @Override
                     public void onFailure(@NonNull Call<Boolean> call, @NonNull Throwable t) {
-                    }
-                });
-    }
-
-    // 해당 등록글의 현재 참가자수 반환
-    private void getParticipantCount(int recruitId, RecruitListAdapter.ViewHolder holder) {
-        retrofitService = new RetrofitService();
-        recruitApi = retrofitService.getRetrofit().create(RecruitApi.class);
-
-        recruitApi.getParticipantCount(recruitId)
-                .enqueue(new Callback<Integer>() {
-                    @Override
-                    public void onResponse(@NonNull Call<Integer> call, @NonNull Response<Integer> response) {
-                        holder.participantCount = response.body();
-                    }
-
-                    @Override
-                    public void onFailure(@NonNull Call<Integer> call, @NonNull Throwable t) {
                     }
                 });
     }

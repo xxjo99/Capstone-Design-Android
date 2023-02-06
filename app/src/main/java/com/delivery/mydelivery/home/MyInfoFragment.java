@@ -21,10 +21,9 @@ import com.google.gson.Gson;
 // 내정보 프래그먼트
 public class MyInfoFragment extends Fragment {
 
-    TextView jsonTextTV; // json데이터 출력 테스트
-    Button logoutBtn; // 로그아웃 버튼
-
     View view; // 해당 view에 지정한 프래그먼트 추가
+
+    Button logoutBtn; // 로그아웃 버튼
 
     Context context; // context
 
@@ -36,19 +35,9 @@ public class MyInfoFragment extends Fragment {
         assert container != null;
         context = container.getContext(); // context 초기화
 
-        jsonTextTV = view.findViewById(R.id.jsonTextTV);
         logoutBtn = view.findViewById(R.id.logoutBtn);
 
         String loginInfo = PreferenceManager.getLoginInfo(context);
-
-        if (!loginInfo.isEmpty()) {
-            Gson gson = new Gson();
-            UserVO user = gson.fromJson(loginInfo, UserVO.class);
-
-            jsonTextTV.setText(user.getEmail());
-        } else {
-            jsonTextTV.setText(loginInfo);
-        }
 
         // 로그아웃 이벤트
         logoutBtn.setOnClickListener(view -> {

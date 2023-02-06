@@ -14,6 +14,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.delivery.mydelivery.R;
 import com.delivery.mydelivery.menu.MenuApi;
+import com.delivery.mydelivery.menu.MenuVO;
 import com.delivery.mydelivery.retrofit.RetrofitService;
 import com.delivery.mydelivery.store.StoreApi;
 import com.delivery.mydelivery.store.StoreVO;
@@ -71,7 +72,7 @@ public class OrderListAdapter extends RecyclerView.Adapter<OrderListAdapter.View
         holder.menuPriceTV.setText(order.getTotalPrice() + "원"); // 메뉴 총 가격
         holder.amountTV.setText(order.getAmount() + ""); // 메뉴 개수
 
-        // 메뉴 개수 수정 이벤트
+        // 메뉴 개수 수정
         holder.decreaseBtn.setOnClickListener(view -> {
             if (order.getAmount() != 1) {
                 int amount = order.getAmount() - 1;
@@ -102,8 +103,8 @@ public class OrderListAdapter extends RecyclerView.Adapter<OrderListAdapter.View
             OrderListActivity.totalPriceTV.setText(OrderListActivity.totalPrice + "원");
         });
 
+        // 메뉴 삭제
         holder.deleteBtn.setOnClickListener(view -> deleteOrder(order.getOrderId(), order.getTotalPrice(), position));
-
     }
 
     @Override
@@ -162,17 +163,18 @@ public class OrderListAdapter extends RecyclerView.Adapter<OrderListAdapter.View
         retrofitService = new RetrofitService();
         menuApi = retrofitService.getRetrofit().create(MenuApi.class);
 
-        menuApi.getMenuName(menuId)
-                .enqueue(new Callback<String>() {
+        menuApi.getMenu(menuId)
+                .enqueue(new Callback<MenuVO>() {
                     @Override
-                    public void onResponse(@NonNull Call<String> call, @NonNull Response<String> response) {
-                        String menuName = response.body();
-                        holder.menuNameTV.setText(menuName);
+                    public void onResponse(@NonNull Call<MenuVO> call, @NonNull Response<MenuVO> response) {
+                        MenuVO menu = response.body();
+                        assert menu != null;
+                        holder.menuNameTV.setText(menu.getMenuName());
                     }
 
                     @Override
-                    public void onFailure(@NonNull Call<String> call, @NonNull Throwable t) {
-                        System.out.println("call " + call + " T" + t);
+                    public void onFailure(@NonNull Call<MenuVO> call, @NonNull Throwable t) {
+
                     }
                 });
     }
@@ -189,14 +191,17 @@ public class OrderListAdapter extends RecyclerView.Adapter<OrderListAdapter.View
                         List<String> contentNameResult = response.body();
 
                         holder.optionListTV.setText("");
-                        for (int i = 0; i < Objects.requireNonNull(contentNameResult).size(); i++) {
 
-                            if (i == contentNameResult.size() - 1) {
-                                holder.optionListTV.append(contentNameResult.get(i));
-                            } else {
-                                holder.optionListTV.append(contentNameResult.get(i) + ", ");
+                        if (contentNameResult != null) {
+                            for (int i = 0; i < Objects.requireNonNull(contentNameResult).size(); i++) {
+                                if (i == contentNameResult.size() - 1) {
+                                    holder.optionListTV.append(contentNameResult.get(i));
+                                } else {
+                                    holder.optionListTV.append(contentNameResult.get(i) + ", ");
+                                }
                             }
-
+                        } else {
+                            holder.optionListTV.setVisibility(View.GONE);
                         }
                     }
 
@@ -222,7 +227,6 @@ public class OrderListAdapter extends RecyclerView.Adapter<OrderListAdapter.View
 
                     }
                 });
-
     }
 
     // 메뉴 삭제

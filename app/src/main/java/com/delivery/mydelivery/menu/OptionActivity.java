@@ -24,6 +24,8 @@ import com.delivery.mydelivery.R;
 import com.delivery.mydelivery.order.OrderApi;
 import com.delivery.mydelivery.order.OrderVO;
 import com.delivery.mydelivery.preferenceManager.PreferenceManager;
+import com.delivery.mydelivery.recruit.ParticipantOrderVO;
+import com.delivery.mydelivery.recruit.RecruitApi;
 import com.delivery.mydelivery.user.UserVO;
 import com.delivery.mydelivery.retrofit.RetrofitService;
 import com.google.gson.Gson;
@@ -69,6 +71,7 @@ public class OptionActivity extends AppCompatActivity {
     RetrofitService retrofitService;
     MenuApi menuApi;
     OrderApi orderApi;
+    RecruitApi recruitApi;
 
     Context context;
 
@@ -86,6 +89,11 @@ public class OptionActivity extends AppCompatActivity {
         backBtn = findViewById(R.id.backBtn);
         backBtn.setOnClickListener(view -> finish());
 
+        // 사용자 정보
+        String loginInfo = PreferenceManager.getLoginInfo(context);
+        Gson gson = new Gson();
+        UserVO user = gson.fromJson(loginInfo, UserVO.class);
+
         // 전 액티비티에서 넘겨받은 값
         Intent intent = getIntent();
         int storeId = intent.getIntExtra("storeId", 0); // 매장 id
@@ -93,6 +101,8 @@ public class OptionActivity extends AppCompatActivity {
         String menuImage = intent.getStringExtra("menuImageUrl"); // 메뉴 이미지 주소
         String menuName = intent.getStringExtra("menuName"); // 메뉴 이름
         String menuInfo = intent.getStringExtra("menuInfo"); // 메뉴 정보
+        String participantType = intent.getStringExtra("participantType"); // 참가 타입
+        int recruitId = intent.getIntExtra("recruitId", 0); // 모집글 아이디
 
         // xml 변수 초기화
         menuIV = findViewById(R.id.menuIV);
@@ -158,27 +168,41 @@ public class OptionActivity extends AppCompatActivity {
 
         // 장바구니 추가 버튼
         addMenuBtn.setOnClickListener(view -> {
-            OrderVO order = new OrderVO(); // 주문 객체 생성
-
-            // 사용자의 id를 받아옴
-            String loginInfo = PreferenceManager.getLoginInfo(context);
-            Gson gson = new Gson();
-            UserVO user = gson.fromJson(loginInfo, UserVO.class);
+            // 유저 아이디
             int userId = user.getUserId();
 
-            // 객체에 필요한 데이터 추가
-            order.setStoreId(storeId);
-            order.setUserId(userId); // 사용자 아이디
-            order.setMenuId(menuId); // 메뉴id
-            order.setAmount(amount); // 메뉴 개수
-            order.setTotalPrice(menuPrice); // 최종 메뉴 가격
+            // 등록자, 참가자 구분
+            if (participantType.equals("등록자")) {
+                OrderVO order = new OrderVO(); // 객체 생성
 
-            // 선택한 옵션을 텍스트로 변환후 저장
-            String selectOptionStr = String.join(",", selectOptionList);
-            order.setSelectOption(selectOptionStr);
+                // 객체에 필요한 데이터 추가
+                order.setStoreId(storeId);
+                order.setUserId(userId); // 사용자 아이디
+                order.setMenuId(menuId); // 메뉴id
+                order.setAmount(amount); // 메뉴 개수
+                order.setTotalPrice(menuPrice); // 최종 메뉴 가격
 
-            // 장바구니에 다른 매장의 메뉴가 들어있는지 확인후 없다면 장바구니에 메뉴 추가
-            addMenu(userId, storeId, order);
+                // 선택한 옵션을 텍스트로 변환후 저장
+                String selectOptionStr = String.join(",", selectOptionList);
+                order.setSelectOption(selectOptionStr);
+
+                // 장바구니에 다른 매장의 메뉴가 들어있는지 확인후 없다면 장바구니에 메뉴 추가
+                addMenu(userId, storeId, order);
+            } else {
+                ParticipantOrderVO order = new ParticipantOrderVO();
+
+                order.setRecruitId(recruitId);
+                order.setParticipantId(user.getUserId());
+                order.setStoreId(storeId);
+                order.setMenuId(menuId);
+                order.setAmount(amount);
+                order.setTotalPrice(menuPrice);
+
+                String selectOptionStr = String.join(",", selectOptionList);
+                order.setSelectOption(selectOptionStr);
+
+                addMenuInRecruit(order);
+            }
         });
     }
 
@@ -259,6 +283,25 @@ public class OptionActivity extends AppCompatActivity {
 
                     @Override
                     public void onFailure(@NonNull Call<List<OrderVO>> call, @NonNull Throwable t) {
+                    }
+                });
+    }
+
+    // 모집글 장바구니에 추가
+    private void addMenuInRecruit(ParticipantOrderVO order) {
+        retrofitService = new RetrofitService();
+        recruitApi = retrofitService.getRetrofit().create(RecruitApi.class);
+
+        recruitApi.addMenu(order)
+                .enqueue(new Callback<ParticipantOrderVO>() {
+                    @Override
+                    public void onResponse(@NonNull Call<ParticipantOrderVO> call, @NonNull Response<ParticipantOrderVO> response) {
+                        Toast.makeText(OptionActivity.this, "추가완료", Toast.LENGTH_SHORT).show();
+                        finish();
+                    }
+
+                    @Override
+                    public void onFailure(@NonNull Call<ParticipantOrderVO> call, @NonNull Throwable t) {
                     }
                 });
     }
