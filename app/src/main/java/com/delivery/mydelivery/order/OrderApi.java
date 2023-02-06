@@ -14,7 +14,7 @@ import retrofit2.http.Path;
 public interface OrderApi {
 
     // 사용자id, 매장id를 통해 장바구니에 다른 매장의 메뉴가 들어있는지 확인
-    @GET("/order/findStore/{userId}/{storeId}")
+    @GET("/order/stores/{userId}/{storeId}")
     Call<List<OrderVO>> findStoreInCart(@Path("userId") int userId, @Path("storeId") int storeId);
 
     // 장바구니에 메뉴 추가
@@ -22,15 +22,15 @@ public interface OrderApi {
     Call<OrderVO> addMenu(@Body OrderVO order);
 
     // 장바구니에 담긴 메뉴 가져옴
-    @GET("/order/getOrderList/{userId}")
+    @GET("/order/orders/{userId}")
     Call<List<OrderVO>> getOrderList(@Path("userId") int userId);
 
     // 옵션 내용 검색
-    @GET("/order/contentNameList/{contentIdList}")
+    @GET("/order/contents/{contentIdList}")
     Call<List<String>> getContentNameList(@Path("contentIdList") String contentIdList);
 
     // 개수 수정
-    @POST("/order/modifyAmount")
+    @POST("/order/modify/amount")
     Call<OrderVO> modifyAmount(@Body OrderVO order);
 
     // 삭제

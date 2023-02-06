@@ -273,11 +273,13 @@ public class OrderListActivity extends AppCompatActivity {
                 });
     }
 
+    // 재시작
     @Override
     protected void onRestart() {
         finish();
         overridePendingTransition(0, 0);
         Intent intent = getIntent();
+        intent.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
         startActivity(intent);
         overridePendingTransition(0, 0);
 

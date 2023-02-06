@@ -15,7 +15,6 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
-import com.delivery.mydelivery.MainActivity;
 import com.delivery.mydelivery.R;
 import com.delivery.mydelivery.retrofit.RetrofitService;
 import com.delivery.mydelivery.user.UserApi;
@@ -86,16 +85,12 @@ public class PrivacyRegisterActivity extends AppCompatActivity {
             String phoneNum = phoneNumET.getText().toString();
             String school = schoolAutoCompleteTV.getText().toString();
 
-//            if (name.isEmpty() || phoneNum.isEmpty() || school.isEmpty()) { // 입력칸중 하나라도 비어있을경우
-//                Toast.makeText(PrivacyRegisterActivity.this, "빈칸 입력", Toast.LENGTH_SHORT).show();
-//            } else {
-//                register(name, phoneNum, school);
-//            }
+            if (name.isEmpty() || phoneNum.isEmpty() || school.isEmpty()) { // 입력칸중 하나라도 비어있을경우
+                Toast.makeText(PrivacyRegisterActivity.this, "빈칸 입력", Toast.LENGTH_SHORT).show();
+            } else {
+                register(name, phoneNum, school);
+            }
 
-            // 삭제할거 ******************
-            Intent intent = new Intent(PrivacyRegisterActivity.this, CompleteActivity.class);
-            startActivity(intent);
-            finish();
         });
     }
 
@@ -127,8 +122,6 @@ public class PrivacyRegisterActivity extends AppCompatActivity {
         userVO.setPhoneNum(phoneNum);
         userVO.setSchool(school);
 
-        System.out.println(userVO.toString());
-
         // 레트로핏, api 초기화
         retrofitService = new RetrofitService();
         registerApi = retrofitService.getRetrofit().create(RegisterApi.class);
@@ -140,7 +133,7 @@ public class PrivacyRegisterActivity extends AppCompatActivity {
                         Toast.makeText(PrivacyRegisterActivity.this, "회원가입 성공", Toast.LENGTH_SHORT).show();
 
                         // 회원가입 완료페이지 이동
-                        Intent intent = new Intent(PrivacyRegisterActivity.this, MainActivity.class);
+                        Intent intent = new Intent(PrivacyRegisterActivity.this, CompleteActivity.class);
                         startActivity(intent);
                         finish();
                     }

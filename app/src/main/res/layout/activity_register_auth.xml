@@ -117,7 +117,7 @@
                 android:layout_height="55dp"
                 android:fontFamily="@font/bmjua_font"
                 android:text="@string/next"
-                android:visibility="visible" />
+                android:visibility="gone" />
 
         </LinearLayout>
 
