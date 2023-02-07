@@ -2,10 +2,10 @@
 
     <string name="app_name">MyDelivery</string>
 
-    <string name="emailInput">첫번째 단계에요!🌳\n이제 *** 아이디를 설정합니다!\n이메일을 입력해주세요!</string>
+    <string name="emailInput">첫번째 단계에요!🌳\n이제 배달비 공유 서비스 아이디를\n설정합니다 이메일을 입력해주세요!</string>
     <string name="pwInput">두번째 단계에요!🌳\n비밀번호를 설정해주세요!</string>
     <string name="joinInput">세번째 단계에요!🌳\n이메일 인증이 필요해요! </string>
-    <string name="joinprivacy">마지막 단계에요!🌳\n닉네임, 생년월일, 휴대폰번호, 학교를 \n입력해주세요! </string>
+    <string name="joinprivacy">마지막 단계에요!🌳\n닉네임, 휴대폰번호, 학교를 \n입력해주세요! </string>
     <string name="loginemailInput">이메일을 입력해주세요.</string>
     <string name="emailhint">이메일을 입력해주세요</string>
     <string name="loginpwInput">비밀번호를 입력해주세요</string>
@@ -23,7 +23,7 @@
     <string name="sendAuthNum">인증번호 전송</string>
     <string name="authNumInput">인증번호를 입력해주세요</string>
 
-    <string name="register">회원가입</string>
+    <string name="register">회원가입 완료</string>
     <string name="login">로그인</string>
     <string name="logout">로그아웃</string>
     <string name="next">계속하기</string>

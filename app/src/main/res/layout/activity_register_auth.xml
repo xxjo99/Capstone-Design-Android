@@ -5,7 +5,8 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context=".register.AuthRegisterActivity">
+    tools:context=".register.AuthRegisterActivity"
+    android:layout_marginStart="10dp">
 
     <androidx.appcompat.widget.Toolbar
         android:id="@+id/registerToolbar"
@@ -38,7 +39,7 @@
             android:fontFamily="@font/bmjua_font"
             android:text="@string/joinInput"
             android:textColor="@color/black"
-            android:textSize="20sp" />
+            android:textSize="25sp" />
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -58,17 +59,19 @@
                 android:fontFamily="@font/bmjua_font"
                 android:hint="@string/loginemailInput"
                 android:inputType="textEmailAddress"
-                android:padding="13dp"
+                android:padding="18dp"
                 android:textSize="18sp" />
 
             <!-- 인증번호 전송 Button -->
             <Button
                 android:id="@+id/sendAuthNumBtn"
                 android:layout_width="100dp"
-                android:layout_height="55dp"
+                android:layout_height="60dp"
                 android:layout_marginStart="10dp"
                 android:enabled="true"
                 android:fontFamily="@font/bmjua_font"
+                android:textColor="@color/black"
+                android:textSize="15sp"
                 android:text="@string/sendAuthNum" />
 
         </LinearLayout>
@@ -77,7 +80,8 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
-            android:orientation="horizontal">
+            android:orientation="horizontal"
+            android:layout_marginTop="10dp">
 
             <!-- 인증번호 EditText -->
             <EditText
@@ -91,15 +95,18 @@
                 android:fontFamily="@font/bmjua_font"
                 android:hint="@string/authNumInput"
                 android:inputType="phone"
-                android:padding="13dp" />
+                android:padding="18dp" />
 
             <!-- 인증번호 검사 Button -->
             <Button
                 android:id="@+id/checkAuthNumBtn"
                 android:layout_width="100dp"
-                android:layout_height="55dp"
+                android:layout_height="60dp"
                 android:layout_marginStart="10dp"
                 android:enabled="false"
+                android:fontFamily="@font/bmjua_font"
+                android:textColor="@color/black"
+                android:textSize="16sp"
                 android:text="@string/confirm" />
 
         </LinearLayout>

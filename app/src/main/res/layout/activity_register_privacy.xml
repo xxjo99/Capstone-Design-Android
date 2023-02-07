@@ -29,7 +29,8 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:orientation="vertical">
+        android:orientation="vertical"
+        android:layout_marginStart="10dp">
 
         <!-- 닉네임 EditText -->
         <LinearLayout
@@ -40,12 +41,11 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="0dp"
                 android:layout_marginTop="35dp"
                 android:fontFamily="@font/bmjua_font"
                 android:text="@string/joinprivacy"
                 android:textColor="@color/black"
-                android:textSize="20sp" />
+                android:textSize="25sp" />
 
             <TextView
                 android:layout_width="wrap_content"
@@ -66,7 +66,7 @@
                 android:fontFamily="@font/bmjua_font"
                 android:hint="사용할 닉네임을 입력해주세요"
                 android:inputType="text"
-                android:padding="13dp"
+                android:padding="18dp"
                 android:textSize="18sp" />
 
         </LinearLayout>
@@ -95,7 +95,7 @@
                 android:background="@drawable/edit_text_border_basic"
                 android:fontFamily="@font/bmjua_font"
                 android:hint="전화번호를 입력해주세요!"
-                android:padding="13dp"
+                android:padding="18dp"
                 android:textSize="18sp" />
 
         </LinearLayout>
@@ -126,7 +126,7 @@
                 android:gravity="center_vertical"
                 android:hint="학교를 입력하세요!"
                 android:inputType="text"
-                android:padding="13dp"
+                android:padding="10dp"
                 android:textSize="18sp" />
 
         </LinearLayout>
@@ -136,12 +136,14 @@
             android:layout_width="match_parent"
             android:layout_height="0dp"
             android:layout_weight="1"
-            android:gravity="bottom">
+            android:gravity="bottom||center"
+            android:layout_marginBottom="10dp">
 
             <Button
                 android:id="@+id/registerBtn"
-                android:layout_width="380dp"
+                android:layout_width="350dp"
                 android:layout_height="55dp"
+                android:textSize="16sp"
                 android:fontFamily="@font/bmjua_font"
                 android:text="@string/register"
                 android:visibility="visible" />
