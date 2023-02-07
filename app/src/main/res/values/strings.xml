@@ -3,7 +3,8 @@
     <string name="app_name">MyDelivery</string>
 
     <string name="emailInput">첫번째 단계에요!🌳\n이제 배달비 공유 서비스 아이디를\n설정합니다 이메일을 입력해주세요!</string>
-    <string name="pwInput">두번째 단계에요!🌳\n비밀번호를 설정해주세요!</string>
+    <string name="pwInput1">보안 수준이 높은 비밀번호 만들기</string>
+    <string name="pwInput2">비밀번호는 8~20자이어야 하고\n영문,숫자,특수기호(!@$%)를 포함하여야 합니다.</string>
     <string name="joinInput">세번째 단계에요!🌳\n이메일 인증이 필요해요! </string>
     <string name="joinprivacy">마지막 단계에요!🌳\n닉네임, 휴대폰번호, 학교를 \n입력해주세요! </string>
     <string name="loginemailInput">이메일을 입력해주세요.</string>

@@ -56,6 +56,7 @@
                 android:layout_gravity="center"
                 android:layout_weight="2"
                 android:background="@drawable/edit_text_border_basic"
+                android:backgroundTint="@color/gray"
                 android:fontFamily="@font/bmjua_font"
                 android:hint="@string/emailhint"
                 android:textSize="18sp"
@@ -69,6 +70,7 @@
                 android:layout_height="60dp"
                 android:layout_gravity="center"
                 android:fontFamily="@font/bmjua_font"
+                android:backgroundTint="#87E0F6"
                 android:textSize="16sp"
                 android:text="@string/duplicateCk" />
 
@@ -84,11 +86,12 @@
 
             <Button
                 android:id="@+id/nextBtn"
-                android:layout_width="350dp"
-                android:layout_height="55dp"
+                android:layout_width="380dp"
+                android:layout_height="60dp"
                 android:textSize="16sp"
                 android:fontFamily="@font/bmjua_font"
                 android:text="@string/next"
+                android:backgroundTint="#87E0F6"
                 android:visibility="gone" />
 
         </LinearLayout>

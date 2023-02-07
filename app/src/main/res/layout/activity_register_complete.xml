@@ -17,5 +17,6 @@
         android:layout_height="wrap_content"
         android:fontFamily="@font/bmjua_font"
         android:textSize="16sp"
+        android:backgroundTint="#87E0F6"
         android:text="로그인하러 가기"/>
 </LinearLayout>

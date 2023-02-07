@@ -11,7 +11,6 @@
         android:id="@+id/registerToolbar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@color/white"
         app:contentInsetStart="0dp">
 
         <ImageButton
@@ -64,6 +63,7 @@
                 android:layout_marginTop="10dp"
                 android:background="@drawable/edit_text_border_basic"
                 android:fontFamily="@font/bmjua_font"
+                android:backgroundTint="@color/gray"
                 android:hint="사용할 닉네임을 입력해주세요"
                 android:inputType="text"
                 android:padding="18dp"
@@ -94,6 +94,7 @@
                 android:layout_marginTop="10dp"
                 android:background="@drawable/edit_text_border_basic"
                 android:fontFamily="@font/bmjua_font"
+                android:backgroundTint="@color/gray"
                 android:hint="전화번호를 입력해주세요!"
                 android:padding="18dp"
                 android:textSize="18sp" />
@@ -117,10 +118,11 @@
             <!-- 학교 입력 -->
             <AutoCompleteTextView
                 android:id="@+id/schoolAutoCompleteTV"
-                android:layout_width="match_parent"
-                android:layout_height="45dp"
+                android:layout_width="380dp"
+                android:layout_height="56dp"
                 android:layout_marginTop="10dp"
                 android:background="@drawable/edit_text_border_basic"
+                android:backgroundTint="@color/gray"
                 android:completionThreshold="1"
                 android:fontFamily="@font/bmjua_font"
                 android:gravity="center_vertical"
@@ -136,16 +138,16 @@
             android:layout_width="match_parent"
             android:layout_height="0dp"
             android:layout_weight="1"
-            android:gravity="bottom||center"
-            android:layout_marginBottom="10dp">
+            android:paddingTop="15dp">
 
             <Button
                 android:id="@+id/registerBtn"
-                android:layout_width="350dp"
-                android:layout_height="55dp"
+                android:layout_width="380dp"
+                android:layout_height="60dp"
                 android:textSize="16sp"
                 android:fontFamily="@font/bmjua_font"
                 android:text="@string/register"
+                android:backgroundTint="#87E0F6"
                 android:visibility="visible" />
 
         </LinearLayout>
