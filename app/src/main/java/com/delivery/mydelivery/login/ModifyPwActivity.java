@@ -1,29 +1,35 @@
-package com.delivery.mydelivery.register;
+package com.delivery.mydelivery.login;
 
 import android.content.Intent;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.view.KeyEvent;
-import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
 import com.delivery.mydelivery.R;
+import com.delivery.mydelivery.retrofit.RetrofitService;
+import com.delivery.mydelivery.user.UserApi;
 import com.delivery.mydelivery.user.UserVO;
 
 import java.util.Objects;
 import java.util.regex.Pattern;
 
-// 비밀번호 등록 액티비티
-public class PasswordRegisterActivity extends AppCompatActivity {
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
-    // 회원가입 종료 dialog
-    RegisterDialog registerDialog;
+public class ModifyPwActivity extends AppCompatActivity {
+
+    // 변경완료 dialog
+    ModifyPwDialog modifyPwDialog;
+    ModifyPwCancelDialog modifyPwCancelDialog;
 
     // 툴바, 툴바 버튼
     Toolbar toolbar;
@@ -31,50 +37,49 @@ public class PasswordRegisterActivity extends AppCompatActivity {
 
     EditText pwET;
     EditText pwCkET;
-    Button nextBtn;
-
-    UserVO userVO; // 데이터를 담을 객체
+    Button modifyPwBtn;
 
     Boolean pwFlag = false; // 비밀번호 검사 통과
     Boolean pwCkFlag = false; // 비밀번호확인 검사 통과
 
+    // 레트로핏, api
+    RetrofitService retrofitService;
+    UserApi userApi;
+
+    @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_register_password);
+        setContentView(R.layout.activity_login_modify_pw);
 
         // dialog
-        registerDialog = new RegisterDialog(this);
+        modifyPwDialog = new ModifyPwDialog(this);
+        modifyPwCancelDialog = new ModifyPwCancelDialog(this);
 
         // 툴바
-        toolbar = findViewById(R.id.registerToolbar);
+        toolbar = findViewById(R.id.modifyPwToolbar);
         setSupportActionBar(toolbar);
         Objects.requireNonNull(getSupportActionBar()).setDisplayShowTitleEnabled(false);
 
-        // 회원가입 종료 버튼
+        // 수정종료버튼
         closeBtn = findViewById(R.id.closeBtn);
-        closeBtn.setOnClickListener(view -> registerDialog.callDialog());
+        closeBtn.setOnClickListener(view -> {
+            modifyPwCancelDialog.callDialog();
+        });
 
         // 초기화
         pwET = findViewById(R.id.pwET);
         pwCkET = findViewById(R.id.pwCkET);
-        nextBtn = findViewById(R.id.nextBtn);
+        modifyPwBtn = findViewById(R.id.modifyPwBtn);
+
+        // 입력한 이메일
+        Intent intent = getIntent();
+        String email = intent.getStringExtra("email");
 
         pwRegExCk(); // 실시간 비밀번호 정규식 검사
         pwMatchingCk(); // 실시간 비밀번호 일치 검사
 
-        // 다음 페이지 이동
-        nextBtn.setOnClickListener(view -> {
-            String pw = pwET.getText().toString(); // 입력한 비밀번호 받아옴
-
-            userVO = (UserVO) getIntent().getSerializableExtra("userVO"); // 전 액티비티에서 넘어온 객체를 받아서 새로 생성
-            userVO.setPw(pw); // 객체에 비밀번호 저장
-
-            // 객체 데이터 받아서 다음 액티비티로 전달
-            Intent intent = new Intent(PasswordRegisterActivity.this, PrivacyRegisterActivity.class);
-            intent.putExtra("userVO", userVO);
-            startActivity(intent);
-            finish();
-        });
+        // 비밀번호 수정
+        modifyPwBtn.setOnClickListener(view -> modifyPw(email, pwET.getText().toString()));
     }
 
     // 실시간 비밀번호 정규식 검사 메소드
@@ -102,17 +107,13 @@ public class PasswordRegisterActivity extends AppCompatActivity {
                     pwFlag = false;
                 }
 
-                // 비밀번호와 비밀번호 확인이 다르다면 다음페이지 이동버튼 보이지 않도록 설정
+                // 비밀번호와 비밀번호 확인이 다르다면 버튼 비활성화
                 if (!pw.equals(pwCk)) {
-                    nextBtn.setVisibility(View.GONE);
+                    modifyPwBtn.setEnabled(false);
                 }
 
-                // 정규식 검사 통과, 비밀번호 일치시 이동버튼 보이도록 설정
-                if (pwFlag && pwCkFlag) {
-                    nextBtn.setVisibility(View.VISIBLE);
-                } else {
-                    nextBtn.setVisibility(View.GONE);
-                }
+                // 정규식 검사 통과, 비밀번호 일치시 버튼 활성화
+                modifyPwBtn.setEnabled(pwFlag && pwCkFlag);
             }
 
             @Override
@@ -128,6 +129,9 @@ public class PasswordRegisterActivity extends AppCompatActivity {
 
     // 실시간 비밀번호 확인 일치 검사
     private void pwMatchingCk() {
+        pwET = findViewById(R.id.pwET);
+        pwCkET = findViewById(R.id.pwCkET);
+
         pwCkET.addTextChangedListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
@@ -135,24 +139,18 @@ public class PasswordRegisterActivity extends AppCompatActivity {
 
             @Override
             public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
-
                 String pw = pwET.getText().toString();
                 String pwCk = pwCkET.getText().toString();
 
-                if (pwCk.equals(pw)) { // 비밀번호가 일치한다면
+                if (pwCk.equals(pw)) { // 비밀번호 일치
                     pwCkET.setBackgroundResource(R.drawable.edit_text_border_green);
                     pwCkFlag = true;
-                } else { // 일치하지 않는다면
+                } else { // 불일치
                     pwCkET.setBackgroundResource(R.drawable.edit_text_border_red);
                     pwCkFlag = false;
                 }
 
-                if (pwFlag && pwCkFlag) {
-                    nextBtn.setVisibility(View.VISIBLE);
-                } else {
-                    nextBtn.setVisibility(View.GONE);
-                }
-
+                modifyPwBtn.setEnabled(pwFlag && pwCkFlag);
             }
 
             @Override
@@ -161,12 +159,44 @@ public class PasswordRegisterActivity extends AppCompatActivity {
         });
     }
 
+    // 비밀번호 수정
+    private void modifyPw(String email, String pw) {
+        retrofitService = new RetrofitService();
+        userApi = retrofitService.getRetrofit().create(UserApi.class);
+
+        userApi.findUser(email)
+                .enqueue(new Callback<UserVO>() {
+                    @Override
+                    public void onResponse(@NonNull Call<UserVO> call, @NonNull Response<UserVO> response) {
+                        UserVO user = response.body();
+                        assert user != null;
+                        user.setPw(pw);
+
+                        userApi.modifyPw(user)
+                                .enqueue(new Callback<UserVO>() {
+                                    @Override
+                                    public void onResponse(@NonNull Call<UserVO> call, @NonNull Response<UserVO> response) {
+                                        modifyPwDialog.callDialog();
+                                    }
+
+                                    @Override
+                                    public void onFailure(@NonNull Call<UserVO> call, @NonNull Throwable t) {
+                                    }
+                                });
+                    }
+
+                    @Override
+                    public void onFailure(@NonNull Call<UserVO> call, @NonNull Throwable t) {
+                    }
+                });
+    }
+
     // 뒤로가기시 팝업창 출력
     @Override
     public boolean onKeyDown(int keycode, KeyEvent event) {
 
         if (keycode == KeyEvent.KEYCODE_BACK) {
-            registerDialog.callDialog();
+            modifyPwCancelDialog.callDialog();
             return true;
         }
 

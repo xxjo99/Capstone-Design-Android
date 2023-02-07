@@ -6,8 +6,10 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentTransaction;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -73,14 +75,14 @@ public class RecruitListFragment extends Fragment {
         api.getRecruitList(registrantPlace)
                 .enqueue(new Callback<List<RecruitVO>>() {
                     @Override
-                    public void onResponse(Call<List<RecruitVO>> call, Response<List<RecruitVO>> response) {
+                    public void onResponse(@NonNull Call<List<RecruitVO>> call, @NonNull Response<List<RecruitVO>> response) {
                         recruitList = response.body();
                         recruitListAdapter = new RecruitListAdapter(recruitList, context);
                         recruitListRecyclerView.setAdapter(recruitListAdapter);
                     }
 
                     @Override
-                    public void onFailure(Call<List<RecruitVO>> call, Throwable t) {
+                    public void onFailure(@NonNull Call<List<RecruitVO>> call, @NonNull Throwable t) {
 
                     }
                 });

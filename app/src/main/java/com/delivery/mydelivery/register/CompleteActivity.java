@@ -19,6 +19,7 @@ public class CompleteActivity extends AppCompatActivity {
 
         loginBtn = findViewById(R.id.loginBtn);
 
+        // 로그인 이동
         loginBtn.setOnClickListener(view -> {
             Intent intent = new Intent(CompleteActivity.this, LoginActivity.class);
             startActivity(intent);

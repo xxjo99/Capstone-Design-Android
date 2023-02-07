@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:gravity="center"
+    android:orientation="vertical">
+
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/findPwToolbar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/white"
+        app:contentInsetStart="0dp">
+
+        <ImageButton
+            android:id="@+id/backBtn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:backgroundTint="@color/white"
+            android:src="@drawable/back" />
+
+    </androidx.appcompat.widget.Toolbar>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_weight="1"
+        android:gravity="center"
+        android:orientation="vertical">
+
+        <!-- 이메일 입력, 인증번호 전송 -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:orientation="horizontal">
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:layout_width="280dp"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="10dp"
+                app:passwordToggleEnabled="false">
+
+                <EditText
+                    android:id="@+id/emailET"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:enabled="true"
+                    android:fontFamily="@font/bmjua_font"
+                    android:hint="@string/loginemailInput" />
+
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <Button
+                android:enabled="true"
+                android:id="@+id/sendAuthNumBtn"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/bmjua_font"
+                android:text="@string/sendAuthNum" />
+
+        </LinearLayout>
+
+        <!-- 인증번호 -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:orientation="horizontal">
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:layout_width="280dp"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="10dp"
+                app:passwordToggleEnabled="false">
+
+                <EditText
+                    android:id="@+id/authNumET"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:enabled="false"
+                    android:fontFamily="@font/bmjua_font"
+                    android:hint="@string/authNumInput" />
+
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <!-- 인증번호 전송 버튼 -->
+            <Button
+                android:id="@+id/checkAuthNumBtn"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:enabled="false"
+                android:fontFamily="@font/bmjua_font"
+                android:text="@string/confirm" />
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+    <!-- 다음 액티비티 이동 Button -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center">
+
+        <Button
+            android:id="@+id/modifyPwBtn"
+            android:layout_width="380dp"
+            android:layout_height="55dp"
+            android:fontFamily="@font/bmjua_font"
+            android:text="@string/modifyPw"
+            android:visibility="gone" />
+
+    </LinearLayout>
+
+</LinearLayout>

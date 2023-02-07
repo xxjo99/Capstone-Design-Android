@@ -108,6 +108,7 @@ public class RecruitOrderListActivity extends AppCompatActivity {
             storeMoveIntent.putExtra("recruitId", recruitId);
             startActivity(storeMoveIntent);
         });
+
     }
 
     // 매장이름추가
@@ -169,15 +170,17 @@ public class RecruitOrderListActivity extends AppCompatActivity {
                 });
     }
 
+    // 새로고침
     @Override
     protected void onRestart() {
         finish();
+
         overridePendingTransition(0, 0);
         Intent intent = getIntent();
+        intent.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
         startActivity(intent);
         overridePendingTransition(0, 0);
 
         super.onRestart();
     }
-
 }

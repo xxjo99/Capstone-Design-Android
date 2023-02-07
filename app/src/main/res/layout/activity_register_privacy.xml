@@ -1,124 +1,152 @@
 <?xml version="1.0" encoding="utf-8"?> <!-- 개인정보 입력 -->
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:layout_margin="15dp"
     android:orientation="vertical"
     tools:context=".register.PrivacyRegisterActivity">
 
-    <!-- 닉네임 EditText -->
-    <LinearLayout
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/registerToolbar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="vertical">
+        android:background="@color/white"
+        app:contentInsetStart="0dp">
 
-        <TextView
+        <ImageButton
+            android:id="@+id/closeBtn"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="0dp"
-            android:layout_marginTop="35dp"
-            android:fontFamily="@font/bmjua_font"
-            android:text="@string/joinprivacy"
-            android:textColor="@color/black"
-            android:textSize="20sp" />
+            android:layout_gravity="right"
+            android:layout_marginEnd="20dp"
+            android:background="@color/white"
+            android:src="@drawable/close"
+            tools:ignore="RtlHardcoded" />
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="35dp"
-            android:fontFamily="@font/bmjua_font"
-            android:text="@string/name"
-            android:textColor="@color/black"
-            android:textSize="20sp" />
-
-        <!-- 닉네임 입력 -->
-        <EditText
-            android:id="@+id/nameET"
-            android:layout_width="380dp"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
-            android:background="@drawable/edit_text_border_basic"
-            android:fontFamily="@font/bmjua_font"
-            android:hint="사용할 닉네임을 입력해주세요"
-            android:inputType="text"
-            android:padding="13dp"
-            android:textSize="18sp" />
-
-    </LinearLayout>
-
-    <!-- 휴대폰번호 EditText -->
-    <LinearLayout
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="20dp"
-        android:orientation="vertical">
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:fontFamily="@font/bmjua_font"
-            android:text="@string/phone_num"
-            android:textColor="@color/black"
-            android:textSize="20sp" />
-
-        <!-- 휴대폰번호 입력 -->
-        <EditText
-            android:id="@+id/phoneNumET"
-            android:layout_width="380dp"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
-            android:background="@drawable/edit_text_border_basic"
-            android:fontFamily="@font/bmjua_font"
-            android:hint="전화번호를 입력해주세요!"
-            android:padding="13dp"
-            android:textSize="18sp" />
-
-    </LinearLayout>
+    </androidx.appcompat.widget.Toolbar>
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="20dp"
+        android:layout_height="match_parent"
         android:orientation="vertical">
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:fontFamily="@font/bmjua_font"
-            android:text="@string/school"
-            android:textColor="@color/black"
-            android:textSize="20sp" />
-
-        <AutoCompleteTextView
-            android:id="@+id/schoollist"
+        <!-- 닉네임 EditText -->
+        <LinearLayout
             android:layout_width="match_parent"
-            android:background="@drawable/edit_text_border_basic"
-            android:layout_height="45dp"
-            android:layout_marginTop="10dp"
-            android:fontFamily="@font/bmjua_font"
-            android:gravity="center_vertical"
-            android:padding="13dp"
-            android:textSize="18sp"
-            android:hint="학교를 입력하세요!"
-            android:inputType="text"
-            android:completionThreshold="1" />
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
 
-    </LinearLayout>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="0dp"
+                android:layout_marginTop="35dp"
+                android:fontFamily="@font/bmjua_font"
+                android:text="@string/joinprivacy"
+                android:textColor="@color/black"
+                android:textSize="20sp" />
 
-    <!-- 회원가입 Button -->
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="1"
-        android:gravity="bottom">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="35dp"
+                android:fontFamily="@font/bmjua_font"
+                android:text="@string/name"
+                android:textColor="@color/black"
+                android:textSize="20sp" />
 
-        <Button
-            android:id="@+id/registerBtn"
-            android:layout_width="380dp"
-            android:layout_height="55dp"
-            android:fontFamily="@font/bmjua_font"
-            android:text="@string/register" />
+            <!-- 닉네임 입력 -->
+            <EditText
+                android:id="@+id/nameET"
+                android:layout_width="380dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:background="@drawable/edit_text_border_basic"
+                android:fontFamily="@font/bmjua_font"
+                android:hint="사용할 닉네임을 입력해주세요"
+                android:inputType="text"
+                android:padding="13dp"
+                android:textSize="18sp" />
+
+        </LinearLayout>
+
+        <!-- 휴대폰번호 EditText -->
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/bmjua_font"
+                android:text="@string/phone_num"
+                android:textColor="@color/black"
+                android:textSize="20sp" />
+
+            <!-- 휴대폰번호 입력 -->
+            <EditText
+                android:id="@+id/phoneNumET"
+                android:layout_width="380dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:background="@drawable/edit_text_border_basic"
+                android:fontFamily="@font/bmjua_font"
+                android:hint="전화번호를 입력해주세요!"
+                android:padding="13dp"
+                android:textSize="18sp" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/bmjua_font"
+                android:text="@string/school"
+                android:textColor="@color/black"
+                android:textSize="20sp" />
+
+            <!-- 학교 입력 -->
+            <AutoCompleteTextView
+                android:id="@+id/schoolAutoCompleteTV"
+                android:layout_width="match_parent"
+                android:layout_height="45dp"
+                android:layout_marginTop="10dp"
+                android:background="@drawable/edit_text_border_basic"
+                android:completionThreshold="1"
+                android:fontFamily="@font/bmjua_font"
+                android:gravity="center_vertical"
+                android:hint="학교를 입력하세요!"
+                android:inputType="text"
+                android:padding="13dp"
+                android:textSize="18sp" />
+
+        </LinearLayout>
+
+        <!-- 회원가입 Button -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:gravity="bottom">
+
+            <Button
+                android:id="@+id/registerBtn"
+                android:layout_width="380dp"
+                android:layout_height="55dp"
+                android:fontFamily="@font/bmjua_font"
+                android:text="@string/register"
+                android:visibility="visible" />
+
+        </LinearLayout>
 
     </LinearLayout>
 

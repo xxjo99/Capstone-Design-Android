@@ -29,21 +29,20 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-// 모집글 리스트 어댑터
 @SuppressLint("SetTextI18n")
-public class RecruitListAdapter extends RecyclerView.Adapter<RecruitListAdapter.ViewHolder> {
+public class SearchResultRecruitAdapter extends RecyclerView.Adapter<SearchResultRecruitAdapter.ViewHolder> {
 
     private final List<RecruitVO> recruitList; // 모집글 리스트
     Context context; // context
 
     // 레트로핏, api
     RetrofitService retrofitService;
+    RecruitApi recruitApi;
     StoreApi storeApi;
     UserApi userApi;
-    RecruitApi recruitApi;
 
     // 생성자
-    public RecruitListAdapter(List<RecruitVO> recruitList, Context context) {
+    public SearchResultRecruitAdapter(List<RecruitVO> recruitList, Context context) {
         this.recruitList = recruitList;
         this.context = context;
     }
@@ -53,12 +52,12 @@ public class RecruitListAdapter extends RecyclerView.Adapter<RecruitListAdapter.
     @Override
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         LayoutInflater inflater = LayoutInflater.from(parent.getContext());
-        View view = inflater.inflate(R.layout.item_home_recruit_list, parent, false);
+        View view = inflater.inflate(R.layout.item_search_recruit_list, parent, false);
         return new ViewHolder(view);
     }
 
     @Override
-    public void onBindViewHolder(@NonNull RecruitListAdapter.ViewHolder holder, int position) {
+    public void onBindViewHolder(@NonNull SearchResultRecruitAdapter.ViewHolder holder, int position) {
         RecruitVO recruit = recruitList.get(position);
 
         int storeId = recruit.getStoreId();
@@ -73,7 +72,7 @@ public class RecruitListAdapter extends RecyclerView.Adapter<RecruitListAdapter.
         holder.recruitPersonTV.setText(person + "명"); // 모집 인원
         holder.placeTV.setText(place); // 배달 장소
 
-        // 참가자수 구하기
+        // 참가자수
         getParticipantCount(recruit.getRecruitId(), holder);
 
         // 클릭시 다이얼로그 열기
@@ -119,10 +118,11 @@ public class RecruitListAdapter extends RecyclerView.Adapter<RecruitListAdapter.
             recruitPersonTV = itemView.findViewById(R.id.recruitPersonTV);
             placeTV = itemView.findViewById(R.id.placeTV);
         }
+
     }
 
     // 매장이름 지정
-    private void setStoreName(int storeId, RecruitListAdapter.ViewHolder holder) {
+    private void setStoreName(int storeId, SearchResultRecruitAdapter.ViewHolder holder) {
         retrofitService = new RetrofitService();
         storeApi = retrofitService.getRetrofit().create(StoreApi.class);
 
@@ -144,7 +144,7 @@ public class RecruitListAdapter extends RecyclerView.Adapter<RecruitListAdapter.
     }
 
     // 등록자 지정
-    private void setRegistrantName(int userId, RecruitListAdapter.ViewHolder holder) {
+    private void setRegistrantName(int userId, SearchResultRecruitAdapter.ViewHolder holder) {
         retrofitService = new RetrofitService();
         userApi = retrofitService.getRetrofit().create(UserApi.class);
 
@@ -165,7 +165,7 @@ public class RecruitListAdapter extends RecyclerView.Adapter<RecruitListAdapter.
     }
 
     // 해당 등록글의 현재 참가자수 반환
-    private void getParticipantCount(int recruitId, RecruitListAdapter.ViewHolder holder) {
+    private void getParticipantCount(int recruitId, SearchResultRecruitAdapter.ViewHolder holder) {
         retrofitService = new RetrofitService();
         recruitApi = retrofitService.getRetrofit().create(RecruitApi.class);
 
@@ -183,7 +183,7 @@ public class RecruitListAdapter extends RecyclerView.Adapter<RecruitListAdapter.
     }
 
     // 해당 참가글에 참가했는지 아닌지 구분, 다이얼로그 열기
-    private void checkParticipate(int recruitId, int participantId, RecruitListAdapter.ViewHolder holder, int person, String place, String deliveryTime, int storeId) {
+    private void checkParticipate(int recruitId, int participantId, SearchResultRecruitAdapter.ViewHolder holder, int person, String place, String deliveryTime, int storeId) {
         retrofitService = new RetrofitService();
         recruitApi = retrofitService.getRetrofit().create(RecruitApi.class);
 

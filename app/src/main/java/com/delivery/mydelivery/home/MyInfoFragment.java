@@ -21,9 +21,9 @@ import com.google.gson.Gson;
 // 내정보 프래그먼트
 public class MyInfoFragment extends Fragment {
 
-    Button logoutBtn; // 로그아웃 버튼
-
     View view; // 해당 view에 지정한 프래그먼트 추가
+
+    Button logoutBtn; // 로그아웃 버튼
 
     Context context; // context
 

@@ -8,6 +8,8 @@ import android.graphics.Paint;
 import android.graphics.Point;
 import android.os.Bundle;
 import android.view.Display;
+import android.view.View;
+import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -21,6 +23,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
 import com.delivery.mydelivery.R;
+import com.delivery.mydelivery.payment.PaymentActivity;
 import com.delivery.mydelivery.preferenceManager.PreferenceManager;
 import com.delivery.mydelivery.retrofit.RetrofitService;
 import com.delivery.mydelivery.store.StoreApi;
@@ -38,9 +41,13 @@ import retrofit2.Response;
 @SuppressLint("SetTextI18n")
 public class RecruitActivity extends AppCompatActivity {
 
+    // 삭제 dialog
+    RecruitDeleteDialog recruitDeleteDialog;
+
     // 툴바, 툴바 버튼
     Toolbar toolbar;
     ImageButton backBtn;
+    TextView deleteBtn;
 
     // 매장 정보
     ImageView storeIV;
@@ -70,6 +77,9 @@ public class RecruitActivity extends AppCompatActivity {
     TextView finalDeliveryTipTV;
     TextView finalPaymentTV;
 
+    // 결제버튼
+    Button paymentBtn;
+
     // 레트로핏, api
     RetrofitService retrofitService;
     StoreApi storeApi;
@@ -84,6 +94,19 @@ public class RecruitActivity extends AppCompatActivity {
         setContentView(R.layout.activity_recruit_recruit);
         context = this;
 
+        // 전 액티비티에서 넘어온 값
+        Intent intent = getIntent();
+        int storeId = intent.getIntExtra("storeId", 0);
+        int recruitId = intent.getIntExtra("recruitId", 0);
+
+        // 사용자정보
+        String loginInfo = PreferenceManager.getLoginInfo(context);
+        Gson gson = new Gson();
+        UserVO user = gson.fromJson(loginInfo, UserVO.class);
+
+        // dialog
+        recruitDeleteDialog = new RecruitDeleteDialog(this, recruitId);
+
         // 툴바
         toolbar = findViewById(R.id.recruitToolbar);
         setSupportActionBar(toolbar);
@@ -93,15 +116,13 @@ public class RecruitActivity extends AppCompatActivity {
         backBtn = findViewById(R.id.backBtn);
         backBtn.setOnClickListener(view -> finish());
 
-        // 사용자정보
-        String loginInfo = PreferenceManager.getLoginInfo(context);
-        Gson gson = new Gson();
-        UserVO user = gson.fromJson(loginInfo, UserVO.class);
+        // 모집글 삭제
+        deleteBtn = findViewById(R.id.deleteBtn);
 
-        // 전 액티비티에서 넘어온 값
-        Intent intent = getIntent();
-        int storeId = intent.getIntExtra("storeId", 0);
-        int recruitId = intent.getIntExtra("recruitId", 0);
+        // 등록자가 자신이 아니라면 삭제버튼 보이지않도록 설정
+        setDeleteBtnVisibility(recruitId, user.getUserId());
+
+        deleteBtn.setOnClickListener(view -> recruitDeleteDialog.callDialog());
 
         // 매장정보 초기화
         storeIV = findViewById(R.id.storeIV);
@@ -159,6 +180,39 @@ public class RecruitActivity extends AppCompatActivity {
 
         // 최종금액계산 추가
         setPayment(storeId, recruitId, user.getUserId());
+
+        // 결제버튼
+        paymentBtn = findViewById(R.id.paymentBtn);
+        paymentBtn.setOnClickListener(view -> {
+            Intent paymentIntent = new Intent(RecruitActivity.this, PaymentActivity.class);
+            startActivity(paymentIntent);
+        });
+    }
+
+    // 삭제버튼 보일지 말지 설정
+    public void setDeleteBtnVisibility(int recruitId, int userId) {
+        retrofitService = new RetrofitService();
+        recruitApi = retrofitService.getRetrofit().create(RecruitApi.class);
+
+        recruitApi.findRegistrant(recruitId)
+                .enqueue(new Callback<ParticipantVO>() {
+                    @Override
+                    public void onResponse(@NonNull Call<ParticipantVO> call, @NonNull Response<ParticipantVO> response) {
+                        ParticipantVO participant = response.body();
+
+                        assert participant != null;
+                        if (participant.getUserId() == userId) {
+                            deleteBtn.setVisibility(View.VISIBLE);
+                        } else {
+                            deleteBtn.setVisibility(View.GONE);
+                        }
+                    }
+
+                    @Override
+                    public void onFailure(@NonNull Call<ParticipantVO> call, @NonNull Throwable t) {
+
+                    }
+                });
     }
 
     // 매장정보 생성
@@ -296,6 +350,10 @@ public class RecruitActivity extends AppCompatActivity {
                         beforeDeliveryTipTV.setText(deliveryTip + "원");
                         beforeDeliveryTipTV.setPaintFlags(beforeDeliveryTipTV.getPaintFlags() | Paint.STRIKE_THRU_TEXT_FLAG);
 
+                        if (participantCount == 0) {
+                            participantCount = 1;
+                        }
+
                         int finalDeliveryTipResult = Integer.parseInt(deliveryTip) / participantCount;
                         finalDeliveryTipTV.setText(finalDeliveryTipResult + "원");
                     }
@@ -330,11 +388,13 @@ public class RecruitActivity extends AppCompatActivity {
         return size.x;
     }
 
+    // 새로고침
     @Override
     protected void onRestart() {
         finish();
         overridePendingTransition(0, 0);
         Intent intent = getIntent();
+        intent.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
         startActivity(intent);
         overridePendingTransition(0, 0);
 
