@@ -26,9 +26,43 @@
     </androidx.appcompat.widget.Toolbar>
 
     <!-- 비밀번호 -->
+    <TextView
+        android:id="@+id/textView20"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="10dp"
+        android:layout_marginTop="50dp"
+        android:layout_marginBottom="15dp"
+        android:fontFamily="@font/bmjua_font"
+        android:text="보안 수준이 높은 비밀번호 만들기"
+        android:textColor="#000000"
+        android:textSize="25sp" />
+
+    <TextView
+        android:id="@+id/textView21"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="10dp"
+        android:layout_marginBottom="5dp"
+        android:fontFamily="@font/bmjua_font"
+        android:text="비밀번호는 8~20자이어야 하고"
+        android:textColor="#424242"
+        android:textSize="20sp" />
+
+    <TextView
+        android:id="@+id/textView23"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="10dp"
+        android:fontFamily="@font/bmjua_font"
+        android:text="영문, 숫자, 특수기호(!@$%)를 포함하여야 합니다."
+        android:textColor="#424242"
+        android:textSize="20sp" />
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginTop="15dp"
         android:orientation="vertical">
 
         <com.google.android.material.textfield.TextInputLayout
@@ -43,10 +77,11 @@
                 android:layout_width="380dp"
                 android:layout_height="wrap_content"
                 android:background="@drawable/edit_text_border_basic"
+                android:backgroundTint="@color/gray"
                 android:fontFamily="@font/bmjua_font"
-                android:hint="@string/pwReg"
+                android:hint="새 비밀번호"
                 android:inputType="textPassword"
-                android:padding="20dp"
+                android:padding="18dp"
                 android:textSize="18sp" />
 
         </com.google.android.material.textfield.TextInputLayout>
@@ -54,7 +89,7 @@
         <com.google.android.material.textfield.TextInputLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
+            android:layout_marginTop="5dp"
             android:gravity="center"
             app:passwordToggleEnabled="true">
 
@@ -63,33 +98,31 @@
                 android:layout_width="380dp"
                 android:layout_height="wrap_content"
                 android:background="@drawable/edit_text_border_basic"
+                android:backgroundTint="@color/gray"
                 android:fontFamily="@font/bmjua_font"
-                android:hint="@string/pwCkInput"
+                android:hint="새 비밀번호 다시 입력"
                 android:inputType="textPassword"
-                android:padding="20dp"
+                android:padding="18dp"
                 android:textSize="18sp" />
+
+            <Button
+                android:id="@+id/modifyPwBtn"
+                android:layout_width="380dp"
+                android:layout_height="60dp"
+                android:layout_marginTop="15dp"
+                android:backgroundTint="#87E0F6"
+                android:enabled="false"
+                android:fontFamily="@font/bmjua_font"
+                android:text="@string/modifyPw"
+                android:textColor="#252525"
+                android:textSize="16sp"
+                android:visibility="visible" />
 
         </com.google.android.material.textfield.TextInputLayout>
 
     </LinearLayout>
 
     <!-- 수정 버튼-->
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="1"
-        android:gravity="bottom|center">
-
-        <Button
-            android:id="@+id/modifyPwBtn"
-            android:layout_width="380dp"
-            android:layout_height="55dp"
-            android:enabled="false"
-            android:fontFamily="@font/bmjua_font"
-            android:text="@string/modifyPw"
-            android:visibility="visible" />
-
-    </LinearLayout>
 
 
 </LinearLayout>
