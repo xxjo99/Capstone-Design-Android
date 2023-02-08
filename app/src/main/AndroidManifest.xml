@@ -47,7 +47,7 @@
         <activity android:name=".home.HomeActivity" />
 
         <!-- store -->
-        <activity android:name=".store.StoreListActivity" />
+        <activity android:name=".store.StoreActivity" />
 
         <!-- menu -->
         <activity android:name=".menu.MenuListActivity" />

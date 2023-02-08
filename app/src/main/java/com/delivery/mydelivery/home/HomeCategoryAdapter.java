@@ -14,7 +14,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
 import com.delivery.mydelivery.R;
-import com.delivery.mydelivery.store.StoreListActivity;
+import com.delivery.mydelivery.store.StoreActivity;
 
 import java.util.List;
 
@@ -65,14 +65,10 @@ public class HomeCategoryAdapter extends RecyclerView.Adapter<HomeCategoryAdapte
             categoryIV = itemView.findViewById(R.id.categoryIV);
             categoryTV = itemView.findViewById(R.id.categoryTV);
 
-            // 클릭 이벤트
+            // 매장리스트 이동
             itemView.setOnClickListener(view -> {
                 int position = getAbsoluteAdapterPosition();
-
-                if (position != RecyclerView.NO_POSITION) {
-                    String category = categoryList.get(position).getCategoryName();
-                    changeView(category);
-                }
+                changeView(position);
             });
         }
 
@@ -84,10 +80,10 @@ public class HomeCategoryAdapter extends RecyclerView.Adapter<HomeCategoryAdapte
     }
 
     // 매장 리스트 이동 메소드
-    private void changeView(String category) {
-        Intent intent = new Intent(context, StoreListActivity.class);
+    private void changeView(int categoryPosition) {
+        Intent intent = new Intent(context, StoreActivity.class);
         intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-        intent.putExtra("category", category);
+        intent.putExtra("categoryPosition", categoryPosition);
         context.startActivity(intent);
     }
 

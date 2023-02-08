@@ -29,7 +29,7 @@ public class SearchFragment extends Fragment {
 
     // 레이아웃, 탭 레이아웃, 뷰페이저
     LinearLayout searchResultLayout;
-    TabLayout searchTabLayout;
+    TabLayout searchTab;
     ViewPager2 searchResultViewPager;
 
     // 검색 결과 프래그먼트
@@ -56,7 +56,7 @@ public class SearchFragment extends Fragment {
 
         // 레이아웃, 탭 레이아웃, 뷰페이저 초기화
         searchResultLayout = view.findViewById(R.id.searchResultLayout);
-        searchTabLayout = view.findViewById(R.id.searchTabLayout);
+        searchTab = view.findViewById(R.id.searchTab);
         searchResultViewPager = view.findViewById(R.id.searchResultViewPager);
 
         // 프래그먼트 초기화
@@ -83,7 +83,7 @@ public class SearchFragment extends Fragment {
         searchResultViewPager.setOffscreenPageLimit(1);
 
         // 탭과 뷰페이저 연결
-        TabLayoutMediator tabLayoutMediator = new TabLayoutMediator(searchTabLayout, searchResultViewPager, (tab, position) -> {
+        TabLayoutMediator tabLayoutMediator = new TabLayoutMediator(searchTab, searchResultViewPager, (tab, position) -> {
             if (position == 0) {
                 tab.setText("매장");
             } else {

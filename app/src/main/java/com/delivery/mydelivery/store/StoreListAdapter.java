@@ -1,87 +1,91 @@
 package com.delivery.mydelivery.store;
 
-import android.annotation.SuppressLint;
 import android.content.Context;
-import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.BaseAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import androidx.annotation.NonNull;
+import androidx.recyclerview.widget.RecyclerView;
+
 import com.bumptech.glide.Glide;
 import com.delivery.mydelivery.R;
-import com.delivery.mydelivery.menu.MenuListActivity;
+import com.delivery.mydelivery.retrofit.RetrofitService;
 
 import java.util.List;
 
-// 매장 리스트 어댑터
-@SuppressLint("SetTextI18n")
-public class StoreListAdapter extends BaseAdapter {
+public class StoreListAdapter extends RecyclerView.Adapter<StoreListAdapter.ViewHolder> {
 
-    Context context;
-    List<StoreVO> storeList;
+    private final List<StoreVO> storeList; // 매장 리스트
+    Context context; // context
 
-    public StoreListAdapter(Context context, List<StoreVO> storeList) {
-        this.context = context;
+    // 레트로핏, api
+    RetrofitService retrofitService;
+    StoreApi storeApi;
+
+    // 생성자
+    public StoreListAdapter(List<StoreVO> storeList, Context context) {
         this.storeList = storeList;
+        this.context = context;
+    }
+
+    // 화면생성
+    @NonNull
+    @Override
+    public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+        LayoutInflater inflater = LayoutInflater.from(parent.getContext());
+        View view = inflater.inflate(R.layout.item_store_store, parent, false);
+        return new ViewHolder(view);
     }
 
     @Override
-    public int getCount() {
-        return storeList.size();
-    }
-
-    @Override
-    public Object getItem(int position) {
-        return storeList.get(position);
-    }
-
-    @Override
-    public long getItemId(int position) {
-        return position;
-    }
-
-    @Override
-    public View getView(int position, View view, ViewGroup viewGroup) {
-
-        // 뷰가 비어있다면 뷰 세팅, 매장 리스트 아이템 추가
-        if (view == null) {
-            LayoutInflater layoutInflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE); // LayoutInflater 설정
-            view = layoutInflater.inflate(R.layout.item_store_store_list, viewGroup, false); // view에 item_store_list.xml 지정
-        }
-
-        // xml 변수 초기화
-        ImageView storeImageView = view.findViewById(R.id.storeIV);
-        TextView storeNameTV = view.findViewById(R.id.storeNameTV);
-        TextView storeDeliveryPriceTV = view.findViewById(R.id.storeDeliveryPriceTV);
-        TextView storeInfoTV = view.findViewById(R.id.storeInfoTV);
-        TextView deliveryTimeTV = view.findViewById(R.id.deliveryTimeTV);
-
-        // storeList의 position에 위치한 값 가져옴
+    public void onBindViewHolder(@NonNull StoreListAdapter.ViewHolder holder, int position) {
         StoreVO store = storeList.get(position);
 
+        // 매장 정보들
+        String storeImage = store.getStoreImageUrl();
+        String storeName = store.getStoreName();
+        String storeInfo = store.getStoreInfo();
+        String deliveryPrice = "최소주문 " + store.getMinimumDeliveryPrice() + "원, 배달팁 " + store.getDeliveryTip() + "원";
+        String deliveryTime = store.getDeliveryTime();
+
         String text = "https://img1.daumcdn.net/thumb/R1280x0/?scode=mtistory&fname=https://k.kakaocdn.net/dn/EShJF/btquPLT192D/SRxSvXqcWjHRTju3kHcOQK/img.png";
-        // store의 지정된 데이터들을 뷰에 세팅
-        Glide.with(context).load(/*store.getStoreImageUrl()*/ text).placeholder(R.drawable.ic_launcher_background).override(100, 100).into(storeImageView);
-        storeNameTV.setText(store.getStoreName());
-        String storeDeliveryPrice = "최소주문 " + store.getMinimumDeliveryPrice() + "원, 배달팁 " + store.getDeliveryTip() + "원";
-        storeDeliveryPriceTV.setText(storeDeliveryPrice);
-        storeInfoTV.setText(store.getStoreInfo());
-        deliveryTimeTV.setText(store.getDeliveryTime() + "분");
 
-        // 매장 클릭 이벤트
-        view.setOnClickListener(view1 -> {
-            Intent intent = new Intent(context, MenuListActivity.class);
+        // 매장정보 삽입
+        Glide.with(context).load(/*storeImage*/ text).placeholder(R.drawable.ic_launcher_background).override(100, 100).into(holder.storeIV);
+        holder.storeNameTV.setText(storeName);
+        holder.storeInfoTV.setText(storeInfo);
+        holder.storeDeliveryPriceTV.setText(deliveryPrice);
+        holder.deliveryTimeTV.setText(deliveryTime);
 
-            intent.putExtra("storeId", store.getStoreId());
-            intent.putExtra("participantType", "등록자"); // 등록자 or 참가자인지 확인
-            intent.putExtra("recruitId", -1);
+    }
 
-            context.startActivity(intent);
-        });
+    @Override
+    public int getItemCount() {
+        if (storeList != null) {
+            return storeList.size();
+        } else {
+            return -1;
+        }
+    }
 
-        return view;
+    public static class ViewHolder extends RecyclerView.ViewHolder {
+        ImageView storeIV;
+        TextView storeNameTV;
+        TextView storeInfoTV;
+        TextView storeDeliveryPriceTV;
+        TextView deliveryTimeTV;
+
+        public ViewHolder(@NonNull View itemView) {
+            super(itemView);
+
+            storeIV = itemView.findViewById(R.id.storeIV);
+            storeNameTV = itemView.findViewById(R.id.storeNameTV);
+            storeInfoTV = itemView.findViewById(R.id.storeInfoTV);
+            storeDeliveryPriceTV = itemView.findViewById(R.id.storeDeliveryPriceTV);
+            deliveryTimeTV = itemView.findViewById(R.id.deliveryTimeTV);
+        }
     }
 }

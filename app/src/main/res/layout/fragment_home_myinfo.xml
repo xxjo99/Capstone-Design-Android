@@ -16,14 +16,14 @@
         <ImageView
             android:layout_width="100dp"
             android:layout_height="50dp"
-            android:src="@drawable/img_logo_diary_128"></ImageView>
+            android:src="@drawable/img_logo_diary_128"/>
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:fontFamily="@font/bmjua_font"
-            android:text="이용자, (닉네임)"></TextView>
+            android:text="이용자, (닉네임)"/>
 
     </LinearLayout>
 
@@ -51,14 +51,14 @@
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="15dp"
                 android:fontFamily="@font/bmjua_font"
-                android:text="포인트"></TextView>
+                android:text="포인트"/>
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="30dp"
                 android:fontFamily="@font/bmjua_font"
-                android:text="찜"></TextView>
+                android:text="찜"/>
         </LinearLayout>
 
         <View
@@ -80,14 +80,14 @@
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="15dp"
                 android:fontFamily="@font/bmjua_font"
-                android:text="쿠폰함"></TextView>
+                android:text="쿠폰함"/>
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="30dp"
                 android:fontFamily="@font/bmjua_font"
-                android:text="주문내역"></TextView>
+                android:text="주문내역"/>
         </LinearLayout>
 
         <View
@@ -109,14 +109,14 @@
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="15dp"
                 android:fontFamily="@font/bmjua_font"
-                android:text="선물함"></TextView>
+                android:text="선물함"/>
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="30dp"
                 android:fontFamily="@font/bmjua_font"
-                android:text="리뷰관리"></TextView>
+                android:text="리뷰관리"/>
         </LinearLayout>
     </LinearLayout>
 
@@ -147,13 +147,13 @@
             android:fontFamily="@font/bmjua_font"
             android:text="공지사항"
             android:textColor="@color/black"
-            android:textSize="17dp"></TextView>
+            android:textSize="17dp"/>
 
         <ImageButton
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:background="@color/white"
-            android:src="@drawable/arrow_forward_ios_fill0_wght400_grad0_opsz48"></ImageButton>
+            android:src="@drawable/arrow_forward_ios_fill0_wght400_grad0_opsz48"/>
 
     </LinearLayout>
 
@@ -178,13 +178,13 @@
             android:fontFamily="@font/bmjua_font"
             android:text="이벤트"
             android:textColor="@color/black"
-            android:textSize="17dp"></TextView>
+            android:textSize="17dp"/>
 
         <ImageButton
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:background="@color/white"
-            android:src="@drawable/arrow_forward_ios_fill0_wght400_grad0_opsz48"></ImageButton>
+            android:src="@drawable/arrow_forward_ios_fill0_wght400_grad0_opsz48"/>
 
     </LinearLayout>
 
@@ -210,13 +210,13 @@
             android:fontFamily="@font/bmjua_font"
             android:text="고객센터"
             android:textColor="@color/black"
-            android:textSize="17dp"></TextView>
+            android:textSize="17dp"/>
 
         <ImageButton
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:background="@color/white"
-            android:src="@drawable/arrow_forward_ios_fill0_wght400_grad0_opsz48"></ImageButton>
+            android:src="@drawable/arrow_forward_ios_fill0_wght400_grad0_opsz48"/>
 
     </LinearLayout>
 
@@ -241,13 +241,13 @@
             android:fontFamily="@font/bmjua_font"
             android:text="환경설정"
             android:textColor="@color/black"
-            android:textSize="17dp"></TextView>
+            android:textSize="17dp"/>
 
         <ImageButton
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:background="@color/white"
-            android:src="@drawable/arrow_forward_ios_fill0_wght400_grad0_opsz48"></ImageButton>
+            android:src="@drawable/arrow_forward_ios_fill0_wght400_grad0_opsz48"/>
 
     </LinearLayout>
 
@@ -272,7 +272,7 @@
             android:fontFamily="@font/bmjua_font"
             android:text="현재 버전"
             android:textColor="@color/black"
-            android:textSize="17dp"></TextView>
+            android:textSize="17dp"/>
 
     </LinearLayout>
 
@@ -293,6 +293,7 @@
             android:layout_height="wrap_content"
             android:fontFamily="@font/bmjua_font"
             android:text="@string/logout" />
+
     </LinearLayout>
 
 </LinearLayout>

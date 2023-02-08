@@ -1,12 +1,11 @@
-<?xml version="1.0" encoding="utf-8"?> <!-- 매장 리스트 -->
+<?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
-    tools:context=".store.StoreListActivity">
+    android:orientation="vertical">
 
+    <!-- 툴바 -->
     <androidx.appcompat.widget.Toolbar
         android:id="@+id/storeToolbar"
         android:layout_width="match_parent"
@@ -34,21 +33,24 @@
 
     </androidx.appcompat.widget.Toolbar>
 
-    <!-- 매장리스트 카테고리 버튼 -->
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/categoryRecyclerView"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="10dp"
-        android:fontFamily="@font/bmjua_font"
-        android:orientation="horizontal"
-        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager" />
-
-    <!-- 매장 리스트 ListView -->
-    <ListView
-        android:id="@+id/storeListView"
+    <!-- 매장 리스트 -->
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:fontFamily="@font/bmjua_font" />
+        android:orientation="vertical">
+
+        <com.google.android.material.tabs.TabLayout
+            android:id="@+id/categoryTab"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:tabIndicatorColor="@color/black"
+            app:tabMode="scrollable" />
+
+        <androidx.viewpager2.widget.ViewPager2
+            android:id="@+id/storeListViewPager"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
+
+    </LinearLayout>
 
 </LinearLayout>
