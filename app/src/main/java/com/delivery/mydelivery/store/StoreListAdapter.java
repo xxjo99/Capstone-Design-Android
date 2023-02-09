@@ -1,6 +1,7 @@
 package com.delivery.mydelivery.store;
 
 import android.content.Context;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -12,7 +13,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
 import com.delivery.mydelivery.R;
-import com.delivery.mydelivery.retrofit.RetrofitService;
+import com.delivery.mydelivery.menu.MenuListActivity;
 
 import java.util.List;
 
@@ -20,10 +21,6 @@ public class StoreListAdapter extends RecyclerView.Adapter<StoreListAdapter.View
 
     private final List<StoreVO> storeList; // 매장 리스트
     Context context; // context
-
-    // 레트로핏, api
-    RetrofitService retrofitService;
-    StoreApi storeApi;
 
     // 생성자
     public StoreListAdapter(List<StoreVO> storeList, Context context) {
@@ -60,6 +57,16 @@ public class StoreListAdapter extends RecyclerView.Adapter<StoreListAdapter.View
         holder.storeDeliveryPriceTV.setText(deliveryPrice);
         holder.deliveryTimeTV.setText(deliveryTime);
 
+        // 해당 매장 이동
+        holder.itemView.setOnClickListener(view1 -> {
+            Intent intent = new Intent(context, MenuListActivity.class);
+
+            intent.putExtra("storeId", store.getStoreId());
+            intent.putExtra("participantType", "등록자"); // 등록자 or 참가자인지 확인
+            intent.putExtra("recruitId", -1);
+
+            context.startActivity(intent);
+        });
     }
 
     @Override
