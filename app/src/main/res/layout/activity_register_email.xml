@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:layout_gravity="center"
     android:orientation="vertical"
     tools:context=".register.EmailRegisterActivity">
 
@@ -46,6 +47,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
+            android:layout_marginTop="10dp"
             android:orientation="horizontal">
 
             <!-- 이메일 EditText -->
@@ -69,33 +71,38 @@
                 android:layout_width="100dp"
                 android:layout_height="60dp"
                 android:layout_gravity="center"
-                android:backgroundTint="#87E0F6"
+                android:backgroundTint="#00ff80"
                 android:fontFamily="@font/bmjua_font"
+                android:textColor="#FFFFFFFF"
                 android:text="@string/duplicateCk"
                 android:textSize="16sp" />
 
         </LinearLayout>
-
-        <!-- 다음 액티비티 이동 Button -->
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="0dp"
             android:layout_weight="1"
-            android:gravity="bottom"
-            android:orientation="vertical">
+            android:layout_gravity="center"
+            android:paddingTop="15dp">
 
+        <!-- 다음 액티비티 이동 Button -->
+            <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:paddingTop="15dp">
             <Button
                 android:id="@+id/nextBtn"
-                android:layout_width="380dp"
+                android:layout_width="385dp"
                 android:layout_height="60dp"
-                android:backgroundTint="#87E0F6"
+                android:backgroundTint="#00ff80"
                 android:fontFamily="@font/bmjua_font"
+                android:textColor="#FFFFFFFF"
                 android:text="@string/next"
-                android:textSize="16sp"
+                android:textSize="20sp"
                 android:visibility="visible" />
-
+            </LinearLayout>
         </LinearLayout>
-
     </LinearLayout>
 
 </LinearLayout>

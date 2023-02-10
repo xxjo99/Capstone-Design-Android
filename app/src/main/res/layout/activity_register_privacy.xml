@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:layout_gravity="center"
     android:orientation="vertical"
     tools:context=".register.PrivacyRegisterActivity">
 
@@ -63,7 +64,7 @@
                 android:layout_marginTop="10dp"
                 android:background="@drawable/edit_text_border_basic"
                 android:fontFamily="@font/bmjua_font"
-                android:hint="사용할 닉네임을 입력해주세요"
+                android:hint="사용할 닉네임을 입력해주세요."
                 android:inputType="text"
                 android:padding="18dp"
                 android:textSize="18sp" />
@@ -93,7 +94,7 @@
                 android:layout_marginTop="10dp"
                 android:background="@drawable/edit_text_border_basic"
                 android:fontFamily="@font/bmjua_font"
-                android:hint="전화번호를 입력해주세요!"
+                android:hint="@string/telInput"
                 android:padding="18dp"
                 android:textSize="18sp" />
 
@@ -123,9 +124,9 @@
                 android:completionThreshold="1"
                 android:fontFamily="@font/bmjua_font"
                 android:gravity="center_vertical"
-                android:hint="학교를 입력하세요!"
+                android:hint="@string/schoolInput"
                 android:inputType="text"
-                android:padding="10dp"
+                android:padding="18dp"
                 android:textSize="18sp" />
 
         </LinearLayout>
@@ -135,16 +136,17 @@
             android:layout_width="match_parent"
             android:layout_height="0dp"
             android:layout_weight="1"
-            android:paddingTop="15dp">
+            android:paddingTop="20dp">
 
             <Button
                 android:id="@+id/registerBtn"
                 android:layout_width="380dp"
                 android:layout_height="60dp"
-                android:backgroundTint="#87E0F6"
+                android:textColor="#FFFFFFFF"
+                android:backgroundTint="#00ff80"
                 android:fontFamily="@font/bmjua_font"
                 android:text="@string/register"
-                android:textSize="16sp"
+                android:textSize="20sp"
                 android:visibility="visible" />
 
         </LinearLayout>
