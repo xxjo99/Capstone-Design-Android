@@ -107,8 +107,6 @@ public class EmailRegisterActivity extends AppCompatActivity {
 
     // 실시간 이메일 정규식 검사
     private void emailRegExCk() {
-        emailET = findViewById(R.id.emailET);
-
         emailET.addTextChangedListener(new TextWatcher() {
 
             @Override

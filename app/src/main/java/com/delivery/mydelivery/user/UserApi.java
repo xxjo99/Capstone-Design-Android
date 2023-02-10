@@ -1,5 +1,7 @@
 package com.delivery.mydelivery.user;
 
+import com.delivery.mydelivery.order.OrderVO;
+
 import java.util.List;
 
 import retrofit2.Call;
@@ -29,4 +31,8 @@ public interface UserApi {
     // 비밀번호 수정
     @POST("/user/modify")
     Call<UserVO> modifyPw(@Body UserVO user);
+
+    // 포인트 수정
+    @POST("/user/modify/point")
+    Call<UserVO> modifyPoint(@Body UserVO user);
 }

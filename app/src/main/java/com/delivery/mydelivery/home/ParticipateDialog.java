@@ -14,10 +14,13 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 
 import com.delivery.mydelivery.R;
+import com.delivery.mydelivery.preferenceManager.PreferenceManager;
 import com.delivery.mydelivery.recruit.ParticipantVO;
 import com.delivery.mydelivery.recruit.RecruitActivity;
 import com.delivery.mydelivery.recruit.RecruitApi;
 import com.delivery.mydelivery.retrofit.RetrofitService;
+import com.delivery.mydelivery.user.UserVO;
+import com.google.gson.Gson;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -46,6 +49,7 @@ public class ParticipateDialog {
         this.context = context;
     }
 
+    // 데이터 추가
     public void setData(String storeName, int currentPersonCount, int recruitPerson, String place, String deliveryTime, String deliveryTip, int recruitId, int userId, int storeId) {
         this.storeName = storeName;
         this.currentPersonCount = currentPersonCount;
@@ -61,10 +65,12 @@ public class ParticipateDialog {
     public void callDialog() {
         final Dialog dialog = new Dialog(context);
 
+        // dialog 설정
         dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
         dialog.setContentView(R.layout.activity_recruit_participate_dialog);
         dialog.show();
 
+        // 초기화
         TextView storeNameTV = dialog.findViewById(R.id.storeNameTV);
         TextView recruitPersonTV = dialog.findViewById(R.id.recruitPersonTV);
         TextView placeTV = dialog.findViewById(R.id.placeTV);
@@ -77,6 +83,14 @@ public class ParticipateDialog {
         LinearLayout participateBtnLayout = dialog.findViewById(R.id.participateBtnLayout);
         LinearLayout participateCompleteLayout = dialog.findViewById(R.id.participateCompleteLayout);
 
+        // 데이터 셋팅
+        storeNameTV.setText(storeName);
+        recruitPersonTV.setText(currentPersonCount + " / " + recruitPerson);
+        placeTV.setText(place);
+        deliveryTimeTV.setText(deliveryTime);
+        deliveryTipTV.setText(deliveryTip + "원");
+
+        // 참가 가능 여부
         if (currentPersonCount == recruitPerson) {
             participateBtnLayout.setVisibility(View.GONE);
             participateCompleteLayout.setVisibility(View.VISIBLE);
@@ -85,22 +99,33 @@ public class ParticipateDialog {
             participateCompleteLayout.setVisibility(View.GONE);
         }
 
-        storeNameTV.setText(storeName);
-        recruitPersonTV.setText(currentPersonCount + " / " + recruitPerson);
-        placeTV.setText(place);
-        deliveryTimeTV.setText(deliveryTime);
-        deliveryTipTV.setText(deliveryTip + "원");
+        // 사용자 정보
+        String loginInfo = PreferenceManager.getLoginInfo(context);
+        Gson gson = new Gson();
+        UserVO user = gson.fromJson(loginInfo, UserVO.class);
 
+        // 참가버튼
         participateBtn.setOnClickListener(view -> {
-            ParticipantVO participant = new ParticipantVO();
 
-            participant.setRecruitId(recruitId);
-            participant.setUserId(userId);
-            participant.setParticipantType("participant");
+            int userPoint = user.getPoint();
+            int deliveryTipInt = Integer.parseInt(deliveryTip);
 
-            participate(participant, dialog);
+            // 사용자가 가진 포인트가 해당 매장의 배달비보다 적다면 참여 불가
+            if (userPoint < deliveryTipInt) {
+                Toast.makeText(context, "참여불가", Toast.LENGTH_SHORT).show();
+                dialog.dismiss();
+            } else {
+                ParticipantVO participant = new ParticipantVO();
+
+                participant.setRecruitId(recruitId);
+                participant.setUserId(userId);
+                participant.setParticipantType("participant");
+
+                participate(participant, dialog);
+            }
         });
 
+        // 취소 버튼
         cancelBtn.setOnClickListener(view -> dialog.dismiss());
     }
 

@@ -5,7 +5,7 @@
     <item
         android:id="@+id/cartBtn"
         android:enabled="true"
-        android:icon="@drawable/cart_btn"
+        android:icon="@drawable/cart_icon"
         android:title="장바구니"
         app:showAsAction="always" />
 

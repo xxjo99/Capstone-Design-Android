@@ -20,7 +20,7 @@
             android:layout_gravity="right"
             android:layout_marginEnd="20dp"
             android:background="@color/white"
-            android:src="@drawable/close"
+            android:src="@drawable/close_icon"
             tools:ignore="RtlHardcoded" />
 
     </androidx.appcompat.widget.Toolbar>

@@ -23,7 +23,6 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
 import com.delivery.mydelivery.R;
-import com.delivery.mydelivery.payment.PaymentActivity;
 import com.delivery.mydelivery.preferenceManager.PreferenceManager;
 import com.delivery.mydelivery.retrofit.RetrofitService;
 import com.delivery.mydelivery.store.StoreApi;
