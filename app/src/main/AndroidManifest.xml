@@ -32,16 +32,32 @@
         </activity>
 
         <!-- register -->
-        <activity android:name=".register.EmailRegisterActivity" />
-        <activity android:name=".register.AuthRegisterActivity" />
-        <activity android:name=".register.PasswordRegisterActivity" />
-        <activity android:name=".register.PrivacyRegisterActivity" />
-        <activity android:name=".register.CompleteActivity" />
+        <activity
+            android:name=".register.EmailRegisterActivity"
+            android:windowSoftInputMode="adjustResize" />
+        <activity
+            android:name=".register.AuthRegisterActivity"
+            android:windowSoftInputMode="adjustResize" />
+        <activity
+            android:name=".register.PasswordRegisterActivity"
+            android:windowSoftInputMode="adjustResize" />
+        <activity
+            android:name=".register.PrivacyRegisterActivity"
+            android:windowSoftInputMode="adjustResize" />
+        <activity
+            android:name=".register.CompleteActivity"
+            android:windowSoftInputMode="adjustResize" />
 
         <!-- login -->
-        <activity android:name=".login.LoginActivity" />
-        <activity android:name=".login.FindPwActivity" />
-        <activity android:name=".login.ModifyPwActivity" />
+        <activity
+            android:name=".login.LoginActivity"
+            android:windowSoftInputMode="adjustResize" />
+        <activity
+            android:name=".login.FindPwActivity"
+            android:windowSoftInputMode="adjustResize" />
+        <activity
+            android:name=".login.ModifyPwActivity"
+            android:windowSoftInputMode="adjustResize" />
 
         <!-- home -->
         <activity android:name=".home.HomeActivity" />
@@ -61,7 +77,9 @@
         <activity android:name=".recruit.RecruitOrderListActivity" />
 
         <!-- point -->
-        <activity android:name=".point.PointActivity" />
+        <activity
+            android:name=".point.PointActivity"
+            android:windowSoftInputMode="adjustResize" />
 
     </application>
 
