@@ -30,7 +30,6 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_marginStart="10dp"
         android:orientation="vertical">
 
         <TextView
@@ -38,6 +37,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="50dp"
             android:layout_marginBottom="15dp"
+            android:layout_marginStart="10dp"
             android:fontFamily="@font/bmjua_font"
             android:text="@string/emailInput"
             android:textColor="@color/black"
@@ -57,6 +57,7 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:layout_weight="2"
+                android:layout_marginStart="10dp"
                 android:background="@drawable/edit_text_border_basic"
                 android:fontFamily="@font/bmjua_font"
                 android:hint="@string/emailhint"
@@ -69,7 +70,7 @@
             <Button
                 android:id="@+id/duplicationCkBtn"
                 android:layout_width="100dp"
-                android:layout_height="60dp"
+                android:layout_height="62dp"
                 android:layout_gravity="center"
                 android:backgroundTint="#00ff80"
                 android:fontFamily="@font/bmjua_font"
@@ -78,19 +79,14 @@
                 android:textSize="16sp" />
 
         </LinearLayout>
+        <!-- 다음 액티비티 이동 Button -->
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="0dp"
             android:layout_weight="1"
-            android:layout_gravity="center"
-            android:paddingTop="15dp">
-
-        <!-- 다음 액티비티 이동 Button -->
-            <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:paddingTop="15dp">
+            android:gravity="center_horizontal|bottom"
+            android:paddingTop="15dp"
+            android:paddingBottom="10dp">
             <Button
                 android:id="@+id/nextBtn"
                 android:layout_width="385dp"
@@ -101,7 +97,6 @@
                 android:text="@string/next"
                 android:textSize="20sp"
                 android:visibility="visible" />
-            </LinearLayout>
         </LinearLayout>
     </LinearLayout>
 

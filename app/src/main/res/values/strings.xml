@@ -25,7 +25,7 @@
     <string name="phone_num">휴대폰번호</string>
     <string name="school">학교</string>
     <string name="duplicateCk">중복검사</string>
-    <string name="sendAuthNum">인증번호 전송</string>
+    <string name="sendAuthNum">인증번호 받기</string>
     <string name="authNumInput">인증번호를 입력해주세요.</string>
 
     <string name="register">회원가입</string>
