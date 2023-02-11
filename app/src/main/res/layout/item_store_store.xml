@@ -38,7 +38,7 @@
                 android:textSize="17sp"
                 android:textStyle="bold" />
 
-            <!-- 매장 간단 정보 -->
+            <!-- 매장 정보 -->
             <TextView
                 android:id="@+id/storeInfoTV"
                 android:layout_width="wrap_content"

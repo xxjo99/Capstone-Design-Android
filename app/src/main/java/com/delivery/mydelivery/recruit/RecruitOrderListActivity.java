@@ -18,7 +18,6 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.delivery.mydelivery.R;
 import com.delivery.mydelivery.menu.MenuListActivity;
-import com.delivery.mydelivery.payment.PaymentActivity;
 import com.delivery.mydelivery.retrofit.RetrofitService;
 import com.delivery.mydelivery.store.StoreApi;
 import com.delivery.mydelivery.store.StoreVO;
@@ -171,15 +170,17 @@ public class RecruitOrderListActivity extends AppCompatActivity {
                 });
     }
 
+    // 새로고침
     @Override
     protected void onRestart() {
         finish();
+
         overridePendingTransition(0, 0);
         Intent intent = getIntent();
+        intent.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
         startActivity(intent);
         overridePendingTransition(0, 0);
 
         super.onRestart();
     }
-
 }

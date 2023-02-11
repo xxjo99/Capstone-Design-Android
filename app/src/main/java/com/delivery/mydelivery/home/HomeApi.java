@@ -8,7 +8,7 @@ import retrofit2.http.GET;
 public interface HomeApi {
 
     // 카테고리 목록을 가져옴
-    @GET("/home/categoryList")
+    @GET("/home/category")
     Call<List<CategoryVO>> getCategoryList();
 
 }

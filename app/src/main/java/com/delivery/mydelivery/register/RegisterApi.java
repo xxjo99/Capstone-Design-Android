@@ -12,11 +12,11 @@ import retrofit2.http.Path;
 public interface RegisterApi {
 
     // 이메일 중복검사
-    @GET("/register/registerCk/{email}")
+    @GET("/register/check/{email}")
     Call<Boolean> duplicateEmailCk(@Path("email") String email);
 
     // 인증번호 전송
-    @GET("/register/sendAuthNum/{email}")
+    @GET("/register/send/{email}")
     Call<String> sendAuthNum(@Path("email") String email);
 
     // 회원가입

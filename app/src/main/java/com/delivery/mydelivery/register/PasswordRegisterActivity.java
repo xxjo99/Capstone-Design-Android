@@ -56,6 +56,7 @@ public class PasswordRegisterActivity extends AppCompatActivity {
 
         // 초기화
         pwET = findViewById(R.id.pwET);
+        pwCkET = findViewById(R.id.pwCkET);
         nextBtn = findViewById(R.id.nextBtn);
 
         pwRegExCk(); // 실시간 비밀번호 정규식 검사

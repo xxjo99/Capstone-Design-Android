@@ -1,0 +1,116 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/pointToolbar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@android:color/transparent"
+        app:contentInsetStart="0dp">
+
+        <ImageButton
+            android:id="@+id/backBtn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:backgroundTint="@color/white"
+            android:src="@drawable/back" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:fontFamily="@font/bmjua_font"
+            android:text="@string/addPoint"
+            android:textColor="@color/black"
+            android:textSize="20sp" />
+
+    </androidx.appcompat.widget.Toolbar>
+
+    <!-- 포인트 입력 -->
+    <EditText
+        android:id="@+id/pointET"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="25dp"
+        android:layout_marginTop="50dp"
+        android:layout_marginRight="25dp"
+        android:layout_marginBottom="10dp"
+        android:background="@drawable/point_edit_text_border"
+        android:fontFamily="@font/bmjua_font"
+        android:hint="충전할 금액을 입력해 주세요."
+        android:inputType="number"
+        android:padding="5dp"
+        android:textSize="25sp" />
+
+    <TextView
+        android:id="@+id/pointCkTV"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="25dp"
+        android:layout_marginRight="25dp"
+        android:fontFamily="@font/bmjua_font"
+        android:text="최소 1000원 이상 충전가능"
+        android:textColor="@color/red"
+        android:visibility="gone" />
+
+    <!-- 금액추가 -->
+    <GridLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="25dp"
+        android:layout_marginTop="15dp"
+        android:layout_marginRight="25dp"
+        android:orientation="horizontal"
+        android:rowCount="3"
+        android:layout_gravity="center">
+
+        <Button
+            android:id="@+id/add1Btn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@color/gray"
+            android:fontFamily="@font/bmjua_font"
+            android:text="+1만" />
+
+        <Button
+            android:id="@+id/add3Btn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@color/gray"
+            android:fontFamily="@font/bmjua_font"
+            android:text="+3만" />
+
+        <Button
+            android:id="@+id/add5Btn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@color/gray"
+            android:fontFamily="@font/bmjua_font"
+            android:text="+5만" />
+
+    </GridLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1" />
+
+    <!-- 충전 버튼 -->
+    <Button
+        android:id="@+id/addPointBtn"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom"
+        android:layout_margin="15dp"
+        android:background="@drawable/btn_border_round_gray"
+        android:enabled="false"
+        android:fontFamily="@font/bmjua_font"
+        android:text="@string/addPoint"
+        android:textColor="@color/white"
+        android:textSize="20sp" />
+
+</LinearLayout>

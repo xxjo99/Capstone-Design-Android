@@ -75,8 +75,4 @@ public class SearchResultRecruit extends Fragment {
                     }
                 });
     }
-
-    public void onResume() {
-        super.onResume();
-    }
 }

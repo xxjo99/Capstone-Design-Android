@@ -1,4 +1,4 @@
-package com.delivery.mydelivery.payment;
+package com.delivery.mydelivery.recruit;
 
 import android.os.Bundle;
 

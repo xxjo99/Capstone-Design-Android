@@ -23,7 +23,7 @@ public class RegisterDialog {
         final Dialog dialog = new Dialog(context);
 
         dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
-        dialog.setContentView(R.layout.activity_login_modify_pw_cancel_dialog);
+        dialog.setContentView(R.layout.activity_register_dialog);
         dialog.getWindow().setGravity(Gravity.BOTTOM);
         dialog.show();
 

@@ -52,7 +52,7 @@ public class SearchResultRecruitAdapter extends RecyclerView.Adapter<SearchResul
     @Override
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         LayoutInflater inflater = LayoutInflater.from(parent.getContext());
-        View view = inflater.inflate(R.layout.item_search_recruit_list, parent, false);
+        View view = inflater.inflate(R.layout.item_search_recruit, parent, false);
         return new ViewHolder(view);
     }
 

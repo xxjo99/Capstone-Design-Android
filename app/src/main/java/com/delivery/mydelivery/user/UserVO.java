@@ -1,7 +1,5 @@
 package com.delivery.mydelivery.user;
 
-import androidx.annotation.NonNull;
-
 import java.io.Serializable;
 
 // 회원 정보
@@ -13,6 +11,7 @@ public class UserVO implements Serializable {
     private String name; // 사용자 이름
     private String phoneNum; // 사용자 휴대폰 번호
     private String school; // 학교
+    private int point; // 포인트
 
     public int getUserId() {
         return userId;
@@ -62,6 +61,14 @@ public class UserVO implements Serializable {
         this.school = school;
     }
 
+    public int getPoint() {
+        return point;
+    }
+
+    public void setPoint(int point) {
+        this.point = point;
+    }
+
     @Override
     public String toString() {
         return "UserVO{" +
@@ -71,6 +78,7 @@ public class UserVO implements Serializable {
                 ", name='" + name + '\'' +
                 ", phoneNum='" + phoneNum + '\'' +
                 ", school='" + school + '\'' +
+                ", point=" + point +
                 '}';
     }
 }

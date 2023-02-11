@@ -16,7 +16,6 @@ import com.delivery.mydelivery.R;
 import com.delivery.mydelivery.menu.MenuApi;
 import com.delivery.mydelivery.menu.MenuVO;
 import com.delivery.mydelivery.order.OrderApi;
-import com.delivery.mydelivery.order.OrderListActivity;
 import com.delivery.mydelivery.retrofit.RetrofitService;
 
 import java.util.List;
@@ -50,7 +49,7 @@ public class RecruitOrderListAdapter extends RecyclerView.Adapter<RecruitOrderLi
     @Override
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         LayoutInflater inflater = LayoutInflater.from(parent.getContext());
-        View view = inflater.inflate(R.layout.item_recruit_order_list, parent, false);
+        View view = inflater.inflate(R.layout.item_recruit_order, parent, false);
         return new ViewHolder(view);
     }
 

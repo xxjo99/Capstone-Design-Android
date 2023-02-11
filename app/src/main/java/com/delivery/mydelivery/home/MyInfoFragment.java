@@ -1,5 +1,6 @@
 package com.delivery.mydelivery.home;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
@@ -14,6 +15,7 @@ import androidx.fragment.app.Fragment;
 
 import com.delivery.mydelivery.MainActivity;
 import com.delivery.mydelivery.R;
+import com.delivery.mydelivery.point.PointActivity;
 import com.delivery.mydelivery.preferenceManager.PreferenceManager;
 import com.delivery.mydelivery.user.UserVO;
 import com.google.gson.Gson;
@@ -21,12 +23,19 @@ import com.google.gson.Gson;
 // 내정보 프래그먼트
 public class MyInfoFragment extends Fragment {
 
-    View view; // 해당 view에 지정한 프래그먼트 추가
+    // 닉네임, 로그아웃
+    TextView userNameTV;
+    Button logoutBtn;
 
-    Button logoutBtn; // 로그아웃 버튼
+    // 포인트
+    TextView pointTV;
+    TextView addPointTV;
 
-    Context context; // context
+    // view, context
+    View view;
+    Context context;
 
+    @SuppressLint("SetTextI18n")
     @Nullable
     @Override
     public View onCreateView(@Nullable LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -35,22 +44,38 @@ public class MyInfoFragment extends Fragment {
         assert container != null;
         context = container.getContext(); // context 초기화
 
+        // 사용자 정보
+        String loginInfo = PreferenceManager.getLoginInfo(context);
+        Gson gson = new Gson();
+        UserVO user = gson.fromJson(loginInfo, UserVO.class);
+
+        // 초기화
+        userNameTV = view.findViewById(R.id.userNameTV);
         logoutBtn = view.findViewById(R.id.logoutBtn);
 
-        String loginInfo = PreferenceManager.getLoginInfo(context);
+        userNameTV.setText(user.getName()); // 사용자 닉네임
 
-        // 로그아웃 이벤트
+        // 로그아웃
         logoutBtn.setOnClickListener(view -> {
             PreferenceManager.logout(context);
 
-            // 프래그먼트 종료
             Intent intent = new Intent(getActivity(), MainActivity.class);
             startActivity(intent);
             getActivity().finish();
         });
 
+        pointTV = view.findViewById(R.id.pointTV);
+        addPointTV = view.findViewById(R.id.addPointTV);
+
+        pointTV.setText(user.getPoint() + "P");// 보유 포인트
+
+        // 충전페이지 이동
+        addPointTV.setOnClickListener(view -> {
+            Intent intent = new Intent(getActivity(), PointActivity.class);
+            startActivity(intent);
+        });
+
         return view;
     }
-
 
 }
