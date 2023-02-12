@@ -26,6 +26,8 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:layout_marginStart="20dp"
+        android:layout_marginEnd="20dp"
         android:gravity="center"
         android:orientation="vertical">
 
@@ -38,13 +40,12 @@
 
             <EditText
                 android:id="@+id/emailET"
-                android:layout_width="350dp"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:background="@drawable/edit_text_border_basic"
                 android:fontFamily="@font/bmjua_font"
                 android:hint="@string/loginemailInput"
                 android:padding="18dp"
-                android:textColor="@color/black"
                 android:textSize="20sp" />
 
         </com.google.android.material.textfield.TextInputLayout>
@@ -58,14 +59,13 @@
 
             <EditText
                 android:id="@+id/pwET"
-                android:layout_width="350dp"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:background="@drawable/edit_text_border_basic"
                 android:fontFamily="@font/bmjua_font"
                 android:hint="@string/loginpwInput"
                 android:inputType="textPassword"
                 android:padding="18dp"
-                android:textColor="@color/black"
                 android:textSize="20sp" />
 
         </com.google.android.material.textfield.TextInputLayout>
@@ -80,11 +80,12 @@
 
             <Button
                 android:id="@+id/loginBtn"
-                android:layout_width="350dp"
+                android:layout_width="match_parent"
                 android:layout_height="60dp"
-                android:backgroundTint="#87E0F6"
+                android:backgroundTint="#00FE7F"
                 android:fontFamily="@font/bmjua_font"
                 android:text="@string/login"
+                android:textColor="#FFFFFF"
                 android:textSize="16sp" />
 
         </LinearLayout>

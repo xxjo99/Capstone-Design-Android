@@ -18,15 +18,51 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:backgroundTint="@color/white"
+            android:minHeight="48dp"
             android:src="@drawable/back" />
 
     </androidx.appcompat.widget.Toolbar>
 
+    <TextView
+        android:id="@+id/textView17"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="10dp"
+        android:layout_marginTop="50dp"
+        android:layout_marginBottom="15dp"
+        android:fontFamily="@font/bmjua_font"
+        android:text="비밀번호 찾기"
+        android:textColor="#000000"
+        android:textSize="25sp" />
+
+    <TextView
+        android:id="@+id/textView18"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="10dp"
+        android:layout_marginBottom="5dp"
+        android:fontFamily="@font/bmjua_font"
+        android:text="회원가입 시 등록하신 이메일 주소를 입력하고"
+        android:textColor="#424242"
+        android:textSize="20sp" />
+
+    <TextView
+        android:id="@+id/textView19"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="10dp"
+        android:fontFamily="@font/bmjua_font"
+        android:text="인증번호 입력 후 확인버튼을 누르세요."
+        android:textColor="#424242"
+        android:textSize="20sp" />
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="35dp"
+        android:layout_marginEnd="20dp"
         android:layout_weight="1"
-        android:gravity="center"
         android:orientation="vertical">
 
         <!-- 이메일 입력, 인증번호 전송 -->
@@ -37,28 +73,37 @@
             android:orientation="horizontal">
 
             <com.google.android.material.textfield.TextInputLayout
-                android:layout_width="280dp"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginEnd="10dp"
+                android:layout_weight="6"
                 app:passwordToggleEnabled="false">
 
                 <EditText
                     android:id="@+id/emailET"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:layout_marginEnd="5dp"
+                    android:background="@drawable/edit_text_border_basic"
                     android:enabled="true"
                     android:fontFamily="@font/bmjua_font"
-                    android:hint="@string/loginemailInput" />
+                    android:hint="@string/loginemailInput"
+                    android:padding="18dp"
+                    android:textSize="18sp" />
 
             </com.google.android.material.textfield.TextInputLayout>
 
             <Button
-                android:enabled="true"
                 android:id="@+id/sendAuthNumBtn"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_width="match_parent"
+                android:layout_height="60dp"
+                android:layout_gravity="bottom"
+                android:layout_weight="15"
+                android:backgroundTint="#00FE7F"
+                android:enabled="true"
                 android:fontFamily="@font/bmjua_font"
-                android:text="@string/sendAuthNum" />
+                android:text="@string/sendAuthNum"
+                android:textColor="#FFFFFF"
+                android:textSize="16sp" />
 
         </LinearLayout>
 
@@ -70,48 +115,43 @@
             android:orientation="horizontal">
 
             <com.google.android.material.textfield.TextInputLayout
-                android:layout_width="280dp"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginEnd="10dp"
+                android:layout_weight="6"
                 app:passwordToggleEnabled="false">
 
                 <EditText
                     android:id="@+id/authNumET"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:enabled="false"
+                    android:layout_marginEnd="5dp"
+                    android:background="@drawable/edit_text_border_basic"
+                    android:enabled="true"
                     android:fontFamily="@font/bmjua_font"
-                    android:hint="@string/authNumInput" />
+                    android:hint="@string/authNumInput"
+                    android:padding="18dp"
+                    android:textSize="18sp" />
 
             </com.google.android.material.textfield.TextInputLayout>
 
             <!-- 인증번호 전송 버튼 -->
             <Button
                 android:id="@+id/checkAuthNumBtn"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_width="match_parent"
+                android:layout_height="60dp"
+                android:layout_gravity="bottom"
+                android:layout_weight="15"
+                android:backgroundTint="#00FE7F"
                 android:enabled="false"
                 android:fontFamily="@font/bmjua_font"
-                android:text="@string/confirm" />
+                android:text="@string/confirm"
+                android:textColor="#FFFFFF"
+                android:textSize="16sp" />
 
         </LinearLayout>
 
     </LinearLayout>
 
     <!-- 다음 액티비티 이동 Button -->
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:gravity="center">
-
-        <Button
-            android:id="@+id/modifyPwBtn"
-            android:layout_width="380dp"
-            android:layout_height="55dp"
-            android:fontFamily="@font/bmjua_font"
-            android:text="@string/modifyPw"
-            android:visibility="gone" />
-
-    </LinearLayout>
 
 </LinearLayout>
