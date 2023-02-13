@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:layout_marginStart="10dp"
+    android:layout_gravity="center"
     android:orientation="vertical"
     tools:context=".register.AuthRegisterActivity">
 
@@ -27,53 +27,58 @@
 
     </androidx.appcompat.widget.Toolbar>
 
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="10dp"
+        android:layout_marginTop="50dp"
+        android:layout_marginBottom="15dp"
+        android:fontFamily="@font/bmjua_font"
+        android:text="@string/joinInput"
+        android:textColor="@color/black"
+        android:textSize="25sp" />
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical">
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="15dp"
-            android:fontFamily="@font/bmjua_font"
-            android:text="@string/joinInput"
-            android:textColor="@color/black"
-            android:textSize="25sp" />
-
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_gravity="center"
+            android:layout_gravity="center_vertical"
             android:orientation="horizontal">
 
             <!-- 이메일 TextView -->
-            <TextView
-                android:id="@+id/emailTV"
+            <EditText
+                android:id="@+id/emailET"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
-                android:layout_weight="2"
+                android:layout_marginStart="10dp"
+                android:layout_weight="1"
                 android:background="@drawable/edit_text_border_basic"
                 android:enabled="false"
                 android:fontFamily="@font/bmjua_font"
-                android:hint="@string/loginemailInput"
+                android:hint="@string/loginEmailInput"
                 android:inputType="textEmailAddress"
                 android:padding="18dp"
+                android:singleLine="true"
                 android:textSize="18sp" />
 
             <!-- 인증번호 전송 Button -->
             <Button
                 android:id="@+id/sendAuthNumBtn"
-                android:layout_width="100dp"
+                android:layout_width="wrap_content"
                 android:layout_height="60dp"
                 android:layout_marginStart="10dp"
-                android:backgroundTint="#87E0F6"
+                android:layout_marginEnd="10dp"
+                android:background="@drawable/btn_border_round_green"
                 android:enabled="true"
                 android:fontFamily="@font/bmjua_font"
                 android:text="@string/sendAuthNum"
-                android:textColor="@color/black"
-                android:textSize="15sp" />
+                android:textColor="@color/white"
+                android:textSize="14sp" />
 
         </LinearLayout>
 
@@ -84,51 +89,58 @@
             android:layout_marginTop="10dp"
             android:orientation="horizontal">
 
-            <!-- 인증번호 EditText -->
+            <!-- 인증번호 TextView -->
             <EditText
                 android:id="@+id/authNumET"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
-                android:layout_weight="2"
+                android:layout_marginStart="10dp"
+                android:layout_weight="1"
                 android:background="@drawable/edit_text_border_basic"
                 android:enabled="false"
                 android:fontFamily="@font/bmjua_font"
                 android:hint="@string/authNumInput"
-                android:inputType="phone"
-                android:padding="18dp" />
+                android:inputType="textEmailAddress"
+                android:padding="18dp"
+                android:singleLine="true"
+                android:textSize="18sp" />
 
             <!-- 인증번호 검사 Button -->
             <Button
                 android:id="@+id/checkAuthNumBtn"
-                android:layout_width="100dp"
+                android:layout_width="wrap_content"
                 android:layout_height="60dp"
                 android:layout_marginStart="10dp"
-                android:backgroundTint="#87E0F6"
-                android:enabled="false"
+                android:layout_marginEnd="10dp"
+                android:background="@drawable/btn_border_round_gray"
+                android:enabled="true"
                 android:fontFamily="@font/bmjua_font"
                 android:text="@string/confirm"
-                android:textColor="@color/black"
-                android:textSize="16sp" />
+                android:textColor="@color/white"
+                android:textSize="14sp" />
 
         </LinearLayout>
 
-        <!-- 다음 액티비티 이동 -->
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="0dp"
             android:layout_weight="1"
-            android:gravity="bottom">
+            android:gravity="center_horizontal|bottom"
+            android:paddingBottom="10dp">
 
             <Button
                 android:id="@+id/nextBtn"
-                android:layout_width="380dp"
+                android:layout_width="match_parent"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"
                 android:layout_height="60dp"
-                android:backgroundTint="#87E0F6"
+                android:backgroundTint="@color/green"
                 android:fontFamily="@font/bmjua_font"
                 android:text="@string/next"
-                android:textSize="16sp"
-                android:visibility="gone" />
+                android:textColor="@color/white"
+                android:textSize="20sp"
+                android:visibility="visible" />
 
         </LinearLayout>
 

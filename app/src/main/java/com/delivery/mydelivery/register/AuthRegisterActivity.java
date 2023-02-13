@@ -1,5 +1,6 @@
 package com.delivery.mydelivery.register;
 
+import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.KeyEvent;
@@ -34,7 +35,7 @@ public class AuthRegisterActivity extends AppCompatActivity {
     Toolbar toolbar;
     ImageButton closeBtn;
 
-    TextView emailTV;
+    EditText emailET;
     EditText authNumET;
     Button sendAuthNumBtn;
     Button checkAuthNumBtn;
@@ -70,14 +71,14 @@ public class AuthRegisterActivity extends AppCompatActivity {
         String email = userVO.getEmail(); // 이메일
 
         // 초기화
-        emailTV = findViewById(R.id.emailTV);
+        emailET = findViewById(R.id.emailET);
         authNumET = findViewById(R.id.authNumET);
         sendAuthNumBtn = findViewById(R.id.sendAuthNumBtn);
         checkAuthNumBtn = findViewById(R.id.checkAuthNumBtn);
         nextBtn = findViewById(R.id.nextBtn);
 
         // 이메일 출력
-        emailTV.setText(email);
+        emailET.setText(email);
 
         // 인증번호 전송
         sendAuthNumBtn.setOnClickListener(view -> {
@@ -96,6 +97,7 @@ public class AuthRegisterActivity extends AppCompatActivity {
 
                     authNumET.setEnabled(false); // 인증번호를 입력하지 못하도록 입력창 비활성화
                     checkAuthNumBtn.setEnabled(false); // 인증번호 검사버튼 비활성화
+                    checkAuthNumBtn.setBackgroundResource(R.drawable.btn_border_round_gray);
                     nextBtn.setVisibility(View.VISIBLE); // 다음 액티비티 이동버튼 활성화
                 } else { // 인증 실패
                     Toast.makeText(AuthRegisterActivity.this, "인증번호를 확인해주세요.", Toast.LENGTH_SHORT).show();
@@ -128,10 +130,13 @@ public class AuthRegisterActivity extends AppCompatActivity {
                         Toast.makeText(AuthRegisterActivity.this, "인증번호를 전송했습니다.", Toast.LENGTH_SHORT).show();
                         sentAuthNum = response.body();
 
-                        // 인증번호 입력, 전송 비활성화, 인증번호 검증버튼 활성화
+                        // 인증번호 입력, 전송 비활성화, 인증번호 검증버튼 활성화, 색 변경
                         authNumET.setEnabled(true);
                         sendAuthNumBtn.setEnabled(false);
+                        sendAuthNumBtn.setBackgroundResource(R.drawable.btn_border_round_gray);
+
                         checkAuthNumBtn.setEnabled(true);
+                        checkAuthNumBtn.setBackgroundResource(R.drawable.btn_border_round_green);
                     }
 
                     @Override

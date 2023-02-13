@@ -19,6 +19,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:backgroundTint="@color/white"
+            android:contentDescription="@null"
             android:src="@drawable/back" />
 
     </androidx.appcompat.widget.Toolbar>
@@ -26,6 +27,8 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:layout_marginStart="20dp"
+        android:layout_marginEnd="20dp"
         android:gravity="center"
         android:orientation="vertical">
 
@@ -38,13 +41,13 @@
 
             <EditText
                 android:id="@+id/emailET"
-                android:layout_width="350dp"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:background="@drawable/edit_text_border_basic"
                 android:fontFamily="@font/bmjua_font"
-                android:hint="@string/loginemailInput"
+                android:hint="@string/loginEmailInput"
                 android:padding="18dp"
-                android:textColor="@color/black"
+                android:singleLine="true"
                 android:textSize="20sp" />
 
         </com.google.android.material.textfield.TextInputLayout>
@@ -58,14 +61,14 @@
 
             <EditText
                 android:id="@+id/pwET"
-                android:layout_width="350dp"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:background="@drawable/edit_text_border_basic"
                 android:fontFamily="@font/bmjua_font"
-                android:hint="@string/loginpwInput"
+                android:hint="@string/loginPwInput"
                 android:inputType="textPassword"
                 android:padding="18dp"
-                android:textColor="@color/black"
+                android:singleLine="true"
                 android:textSize="20sp" />
 
         </com.google.android.material.textfield.TextInputLayout>
@@ -80,12 +83,13 @@
 
             <Button
                 android:id="@+id/loginBtn"
-                android:layout_width="350dp"
+                android:layout_width="match_parent"
                 android:layout_height="60dp"
-                android:backgroundTint="#87E0F6"
+                android:backgroundTint="@color/green"
                 android:fontFamily="@font/bmjua_font"
                 android:text="@string/login"
-                android:textSize="16sp" />
+                android:textColor="@color/white"
+                android:textSize="20sp" />
 
         </LinearLayout>
 

@@ -12,20 +12,22 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
-        android:orientation="horizontal"
-        android:layout_margin="20dp">
+        android:layout_margin="20dp"
+        android:orientation="horizontal">
 
         <EditText
-            android:drawableStart="@drawable/home_menu_search"
-            android:drawableTint="@color/gray2"
-            android:padding="10dp"
-            android:drawablePadding="10dp"
             android:id="@+id/searchET"
             android:layout_width="match_parent"
             android:layout_height="45dp"
-            android:background="@drawable/edit_text_border_basic"
+            android:background="@drawable/search_edit_text_border"
+            android:drawableStart="@drawable/home_menu_search"
+            android:drawablePadding="10dp"
+            android:drawableTint="@color/gray2"
+            android:fontFamily="@font/bmjua_font"
             android:imeOptions="actionSearch"
-            android:inputType="text" />
+            android:inputType="text"
+            android:padding="10dp"
+            android:singleLine="true" />
 
     </LinearLayout>
 

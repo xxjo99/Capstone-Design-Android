@@ -24,138 +24,131 @@
     </androidx.appcompat.widget.Toolbar>
 
     <TextView
-        android:id="@+id/textView17"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginStart="10dp"
         android:layout_marginTop="50dp"
         android:layout_marginBottom="15dp"
         android:fontFamily="@font/bmjua_font"
-        android:text="비밀번호 찾기"
-        android:textColor="#000000"
+        android:text="@string/findPw"
+        android:textColor="@color/black"
         android:textSize="25sp" />
 
     <TextView
-        android:id="@+id/textView18"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginStart="10dp"
-        android:layout_marginBottom="5dp"
+        android:layout_marginTop="10dp"
         android:fontFamily="@font/bmjua_font"
-        android:text="회원가입 시 등록하신 이메일 주소를 입력하고"
-        android:textColor="#424242"
-        android:textSize="20sp" />
-
-    <TextView
-        android:id="@+id/textView19"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="10dp"
-        android:fontFamily="@font/bmjua_font"
-        android:text="인증번호 입력 후 확인버튼을 누르세요."
-        android:textColor="#424242"
-        android:textSize="20sp" />
+        android:text="@string/findPwText"
+        android:textColor="@color/black"
+        android:textSize="18sp" />
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_marginTop="35dp"
-        android:layout_weight="1"
         android:orientation="vertical">
 
         <!-- 이메일 입력, 인증번호 전송 -->
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:gravity="center"
+            android:gravity="center_vertical"
             android:orientation="horizontal">
 
-            <com.google.android.material.textfield.TextInputLayout
-                android:layout_width="280dp"
+            <!-- 이메일 TextView -->
+            <EditText
+                android:id="@+id/emailET"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                app:passwordToggleEnabled="false">
+                android:layout_gravity="center"
+                android:layout_marginStart="10dp"
+                android:layout_weight="1"
+                android:background="@drawable/edit_text_border_basic"
+                android:fontFamily="@font/bmjua_font"
+                android:hint="@string/loginEmailInput"
+                android:inputType="textEmailAddress"
+                android:padding="18dp"
+                android:singleLine="true"
+                android:textSize="18sp" />
 
-                <EditText
-                    android:id="@+id/emailET"
-                    android:layout_width="260dp"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="10dp"
-                    android:background="@drawable/edit_text_border_basic"
-                    android:enabled="true"
-                    android:fontFamily="@font/bmjua_font"
-                    android:hint="@string/loginemailInput"
-                    android:padding="18dp"
-                    android:textSize="18sp" />
-
-            </com.google.android.material.textfield.TextInputLayout>
-
+            <!-- 인증번호 전송 Button -->
             <Button
                 android:id="@+id/sendAuthNumBtn"
-                android:layout_width="110dp"
+                android:layout_width="wrap_content"
                 android:layout_height="60dp"
-                android:backgroundTint="#87E0F6"
+                android:layout_marginStart="10dp"
+                android:layout_marginEnd="10dp"
+                android:background="@drawable/btn_border_round_green"
                 android:enabled="true"
                 android:fontFamily="@font/bmjua_font"
                 android:text="@string/sendAuthNum"
-                android:textSize="16sp" />
+                android:textColor="@color/white"
+                android:textSize="14sp" />
 
         </LinearLayout>
 
-        <!-- 인증번호 -->
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:gravity="center"
+            android:layout_gravity="center"
+            android:layout_marginTop="10dp"
             android:orientation="horizontal">
 
-            <com.google.android.material.textfield.TextInputLayout
-                android:layout_width="280dp"
+            <!-- 인증번호 TextView -->
+            <EditText
+                android:id="@+id/authNumET"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                app:passwordToggleEnabled="false">
-
-                <EditText
-                    android:id="@+id/authNumET"
-                    android:layout_width="260dp"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="10dp"
-                    android:background="@drawable/edit_text_border_basic"
-                    android:enabled="true"
-                    android:fontFamily="@font/bmjua_font"
-                    android:hint="@string/authNumInput"
-                    android:padding="18dp"
-                    android:textSize="18sp" />
-
-            </com.google.android.material.textfield.TextInputLayout>
-
-            <!-- 인증번호 전송 버튼 -->
-            <Button
-                android:id="@+id/checkAuthNumBtn"
-                android:layout_width="110dp"
-                android:layout_height="60dp"
-                android:backgroundTint="#87E0F6"
+                android:layout_gravity="center"
+                android:layout_marginStart="10dp"
+                android:layout_weight="1"
+                android:background="@drawable/edit_text_border_basic"
                 android:enabled="false"
                 android:fontFamily="@font/bmjua_font"
+                android:hint="@string/authNumInput"
+                android:inputType="textEmailAddress"
+                android:padding="18dp"
+                android:singleLine="true"
+                android:textSize="18sp" />
+
+            <!-- 인증번호 검사 Button -->
+            <Button
+                android:id="@+id/checkAuthNumBtn"
+                android:layout_width="wrap_content"
+                android:layout_height="60dp"
+                android:layout_marginStart="10dp"
+                android:layout_marginEnd="10dp"
+                android:background="@drawable/btn_border_round_gray"
+                android:enabled="true"
+                android:fontFamily="@font/bmjua_font"
                 android:text="@string/confirm"
-                android:textColor="#000000"
-                android:textSize="16sp" />
+                android:textColor="@color/white"
+                android:textSize="14sp" />
 
         </LinearLayout>
 
-    </LinearLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:gravity="center_horizontal|bottom"
+            android:paddingBottom="10dp">
 
-    <!-- 다음 액티비티 이동 Button -->
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:gravity="center">
+            <Button
+                android:id="@+id/modifyPwBtn"
+                android:layout_width="match_parent"
+                android:layout_height="60dp"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"
+                android:backgroundTint="@color/green"
+                android:fontFamily="@font/bmjua_font"
+                android:text="@string/next"
+                android:textColor="@color/white"
+                android:textSize="20sp"
+                android:visibility="visible" />
 
-        <Button
-            android:id="@+id/modifyPwBtn"
-            android:layout_width="380dp"
-            android:layout_height="55dp"
-            android:fontFamily="@font/bmjua_font"
-            android:text="@string/modifyPw"
-            android:visibility="gone" />
+        </LinearLayout>
 
     </LinearLayout>
 

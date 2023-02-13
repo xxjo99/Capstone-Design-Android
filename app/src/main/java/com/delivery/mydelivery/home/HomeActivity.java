@@ -11,7 +11,7 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
-import androidx.fragment.app.FragmentTransaction;
+import androidx.fragment.app.FragmentManager;
 
 import com.delivery.mydelivery.R;
 import com.delivery.mydelivery.order.OrderListActivity;
@@ -49,7 +49,9 @@ public class HomeActivity extends AppCompatActivity {
         searchFragment = new SearchFragment();
         myInfoFragment = new MyInfoFragment();
 
-        getSupportFragmentManager().beginTransaction().replace(R.id.homeFragmentFrame, homeFragment).commit(); // 처음 보여질 프래그먼트
+        // 제일 처음 띄워주는 프래그먼트
+        FragmentManager fm = getSupportFragmentManager();
+        fm.beginTransaction().replace(R.id.homeFragmentFrame, homeFragment, "home").commitAllowingStateLoss();
 
         // 유저 정보
         String loginInfo = PreferenceManager.getLoginInfo(this);
@@ -70,42 +72,135 @@ public class HomeActivity extends AppCompatActivity {
         // 네비게이션 클릭 이벤트
         navigation.setOnItemSelectedListener(item -> {
 
+            FragmentManager fragmentManager = getSupportFragmentManager();
+
             switch (item.getItemId()) {
                 case R.id.menu_home_home: // 카테고리 이동
-                    getSupportFragmentManager().beginTransaction().replace(R.id.homeFragmentFrame, homeFragment).commit();
+                    if (fragmentManager.findFragmentByTag("home") != null) {
+                        fragmentManager.beginTransaction().show(Objects.requireNonNull(fragmentManager.findFragmentByTag("home"))).commit();
+                    } else {
+                        fragmentManager.beginTransaction().add(R.id.homeFragmentFrame, homeFragment, "home").commit();
+                    }
+
+                    if (fragmentManager.findFragmentByTag("recruit") != null) {
+                        fragmentManager.beginTransaction().hide(Objects.requireNonNull(fragmentManager.findFragmentByTag("recruit"))).commit();
+                    }
+                    if (fragmentManager.findFragmentByTag("myPost") != null) {
+                        fragmentManager.beginTransaction().hide(Objects.requireNonNull(fragmentManager.findFragmentByTag("myPost"))).commit();
+                    }
+                    if (fragmentManager.findFragmentByTag("search") != null) {
+                        fragmentManager.beginTransaction().hide(Objects.requireNonNull(fragmentManager.findFragmentByTag("search"))).commit();
+                    }
+                    if (fragmentManager.findFragmentByTag("myInfo") != null) {
+                        fragmentManager.beginTransaction().hide(Objects.requireNonNull(fragmentManager.findFragmentByTag("myInfo"))).commit();
+                    }
+
                     toolbar.setVisibility(View.VISIBLE);
                     infoTV.setText(school);
                     return true;
 
                 case R.id.menu_home_post: // 모집글 리스트 이동
-                    getSupportFragmentManager().beginTransaction().replace(R.id.homeFragmentFrame, recruitListFragment).commit();
+                    if (fragmentManager.findFragmentByTag("recruit") != null) {
+                        fragmentManager.beginTransaction().show(Objects.requireNonNull(fragmentManager.findFragmentByTag("recruit"))).commit();
+                    } else {
+                        fragmentManager.beginTransaction().add(R.id.homeFragmentFrame, recruitListFragment, "recruit").commit();
+                    }
+
+                    if (fragmentManager.findFragmentByTag("home") != null) {
+                        fragmentManager.beginTransaction().hide(Objects.requireNonNull(fragmentManager.findFragmentByTag("home"))).commit();
+                    }
+                    if (fragmentManager.findFragmentByTag("myPost") != null) {
+                        fragmentManager.beginTransaction().hide(Objects.requireNonNull(fragmentManager.findFragmentByTag("myPost"))).commit();
+                    }
+                    if (fragmentManager.findFragmentByTag("search") != null) {
+                        fragmentManager.beginTransaction().hide(Objects.requireNonNull(fragmentManager.findFragmentByTag("search"))).commit();
+                    }
+                    if (fragmentManager.findFragmentByTag("myInfo") != null) {
+                        fragmentManager.beginTransaction().hide(Objects.requireNonNull(fragmentManager.findFragmentByTag("myInfo"))).commit();
+                    }
+
                     toolbar.setVisibility(View.VISIBLE);
                     infoTV.setText(school);
                     return true;
 
                 case R.id.menu_home_myPost: // 나의 모집 / 등록글 이동
-                    getSupportFragmentManager().beginTransaction().replace(R.id.homeFragmentFrame, myPostFragment).commit();
+                    if (fragmentManager.findFragmentByTag("myPost") != null) {
+                        fragmentManager.beginTransaction().show(Objects.requireNonNull(fragmentManager.findFragmentByTag("myPost"))).commit();
+                    } else {
+                        fragmentManager.beginTransaction().add(R.id.homeFragmentFrame, myPostFragment, "myPost").commit();
+                    }
+
+                    if (fragmentManager.findFragmentByTag("home") != null) {
+                        fragmentManager.beginTransaction().hide(Objects.requireNonNull(fragmentManager.findFragmentByTag("home"))).commit();
+                    }
+                    if (fragmentManager.findFragmentByTag("recruit") != null) {
+                        fragmentManager.beginTransaction().hide(Objects.requireNonNull(fragmentManager.findFragmentByTag("recruit"))).commit();
+                    }
+                    if (fragmentManager.findFragmentByTag("search") != null) {
+                        fragmentManager.beginTransaction().hide(Objects.requireNonNull(fragmentManager.findFragmentByTag("search"))).commit();
+                    }
+                    if (fragmentManager.findFragmentByTag("myInfo") != null) {
+                        fragmentManager.beginTransaction().hide(Objects.requireNonNull(fragmentManager.findFragmentByTag("myInfo"))).commit();
+                    }
+
                     toolbar.setVisibility(View.VISIBLE);
                     infoTV.setText(school);
                     return true;
 
                 case R.id.menu_home_search: // 검색 이동
-                    FragmentTransaction fT = getSupportFragmentManager().beginTransaction();
-                    fT.replace(R.id.homeFragmentFrame, searchFragment);
-                    fT.addToBackStack(null);
-                    fT.commit();
+                    if (fragmentManager.findFragmentByTag("search") != null) {
+                        fragmentManager.beginTransaction().show(Objects.requireNonNull(fragmentManager.findFragmentByTag("search"))).commit();
+                    } else {
+                        fragmentManager.beginTransaction().add(R.id.homeFragmentFrame, searchFragment, "search").commit();
+                    }
+
+                    if (fragmentManager.findFragmentByTag("home") != null) {
+                        fragmentManager.beginTransaction().hide(Objects.requireNonNull(fragmentManager.findFragmentByTag("home"))).commit();
+                    }
+                    if (fragmentManager.findFragmentByTag("recruit") != null) {
+                        fragmentManager.beginTransaction().hide(Objects.requireNonNull(fragmentManager.findFragmentByTag("recruit"))).commit();
+                    }
+                    if (fragmentManager.findFragmentByTag("myPost") != null) {
+                        fragmentManager.beginTransaction().hide(Objects.requireNonNull(fragmentManager.findFragmentByTag("myPost"))).commit();
+                    }
+                    if (fragmentManager.findFragmentByTag("myInfo") != null) {
+                        fragmentManager.beginTransaction().hide(Objects.requireNonNull(fragmentManager.findFragmentByTag("myInfo"))).commit();
+                    }
+
                     toolbar.setVisibility(View.GONE);
                     return true;
 
-                case R.id.menu_home_myInfo: // 내 정보 이동
-                    getSupportFragmentManager().beginTransaction().replace(R.id.homeFragmentFrame, myInfoFragment).commit();
+                case R.id.menu_home_myInfo: // 검색 이동
+                    if (fragmentManager.findFragmentByTag("myInfo") != null) {
+                        fragmentManager.beginTransaction().show(Objects.requireNonNull(fragmentManager.findFragmentByTag("myInfo"))).commit();
+                    } else {
+                        fragmentManager.beginTransaction().add(R.id.homeFragmentFrame, myInfoFragment, "myInfo").commit();
+                    }
+
+                    if (fragmentManager.findFragmentByTag("home") != null) {
+                        fragmentManager.beginTransaction().hide(Objects.requireNonNull(fragmentManager.findFragmentByTag("home"))).commit();
+                    }
+                    if (fragmentManager.findFragmentByTag("recruit") != null) {
+                        fragmentManager.beginTransaction().hide(Objects.requireNonNull(fragmentManager.findFragmentByTag("recruit"))).commit();
+                    }
+                    if (fragmentManager.findFragmentByTag("myPost") != null) {
+                        fragmentManager.beginTransaction().hide(Objects.requireNonNull(fragmentManager.findFragmentByTag("myPost"))).commit();
+                    }
+                    if (fragmentManager.findFragmentByTag("search") != null) {
+                        fragmentManager.beginTransaction().hide(Objects.requireNonNull(fragmentManager.findFragmentByTag("search"))).commit();
+                    }
+
                     toolbar.setVisibility(View.VISIBLE);
                     infoTV.setText("내정보");
                     return true;
-            }
-            return false;
-        });
-    }
+
+                default:
+                    return false;
+
+
+        }
+    });
+}
 
     // 툴바 설정
     @Override
@@ -118,11 +213,9 @@ public class HomeActivity extends AppCompatActivity {
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
 
-        switch (item.getItemId()) {
-            case R.id.cartBtn:
-                Intent intent = new Intent(this, OrderListActivity.class);
-                startActivity(intent);
-                break;
+        if (item.getItemId() == R.id.cartBtn) {
+            Intent intent = new Intent(this, OrderListActivity.class);
+            startActivity(intent);
         }
 
         return super.onOptionsItemSelected(item);

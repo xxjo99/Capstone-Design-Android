@@ -3,17 +3,18 @@
     android:id="@+id/registerDialogLayout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@drawable/dialog_shape"
     android:orientation="vertical">
 
     <TextView
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="150dp"
         android:fontFamily="@font/bmjua_font"
         android:gravity="center"
         android:includeFontPadding="false"
         android:paddingTop="10dp"
         android:paddingBottom="10dp"
-        android:text="종료"
+        android:text="종료하시겠습니까?"
         android:textColor="@color/black"
         android:textSize="30sp" />
 
