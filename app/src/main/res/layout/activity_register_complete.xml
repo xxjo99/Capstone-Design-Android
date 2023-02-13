@@ -41,6 +41,6 @@
             android:fontFamily="@font/bmjua_font"
             android:text="@string/gologin"
             android:textColor="@color/white"
-            android:textSize="16sp" />
+            android:textSize="20sp" />
         </LinearLayout>
 </LinearLayout>
