@@ -7,16 +7,19 @@
     android:orientation="vertical">
 
     <TextView
-        android:layout_width="match_parent"
-        android:layout_height="150dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
         android:fontFamily="@font/bmjua_font"
         android:gravity="center"
         android:includeFontPadding="false"
-        android:paddingTop="10dp"
-        android:paddingBottom="10dp"
+        android:paddingLeft="50dp"
+        android:paddingTop="30dp"
+        android:paddingRight="50dp"
+        android:paddingBottom="30dp"
         android:text="비밀번호 재설정을\n취소하시겠습니까?"
         android:textColor="@color/black"
-        android:textSize="30sp" />
+        android:textSize="25sp" />
 
     <View
         android:layout_width="match_parent"
@@ -35,9 +38,9 @@
             android:layout_height="55dp"
             android:layout_weight="1"
             android:fontFamily="@font/bmjua_font"
-            android:text="예"
-            android:textColor="@color/black"
-            android:textSize="24sp" />
+            android:text="@string/confirm"
+            android:textColor="@color/red"
+            android:textSize="20sp" />
 
         <Button
             android:id="@+id/cancelBtn"
@@ -46,9 +49,9 @@
             android:layout_height="55dp"
             android:layout_weight="1"
             android:fontFamily="@font/bmjua_font"
-            android:text="아니오"
+            android:text="@string/cancel"
             android:textColor="@color/black"
-            android:textSize="24sp" />
+            android:textSize="20sp" />
 
     </LinearLayout>
 

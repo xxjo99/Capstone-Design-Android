@@ -200,8 +200,6 @@ public class OrderListAdapter extends RecyclerView.Adapter<OrderListAdapter.View
                                     holder.optionListTV.append(contentNameResult.get(i) + ", ");
                                 }
                             }
-                        } else {
-                            holder.optionListTV.setVisibility(View.GONE);
                         }
                     }
 
