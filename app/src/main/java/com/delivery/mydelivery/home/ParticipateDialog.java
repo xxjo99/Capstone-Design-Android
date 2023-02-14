@@ -67,7 +67,7 @@ public class ParticipateDialog {
 
         // dialog 설정
         dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
-        dialog.setContentView(R.layout.activity_recruit_participate_dialog);
+        dialog.setContentView(R.layout.dialog_recruit_participate);
         dialog.show();
 
         // 초기화

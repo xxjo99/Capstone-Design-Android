@@ -5,7 +5,6 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -15,7 +14,6 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.delivery.mydelivery.R;
 import com.delivery.mydelivery.retrofit.RetrofitService;
-
 import java.util.List;
 
 import retrofit2.Call;
@@ -37,8 +35,6 @@ public class HomeFragment extends Fragment {
     View view;
     Context context;
 
-    // 임시, 장바구니 이동 버튼
-    Button moveCartBtn;
 
     @Nullable
     @Override
@@ -78,4 +74,5 @@ public class HomeFragment extends Fragment {
                     }
                 });
     }
+
 }

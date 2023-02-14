@@ -50,8 +50,7 @@
 
         <!-- login -->
         <activity
-            android:name=".login.LoginActivity"
-            android:windowSoftInputMode="adjustResize" />
+            android:name=".login.LoginActivity" />
         <activity
             android:name=".login.FindPwActivity"
             android:windowSoftInputMode="adjustResize" />

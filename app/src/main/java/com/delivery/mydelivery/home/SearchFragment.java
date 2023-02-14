@@ -7,6 +7,7 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.EditText;
 import android.widget.LinearLayout;
 
@@ -28,11 +29,12 @@ public class SearchFragment extends Fragment {
     EditText searchET;
 
     // 레이아웃, 탭 레이아웃, 뷰페이저
+    LinearLayout searchFragmentLayout;
     LinearLayout searchResultLayout;
     TabLayout searchTab;
     ViewPager2 searchResultViewPager;
 
-    // 검색 결과 프래그먼트
+    // 검색 결과 뷰
     Fragment searchResultStore;
     Fragment searchResultRecruit;
 
@@ -55,11 +57,16 @@ public class SearchFragment extends Fragment {
         searchET = view.findViewById(R.id.searchET);
 
         // 레이아웃, 탭 레이아웃, 뷰페이저 초기화
+        searchFragmentLayout = view.findViewById(R.id.searchFragmentLayout);
         searchResultLayout = view.findViewById(R.id.searchResultLayout);
         searchTab = view.findViewById(R.id.searchTab);
         searchResultViewPager = view.findViewById(R.id.searchResultViewPager);
 
-        // 프래그먼트 초기화
+        searchFragmentLayout.setOnClickListener(view -> {
+            hideKeyboard();
+        });
+
+        // 검색결과 뷰 초기화
         searchResultStore = new SearchResultStore();
         searchResultRecruit = new SearchResultRecruit();
 
@@ -67,6 +74,9 @@ public class SearchFragment extends Fragment {
         searchET.setOnEditorActionListener((textView, actionId, keyEvent) -> {
 
             if (actionId == IME_ACTION_SEARCH) {
+                InputMethodManager mInputMethodManager = (InputMethodManager) requireContext().getSystemService(Context.INPUT_METHOD_SERVICE);
+                mInputMethodManager.hideSoftInputFromWindow(searchET.getWindowToken(), 0);
+
                 String keyword = searchET.getText().toString();
 
                 SearchResultStore.searchStoreResult(keyword, user.getSchool());
@@ -93,6 +103,14 @@ public class SearchFragment extends Fragment {
         tabLayoutMediator.attach();
 
         return view;
+    }
+
+    // 키보드 외부를 누르면 내려감
+    private void hideKeyboard() {
+        if (getActivity() != null && getActivity().getCurrentFocus() != null) {
+            InputMethodManager inputManager = (InputMethodManager) getActivity().getSystemService(Context.INPUT_METHOD_SERVICE);
+            inputManager.hideSoftInputFromWindow(getActivity().getCurrentFocus().getWindowToken(), InputMethodManager.HIDE_NOT_ALWAYS);
+        }
     }
 
 }

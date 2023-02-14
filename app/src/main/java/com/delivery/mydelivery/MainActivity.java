@@ -8,9 +8,12 @@ import android.widget.Button;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.delivery.mydelivery.home.HomeActivity;
+import com.delivery.mydelivery.login.ModifyPwCancelDialog;
+import com.delivery.mydelivery.login.ModifyPwDialog;
 import com.delivery.mydelivery.preferenceManager.PreferenceManager;
 import com.delivery.mydelivery.register.EmailRegisterActivity;
 import com.delivery.mydelivery.login.LoginActivity;
+import com.delivery.mydelivery.register.RegisterDialog;
 
 public class MainActivity extends AppCompatActivity {
 

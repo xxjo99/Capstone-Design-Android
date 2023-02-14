@@ -1,5 +1,6 @@
 package com.delivery.mydelivery.store;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.Intent;
 import android.view.LayoutInflater;
@@ -37,6 +38,7 @@ public class StoreListAdapter extends RecyclerView.Adapter<StoreListAdapter.View
         return new ViewHolder(view);
     }
 
+    @SuppressLint("SetTextI18n")
     @Override
     public void onBindViewHolder(@NonNull StoreListAdapter.ViewHolder holder, int position) {
         StoreVO store = storeList.get(position);
@@ -55,7 +57,7 @@ public class StoreListAdapter extends RecyclerView.Adapter<StoreListAdapter.View
         holder.storeNameTV.setText(storeName);
         holder.storeInfoTV.setText(storeInfo);
         holder.storeDeliveryPriceTV.setText(deliveryPrice);
-        holder.deliveryTimeTV.setText(deliveryTime);
+        holder.deliveryTimeTV.setText(deliveryTime + "분");
 
         // 해당 매장 이동
         holder.itemView.setOnClickListener(view1 -> {

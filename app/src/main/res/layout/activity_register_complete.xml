@@ -2,45 +2,47 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:gravity="center"
-    android:layout_weight="100"
     android:layout_gravity="center"
+    android:layout_weight="100"
+    android:gravity="center"
     android:orientation="vertical">
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:layout_weight="1">
-        </LinearLayout>
 
-        <ImageView
-            android:layout_width="80dp"
-            android:layout_height="80dp"
-            android:src="@drawable/checked"
-            android:layout_gravity="center"/>
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="15dp"
-            android:text="회원가입이 완료되었습니다\n서비스를 이용하기 위해 로그인해주세요"
-            android:fontFamily="@font/bmjua_font"
-            android:textColor="@color/black"
-            android:textSize="20dp"
-            android:gravity="center_horizontal" />
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1" />
 
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:paddingBottom="10dp"
-            android:layout_height="0dp"
-            android:gravity="bottom|center"
-            android:layout_weight="1">
+    <ImageView
+        android:layout_width="80dp"
+        android:layout_height="80dp"
+        android:layout_gravity="center"
+        android:src="@drawable/checked" />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="15dp"
+        android:fontFamily="@font/bmjua_font"
+        android:gravity="center_horizontal"
+        android:text="회원가입이 완료되었습니다\n서비스를 이용하기 위해 로그인해주세요"
+        android:textColor="@color/black"
+        android:textSize="20dp" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:gravity="bottom|center"
+        android:paddingBottom="10dp">
+
         <Button
             android:id="@+id/loginBtn"
             android:layout_width="385dp"
             android:layout_height="62dp"
             android:backgroundTint="#00ff80"
             android:fontFamily="@font/bmjua_font"
-            android:text="@string/gologin"
+            android:text="@string/goLogin"
             android:textColor="@color/white"
             android:textSize="20sp" />
-        </LinearLayout>
+    </LinearLayout>
 </LinearLayout>

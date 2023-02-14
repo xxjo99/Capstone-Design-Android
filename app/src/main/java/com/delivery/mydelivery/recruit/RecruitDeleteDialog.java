@@ -37,7 +37,7 @@ public class RecruitDeleteDialog {
         final Dialog dialog = new Dialog(context);
 
         dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
-        dialog.setContentView(R.layout.activity_recruit_delete_dialog);
+        dialog.setContentView(R.layout.dialog_recruit_delete);
         dialog.getWindow().setGravity(Gravity.BOTTOM);
         dialog.show();
 
