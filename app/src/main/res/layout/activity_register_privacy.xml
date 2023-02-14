@@ -160,19 +160,21 @@
         android:layout_height="0dp"
         android:layout_weight="1"
         android:gravity="center_horizontal|bottom"
-        android:paddingBottom="10dp">
+        android:padding="10dp">
 
         <Button
             android:id="@+id/registerBtn"
+            style="?android:attr/borderlessButtonStyle"
             android:layout_width="match_parent"
-            android:layout_height="60dp"
+            android:layout_height="55dp"
             android:layout_marginLeft="10dp"
             android:layout_marginRight="10dp"
-            android:backgroundTint="@color/green"
+            android:layout_marginBottom="5dp"
+            android:background="@drawable/btn_border2_green"
             android:fontFamily="@font/bmjua_font"
             android:text="@string/register"
             android:textColor="@color/white"
-            android:textSize="20sp"
+            android:textSize="23sp"
             android:visibility="visible" />
 
     </LinearLayout>

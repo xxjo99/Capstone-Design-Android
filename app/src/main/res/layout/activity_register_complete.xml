@@ -32,17 +32,24 @@
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="1"
-        android:gravity="bottom|center"
-        android:paddingBottom="10dp">
+        android:gravity="center_horizontal|bottom"
+        android:padding="10dp">
 
         <Button
             android:id="@+id/loginBtn"
-            android:layout_width="385dp"
-            android:layout_height="62dp"
-            android:backgroundTint="#00ff80"
+            style="?android:attr/borderlessButtonStyle"
+            android:layout_width="match_parent"
+            android:layout_height="55dp"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            android:layout_marginBottom="5dp"
+            android:background="@drawable/btn_border2_green"
             android:fontFamily="@font/bmjua_font"
             android:text="@string/goLogin"
             android:textColor="@color/white"
-            android:textSize="20sp" />
+            android:textSize="23sp" />
+
     </LinearLayout>
+
+
 </LinearLayout>

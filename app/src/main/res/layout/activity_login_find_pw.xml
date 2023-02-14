@@ -76,11 +76,12 @@
             <!-- 인증번호 전송 Button -->
             <Button
                 android:id="@+id/sendAuthNumBtn"
+                style="?android:attr/borderlessButtonStyle"
                 android:layout_width="wrap_content"
                 android:layout_height="60dp"
                 android:layout_marginStart="10dp"
                 android:layout_marginEnd="10dp"
-                android:background="@drawable/btn_border_round_green"
+                android:background="@drawable/btn_border_green"
                 android:enabled="true"
                 android:fontFamily="@font/bmjua_font"
                 android:text="@string/sendAuthNum"
@@ -116,12 +117,13 @@
             <!-- 인증번호 검사 Button -->
             <Button
                 android:id="@+id/checkAuthNumBtn"
+                style="?android:attr/borderlessButtonStyle"
                 android:layout_width="wrap_content"
-                android:layout_gravity="center"
                 android:layout_height="60dp"
+                android:layout_gravity="center"
                 android:layout_marginStart="10dp"
                 android:layout_marginEnd="10dp"
-                android:background="@drawable/btn_border_round_gray"
+                android:background="@drawable/btn_border_gray"
                 android:enabled="true"
                 android:fontFamily="@font/bmjua_font"
                 android:text="@string/confirm"
@@ -135,19 +137,21 @@
             android:layout_height="0dp"
             android:layout_weight="1"
             android:gravity="center_horizontal|bottom"
-            android:paddingBottom="10dp">
+            android:padding="10dp">
 
             <Button
                 android:id="@+id/modifyPwBtn"
+                style="?android:attr/borderlessButtonStyle"
                 android:layout_width="match_parent"
-                android:layout_height="60dp"
+                android:layout_height="55dp"
                 android:layout_marginLeft="10dp"
                 android:layout_marginRight="10dp"
-                android:backgroundTint="@color/green"
+                android:layout_marginBottom="5dp"
+                android:background="@drawable/btn_border2_green"
                 android:fontFamily="@font/bmjua_font"
-                android:text="@string/next"
+                android:text="@string/modifyPw"
                 android:textColor="@color/white"
-                android:textSize="20sp"
+                android:textSize="23sp"
                 android:visibility="visible" />
 
         </LinearLayout>

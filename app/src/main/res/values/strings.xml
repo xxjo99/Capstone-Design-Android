@@ -110,7 +110,6 @@
     <string name="request">요청사항</string>
     <string name="paymentPrice">결제금액</string>
     <string name="enter_request">요청사항을 입력해주세요.</string>
-    <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
 
     <string name="point">포인트</string>

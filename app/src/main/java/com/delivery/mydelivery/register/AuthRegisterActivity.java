@@ -1,6 +1,5 @@
 package com.delivery.mydelivery.register;
 
-import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.KeyEvent;
@@ -8,7 +7,6 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -97,7 +95,7 @@ public class AuthRegisterActivity extends AppCompatActivity {
 
                     authNumET.setEnabled(false); // 인증번호를 입력하지 못하도록 입력창 비활성화
                     checkAuthNumBtn.setEnabled(false); // 인증번호 검사버튼 비활성화
-                    checkAuthNumBtn.setBackgroundResource(R.drawable.btn_border_round_gray);
+                    checkAuthNumBtn.setBackgroundResource(R.drawable.btn_border_gray);
                     nextBtn.setVisibility(View.VISIBLE); // 다음 액티비티 이동버튼 활성화
                 } else { // 인증 실패
                     Toast.makeText(AuthRegisterActivity.this, "인증번호를 확인해주세요.", Toast.LENGTH_SHORT).show();
@@ -133,10 +131,10 @@ public class AuthRegisterActivity extends AppCompatActivity {
                         // 인증번호 입력, 전송 비활성화, 인증번호 검증버튼 활성화, 색 변경
                         authNumET.setEnabled(true);
                         sendAuthNumBtn.setEnabled(false);
-                        sendAuthNumBtn.setBackgroundResource(R.drawable.btn_border_round_gray);
+                        sendAuthNumBtn.setBackgroundResource(R.drawable.btn_border_gray);
 
                         checkAuthNumBtn.setEnabled(true);
-                        checkAuthNumBtn.setBackgroundResource(R.drawable.btn_border_round_green);
+                        checkAuthNumBtn.setBackgroundResource(R.drawable.btn_border_green);
                     }
 
                     @Override

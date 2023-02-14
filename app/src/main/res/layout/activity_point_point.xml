@@ -106,7 +106,7 @@
         android:layout_height="wrap_content"
         android:layout_gravity="bottom"
         android:layout_margin="15dp"
-        android:background="@drawable/btn_border_round_gray"
+        android:background="@drawable/btn_border_gray"
         android:enabled="false"
         android:fontFamily="@font/bmjua_font"
         android:text="@string/addPoint"

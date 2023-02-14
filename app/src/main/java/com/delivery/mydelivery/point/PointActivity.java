@@ -9,10 +9,12 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageButton;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
 
 import com.delivery.mydelivery.R;
 import com.delivery.mydelivery.preferenceManager.PreferenceManager;
@@ -21,6 +23,8 @@ import com.delivery.mydelivery.user.UserApi;
 import com.delivery.mydelivery.user.UserVO;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
+
+import java.util.Objects;
 
 import kr.co.bootpay.android.Bootpay;
 import kr.co.bootpay.android.events.BootpayEventListener;
@@ -31,6 +35,10 @@ import retrofit2.Callback;
 import retrofit2.Response;
 
 public class PointActivity extends AppCompatActivity {
+
+    // 툴바, 툴바 버튼
+    Toolbar toolbar;
+    ImageButton backBtn;
 
     EditText pointET;
     TextView pointCkTV;
@@ -45,6 +53,7 @@ public class PointActivity extends AppCompatActivity {
     // retrofit, api, gson
     RetrofitService retrofitService;
     UserApi userApi;
+    PointApi pointApi;
     Gson gson;
 
     Context context; // context
@@ -55,6 +64,15 @@ public class PointActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_point_point);
         context = this;
+
+        // 툴바
+        toolbar = findViewById(R.id.pointToolbar);
+        setSupportActionBar(toolbar);
+        Objects.requireNonNull(getSupportActionBar()).setDisplayShowTitleEnabled(false);
+
+        // 뒤로가기 버튼
+        backBtn = findViewById(R.id.backBtn);
+        backBtn.setOnClickListener(view -> finish());
 
         pointET = findViewById(R.id.pointET);
         pointCkTV = findViewById(R.id.pointCkTV);
@@ -135,12 +153,12 @@ public class PointActivity extends AppCompatActivity {
                 if (flag) { // 입력한 금액 1000원 이상
                     pointET.setBackgroundResource(R.drawable.point_edit_text_border);
                     pointCkTV.setVisibility(View.GONE);
-                    addPointBtn.setBackgroundResource(R.drawable.btn_border_round_green);
+                    addPointBtn.setBackgroundResource(R.drawable.btn_border_green);
                     addPointBtn.setEnabled(true);
                 } else { // 1000원 미만
                     pointET.setBackgroundResource(R.drawable.point_edit_text_border_red);
                     pointCkTV.setVisibility(View.VISIBLE);
-                    addPointBtn.setBackgroundResource(R.drawable.btn_border_round_gray);
+                    addPointBtn.setBackgroundResource(R.drawable.btn_border_gray);
                     addPointBtn.setEnabled(false);
                 }
             }
@@ -204,8 +222,6 @@ public class PointActivity extends AppCompatActivity {
 
                     @Override
                     public void onDone(String data) {
-                        Toast.makeText(context, "포인트 충전 완료", Toast.LENGTH_SHORT).show();
-
                         // 사용자 정보
                         String loginInfo = PreferenceManager.getLoginInfo(context);
                         Gson gson = new Gson();
@@ -214,31 +230,45 @@ public class PointActivity extends AppCompatActivity {
                         // 포인트 수정
                         int userPoint = user.getPoint() + (int) point;
                         user.setPoint(userPoint);
-                        modifyPoint(user);
+
+                        PointHistoryVO pointHistory = new PointHistoryVO();
+                        pointHistory.setUserId(user.getUserId());
+                        pointHistory.setPoint((int) point);
+
+                        addPoint(user, pointHistory);
                     }
 
                 }).requestPayment();
     }
 
-    private void modifyPoint(UserVO user) {
+    private void addPoint(UserVO user, PointHistoryVO pointHistory) {
         retrofitService = new RetrofitService();
         userApi = retrofitService.getRetrofit().create(UserApi.class);
+        pointApi = retrofitService.getRetrofit().create(PointApi.class);
 
         userApi.modifyPoint(user)
                 .enqueue(new Callback<UserVO>() {
                     @Override
                     public void onResponse(Call<UserVO> call, Response<UserVO> response) {
-                        // api를 통해 받아온 유저정보가 들어있는 객체를 json으로 변환
-                        gson = new GsonBuilder().create();
-                        String userInfoJson = gson.toJson(user, UserVO.class);
-
-                        // 변환된 데이터를 sharedPreference에 저장 -> 로그인 유지 기능
-                        PreferenceManager.setLoginInfo(context, userInfoJson);
                     }
 
                     @Override
                     public void onFailure(Call<UserVO> call, Throwable t) {
+                    }
+                });
 
+        pointApi.addPointHistory(pointHistory)
+                .enqueue(new Callback<Void>() {
+                    @Override
+                    public void onResponse(Call<Void> call, Response<Void> response) {
+                        gson = new GsonBuilder().create();
+                        String userInfoJson = gson.toJson(user, UserVO.class);
+                        PreferenceManager.setLoginInfo(context, userInfoJson);
+                        Toast.makeText(context, "포인트 충전 완료", Toast.LENGTH_SHORT).show();
+                    }
+
+                    @Override
+                    public void onFailure(Call<Void> call, Throwable t) {
                     }
                 });
     }
