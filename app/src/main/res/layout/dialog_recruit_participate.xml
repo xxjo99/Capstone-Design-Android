@@ -3,6 +3,7 @@
     android:id="@+id/participateDialogLayout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@drawable/dialog_border"
     android:orientation="vertical">
 
     <TextView
@@ -10,11 +11,12 @@
         android:layout_height="wrap_content"
         android:fontFamily="@font/bmjua_font"
         android:gravity="center"
+        android:background="@color/green"
         android:includeFontPadding="false"
         android:paddingTop="10dp"
         android:paddingBottom="10dp"
         android:text="@string/recruitInfo"
-        android:textColor="@color/black"
+        android:textColor="@color/white"
         android:textSize="30sp" />
 
     <View
@@ -170,29 +172,35 @@
     <LinearLayout
         android:id="@+id/participateBtnLayout"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:gravity="center_horizontal"
+        android:layout_marginTop="12dp"
+        android:orientation="horizontal">
 
         <Button
             android:id="@+id/participateBtn"
-            style="?android:attr/buttonBarButtonStyle"
-            android:layout_width="wrap_content"
-            android:layout_height="55dp"
+            android:layout_width="0dp"
+            android:layout_height="58dp"
             android:layout_weight="1"
-            android:backgroundTint="@color/green"
+            android:background="@drawable/btn_radius2"
             android:fontFamily="@font/bmjua_font"
+            android:textColor="@color/white"
             android:text="참 가"
-            android:textSize="22sp" />
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="15dp"
+            android:textSize="25sp" />
 
         <Button
             android:id="@+id/cancelBtn"
-            style="?android:attr/buttonBarButtonStyle"
-            android:layout_width="wrap_content"
-            android:layout_height="55dp"
+            android:layout_width="0dp"
             android:layout_weight="1"
+            android:layout_height="58dp"
+            android:layout_marginRight="10dp"
+            android:background="@drawable/btn_radius"
             android:fontFamily="@font/bmjua_font"
             android:text="취 소"
-            android:textColor="@color/black"
-            android:textSize="22sp" />
+            android:textColor="@color/green"
+            android:textSize="25sp" />
 
     </LinearLayout>
 
