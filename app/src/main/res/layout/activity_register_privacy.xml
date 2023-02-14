@@ -109,6 +109,7 @@
                         android:background="@drawable/edit_text_border_basic"
                         android:fontFamily="@font/bmjua_font"
                         android:hint="전화번호를 입력해주세요!"
+                        android:inputType="number"
                         android:nextFocusDown="@+id/schoolAutoCompleteTV"
                         android:padding="18dp"
                         android:singleLine="true"

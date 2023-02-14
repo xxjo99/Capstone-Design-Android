@@ -13,6 +13,7 @@ import android.widget.ImageButton;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
@@ -234,6 +235,8 @@ public class PointActivity extends AppCompatActivity {
                         PointHistoryVO pointHistory = new PointHistoryVO();
                         pointHistory.setUserId(user.getUserId());
                         pointHistory.setPoint((int) point);
+                        pointHistory.setType("충전");
+                        pointHistory.setBalance(userPoint);
 
                         addPoint(user, pointHistory);
                     }
@@ -249,18 +252,18 @@ public class PointActivity extends AppCompatActivity {
         userApi.modifyPoint(user)
                 .enqueue(new Callback<UserVO>() {
                     @Override
-                    public void onResponse(Call<UserVO> call, Response<UserVO> response) {
+                    public void onResponse(@NonNull Call<UserVO> call, @NonNull Response<UserVO> response) {
                     }
 
                     @Override
-                    public void onFailure(Call<UserVO> call, Throwable t) {
+                    public void onFailure(@NonNull Call<UserVO> call, @NonNull Throwable t) {
                     }
                 });
 
         pointApi.addPointHistory(pointHistory)
                 .enqueue(new Callback<Void>() {
                     @Override
-                    public void onResponse(Call<Void> call, Response<Void> response) {
+                    public void onResponse(@NonNull Call<Void> call, @NonNull Response<Void> response) {
                         gson = new GsonBuilder().create();
                         String userInfoJson = gson.toJson(user, UserVO.class);
                         PreferenceManager.setLoginInfo(context, userInfoJson);
@@ -268,7 +271,7 @@ public class PointActivity extends AppCompatActivity {
                     }
 
                     @Override
-                    public void onFailure(Call<Void> call, Throwable t) {
+                    public void onFailure(@NonNull Call<Void> call, @NonNull Throwable t) {
                     }
                 });
     }

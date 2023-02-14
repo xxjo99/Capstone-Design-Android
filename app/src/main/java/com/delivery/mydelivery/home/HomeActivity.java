@@ -30,7 +30,7 @@ public class HomeActivity extends AppCompatActivity {
     private RecruitListFragment recruitListFragment;
     private MyPostFragment myPostFragment;
     private SearchFragment searchFragment;
-    private MyInfoFragment myInfoFragment;
+    private MyPageFragment myPageFragment;
 
     // 툴바, 툴바 텍스트
     Toolbar toolbar;
@@ -47,7 +47,7 @@ public class HomeActivity extends AppCompatActivity {
         recruitListFragment = new RecruitListFragment();
         myPostFragment = new MyPostFragment();
         searchFragment = new SearchFragment();
-        myInfoFragment = new MyInfoFragment();
+        myPageFragment = new MyPageFragment();
 
         // 제일 처음 띄워주는 프래그먼트
         FragmentManager fm = getSupportFragmentManager();
@@ -170,11 +170,11 @@ public class HomeActivity extends AppCompatActivity {
                     toolbar.setVisibility(View.GONE);
                     return true;
 
-                case R.id.menu_home_myInfo: // 검색 이동
+                case R.id.menu_home_myInfo: // 마이페이지
                     if (fragmentManager.findFragmentByTag("myInfo") != null) {
                         fragmentManager.beginTransaction().show(Objects.requireNonNull(fragmentManager.findFragmentByTag("myInfo"))).commit();
                     } else {
-                        fragmentManager.beginTransaction().add(R.id.homeFragmentFrame, myInfoFragment, "myInfo").commit();
+                        fragmentManager.beginTransaction().add(R.id.homeFragmentFrame, myPageFragment, "myInfo").commit();
                     }
 
                     if (fragmentManager.findFragmentByTag("home") != null) {
@@ -191,7 +191,7 @@ public class HomeActivity extends AppCompatActivity {
                     }
 
                     toolbar.setVisibility(View.VISIBLE);
-                    infoTV.setText("내정보");
+                    infoTV.setText("마이페이지");
                     return true;
 
                 default:

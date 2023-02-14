@@ -3,24 +3,23 @@
     android:id="@+id/participateDialogLayout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical">
+    android:layout_margin="28dp"
+    android:background="@drawable/dialog_participate"
+    android:orientation="vertical"
+    android:paddingLeft="15dp"
+    android:paddingRight="15dp"
+    android:paddingBottom="15dp">
 
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:fontFamily="@font/bmjua_font"
         android:gravity="center"
-        android:includeFontPadding="false"
-        android:paddingTop="10dp"
-        android:paddingBottom="10dp"
+        android:paddingTop="20dp"
+        android:paddingBottom="20dp"
         android:text="@string/recruitInfo"
         android:textColor="@color/black"
         android:textSize="30sp" />
-
-    <View
-        android:layout_width="match_parent"
-        android:layout_height="1dp"
-        android:background="@color/gray" />
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -33,7 +32,7 @@
             android:fontFamily="@font/bmjua_font"
             android:text="@string/storeName"
             android:textColor="@color/black"
-            android:textSize="22sp" />
+            android:textSize="20sp" />
 
         <View
             android:layout_width="0dp"
@@ -47,7 +46,7 @@
             android:fontFamily="@font/bmjua_font"
             android:text="@string/storeName"
             android:textColor="@color/black"
-            android:textSize="22sp" />
+            android:textSize="20sp" />
 
     </LinearLayout>
 
@@ -62,7 +61,7 @@
             android:fontFamily="@font/bmjua_font"
             android:text="@string/recruitPerson"
             android:textColor="@color/black"
-            android:textSize="22sp" />
+            android:textSize="20sp" />
 
         <View
             android:layout_width="0dp"
@@ -76,7 +75,7 @@
             android:fontFamily="@font/bmjua_font"
             android:text="@string/recruitPerson"
             android:textColor="@color/black"
-            android:textSize="22sp" />
+            android:textSize="20sp" />
 
     </LinearLayout>
 
@@ -91,7 +90,7 @@
             android:fontFamily="@font/bmjua_font"
             android:text="@string/place"
             android:textColor="@color/black"
-            android:textSize="22sp" />
+            android:textSize="20sp" />
 
         <View
             android:layout_width="0dp"
@@ -105,7 +104,7 @@
             android:fontFamily="@font/bmjua_font"
             android:text="@string/place"
             android:textColor="@color/black"
-            android:textSize="22sp" />
+            android:textSize="20sp" />
 
     </LinearLayout>
 
@@ -120,7 +119,7 @@
             android:fontFamily="@font/bmjua_font"
             android:text="@string/deliveryTime"
             android:textColor="@color/black"
-            android:textSize="22sp" />
+            android:textSize="20sp" />
 
         <View
             android:layout_width="0dp"
@@ -134,7 +133,7 @@
             android:fontFamily="@font/bmjua_font"
             android:text="@string/deliveryTime"
             android:textColor="@color/black"
-            android:textSize="22sp" />
+            android:textSize="20sp" />
 
     </LinearLayout>
 
@@ -149,7 +148,7 @@
             android:fontFamily="@font/bmjua_font"
             android:text="@string/deliveryTip"
             android:textColor="@color/black"
-            android:textSize="22sp" />
+            android:textSize="20sp" />
 
         <View
             android:layout_width="0dp"
@@ -163,36 +162,43 @@
             android:fontFamily="@font/bmjua_font"
             android:text="@string/deliveryTip"
             android:textColor="@color/black"
-            android:textSize="22sp" />
+            android:textSize="20sp" />
 
     </LinearLayout>
 
     <LinearLayout
         android:id="@+id/participateBtnLayout"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:layout_marginTop="12dp"
+        android:layout_marginBottom="12dp"
+        android:gravity="center_horizontal"
+        android:orientation="horizontal">
 
         <Button
             android:id="@+id/participateBtn"
-            style="?android:attr/buttonBarButtonStyle"
-            android:layout_width="wrap_content"
-            android:layout_height="55dp"
+            android:layout_width="0dp"
+            android:layout_height="50dp"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="15dp"
             android:layout_weight="1"
-            android:backgroundTint="@color/green"
+            android:background="@drawable/btn_radius_green"
             android:fontFamily="@font/bmjua_font"
             android:text="참 가"
-            android:textSize="22sp" />
+            android:textColor="@color/green"
+            android:textSize="25sp" />
 
         <Button
             android:id="@+id/cancelBtn"
-            style="?android:attr/buttonBarButtonStyle"
-            android:layout_width="wrap_content"
-            android:layout_height="55dp"
+            android:layout_width="0dp"
+            android:layout_height="50dp"
+            android:layout_marginRight="10dp"
             android:layout_weight="1"
+            android:background="@drawable/btn_radius_red"
             android:fontFamily="@font/bmjua_font"
             android:text="취 소"
-            android:textColor="@color/black"
-            android:textSize="22sp" />
+            android:textColor="@color/red"
+            android:textSize="25sp" />
 
     </LinearLayout>
 
@@ -200,6 +206,8 @@
         android:id="@+id/participateCompleteLayout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginTop="12dp"
+        android:layout_marginBottom="12dp"
         android:visibility="gone">
 
         <TextView

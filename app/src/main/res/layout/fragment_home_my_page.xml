@@ -4,7 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context=".home.MyInfoFragment">
+    tools:context=".home.MyPageFragment">
 
     <!-- 닉네임, 로그아웃 -->
     <LinearLayout
@@ -93,6 +93,7 @@
                 android:background="@color/gray" />
 
             <TextView
+                android:id="@+id/pointHistoryTV"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
