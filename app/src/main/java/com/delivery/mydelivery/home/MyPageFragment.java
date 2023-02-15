@@ -15,6 +15,7 @@ import androidx.fragment.app.Fragment;
 
 import com.delivery.mydelivery.MainActivity;
 import com.delivery.mydelivery.R;
+import com.delivery.mydelivery.myInfo.ModifyPwActivity;
 import com.delivery.mydelivery.myInfo.MyInfoActivity;
 import com.delivery.mydelivery.point.PointActivity;
 import com.delivery.mydelivery.point.PointHistoryActivity;
@@ -97,6 +98,12 @@ public class MyPageFragment extends Fragment {
         // 내정보 페이지 이동
         myInfoTV.setOnClickListener(view -> {
             Intent intent = new Intent(getActivity(), MyInfoActivity.class);
+            startActivity(intent);
+        });
+
+        // 비밀번호 변경 페이지 이동
+        modifyPwTV.setOnClickListener(view -> {
+            Intent intent = new Intent(getActivity(), ModifyPwActivity.class);
             startActivity(intent);
         });
 

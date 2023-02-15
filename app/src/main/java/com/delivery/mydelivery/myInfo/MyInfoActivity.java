@@ -179,6 +179,7 @@ public class MyInfoActivity extends AppCompatActivity {
                         PreferenceManager.setLoginInfo(context, userInfoJson);
 
                         Toast.makeText(context, "변경 완료", Toast.LENGTH_SHORT).show();
+                        finish();
                     }
 
                     @Override

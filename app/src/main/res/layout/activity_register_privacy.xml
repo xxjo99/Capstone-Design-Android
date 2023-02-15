@@ -175,8 +175,7 @@
             android:fontFamily="@font/bmjua_font"
             android:text="@string/register"
             android:textColor="@color/white"
-            android:textSize="23sp"
-            android:visibility="visible" />
+            android:textSize="23sp" />
 
     </LinearLayout>
 

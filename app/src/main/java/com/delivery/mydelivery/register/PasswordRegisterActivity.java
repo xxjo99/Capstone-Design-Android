@@ -102,16 +102,17 @@ public class PasswordRegisterActivity extends AppCompatActivity {
                     pwFlag = false;
                 }
 
-                // 비밀번호와 비밀번호 확인이 다르다면 다음페이지 이동버튼 보이지 않도록 설정
                 if (!pw.equals(pwCk)) {
-                    nextBtn.setVisibility(View.GONE);
+                    nextBtn.setEnabled(false);
+                    nextBtn.setBackgroundResource(R.drawable.btn_fill2_gray);
                 }
 
-                // 정규식 검사 통과, 비밀번호 일치시 이동버튼 보이도록 설정
                 if (pwFlag && pwCkFlag) {
-                    nextBtn.setVisibility(View.VISIBLE);
+                    nextBtn.setEnabled(true);
+                    nextBtn.setBackgroundResource(R.drawable.btn_fill2_green);
                 } else {
-                    nextBtn.setVisibility(View.GONE);
+                    nextBtn.setEnabled(false);
+                    nextBtn.setBackgroundResource(R.drawable.btn_fill2_gray);
                 }
             }
 
@@ -148,11 +149,12 @@ public class PasswordRegisterActivity extends AppCompatActivity {
                 }
 
                 if (pwFlag && pwCkFlag) {
-                    nextBtn.setVisibility(View.VISIBLE);
+                    nextBtn.setEnabled(true);
+                    nextBtn.setBackgroundResource(R.drawable.btn_fill2_green);
                 } else {
-                    nextBtn.setVisibility(View.GONE);
+                    nextBtn.setEnabled(false);
+                    nextBtn.setBackgroundResource(R.drawable.btn_fill2_gray);
                 }
-
             }
 
             @Override

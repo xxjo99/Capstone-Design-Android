@@ -81,7 +81,12 @@
         <activity android:name=".point.PointHistoryActivity" />
 
         <!-- myInfo -->
-        <activity android:name=".myInfo.MyInfoActivity"/>
+        <activity
+            android:name=".myInfo.MyInfoActivity"
+            android:windowSoftInputMode="adjustResize" />
+        <activity
+            android:name=".myInfo.ModifyPwActivity"
+            android:windowSoftInputMode="adjustResize" />
 
     </application>
 

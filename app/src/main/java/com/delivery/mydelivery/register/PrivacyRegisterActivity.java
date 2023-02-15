@@ -39,8 +39,8 @@ public class PrivacyRegisterActivity extends AppCompatActivity {
 
     EditText nameET;
     EditText phoneNumET;
-    Button registerBtn;
     AutoCompleteTextView schoolAutoCompleteTV;
+    Button registerBtn;
 
     // 레트로핏, api
     RetrofitService retrofitService;
@@ -73,8 +73,8 @@ public class PrivacyRegisterActivity extends AppCompatActivity {
         // 초기화
         nameET = findViewById(R.id.nameET);
         phoneNumET = findViewById(R.id.phoneNumET);
-        registerBtn = findViewById(R.id.registerBtn);
         schoolAutoCompleteTV = findViewById(R.id.schoolAutoCompleteTV);
+        registerBtn = findViewById(R.id.registerBtn);
 
         // 학교리스트 추가, 어댑터 연결
         setSchoolAutoCompleteTV();

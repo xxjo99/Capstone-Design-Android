@@ -81,6 +81,7 @@ public class AuthRegisterActivity extends AppCompatActivity {
         // 인증번호 전송
         sendAuthNumBtn.setOnClickListener(view -> {
             sendAuthNum(email); // 해당 이메일로 인증번호 전송
+            Toast.makeText(this, "인증번호를 전송했습니다.", Toast.LENGTH_SHORT).show();
         });
 
         // 인증번호 일치 여부 확인
@@ -94,9 +95,12 @@ public class AuthRegisterActivity extends AppCompatActivity {
                     Toast.makeText(AuthRegisterActivity.this, "인증에 성공했습니다.", Toast.LENGTH_SHORT).show();
 
                     authNumET.setEnabled(false); // 인증번호를 입력하지 못하도록 입력창 비활성화
+
                     checkAuthNumBtn.setEnabled(false); // 인증번호 검사버튼 비활성화
-                    checkAuthNumBtn.setBackgroundResource(R.drawable.btn_fill_gray);
-                    nextBtn.setVisibility(View.VISIBLE); // 다음 액티비티 이동버튼 활성화
+                    checkAuthNumBtn.setBackgroundResource(R.drawable.btn_fill2_gray);
+
+                    nextBtn.setEnabled(true);
+                    nextBtn.setBackgroundResource(R.drawable.btn_fill2_green);
                 } else { // 인증 실패
                     Toast.makeText(AuthRegisterActivity.this, "인증번호를 확인해주세요.", Toast.LENGTH_SHORT).show();
                 }
@@ -125,16 +129,15 @@ public class AuthRegisterActivity extends AppCompatActivity {
                 .enqueue(new Callback<String>() {
                     @Override
                     public void onResponse(@NonNull Call<String> call, @NonNull Response<String> response) {
-                        Toast.makeText(AuthRegisterActivity.this, "인증번호를 전송했습니다.", Toast.LENGTH_SHORT).show();
                         sentAuthNum = response.body();
 
                         // 인증번호 입력, 전송 비활성화, 인증번호 검증버튼 활성화, 색 변경
                         authNumET.setEnabled(true);
                         sendAuthNumBtn.setEnabled(false);
-                        sendAuthNumBtn.setBackgroundResource(R.drawable.btn_fill_gray);
+                        sendAuthNumBtn.setBackgroundResource(R.drawable.btn_fill2_gray);
 
                         checkAuthNumBtn.setEnabled(true);
-                        checkAuthNumBtn.setBackgroundResource(R.drawable.btn_fill_green);
+                        checkAuthNumBtn.setBackgroundResource(R.drawable.btn_fill2_green);
                     }
 
                     @Override
@@ -147,7 +150,7 @@ public class AuthRegisterActivity extends AppCompatActivity {
     @Override
     public boolean onKeyDown(int keycode, KeyEvent event) {
 
-        if(keycode ==KeyEvent.KEYCODE_BACK) {
+        if (keycode == KeyEvent.KEYCODE_BACK) {
             registerDialog.callDialog();
             return true;
         }
