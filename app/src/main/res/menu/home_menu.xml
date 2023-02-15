@@ -22,7 +22,7 @@
     <item
         android:id="@+id/menu_home_myPost"
         android:enabled="true"
-        android:icon="@drawable/home_menu_list"
+        android:icon="@drawable/groups_fill0_wght400_grad0_opsz48"
         android:title="@string/myPost"
         app:showAsAction="always" />
 
