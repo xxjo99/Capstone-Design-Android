@@ -39,7 +39,7 @@
         android:layout_marginTop="50dp"
         android:layout_marginRight="25dp"
         android:layout_marginBottom="10dp"
-        android:background="@drawable/point_edit_text_border"
+        android:background="@drawable/et_border2"
         android:fontFamily="@font/bmjua_font"
         android:hint="충전할 금액을 입력해 주세요."
         android:inputType="number"
@@ -61,12 +61,12 @@
     <GridLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_gravity="center"
         android:layout_marginLeft="25dp"
         android:layout_marginTop="15dp"
         android:layout_marginRight="25dp"
         android:orientation="horizontal"
-        android:rowCount="3"
-        android:layout_gravity="center">
+        android:rowCount="3">
 
         <Button
             android:id="@+id/add1Btn"
@@ -102,15 +102,18 @@
     <!-- 충전 버튼 -->
     <Button
         android:id="@+id/addPointBtn"
+        style="?android:attr/borderlessButtonStyle"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_gravity="bottom"
-        android:layout_margin="15dp"
-        android:background="@drawable/btn_border_gray"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
+        android:layout_marginBottom="15dp"
+        android:background="@drawable/btn_fill_gray"
         android:enabled="false"
         android:fontFamily="@font/bmjua_font"
         android:text="@string/addPoint"
         android:textColor="@color/white"
-        android:textSize="20sp" />
+        android:textSize="23sp" />
 
 </LinearLayout>

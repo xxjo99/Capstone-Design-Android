@@ -129,7 +129,7 @@ public class PointActivity extends AppCompatActivity {
                 Toast.makeText(context, "금액 입력", Toast.LENGTH_SHORT).show();
             } else {
                 int point = Integer.parseInt(pointET.getText().toString());
-                goRequest((double) point);
+                goRequest(point);
             }
         });
     }
@@ -152,14 +152,14 @@ public class PointActivity extends AppCompatActivity {
                 boolean flag = point >= 1000;
 
                 if (flag) { // 입력한 금액 1000원 이상
-                    pointET.setBackgroundResource(R.drawable.point_edit_text_border);
+                    pointET.setBackgroundResource(R.drawable.et_border2);
                     pointCkTV.setVisibility(View.GONE);
-                    addPointBtn.setBackgroundResource(R.drawable.btn_border_green);
+                    addPointBtn.setBackgroundResource(R.drawable.btn_fill_green);
                     addPointBtn.setEnabled(true);
                 } else { // 1000원 미만
-                    pointET.setBackgroundResource(R.drawable.point_edit_text_border_red);
+                    pointET.setBackgroundResource(R.drawable.et_border_red_bottom);
                     pointCkTV.setVisibility(View.VISIBLE);
-                    addPointBtn.setBackgroundResource(R.drawable.btn_border_gray);
+                    addPointBtn.setBackgroundResource(R.drawable.btn_fill_gray);
                     addPointBtn.setEnabled(false);
                 }
             }
@@ -249,7 +249,7 @@ public class PointActivity extends AppCompatActivity {
         userApi = retrofitService.getRetrofit().create(UserApi.class);
         pointApi = retrofitService.getRetrofit().create(PointApi.class);
 
-        userApi.modifyPoint(user)
+        userApi.modify(user)
                 .enqueue(new Callback<UserVO>() {
                     @Override
                     public void onResponse(@NonNull Call<UserVO> call, @NonNull Response<UserVO> response) {

@@ -91,8 +91,8 @@ public class HomeActivity extends AppCompatActivity {
                     if (fragmentManager.findFragmentByTag("search") != null) {
                         fragmentManager.beginTransaction().hide(Objects.requireNonNull(fragmentManager.findFragmentByTag("search"))).commit();
                     }
-                    if (fragmentManager.findFragmentByTag("myInfo") != null) {
-                        fragmentManager.beginTransaction().hide(Objects.requireNonNull(fragmentManager.findFragmentByTag("myInfo"))).commit();
+                    if (fragmentManager.findFragmentByTag("myPage") != null) {
+                        fragmentManager.beginTransaction().hide(Objects.requireNonNull(fragmentManager.findFragmentByTag("myPage"))).commit();
                     }
 
                     toolbar.setVisibility(View.VISIBLE);
@@ -115,8 +115,8 @@ public class HomeActivity extends AppCompatActivity {
                     if (fragmentManager.findFragmentByTag("search") != null) {
                         fragmentManager.beginTransaction().hide(Objects.requireNonNull(fragmentManager.findFragmentByTag("search"))).commit();
                     }
-                    if (fragmentManager.findFragmentByTag("myInfo") != null) {
-                        fragmentManager.beginTransaction().hide(Objects.requireNonNull(fragmentManager.findFragmentByTag("myInfo"))).commit();
+                    if (fragmentManager.findFragmentByTag("myPage") != null) {
+                        fragmentManager.beginTransaction().hide(Objects.requireNonNull(fragmentManager.findFragmentByTag("myPage"))).commit();
                     }
 
                     toolbar.setVisibility(View.VISIBLE);
@@ -139,8 +139,8 @@ public class HomeActivity extends AppCompatActivity {
                     if (fragmentManager.findFragmentByTag("search") != null) {
                         fragmentManager.beginTransaction().hide(Objects.requireNonNull(fragmentManager.findFragmentByTag("search"))).commit();
                     }
-                    if (fragmentManager.findFragmentByTag("myInfo") != null) {
-                        fragmentManager.beginTransaction().hide(Objects.requireNonNull(fragmentManager.findFragmentByTag("myInfo"))).commit();
+                    if (fragmentManager.findFragmentByTag("myPage") != null) {
+                        fragmentManager.beginTransaction().hide(Objects.requireNonNull(fragmentManager.findFragmentByTag("myPage"))).commit();
                     }
 
                     toolbar.setVisibility(View.VISIBLE);
@@ -163,18 +163,18 @@ public class HomeActivity extends AppCompatActivity {
                     if (fragmentManager.findFragmentByTag("myPost") != null) {
                         fragmentManager.beginTransaction().hide(Objects.requireNonNull(fragmentManager.findFragmentByTag("myPost"))).commit();
                     }
-                    if (fragmentManager.findFragmentByTag("myInfo") != null) {
-                        fragmentManager.beginTransaction().hide(Objects.requireNonNull(fragmentManager.findFragmentByTag("myInfo"))).commit();
+                    if (fragmentManager.findFragmentByTag("myPage") != null) {
+                        fragmentManager.beginTransaction().hide(Objects.requireNonNull(fragmentManager.findFragmentByTag("myPage"))).commit();
                     }
 
                     toolbar.setVisibility(View.GONE);
                     return true;
 
-                case R.id.menu_home_myInfo: // 마이페이지
-                    if (fragmentManager.findFragmentByTag("myInfo") != null) {
-                        fragmentManager.beginTransaction().show(Objects.requireNonNull(fragmentManager.findFragmentByTag("myInfo"))).commit();
+                case R.id.menu_home_myPage: // 마이페이지
+                    if (fragmentManager.findFragmentByTag("myPage") != null) {
+                        fragmentManager.beginTransaction().show(Objects.requireNonNull(fragmentManager.findFragmentByTag("myPage"))).commit();
                     } else {
-                        fragmentManager.beginTransaction().add(R.id.homeFragmentFrame, myPageFragment, "myInfo").commit();
+                        fragmentManager.beginTransaction().add(R.id.homeFragmentFrame, myPageFragment, "myPage").commit();
                     }
 
                     if (fragmentManager.findFragmentByTag("home") != null) {

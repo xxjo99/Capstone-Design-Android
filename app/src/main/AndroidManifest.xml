@@ -80,6 +80,9 @@
             android:windowSoftInputMode="adjustResize" />
         <activity android:name=".point.PointHistoryActivity" />
 
+        <!-- myInfo -->
+        <activity android:name=".myInfo.MyInfoActivity"/>
+
     </application>
 
 </manifest>

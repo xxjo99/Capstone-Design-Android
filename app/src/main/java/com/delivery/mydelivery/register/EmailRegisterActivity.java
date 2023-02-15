@@ -119,10 +119,10 @@ public class EmailRegisterActivity extends AppCompatActivity {
                 boolean flag = ckEmailRegEx(email);
 
                 if (flag) { // 정규식 검사 성공시 색상 변경, regExFlag를 true로 설정
-                    emailET.setBackgroundResource(R.drawable.edit_text_border_green);
+                    emailET.setBackgroundResource(R.drawable.et_border_green);
                     regExFlag = true;
                 } else { // 실패시
-                    emailET.setBackgroundResource(R.drawable.edit_text_border_red);
+                    emailET.setBackgroundResource(R.drawable.et_border_red);
                     regExFlag = false;
                 }
             }

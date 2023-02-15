@@ -15,6 +15,7 @@ import androidx.fragment.app.Fragment;
 
 import com.delivery.mydelivery.MainActivity;
 import com.delivery.mydelivery.R;
+import com.delivery.mydelivery.myInfo.MyInfoActivity;
 import com.delivery.mydelivery.point.PointActivity;
 import com.delivery.mydelivery.point.PointHistoryActivity;
 import com.delivery.mydelivery.preferenceManager.PreferenceManager;
@@ -32,6 +33,10 @@ public class MyPageFragment extends Fragment {
     TextView pointTV;
     TextView addPointTV;
     TextView pointHistoryTV;
+
+    // 개인정보
+    TextView myInfoTV;
+    TextView modifyPwTV;
 
     // view, context
     View view;
@@ -63,7 +68,7 @@ public class MyPageFragment extends Fragment {
 
             Intent intent = new Intent(getActivity(), MainActivity.class);
             startActivity(intent);
-            getActivity().finish();
+            requireActivity().finish();
         });
 
         // 초기화
@@ -82,6 +87,16 @@ public class MyPageFragment extends Fragment {
         // 포인트 이용내역 페이지 이동
         pointHistoryTV.setOnClickListener(view -> {
             Intent intent = new Intent(getActivity(), PointHistoryActivity.class);
+            startActivity(intent);
+        });
+
+        // 초기화
+        myInfoTV = view.findViewById(R.id.myInfoTV);
+        modifyPwTV = view.findViewById(R.id.modifyPwTV);
+
+        // 내정보 페이지 이동
+        myInfoTV.setOnClickListener(view -> {
+            Intent intent = new Intent(getActivity(), MyInfoActivity.class);
             startActivity(intent);
         });
 

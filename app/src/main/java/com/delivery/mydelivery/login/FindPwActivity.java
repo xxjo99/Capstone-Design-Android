@@ -83,7 +83,7 @@ public class FindPwActivity extends AppCompatActivity {
                 Toast.makeText(this, "인증에 성공했습니다.", Toast.LENGTH_SHORT).show();
                 authNumET.setEnabled(false);
                 checkAuthNumBtn.setEnabled(false);
-                checkAuthNumBtn.setBackgroundResource(R.drawable.btn_border_gray);
+                checkAuthNumBtn.setBackgroundResource(R.drawable.btn_fill_gray);
                 modifyPwBtn.setVisibility(View.VISIBLE);
             } else {
                 Toast.makeText(this, "인증번호를 확인해주세요", Toast.LENGTH_SHORT).show();
@@ -128,12 +128,12 @@ public class FindPwActivity extends AppCompatActivity {
                                             // 입력한 이메일 변경불가, 인증번호 전송불가, 색 변경
                                             emailET.setEnabled(false);
                                             sendAuthNumBtn.setEnabled(false);
-                                            sendAuthNumBtn.setBackgroundResource(R.drawable.btn_border_gray);
+                                            sendAuthNumBtn.setBackgroundResource(R.drawable.btn_fill_gray);
 
                                             // 인증번호 입력, 비교버튼 활성화, 색 변경
                                             authNumET.setEnabled(true);
                                             checkAuthNumBtn.setEnabled(true);
-                                            checkAuthNumBtn.setBackgroundResource(R.drawable.btn_border_green);
+                                            checkAuthNumBtn.setBackgroundResource(R.drawable.btn_fill_green);
                                         }
 
                                         @Override

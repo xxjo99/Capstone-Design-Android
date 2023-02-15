@@ -3,7 +3,6 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:layout_gravity="center"
-    android:layout_weight="100"
     android:gravity="center"
     android:orientation="vertical">
 
@@ -43,13 +42,12 @@
             android:layout_marginLeft="10dp"
             android:layout_marginRight="10dp"
             android:layout_marginBottom="5dp"
-            android:background="@drawable/btn_border2_green"
+            android:background="@drawable/btn_fill2_green"
             android:fontFamily="@font/bmjua_font"
             android:text="@string/goLogin"
             android:textColor="@color/white"
             android:textSize="23sp" />
 
     </LinearLayout>
-
 
 </LinearLayout>

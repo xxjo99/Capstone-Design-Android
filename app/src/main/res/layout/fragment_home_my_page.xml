@@ -48,7 +48,7 @@
         android:layout_marginTop="15dp"
         android:layout_marginRight="25dp"
         android:layout_marginBottom="15dp"
-        android:background="@drawable/layout_shadow_border"
+        android:background="@drawable/layout_shadow"
         android:orientation="vertical">
 
         <TextView
@@ -137,6 +137,7 @@
             android:background="@color/gray" />
 
         <TextView
+            android:id="@+id/myInfoTV"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginLeft="25dp"
@@ -153,6 +154,30 @@
             android:layout_height="1dp"
             android:background="@color/gray" />
 
+        <TextView
+            android:id="@+id/modifyPwTV"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="25dp"
+            android:layout_marginTop="15dp"
+            android:layout_marginRight="25dp"
+            android:layout_marginBottom="15dp"
+            android:fontFamily="@font/bmjua_font"
+            android:text="비밀번호 변경"
+            android:textColor="@color/black"
+            android:textSize="20sp" />
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="@color/gray" />
+
     </LinearLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:background="@color/gray" />
 
 </LinearLayout>
