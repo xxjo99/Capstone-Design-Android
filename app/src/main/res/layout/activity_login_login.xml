@@ -85,7 +85,7 @@
                 android:id="@+id/loginBtn"
                 android:layout_width="match_parent"
                 android:layout_height="60dp"
-                android:backgroundTint="@color/green"
+                android:backgroundTint="#41D3BD"
                 android:fontFamily="@font/bmjua_font"
                 android:text="@string/login"
                 android:textColor="@color/white"
