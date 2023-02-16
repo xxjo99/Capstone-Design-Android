@@ -42,7 +42,7 @@
             android:layout_marginLeft="10dp"
             android:layout_marginRight="10dp"
             android:layout_marginBottom="5dp"
-            android:background="@drawable/btn_fill2_green"
+            android:background="@drawable/btn_fill2_mint"
             android:fontFamily="@font/bmjua_font"
             android:text="@string/goLogin"
             android:textColor="@color/white"

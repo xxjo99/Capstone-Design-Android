@@ -86,7 +86,7 @@
                 style="?android:attr/borderlessButtonStyle"
                 android:layout_width="match_parent"
                 android:layout_height="60dp"
-                android:background="@drawable/btn_fill2_green"
+                android:background="@drawable/btn_fill2_mint"
                 android:backgroundTint="@color/green"
                 android:fontFamily="@font/bmjua_font"
                 android:text="@string/login"

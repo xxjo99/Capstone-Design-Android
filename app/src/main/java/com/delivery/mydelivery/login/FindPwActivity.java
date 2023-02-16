@@ -2,7 +2,6 @@ package com.delivery.mydelivery.login;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
@@ -89,7 +88,7 @@ public class FindPwActivity extends AppCompatActivity {
                 checkAuthNumBtn.setBackgroundResource(R.drawable.btn_fill2_gray);
 
                 modifyPwBtn.setEnabled(true);
-                modifyPwBtn.setBackgroundResource(R.drawable.btn_fill2_green);
+                modifyPwBtn.setBackgroundResource(R.drawable.btn_fill2_mint);
             } else {
                 Toast.makeText(this, "인증번호를 확인해주세요", Toast.LENGTH_SHORT).show();
                 modifyPwBtn.setEnabled(false);
@@ -138,7 +137,7 @@ public class FindPwActivity extends AppCompatActivity {
                                             // 인증번호 입력, 비교버튼 활성화, 색 변경
                                             authNumET.setEnabled(true);
                                             checkAuthNumBtn.setEnabled(true);
-                                            checkAuthNumBtn.setBackgroundResource(R.drawable.btn_fill2_green);
+                                            checkAuthNumBtn.setBackgroundResource(R.drawable.btn_fill2_mint);
                                         }
 
                                         @Override
