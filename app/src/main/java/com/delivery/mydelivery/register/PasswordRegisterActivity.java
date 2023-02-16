@@ -93,25 +93,26 @@ public class PasswordRegisterActivity extends AppCompatActivity {
                 boolean flag = ckPwRegEx(pw); // 정규식 검사 성공 여부 확인
 
                 if (flag) { // 정규식 검사 성공시 초록색으로 색상 변경, 비밀번호 확인 입력창 활성화, pwFlag를 true로 설정
-                    pwET.setBackgroundResource(R.drawable.edit_text_border_green);
+                    pwET.setBackgroundResource(R.drawable.et_border_green);
                     pwCkET.setEnabled(true);
                     pwFlag = true;
                 } else { // 정규식 검사 실패시 빨간색으로 색상 변경, 비밀번호 확인 입력창 비활성화, pwFlag를 false로 설정
-                    pwET.setBackgroundResource(R.drawable.edit_text_border_red);
+                    pwET.setBackgroundResource(R.drawable.et_border_red);
                     pwCkET.setEnabled(false);
                     pwFlag = false;
                 }
 
-                // 비밀번호와 비밀번호 확인이 다르다면 다음페이지 이동버튼 보이지 않도록 설정
                 if (!pw.equals(pwCk)) {
-                    nextBtn.setVisibility(View.GONE);
+                    nextBtn.setEnabled(false);
+                    nextBtn.setBackgroundResource(R.drawable.btn_fill2_gray);
                 }
 
-                // 정규식 검사 통과, 비밀번호 일치시 이동버튼 보이도록 설정
                 if (pwFlag && pwCkFlag) {
-                    nextBtn.setVisibility(View.VISIBLE);
+                    nextBtn.setEnabled(true);
+                    nextBtn.setBackgroundResource(R.drawable.btn_fill2_green);
                 } else {
-                    nextBtn.setVisibility(View.GONE);
+                    nextBtn.setEnabled(false);
+                    nextBtn.setBackgroundResource(R.drawable.btn_fill2_gray);
                 }
             }
 
@@ -140,19 +141,20 @@ public class PasswordRegisterActivity extends AppCompatActivity {
                 String pwCk = pwCkET.getText().toString();
 
                 if (pwCk.equals(pw)) { // 비밀번호가 일치한다면
-                    pwCkET.setBackgroundResource(R.drawable.edit_text_border_green);
+                    pwCkET.setBackgroundResource(R.drawable.et_border_green);
                     pwCkFlag = true;
                 } else { // 일치하지 않는다면
-                    pwCkET.setBackgroundResource(R.drawable.edit_text_border_red);
+                    pwCkET.setBackgroundResource(R.drawable.et_border_red);
                     pwCkFlag = false;
                 }
 
                 if (pwFlag && pwCkFlag) {
-                    nextBtn.setVisibility(View.VISIBLE);
+                    nextBtn.setEnabled(true);
+                    nextBtn.setBackgroundResource(R.drawable.btn_fill2_green);
                 } else {
-                    nextBtn.setVisibility(View.GONE);
+                    nextBtn.setEnabled(false);
+                    nextBtn.setBackgroundResource(R.drawable.btn_fill2_gray);
                 }
-
             }
 
             @Override

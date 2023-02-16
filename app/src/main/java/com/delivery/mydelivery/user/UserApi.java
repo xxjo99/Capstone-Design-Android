@@ -28,11 +28,7 @@ public interface UserApi {
     @GET("/user/find/email/{email}")
     Call<UserVO> findUser(@Path("email") String email);
 
-    // 비밀번호 수정
+    // 정보 수정
     @POST("/user/modify")
-    Call<UserVO> modifyPw(@Body UserVO user);
-
-    // 포인트 수정
-    @POST("/user/modify/point")
-    Call<UserVO> modifyPoint(@Body UserVO user);
+    Call<UserVO> modify(@Body UserVO user);
 }

@@ -21,6 +21,8 @@ public class OptionContentAdapter extends RecyclerView.Adapter<OptionContentAdap
     private final List<OptionContentVO> optionContentList; // 옵션 내용 리스트
     Context context;
 
+    int count = 0;
+
     // 생성자
     public OptionContentAdapter(List<OptionContentVO> optionContentList, Context context) {
         this.optionContentList = optionContentList;
@@ -53,11 +55,21 @@ public class OptionContentAdapter extends RecyclerView.Adapter<OptionContentAdap
             String optionContentId = Integer.toString(optionContent.getMenuOptionContentId());
 
             if (((CheckBox) view).isChecked()) { // 옵션 선택
-                price += optionPrice;
-                OptionActivity.modifyPrice(price, optionContentId, 1);
+
+                if (count >= OptionAdapter.maximumSelection) {
+                    System.out.println("선택 불가  " + OptionAdapter.maximumSelection + "  " + position + "count " + count);
+                    holder.optionCheckBox.setChecked(false);
+                    System.out.println(count);
+                } else {
+                    price += optionPrice;
+                    OptionActivity.modifyPrice(price, optionContentId, 1);
+                    count++;
+                }
             } else { // 옵션 선택 해제
                 price -= optionPrice;
                 OptionActivity.modifyPrice(price, optionContentId, 0);
+                count--;
+                System.out.println(count);
             }
         });
     }

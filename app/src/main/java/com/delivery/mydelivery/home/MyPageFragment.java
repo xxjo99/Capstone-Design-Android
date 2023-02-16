@@ -15,13 +15,16 @@ import androidx.fragment.app.Fragment;
 
 import com.delivery.mydelivery.MainActivity;
 import com.delivery.mydelivery.R;
+import com.delivery.mydelivery.myInfo.ModifyPwActivity;
+import com.delivery.mydelivery.myInfo.MyInfoActivity;
 import com.delivery.mydelivery.point.PointActivity;
+import com.delivery.mydelivery.point.PointHistoryActivity;
 import com.delivery.mydelivery.preferenceManager.PreferenceManager;
 import com.delivery.mydelivery.user.UserVO;
 import com.google.gson.Gson;
 
 // 내정보 프래그먼트
-public class MyInfoFragment extends Fragment {
+public class MyPageFragment extends Fragment {
 
     // 닉네임, 로그아웃
     TextView userNameTV;
@@ -30,6 +33,11 @@ public class MyInfoFragment extends Fragment {
     // 포인트
     TextView pointTV;
     TextView addPointTV;
+    TextView pointHistoryTV;
+
+    // 개인정보
+    TextView myInfoTV;
+    TextView modifyPwTV;
 
     // view, context
     View view;
@@ -40,7 +48,7 @@ public class MyInfoFragment extends Fragment {
     @Override
     public View onCreateView(@Nullable LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         assert inflater != null;
-        view = inflater.inflate(R.layout.fragment_home_myinfo, container, false); // view 설정
+        view = inflater.inflate(R.layout.fragment_home_my_page, container, false); // view 설정
         assert container != null;
         context = container.getContext(); // context 초기화
 
@@ -61,17 +69,41 @@ public class MyInfoFragment extends Fragment {
 
             Intent intent = new Intent(getActivity(), MainActivity.class);
             startActivity(intent);
-            getActivity().finish();
+            requireActivity().finish();
         });
 
+        // 초기화
         pointTV = view.findViewById(R.id.pointTV);
         addPointTV = view.findViewById(R.id.addPointTV);
+        pointHistoryTV = view.findViewById(R.id.pointHistoryTV);
 
         pointTV.setText(user.getPoint() + "P");// 보유 포인트
 
         // 충전페이지 이동
         addPointTV.setOnClickListener(view -> {
             Intent intent = new Intent(getActivity(), PointActivity.class);
+            startActivity(intent);
+        });
+
+        // 포인트 이용내역 페이지 이동
+        pointHistoryTV.setOnClickListener(view -> {
+            Intent intent = new Intent(getActivity(), PointHistoryActivity.class);
+            startActivity(intent);
+        });
+
+        // 초기화
+        myInfoTV = view.findViewById(R.id.myInfoTV);
+        modifyPwTV = view.findViewById(R.id.modifyPwTV);
+
+        // 내정보 페이지 이동
+        myInfoTV.setOnClickListener(view -> {
+            Intent intent = new Intent(getActivity(), MyInfoActivity.class);
+            startActivity(intent);
+        });
+
+        // 비밀번호 변경 페이지 이동
+        modifyPwTV.setOnClickListener(view -> {
+            Intent intent = new Intent(getActivity(), ModifyPwActivity.class);
             startActivity(intent);
         });
 

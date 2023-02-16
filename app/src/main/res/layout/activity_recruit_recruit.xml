@@ -407,7 +407,7 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@drawable/layout_delete_border_except_top"
+        android:background="@drawable/layout_border_gray_top"
         android:orientation="horizontal">
 
         <Button

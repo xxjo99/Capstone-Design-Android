@@ -87,4 +87,5 @@ public class RecruitListFragment extends Fragment {
                     }
                 });
     }
+
 }

@@ -43,6 +43,10 @@ public class OrderListActivity extends AppCompatActivity {
     @SuppressLint("StaticFieldLeak")
     public static TextView storeNameTV;
 
+    // 툴바, 뒤로가기 버튼
+    Toolbar toolbar;
+    ImageButton backBtn;
+
     // 리사이클러뷰, 어댑터, 리스트
     RecyclerView orderRecyclerView;
     OrderListAdapter orderListAdapter;
@@ -71,10 +75,6 @@ public class OrderListActivity extends AppCompatActivity {
 
     // 초기 인원수
     int person = 1;
-
-    // 툴바, 뒤로가기 버튼
-    Toolbar toolbar;
-    ImageButton backBtn;
 
     // 레트로핏, api
     RetrofitService retrofitService;

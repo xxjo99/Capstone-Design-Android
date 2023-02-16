@@ -32,6 +32,10 @@ public class OptionAdapter extends RecyclerView.Adapter<OptionAdapter.ViewHolder
 
     OptionContentAdapter optionContentAdapter; // 옵션 내용 어댑터
 
+    // 최소, 최대 선택 개수
+    public static int minimumSelection;
+    public static int maximumSelection;
+
     // 생성자
     public OptionAdapter(List<OptionVO> optionList, Context context) {
         this.optionList = optionList;
@@ -53,8 +57,8 @@ public class OptionAdapter extends RecyclerView.Adapter<OptionAdapter.ViewHolder
         OptionVO option = optionList.get(position);
 
         String optionName = option.getOptionName(); // 옵션 이름
-        int minimumSelection = option.getMinimumSelection(); // 최소 선택 개수
-        int maximumSelection = option.getMaximumSelection(); // 최대 선택 개수
+        minimumSelection = option.getMinimumSelection(); // 최소 선택 개수
+        maximumSelection = option.getMaximumSelection(); // 최대 선택 개수
 
         // 최소, 최대 선택 개수에 따른 텍스트와 타입 설정
         if (minimumSelection == 0 && maximumSelection != 0) {

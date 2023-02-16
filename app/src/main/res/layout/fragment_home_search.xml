@@ -20,8 +20,8 @@
             android:id="@+id/searchET"
             android:layout_width="match_parent"
             android:layout_height="45dp"
-            android:background="@drawable/search_edit_text_border"
-            android:drawableStart="@drawable/home_menu_search"
+            android:background="@drawable/et_fill_gray"
+            android:drawableStart="@drawable/search_icon"
             android:drawablePadding="10dp"
             android:drawableTint="@color/gray2"
             android:fontFamily="@font/bmjua_font"
@@ -36,22 +36,37 @@
 
     <!-- 검색결과 -->
     <LinearLayout
-        android:id="@+id/searchResultLayout"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:orientation="vertical"
-        android:visibility="gone">
+        android:orientation="vertical">
 
-        <com.google.android.material.tabs.TabLayout
-            android:id="@+id/searchTab"
+        <LinearLayout
+            android:id="@+id/searchLayout"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            app:tabIndicatorColor="@color/black" />
+            android:layout_height="match_parent"
+            android:background="@color/gray"
+            android:orientation="horizontal"
+            android:visibility="visible"/>
 
-        <androidx.viewpager2.widget.ViewPager2
-            android:id="@+id/searchResultViewPager"
+        <LinearLayout
+            android:id="@+id/searchResultLayout"
             android:layout_width="match_parent"
-            android:layout_height="match_parent" />
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:visibility="gone">
+
+            <com.google.android.material.tabs.TabLayout
+                android:id="@+id/searchTab"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:tabIndicatorColor="@color/black" />
+
+            <androidx.viewpager2.widget.ViewPager2
+                android:id="@+id/searchResultViewPager"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent" />
+
+        </LinearLayout>
 
     </LinearLayout>
 

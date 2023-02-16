@@ -41,6 +41,10 @@ import retrofit2.Response;
 @SuppressLint("SetTextI18n")
 public class OptionActivity extends AppCompatActivity {
 
+    // 툴바, 툴바 버튼
+    Toolbar toolbar;
+    ImageButton backBtn;
+
     // 메뉴정보
     ImageView menuIV;
     TextView menuNameTV;
@@ -62,10 +66,6 @@ public class OptionActivity extends AppCompatActivity {
     public static List<String> selectOptionList; // 선택한 옵션의 리스트
 
     int amount; // 현재 메뉴 개수
-
-    // 툴바, 툴바 버튼
-    Toolbar toolbar;
-    ImageButton backBtn;
 
     // 레트로핏, api
     RetrofitService retrofitService;

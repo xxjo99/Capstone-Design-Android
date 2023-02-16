@@ -19,16 +19,19 @@
             android:layout_height="wrap_content"
             android:fontFamily="@font/bmjua_font"
             android:text="@string/storeName"
+            android:textColor="@color/black"
             android:textSize="20sp"
             android:textStyle="bold" />
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp">
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:fontFamily="@font/bmjua_font"
                 android:text="@string/registrant" />
 
             <View
@@ -40,17 +43,20 @@
                 android:id="@+id/registrantTV"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:fontFamily="@font/bmjua_font"
                 android:text="@string/registrant" />
 
         </LinearLayout>
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="wrap_content"
+            android:layout_marginTop="6dp">
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:fontFamily="@font/bmjua_font"
                 android:text="@string/deliveryTime" />
 
             <View
@@ -62,17 +68,20 @@
                 android:id="@+id/deliveryTimeTV"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:fontFamily="@font/bmjua_font"
                 android:text="@string/deliveryTime" />
 
         </LinearLayout>
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="wrap_content"
+            android:layout_marginTop="6dp">
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:fontFamily="@font/bmjua_font"
                 android:text="@string/recruitPerson" />
 
             <View
@@ -84,17 +93,20 @@
                 android:id="@+id/recruitPersonTV"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:fontFamily="@font/bmjua_font"
                 android:text="@string/recruitPerson" />
 
         </LinearLayout>
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="wrap_content"
+            android:layout_marginTop="6dp">
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:fontFamily="@font/bmjua_font"
                 android:text="@string/place" />
 
             <View
@@ -106,6 +118,7 @@
                 android:id="@+id/placeTV"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:fontFamily="@font/bmjua_font"
                 android:text="@string/place" />
 
         </LinearLayout>

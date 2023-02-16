@@ -74,7 +74,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="10dp"
-                        android:background="@drawable/edit_text_border_basic"
+                        android:background="@drawable/et_border"
                         android:fontFamily="@font/bmjua_font"
                         android:hint="사용할 닉네임을 입력해주세요"
                         android:inputType="text"
@@ -106,9 +106,10 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="10dp"
-                        android:background="@drawable/edit_text_border_basic"
+                        android:background="@drawable/et_border"
                         android:fontFamily="@font/bmjua_font"
                         android:hint="전화번호를 입력해주세요!"
+                        android:inputType="number"
                         android:nextFocusDown="@+id/schoolAutoCompleteTV"
                         android:padding="18dp"
                         android:singleLine="true"
@@ -137,7 +138,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="56dp"
                         android:layout_marginTop="10dp"
-                        android:background="@drawable/edit_text_border_basic"
+                        android:background="@drawable/et_border"
                         android:completionThreshold="1"
                         android:fontFamily="@font/bmjua_font"
                         android:gravity="center_vertical"
@@ -160,20 +161,21 @@
         android:layout_height="0dp"
         android:layout_weight="1"
         android:gravity="center_horizontal|bottom"
-        android:paddingBottom="10dp">
+        android:padding="10dp">
 
         <Button
             android:id="@+id/registerBtn"
+            style="?android:attr/borderlessButtonStyle"
             android:layout_width="match_parent"
-            android:layout_height="60dp"
+            android:layout_height="55dp"
             android:layout_marginLeft="10dp"
             android:layout_marginRight="10dp"
-            android:backgroundTint="@color/green"
+            android:layout_marginBottom="5dp"
+            android:background="@drawable/btn_fill2_green"
             android:fontFamily="@font/bmjua_font"
             android:text="@string/register"
             android:textColor="@color/white"
-            android:textSize="20sp"
-            android:visibility="visible" />
+            android:textSize="23sp" />
 
     </LinearLayout>
 

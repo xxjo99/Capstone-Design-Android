@@ -43,7 +43,7 @@
                 android:id="@+id/emailET"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:background="@drawable/edit_text_border_basic"
+                android:background="@drawable/et_border"
                 android:fontFamily="@font/bmjua_font"
                 android:hint="@string/loginEmailInput"
                 android:padding="18dp"
@@ -59,11 +59,11 @@
             android:gravity="center"
             app:passwordToggleEnabled="true">
 
-            <EditText
+            <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/pwET"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:background="@drawable/edit_text_border_basic"
+                android:background="@drawable/et_border"
                 android:fontFamily="@font/bmjua_font"
                 android:hint="@string/loginPwInput"
                 android:inputType="textPassword"
@@ -77,15 +77,17 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
+            android:layout_marginTop="20dp"
             android:layout_marginBottom="10dp"
             android:gravity="center">
 
             <Button
                 android:id="@+id/loginBtn"
+                style="?android:attr/borderlessButtonStyle"
                 android:layout_width="match_parent"
                 android:layout_height="60dp"
-                android:backgroundTint="#41D3BD"
+                android:background="@drawable/btn_fill2_green"
+                android:backgroundTint="@color/green"
                 android:fontFamily="@font/bmjua_font"
                 android:text="@string/login"
                 android:textColor="@color/white"

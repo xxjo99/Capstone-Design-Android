@@ -49,8 +49,7 @@
             android:windowSoftInputMode="adjustResize" />
 
         <!-- login -->
-        <activity
-            android:name=".login.LoginActivity" />
+        <activity android:name=".login.LoginActivity" />
         <activity
             android:name=".login.FindPwActivity"
             android:windowSoftInputMode="adjustResize" />
@@ -78,6 +77,15 @@
         <!-- point -->
         <activity
             android:name=".point.PointActivity"
+            android:windowSoftInputMode="adjustResize" />
+        <activity android:name=".point.PointHistoryActivity" />
+
+        <!-- myInfo -->
+        <activity
+            android:name=".myInfo.MyInfoActivity"
+            android:windowSoftInputMode="adjustResize" />
+        <activity
+            android:name=".myInfo.ModifyPwActivity"
             android:windowSoftInputMode="adjustResize" />
 
     </application>
