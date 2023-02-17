@@ -27,6 +27,31 @@
 
     </androidx.appcompat.widget.Toolbar>
 
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_margin="20dp"
+        android:orientation="horizontal">
+
+        <EditText
+            android:id="@+id/searchET"
+            android:layout_width="match_parent"
+            android:layout_height="45dp"
+            android:background="@drawable/et_fill_gray"
+            android:drawableStart="@drawable/search_icon"
+            android:drawablePadding="10dp"
+            android:drawableTint="@color/gray2"
+            android:fontFamily="@font/bmjua_font"
+            android:hint="가게를 검색해주세요"
+            android:imeOptions="actionSearch"
+            android:inputType="text"
+            android:padding="10dp"
+            android:singleLine="true"
+            android:textColorHint="@color/gray2" />
+
+    </LinearLayout>
+
     <!-- 홈화면 FrameLayout -->
     <FrameLayout
         android:id="@+id/homeFragmentFrame"
