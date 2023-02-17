@@ -6,7 +6,6 @@ import android.text.Editable;
 import android.text.TextWatcher;
 import android.util.Patterns;
 import android.view.KeyEvent;
-import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
@@ -160,7 +159,7 @@ public class EmailRegisterActivity extends AppCompatActivity {
                         if (duplicateCkResult) { // 중복되지 않은 이메일
                             Toast.makeText(EmailRegisterActivity.this, "사용가능한 이메일입니다.", Toast.LENGTH_SHORT).show();
                             nextBtn.setEnabled(true);
-                            nextBtn.setBackgroundResource(R.drawable.btn_fill2_green);
+                            nextBtn.setBackgroundResource(R.drawable.btn_fill2_mint);
                         } else {
                             Toast.makeText(EmailRegisterActivity.this, "중복된 이메일입니다.", Toast.LENGTH_SHORT).show();
                             nextBtn.setEnabled(false);

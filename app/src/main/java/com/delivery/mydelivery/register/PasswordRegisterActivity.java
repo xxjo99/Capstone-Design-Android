@@ -5,7 +5,6 @@ import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.view.KeyEvent;
-import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
@@ -109,7 +108,7 @@ public class PasswordRegisterActivity extends AppCompatActivity {
 
                 if (pwFlag && pwCkFlag) {
                     nextBtn.setEnabled(true);
-                    nextBtn.setBackgroundResource(R.drawable.btn_fill2_green);
+                    nextBtn.setBackgroundResource(R.drawable.btn_fill2_mint);
                 } else {
                     nextBtn.setEnabled(false);
                     nextBtn.setBackgroundResource(R.drawable.btn_fill2_gray);
@@ -150,7 +149,7 @@ public class PasswordRegisterActivity extends AppCompatActivity {
 
                 if (pwFlag && pwCkFlag) {
                     nextBtn.setEnabled(true);
-                    nextBtn.setBackgroundResource(R.drawable.btn_fill2_green);
+                    nextBtn.setBackgroundResource(R.drawable.btn_fill2_mint);
                 } else {
                     nextBtn.setEnabled(false);
                     nextBtn.setBackgroundResource(R.drawable.btn_fill2_gray);

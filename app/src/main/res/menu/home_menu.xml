@@ -14,7 +14,7 @@
     <item
         android:id="@+id/menu_home_post"
         android:enabled="true"
-        android:icon="@drawable/menu_icon"
+        android:icon="@drawable/post_icon"
         android:title="@string/post"
         app:showAsAction="always" />
 
@@ -22,7 +22,7 @@
     <item
         android:id="@+id/menu_home_myPost"
         android:enabled="true"
-        android:icon="@drawable/menu_icon"
+        android:icon="@drawable/mypost_icon"
         android:title="@string/myPost"
         app:showAsAction="always" />
 
@@ -38,7 +38,7 @@
     <item
         android:id="@+id/menu_home_myPage"
         android:enabled="true"
-        android:icon="@drawable/info_icon"
+        android:icon="@drawable/mypage_icon"
         android:title="@string/myInfo"
         app:showAsAction="always" />
 

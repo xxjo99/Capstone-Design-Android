@@ -14,12 +14,9 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
 import com.delivery.mydelivery.R;
-import com.delivery.mydelivery.preferenceManager.PreferenceManager;
 import com.delivery.mydelivery.retrofit.RetrofitService;
 import com.delivery.mydelivery.user.UserApi;
 import com.delivery.mydelivery.user.UserVO;
-import com.google.gson.Gson;
-import com.google.gson.GsonBuilder;
 
 import java.util.Objects;
 import java.util.regex.Pattern;
@@ -116,7 +113,7 @@ public class ModifyPwActivity extends AppCompatActivity {
 
                 if (pwFlag && pwCkFlag) {
                     modifyPwBtn.setEnabled(true);
-                    modifyPwBtn.setBackgroundResource(R.drawable.btn_fill2_green);
+                    modifyPwBtn.setBackgroundResource(R.drawable.btn_fill2_mint);
                 } else {
                     modifyPwBtn.setEnabled(false);
                     modifyPwBtn.setBackgroundResource(R.drawable.btn_fill2_gray);
@@ -157,7 +154,7 @@ public class ModifyPwActivity extends AppCompatActivity {
 
                 if (pwFlag && pwCkFlag) {
                     modifyPwBtn.setEnabled(true);
-                    modifyPwBtn.setBackgroundResource(R.drawable.btn_fill2_green);
+                    modifyPwBtn.setBackgroundResource(R.drawable.btn_fill2_mint);
                 } else {
                     modifyPwBtn.setEnabled(false);
                     modifyPwBtn.setBackgroundResource(R.drawable.btn_fill2_gray);
