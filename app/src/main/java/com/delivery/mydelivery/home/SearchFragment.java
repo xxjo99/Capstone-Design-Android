@@ -79,7 +79,7 @@ public class SearchFragment extends Fragment {
 
                 String keyword = searchET.getText().toString();
 
-                SearchResultStore.searchStoreResult(keyword, user.getSchool());
+                SearchResultStore.searchOpenStore(keyword, user.getSchool());
                 SearchResultRecruit.searchRecruitResult(keyword, user.getSchool());
 
                 searchLayout.setVisibility(View.GONE);

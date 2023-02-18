@@ -1,5 +1,7 @@
 package com.delivery.mydelivery.store;
 
+import java.sql.Timestamp;
+
 // 매장 정보
 public class StoreVO {
 
@@ -7,8 +9,8 @@ public class StoreVO {
     private String storeName; // 매장이름
     private String category; // 매장 카테고리
     private String storePhoneNum; // 매장 번호
-    private String openTime; // 오픈시간
-    private String closeTime; // 마감시간
+    private Timestamp openTime; // 오픈시간
+    private Timestamp closeTime; // 마감시간
     private String storeImageUrl; // 매장 이미지
     private String deliveryAvailablePlace;
     private String storeAddress; // 매장 주소
@@ -49,20 +51,20 @@ public class StoreVO {
         this.storePhoneNum = storePhoneNum;
     }
 
-    public String getOpenTime() {
+    public Timestamp getOpenTime() {
         return openTime;
     }
 
     public void setOpenTime(String openTime) {
-        this.openTime = openTime;
+        this.openTime = Timestamp.valueOf(openTime);
     }
 
-    public String getCloseTime() {
+    public Timestamp getCloseTime() {
         return closeTime;
     }
 
     public void setCloseTime(String closeTime) {
-        this.closeTime = closeTime;
+        this.closeTime = Timestamp.valueOf(closeTime);
     }
 
     public String getStoreImageUrl() {
