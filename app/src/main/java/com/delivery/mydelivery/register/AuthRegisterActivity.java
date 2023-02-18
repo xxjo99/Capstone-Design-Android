@@ -3,7 +3,6 @@ package com.delivery.mydelivery.register;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.KeyEvent;
-import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
@@ -100,7 +99,7 @@ public class AuthRegisterActivity extends AppCompatActivity {
                     checkAuthNumBtn.setBackgroundResource(R.drawable.btn_fill2_gray);
 
                     nextBtn.setEnabled(true);
-                    nextBtn.setBackgroundResource(R.drawable.btn_fill2_green);
+                    nextBtn.setBackgroundResource(R.drawable.btn_fill2_mint);
                 } else { // 인증 실패
                     Toast.makeText(AuthRegisterActivity.this, "인증번호를 확인해주세요.", Toast.LENGTH_SHORT).show();
                 }
@@ -137,7 +136,7 @@ public class AuthRegisterActivity extends AppCompatActivity {
                         sendAuthNumBtn.setBackgroundResource(R.drawable.btn_fill2_gray);
 
                         checkAuthNumBtn.setEnabled(true);
-                        checkAuthNumBtn.setBackgroundResource(R.drawable.btn_fill2_green);
+                        checkAuthNumBtn.setBackgroundResource(R.drawable.btn_fill2_mint);
                     }
 
                     @Override

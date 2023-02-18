@@ -171,16 +171,19 @@
             <!-- 뷰 열기/닫기 버튼 -->
             <Button
                 android:id="@+id/slidingOpenBtn"
+                style="?android:attr/borderlessButtonStyle"
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
-                android:layout_margin="10dp"
+                android:layout_marginLeft="20dp"
+                android:layout_marginTop="15dp"
+                android:layout_marginRight="20dp"
+                android:layout_marginBottom="15dp"
                 android:layout_weight="1"
-                android:background="@drawable/btn_fill_colortem"
-                android:backgroundTint="@color/colorTem"
+                android:background="@drawable/btn_fill2_mint"
                 android:fontFamily="@font/bmjua_font"
                 android:text="@string/upload"
-                android:textColor="#000000"
-                android:textSize="18sp" />
+                android:textColor="@color/white"
+                android:textSize="23sp" />
 
             <!-- 시간선택 -->
             <LinearLayout
@@ -189,35 +192,44 @@
                 android:layout_margin="10dp"
                 android:orientation="horizontal">
 
-                <TextView
+                <LinearLayout
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:fontFamily="@font/bmjua_font"
-                    android:text="시간선택"
-                    android:textColor="#000000"
-                    android:textSize="16sp" />
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/bmjua_font"
+                        android:text="시간선택"
+                        android:textColor="@color/black"
+                        android:textSize="16sp" />
+
+                    <TextView
+                        android:id="@+id/selectTimeTV"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/bmjua_font"
+                        android:text="시간선택 임시"
+                        android:textColor="#000000"
+                        android:textSize="16sp" />
+
+                </LinearLayout>
 
                 <View
                     android:layout_width="0dp"
                     android:layout_height="0dp"
                     android:layout_weight="1" />
 
-                <TextView
-                    android:id="@+id/selectTimeTV"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:fontFamily="@font/bmjua_font"
-                    android:text="시간선택 임시"
-                    android:textColor="#000000"
-                    android:textSize="16sp" />
-
                 <Button
                     android:id="@+id/button"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:backgroundTint="@color/colorTem"
+                    android:background="@drawable/btn_fill_mint"
+                    android:backgroundTint="@color/mint"
                     android:fontFamily="@font/bmjua_font"
                     android:text="Button"
+                    android:textColor="@color/white"
                     android:textSize="16sp" />
 
             </LinearLayout>
@@ -234,7 +246,7 @@
                     android:layout_height="wrap_content"
                     android:fontFamily="@font/bmjua_font"
                     android:text="@string/selectPerson"
-                    android:textColor="#000000"
+                    android:textColor="@color/black"
                     android:textSize="16sp" />
 
                 <View
@@ -255,7 +267,7 @@
                     android:layout_height="wrap_content"
                     android:fontFamily="@font/bmjua_font"
                     android:text="@string/selectPerson"
-                    android:textColor="#000000"
+                    android:textColor="@color/black"
                     android:textSize="16sp" />
 
                 <Button
@@ -278,7 +290,7 @@
                     android:layout_height="wrap_content"
                     android:fontFamily="@font/bmjua_font"
                     android:text="@string/selectPlace"
-                    android:textColor="#000000"
+                    android:textColor="@color/black"
                     android:textSize="16sp" />
 
                 <View
@@ -290,21 +302,24 @@
                     android:id="@+id/selectPlaceET"
                     android:layout_width="200dp"
                     android:layout_height="wrap_content"
-                    android:textColor="#000000"
+                    android:textColor="@color/black"
                     android:textSize="16sp" />
 
             </LinearLayout>
 
             <Button
                 android:id="@+id/registerBtn"
+                style="?android:attr/borderlessButtonStyle"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:background="@drawable/btn_fill_colortem"
-                android:backgroundTint="@color/colorTem"
+                android:layout_marginLeft="20dp"
+                android:layout_marginRight="20dp"
+                android:layout_marginBottom="15dp"
+                android:background="@drawable/btn_fill_green"
                 android:fontFamily="@font/bmjua_font"
                 android:text="@string/upload"
-                android:textColor="#000000"
-                android:textSize="18sp" />
+                android:textColor="@color/white"
+                android:textSize="23sp" />
 
         </LinearLayout>
 
