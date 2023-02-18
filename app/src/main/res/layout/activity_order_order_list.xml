@@ -37,13 +37,43 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical"
+        android:background="@color/gray2"
         android:visibility="gone">
+
+        <ImageView
+            android:id="@+id/imageView"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:layout_gravity="center"
+            android:layout_marginTop="350dp"
+            android:layout_marginBottom="5dp"
+            app:srcCompat="@drawable/warn" />
 
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="비어있음"
-            android:textSize="30sp" />
+            android:layout_gravity="center_vertical"
+            android:fontFamily="@font/bmjua_font"
+            android:gravity="center"
+            android:text="장바구니에 담긴 상품이 없습니다."
+            android:textColor="#000000"
+            android:textSize="23sp" />
+
+        <Button
+            android:id="@+id/button2"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginLeft="45dp"
+            android:layout_marginTop="35dp"
+            android:layout_marginRight="45dp"
+            android:background="@drawable/btn_fill2_mint"
+            android:backgroundTint="@color/mint"
+            android:fontFamily="@font/bmjua_font"
+            android:gravity="center"
+            android:text="배달음식 보러가기"
+            android:textColor="@color/white"
+            android:textSize="18sp" />
 
     </LinearLayout>
 
@@ -200,19 +230,21 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:layout_marginLeft="20dp"
                         android:fontFamily="@font/bmjua_font"
                         android:text="시간선택"
                         android:textColor="@color/black"
-                        android:textSize="16sp" />
+                        android:textSize="20sp" />
 
                     <TextView
                         android:id="@+id/selectTimeTV"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:layout_marginLeft="20dp"
                         android:fontFamily="@font/bmjua_font"
                         android:text="시간선택 임시"
                         android:textColor="#000000"
-                        android:textSize="16sp" />
+                        android:textSize="20sp" />
 
                 </LinearLayout>
 
@@ -225,12 +257,13 @@
                     android:id="@+id/button"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_marginRight="20dp"
                     android:background="@drawable/btn_fill_mint"
                     android:backgroundTint="@color/mint"
                     android:fontFamily="@font/bmjua_font"
                     android:text="Button"
                     android:textColor="@color/white"
-                    android:textSize="16sp" />
+                    android:textSize="19sp" />
 
             </LinearLayout>
 
@@ -244,10 +277,11 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_marginLeft="20dp"
                     android:fontFamily="@font/bmjua_font"
                     android:text="@string/selectPerson"
                     android:textColor="@color/black"
-                    android:textSize="16sp" />
+                    android:textSize="20sp" />
 
                 <View
                     android:layout_width="0dp"
@@ -256,8 +290,8 @@
 
                 <Button
                     android:id="@+id/minusPersonBtn"
-                    android:layout_width="22dp"
-                    android:layout_height="22dp"
+                    android:layout_width="24dp"
+                    android:layout_height="24dp"
                     android:layout_marginRight="4dp"
                     android:background="@drawable/minus_icon" />
 
@@ -268,13 +302,14 @@
                     android:fontFamily="@font/bmjua_font"
                     android:text="@string/selectPerson"
                     android:textColor="@color/black"
-                    android:textSize="16sp" />
+                    android:textSize="20sp" />
 
                 <Button
                     android:id="@+id/addPersonBtn"
-                    android:layout_width="22dp"
-                    android:layout_height="22dp"
+                    android:layout_width="24dp"
+                    android:layout_height="24dp"
                     android:layout_marginLeft="4dp"
+                    android:layout_marginRight="20dp"
                     android:background="@drawable/plus_icon" />
 
             </LinearLayout>
@@ -288,10 +323,11 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_marginLeft="20dp"
                     android:fontFamily="@font/bmjua_font"
                     android:text="@string/selectPlace"
                     android:textColor="@color/black"
-                    android:textSize="16sp" />
+                    android:textSize="21sp" />
 
                 <View
                     android:layout_width="0dp"
@@ -302,8 +338,9 @@
                     android:id="@+id/selectPlaceET"
                     android:layout_width="200dp"
                     android:layout_height="wrap_content"
+                    android:layout_marginRight="20dp"
                     android:textColor="@color/black"
-                    android:textSize="16sp" />
+                    android:textSize="20sp" />
 
             </LinearLayout>
 
