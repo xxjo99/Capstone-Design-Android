@@ -1,5 +1,7 @@
 package com.delivery.mydelivery.recruit;
 
+import java.sql.Timestamp;
+
 public class RecruitVO {
 
     private int recruitId;

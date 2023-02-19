@@ -5,7 +5,6 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -29,7 +28,7 @@ public class StoreListLunchBoxFragment extends Fragment {
 
     // 리사이클러뷰, 어댑터, 리스트
     RecyclerView storeListRecyclerView;
-    StoreListAdapter storeListAdapter;
+    OpenedStoreListAdapter openedStoreListAdapter;
     List<StoreVO> storeList;
 
     // view, context
@@ -53,7 +52,7 @@ public class StoreListLunchBoxFragment extends Fragment {
         UserVO user = gson.fromJson(loginInfo, UserVO.class);
 
         // 리사이클러뷰 설정
-        storeListRecyclerView = view.findViewById(R.id.storeListRecyclerView);
+        storeListRecyclerView = view.findViewById(R.id.openedStoreListRecyclerView);
         RecyclerView.LayoutManager manager = new LinearLayoutManager(context);
         storeListRecyclerView.setLayoutManager(manager);
         storeListRecyclerView.setHasFixedSize(true);
@@ -69,13 +68,13 @@ public class StoreListLunchBoxFragment extends Fragment {
         retrofitService = new RetrofitService();
         storeApi = retrofitService.getRetrofit().create(StoreApi.class);
 
-        storeApi.getStoreList("도시락", deliveryAvailablePlace)
+        storeApi.getOpenedStoreList("도시락", deliveryAvailablePlace)
                 .enqueue(new Callback<List<StoreVO>>() {
                     @Override
                     public void onResponse(@NonNull Call<List<StoreVO>> call, @NonNull Response<List<StoreVO>> response) {
                         storeList = response.body();
-                        storeListAdapter = new StoreListAdapter(storeList, context);
-                        storeListRecyclerView.setAdapter(storeListAdapter);
+                        openedStoreListAdapter = new OpenedStoreListAdapter(storeList, context);
+                        storeListRecyclerView.setAdapter(openedStoreListAdapter);
                     }
 
                     @Override

@@ -56,11 +56,11 @@ public class SearchResultStore extends Fragment {
     }
 
     // 검색된 매장 목록
-    public static void searchStoreResult(String keyword, String deliveryAvailablePlace) {
+    public static void searchOpenStore(String keyword, String deliveryAvailablePlace) {
         retrofitService = new RetrofitService();
         storeApi = retrofitService.getRetrofit().create(StoreApi.class);
 
-        storeApi.searchStore(keyword, deliveryAvailablePlace)
+        storeApi.searchOpenedStore(keyword, deliveryAvailablePlace)
                 .enqueue(new Callback<List<StoreVO>>() {
                     @Override
                     public void onResponse(@NonNull Call<List<StoreVO>> call, @NonNull Response<List<StoreVO>> response) {

@@ -55,21 +55,11 @@ public class OptionContentAdapter extends RecyclerView.Adapter<OptionContentAdap
             String optionContentId = Integer.toString(optionContent.getMenuOptionContentId());
 
             if (((CheckBox) view).isChecked()) { // 옵션 선택
-
-                if (count >= OptionAdapter.maximumSelection) {
-                    System.out.println("선택 불가  " + OptionAdapter.maximumSelection + "  " + position + "count " + count);
-                    holder.optionCheckBox.setChecked(false);
-                    System.out.println(count);
-                } else {
-                    price += optionPrice;
-                    OptionActivity.modifyPrice(price, optionContentId, 1);
-                    count++;
-                }
+                price += optionPrice;
+                OptionActivity.modifyPrice(price, optionContentId, 1);
             } else { // 옵션 선택 해제
                 price -= optionPrice;
                 OptionActivity.modifyPrice(price, optionContentId, 0);
-                count--;
-                System.out.println(count);
             }
         });
     }

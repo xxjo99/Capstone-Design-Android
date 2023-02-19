@@ -18,13 +18,13 @@ import com.delivery.mydelivery.menu.MenuListActivity;
 
 import java.util.List;
 
-public class StoreListAdapter extends RecyclerView.Adapter<StoreListAdapter.ViewHolder> {
+public class OpenedStoreListAdapter extends RecyclerView.Adapter<OpenedStoreListAdapter.ViewHolder> {
 
     private final List<StoreVO> storeList; // 매장 리스트
     Context context; // context
 
     // 생성자
-    public StoreListAdapter(List<StoreVO> storeList, Context context) {
+    public OpenedStoreListAdapter(List<StoreVO> storeList, Context context) {
         this.storeList = storeList;
         this.context = context;
     }
@@ -40,7 +40,7 @@ public class StoreListAdapter extends RecyclerView.Adapter<StoreListAdapter.View
 
     @SuppressLint("SetTextI18n")
     @Override
-    public void onBindViewHolder(@NonNull StoreListAdapter.ViewHolder holder, int position) {
+    public void onBindViewHolder(@NonNull OpenedStoreListAdapter.ViewHolder holder, int position) {
         StoreVO store = storeList.get(position);
 
         // 매장 정보들
