@@ -178,18 +178,30 @@ public class OrderListActivity extends AppCompatActivity {
 
         // 인원 추가, 감소
         minusPersonBtn.setOnClickListener(view -> {
-            if (person != 1) {
+            if (person > 1) {
                 person--;
                 selectPersonTV.setText(person + "명");
+            }
+
+            if (person <= 1) {
+                minusPersonBtn.setBackgroundResource(R.drawable.minus_icon_gray);
+            } else {
+                addPersonBtn.setBackgroundResource(R.drawable.plus_icon);
+                minusPersonBtn.setBackgroundResource(R.drawable.minus_icon);
             }
         });
 
         addPersonBtn.setOnClickListener(view -> {
-            if (person >= 4) {
-                Toast.makeText(context, "최대 4명", Toast.LENGTH_SHORT).show();
-            } else {
+            if (person < 4) {
                 person++;
                 selectPersonTV.setText(person + "명");
+            }
+
+            if (person >= 4) {
+                addPersonBtn.setBackgroundResource(R.drawable.plus_icon_gray);
+            } else {
+                addPersonBtn.setBackgroundResource(R.drawable.plus_icon);
+                minusPersonBtn.setBackgroundResource(R.drawable.minus_icon);
             }
         });
 
@@ -200,8 +212,6 @@ public class OrderListActivity extends AppCompatActivity {
                 Toast.makeText(context, "배달 받을 시간을 선택해주세요.", Toast.LENGTH_SHORT).show();
             } else if (selectPlaceET.length() == 0) {
                 Toast.makeText(context, "배달 받을 장소를 입력해주세요", Toast.LENGTH_SHORT).show();
-            } else if (selectTimeTV.getText().toString().equals("배달 받을 시간을 선택해주세요.") && selectPlaceET.length() == 0) {
-                Toast.makeText(context, "배달 받을 시간과 장소를 선택해주세요.", Toast.LENGTH_SHORT).show();
             } else {
                 // 객체 생성, 객체에 필요한 데이터 추가
                 RecruitVO recruit = new RecruitVO();

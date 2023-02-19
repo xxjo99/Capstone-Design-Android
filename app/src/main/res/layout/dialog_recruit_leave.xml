@@ -3,6 +3,7 @@
     android:id="@+id/registerDialogLayout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:layout_marginBottom="20dp"
     android:background="@drawable/dialog"
     android:orientation="vertical">
 
@@ -17,7 +18,7 @@
         android:paddingTop="30dp"
         android:paddingRight="50dp"
         android:paddingBottom="30dp"
-        android:text="회원가입을\n취소하시겠습니까?"
+        android:text="탈퇴하시겠습니까?"
         android:textColor="@color/black"
         android:textSize="25sp" />
 
@@ -32,7 +33,7 @@
         android:layout_height="wrap_content">
 
         <Button
-            android:id="@+id/quitBtn"
+            android:id="@+id/leaveBtn"
             style="?android:attr/buttonBarButtonStyle"
             android:layout_width="wrap_content"
             android:layout_height="55dp"
