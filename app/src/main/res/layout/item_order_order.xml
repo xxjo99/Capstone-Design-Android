@@ -4,6 +4,61 @@
     android:layout_height="wrap_content"
     android:orientation="vertical">
 
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/homeToolbar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/white">
+
+        <TextView
+            android:id="@+id/infoTV"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:textColor="@color/black"
+            android:fontFamily="@font/bmjua_font"
+            android:text="장바구니"
+            android:textSize="25sp" />
+
+        <!-- 홈으로 이동 버튼 -->
+        <ImageButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginRight="10dp"
+            android:src="@drawable/home_icon"
+            android:background="@color/white"
+            android:layout_gravity="right">
+
+        </ImageButton>
+
+    </androidx.appcompat.widget.Toolbar>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="10dp"
+        android:background="@color/gray" />
+    <TextView
+        android:id="@+id/foodstorename"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="15dp"
+        android:layout_marginBottom="15dp"
+        android:text="음식점 이름"
+        android:layout_marginLeft="10dp"
+        android:fontFamily="@font/bmjua_font"
+        android:textColor="@color/black"
+        android:textSize="23sp">
+    </TextView>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="@color/gray" />
+    </LinearLayout>
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -37,7 +92,7 @@
                 android:layout_height="wrap_content"
                 android:background="@color/white"
                 android:fontFamily="@font/bmjua_font"
-                android:src="@drawable/cancel_icon" />
+                android:src="@drawable/close_icon" />
 
         </LinearLayout>
 
@@ -47,14 +102,16 @@
             android:layout_height="wrap_content"
             android:fontFamily="@font/bmjua_font"
             android:text="@string/option"
-            android:textSize="12sp"
+            android:layout_margin="5dp"
+            android:textSize="13sp"
             android:layout_marginBottom="18dp"/>
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:gravity="center"
-            android:orientation="horizontal">
+            android:orientation="horizontal"
+            android:layout_margin="5dp">
 
             <TextView
                 android:id="@+id/menuPriceTV"
@@ -70,31 +127,35 @@
                 android:layout_height="0dp"
                 android:layout_weight="1" />
 
-            <ImageButton
-                android:id="@+id/decreaseBtn"
+            <LinearLayout
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:background="@color/white"
-                android:src="@drawable/minus_icon" />
+                android:layout_height="wrap_content">
+                <ImageButton
+                    android:id="@+id/decreaseBtn"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="@color/white"
+                    android:src="@drawable/remove_nobackground" />
 
-            <TextView
-                android:id="@+id/amountTV"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:layout_marginLeft="15dp"
-                android:layout_marginRight="15dp"
-                android:fontFamily="@font/bmjua_font"
-                android:text="@string/amount"
-                android:textColor="@color/black"
-                android:textSize="15sp" />
+                <TextView
+                    android:id="@+id/amountTV"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_marginLeft="15dp"
+                    android:layout_marginRight="15dp"
+                    android:fontFamily="@font/bmjua_font"
+                    android:text="@string/amount"
+                    android:textColor="@color/black"
+                    android:textSize="15sp" />
 
-            <ImageButton
-                android:id="@+id/increaseBtn"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:background="@color/white"
-                android:src="@drawable/plus_icon" />
+                <ImageButton
+                    android:id="@+id/increaseBtn"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="@color/white"
+                    android:src="@drawable/add_nobackground" />
+            </LinearLayout>
 
         </LinearLayout>
 
