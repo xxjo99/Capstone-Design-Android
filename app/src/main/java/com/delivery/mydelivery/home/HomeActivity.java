@@ -33,7 +33,8 @@ public class HomeActivity extends AppCompatActivity {
     private MyPageFragment myPageFragment;
 
     // 툴바, 툴바 텍스트
-    Toolbar toolbar;
+    @SuppressLint("StaticFieldLeak")
+    public static Toolbar toolbar;
     TextView infoTV;
 
     @SuppressLint("NonConstantResourceId")

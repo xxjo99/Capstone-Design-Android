@@ -11,7 +11,6 @@ public class StoreViewPagerAdapter extends FragmentStateAdapter {
         super(fragmentActivity);
     }
 
-
     @NonNull
     @Override
     public Fragment createFragment(int position) {

@@ -55,6 +55,8 @@ public class OptionAdapter extends RecyclerView.Adapter<OptionAdapter.ViewHolder
     @Override
     public void onBindViewHolder(@NonNull OptionAdapter.ViewHolder holder, int position) {
         OptionVO option = optionList.get(position);
+        
+        OptionActivity.selectedOptionFlagList.add(false); // 옵션 선택 flag 추가
 
         String optionName = option.getOptionName(); // 옵션 이름
         minimumSelection = option.getMinimumSelection(); // 최소 선택 개수
@@ -76,7 +78,7 @@ public class OptionAdapter extends RecyclerView.Adapter<OptionAdapter.ViewHolder
 
         // 데이터 추가, 어댑터 적용
         int menuOptionId = option.getMenuOptionId();
-        setOptionContent(menuOptionId, holder);
+        setOptionContent(menuOptionId, minimumSelection, maximumSelection, position, holder);
     }
 
     @Override
@@ -102,7 +104,7 @@ public class OptionAdapter extends RecyclerView.Adapter<OptionAdapter.ViewHolder
     }
 
     // 옵션 내용 가져오는 api, 어댑터 생성
-    private void setOptionContent(int menuOptionId, @NonNull OptionAdapter.ViewHolder holder) {
+    private void setOptionContent(int menuOptionId, int minimumSelection, int maximumSelection, int optionPosition, @NonNull OptionAdapter.ViewHolder holder) {
         RetrofitService retrofitService = new RetrofitService();
         MenuApi api = retrofitService.getRetrofit().create(MenuApi.class);
 
@@ -113,7 +115,7 @@ public class OptionAdapter extends RecyclerView.Adapter<OptionAdapter.ViewHolder
                     @Override
                     public void onResponse(@NonNull Call<List<OptionContentVO>> call, @NonNull Response<List<OptionContentVO>> response) {
                         optionContentList = response.body();
-                        optionContentAdapter = new OptionContentAdapter(optionContentList, context);
+                        optionContentAdapter = new OptionContentAdapter(optionContentList, minimumSelection, maximumSelection, optionPosition, context);
                         holder.optionContentRecyclerView.setAdapter(optionContentAdapter);
                     }
 

@@ -167,7 +167,7 @@
             android:layout_height="59dp"
             android:layout_margin="10dp"
             android:layout_weight="1"
-            android:backgroundTint="@color/purple"
+            android:background="@drawable/btn_fill_gray"
             android:fontFamily="@font/bmjua_font"
             android:text="@string/addMenu"
             android:textColor="@color/white"
