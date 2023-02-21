@@ -58,7 +58,9 @@
             android:windowSoftInputMode="adjustResize" />
 
         <!-- home -->
-        <activity android:name=".home.HomeActivity" />
+        <activity
+            android:name=".home.HomeActivity"
+            android:windowSoftInputMode="adjustPan|stateHidden" />
 
         <!-- store -->
         <activity android:name=".store.StoreActivity" />

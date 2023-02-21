@@ -23,6 +23,7 @@ import com.delivery.mydelivery.menu.MenuListActivity;
 import com.delivery.mydelivery.recruit.RecruitApi;
 import com.delivery.mydelivery.recruit.RecruitVO;
 import com.delivery.mydelivery.preferenceManager.PreferenceManager;
+import com.delivery.mydelivery.store.StoreActivity;
 import com.delivery.mydelivery.user.UserVO;
 import com.delivery.mydelivery.retrofit.RetrofitService;
 import com.google.gson.Gson;
@@ -60,18 +61,24 @@ public class OrderListActivity extends AppCompatActivity {
     // 메뉴 추가 버튼
     Button addMenuBtn;
 
-    // 레이아웃, 슬라이딩패널 펼치기 / 닫기 버튼
+    // 레이아웃, 매장 리스트 이동 버튼슬라이딩패널 펼치기 / 닫기 버튼
     LinearLayout emptyLayout;
+    Button storeListBtn;
     SlidingUpPanelLayout slidingUpPanelLayout;
     Button slidingOpenBtn;
 
     // 시간, 인원, 장소선택, 등록 버튼
-    TextView selectTimeTV;
+    @SuppressLint("StaticFieldLeak")
+    public static TextView selectTimeTV;
+    Button datePickerBtn;
     TextView selectPersonTV;
     Button minusPersonBtn;
     Button addPersonBtn;
     EditText selectPlaceET;
     Button registerBtn;
+
+    // 시간 선택 다이얼로그
+    DatePickerDialog datePickerDialog;
 
     // 초기 인원수
     int person = 1;
@@ -89,12 +96,20 @@ public class OrderListActivity extends AppCompatActivity {
         setContentView(R.layout.activity_order_order_list);
         context = this; // context 지정
 
-        // 매장이름, 총 주문금액, 레이아웃, 버튼
+        // 초기화
         storeNameTV = findViewById(R.id.storeNameTV);
         totalPriceTV = findViewById(R.id.totalPriceTV);
         slidingUpPanelLayout = findViewById(R.id.slidingUpPanelLayout);
         emptyLayout = findViewById(R.id.emptyLayout);
+        storeListBtn = findViewById(R.id.storeListBtn);
         slidingOpenBtn = findViewById(R.id.slidingOpenBtn);
+
+        // 매장 리스트 이동
+        storeListBtn.setOnClickListener(view -> {
+            Intent intent = new Intent(OrderListActivity.this, StoreActivity.class);
+            startActivity(intent);
+            finish();
+        });
 
         // 슬라이딩패널 설정
         slidingUpPanelLayout.setTouchEnabled(false);
@@ -136,41 +151,67 @@ public class OrderListActivity extends AppCompatActivity {
         slidingOpenBtn.setOnClickListener(view -> {
             if (slidingUpPanelLayout.getPanelState() == SlidingUpPanelLayout.PanelState.COLLAPSED) {
                 slidingUpPanelLayout.setPanelState(SlidingUpPanelLayout.PanelState.ANCHORED);
+                slidingOpenBtn.setBackgroundResource(R.drawable.btn_fill_gray);
                 slidingOpenBtn.setText("닫기");
             } else {
                 slidingUpPanelLayout.setPanelState(SlidingUpPanelLayout.PanelState.COLLAPSED);
+                slidingOpenBtn.setBackgroundResource(R.drawable.btn_fill_mint);
                 slidingOpenBtn.setText("글 등록하기");
             }
         });
 
+        // 초기화
         selectTimeTV = findViewById(R.id.selectTimeTV);
+        datePickerBtn = findViewById(R.id.datePickerBtn);
         selectPersonTV = findViewById(R.id.selectPersonTV);
-        minusPersonBtn = findViewById(R.id.minusPersonBtn);
-        addPersonBtn = findViewById(R.id.addPersonBtn);
+        minusPersonBtn = findViewById(R.id.minusBtn);
+        addPersonBtn = findViewById(R.id.addBtn);
         selectPlaceET = findViewById(R.id.selectPlaceET);
         registerBtn = findViewById(R.id.registerBtn);
 
         // 초기인원수 지정
         selectPersonTV.setText(person + "명");
 
+        // 날짜 선택, datePicker 다이얼로그
+        datePickerDialog = new DatePickerDialog(context);
+        datePickerBtn.setOnClickListener(view -> datePickerDialog.callDialog());
+
         // 인원 추가, 감소
         minusPersonBtn.setOnClickListener(view -> {
-            if (person != 1) {
+            if (person > 1) {
                 person--;
                 selectPersonTV.setText(person + "명");
+            }
+
+            if (person <= 1) {
+                minusPersonBtn.setBackgroundResource(R.drawable.minus_icon_gray);
+            } else {
+                addPersonBtn.setBackgroundResource(R.drawable.plus_icon);
+                minusPersonBtn.setBackgroundResource(R.drawable.minus_icon);
             }
         });
 
         addPersonBtn.setOnClickListener(view -> {
-            person++;
-            selectPersonTV.setText(person + "명");
+            if (person < 4) {
+                person++;
+                selectPersonTV.setText(person + "명");
+            }
+
+            if (person >= 4) {
+                addPersonBtn.setBackgroundResource(R.drawable.plus_icon_gray);
+            } else {
+                addPersonBtn.setBackgroundResource(R.drawable.plus_icon);
+                minusPersonBtn.setBackgroundResource(R.drawable.minus_icon);
+            }
         });
 
         // 모집글 등록
         registerBtn.setOnClickListener(view -> {
 
-            if (selectPlaceET.getText().toString().length() == 0) {
-                Toast.makeText(context, "장소를 입력해주세요", Toast.LENGTH_SHORT).show();
+            if (selectTimeTV.getText().toString().equals("배달 받을 시간을 선택해주세요.")) {
+                Toast.makeText(context, "배달 받을 시간을 선택해주세요.", Toast.LENGTH_SHORT).show();
+            } else if (selectPlaceET.length() == 0) {
+                Toast.makeText(context, "배달 받을 장소를 입력해주세요", Toast.LENGTH_SHORT).show();
             } else {
                 // 객체 생성, 객체에 필요한 데이터 추가
                 RecruitVO recruit = new RecruitVO();
@@ -178,9 +219,9 @@ public class OrderListActivity extends AppCompatActivity {
                 recruit.setUserId(userId); // 회원 아이디
                 recruit.setRegistrantPlace(user.getSchool()); // 등록자 위치
                 recruit.setStoreId(storeId); // 매장 아이디
-                recruit.setDeliveryTime(selectTimeTV.getText().toString()); // 시간
                 recruit.setPlace(selectPlaceET.getText().toString()); // 배달장소
                 recruit.setPerson(person); // 모집인원
+                recruit.setDeliveryTime(selectTimeTV.getText().toString());
 
                 findRecruit(userId, recruit);// 모집글 등록
             }

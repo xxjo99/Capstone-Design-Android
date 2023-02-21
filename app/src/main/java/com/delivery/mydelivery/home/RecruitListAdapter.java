@@ -63,13 +63,13 @@ public class RecruitListAdapter extends RecyclerView.Adapter<RecruitListAdapter.
 
         int storeId = recruit.getStoreId();
         int userId = recruit.getUserId();
-        String deliveryTime = recruit.getDeliveryTime();
+        String time = recruit.getDeliveryTime();
         int person = recruit.getPerson();
         String place = recruit.getPlace();
 
         setStoreName(storeId, holder); // 매장이름
         setRegistrantName(userId, holder); // 등록자 이름
-        holder.deliveryTimeTV.setText(deliveryTime); // 배달 시간
+        holder.deliveryTimeTV.setText(time); // 배달 시간
         holder.recruitPersonTV.setText(person + "명"); // 모집 인원
         holder.placeTV.setText(place); // 배달 장소
 
@@ -86,7 +86,7 @@ public class RecruitListAdapter extends RecyclerView.Adapter<RecruitListAdapter.
             int recruitId = recruit.getRecruitId();
             int participateUserId = user.getUserId();
 
-            checkParticipate(recruitId, participateUserId, holder, person, place, deliveryTime, storeId);
+            checkParticipate(recruitId, participateUserId, holder, person, place, time, storeId);
         });
     }
 

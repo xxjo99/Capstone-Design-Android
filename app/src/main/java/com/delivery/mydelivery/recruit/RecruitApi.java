@@ -69,8 +69,12 @@ public interface RecruitApi {
     Call<List<RecruitVO>> searchRecruit(@Path("keyword") String keyword, @Path("deliveryAvailablePlace") String deliveryAvailablePlace);
 
     // 모집글 삭제
-    @DELETE("/recruit/delete/recruit/{recruitId}")
+    @DELETE("/recruit/delete/{recruitId}")
     Call<Void> deleteRecruit(@Path("recruitId") int recruitId);
+
+    // 모집글 탈퇴
+    @DELETE("/recruit/leave/{recruitId}/{userId}")
+    Call<Void> leaveRecruit(@Path("recruitId") int recruitId, @Path("userId") int userId);
 
     // 등록자 검색
     @GET("/recruit/find/registrant/{recruitId}")

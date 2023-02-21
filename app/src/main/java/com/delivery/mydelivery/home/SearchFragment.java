@@ -30,7 +30,6 @@ public class SearchFragment extends Fragment {
 
     // 레이아웃, 탭 레이아웃, 뷰페이저
     LinearLayout searchFragmentLayout;
-    LinearLayout searchLayout;
     LinearLayout searchResultLayout;
     TabLayout searchTab;
     ViewPager2 searchResultViewPager;
@@ -59,7 +58,6 @@ public class SearchFragment extends Fragment {
 
         // 레이아웃, 탭 레이아웃, 뷰페이저 초기화
         searchFragmentLayout = view.findViewById(R.id.searchFragmentLayout);
-        searchLayout = view.findViewById(R.id.searchLayout);
         searchResultLayout = view.findViewById(R.id.searchResultLayout);
         searchTab = view.findViewById(R.id.searchTab);
         searchResultViewPager = view.findViewById(R.id.searchResultViewPager);
@@ -79,10 +77,9 @@ public class SearchFragment extends Fragment {
 
                 String keyword = searchET.getText().toString();
 
-                SearchResultStore.searchStoreResult(keyword, user.getSchool());
+                SearchResultStore.searchOpenStore(keyword, user.getSchool());
                 SearchResultRecruit.searchRecruitResult(keyword, user.getSchool());
 
-                searchLayout.setVisibility(View.GONE);
                 searchResultLayout.setVisibility(View.VISIBLE);
             }
             return true;

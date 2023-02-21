@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="utf-8"?> <!-- 매장 리스트 -->
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="12dp"
+        android:orientation="horizontal">
+
+        <!-- 매장 이미지 ImageView -->
+        <ImageView
+            android:id="@+id/storeIV"
+            android:layout_width="80dp"
+            android:layout_height="80dp"
+            android:layout_margin="5dp"
+            android:adjustViewBounds="true"
+            android:background="@drawable/search_icon" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginLeft="5dp"
+            android:layout_marginTop="3dp"
+            android:orientation="vertical">
+
+            <!-- 매장 이름 TextView -->
+            <TextView
+                android:id="@+id/storeNameTV"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="7dp"
+                android:fontFamily="@font/bmjua_font"
+                android:text="@string/storeName"
+                android:textColor="@color/gray2"
+                android:textSize="17sp"
+                android:textStyle="bold" />
+
+            <!-- 매장 정보 -->
+            <TextView
+                android:id="@+id/storeInfoTV"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="5dp"
+                android:fontFamily="@font/bmjua_font"
+                android:text="@string/storeInfo"
+                android:textColor="@color/gray2"
+                android:textSize="13sp" />
+
+            <!-- 최소 주문 금액, 배달팁 TextView -->
+            <TextView
+                android:id="@+id/storeDeliveryPriceTV"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="5dp"
+                android:fontFamily="@font/bmjua_font"
+                android:text="@string/minimumDeliveryPrice"
+                android:textColor="@color/gray2"
+                android:textSize="13sp" />
+
+            <TextView
+                android:id="@+id/deliveryTimeTV"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/bmjua_font"
+                android:text="@string/deliveryTime"
+                android:textColor="@color/gray2"
+                android:textSize="13sp" />
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="@color/gray" />
+
+</LinearLayout>

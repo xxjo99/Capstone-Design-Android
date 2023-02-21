@@ -7,60 +7,32 @@
     android:orientation="vertical"
     tools:context=".order.OrderListActivity">
 
-    <androidx.appcompat.widget.Toolbar
-        android:id="@+id/orderToolbar"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="@color/white"
-        app:contentInsetStart="0dp">
-
-        <ImageButton
-            android:id="@+id/backBtn"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:backgroundTint="@color/white"
-            android:src="@drawable/back" />
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:fontFamily="@font/bmjua_font"
-            android:text="@string/cart"
-            android:textColor="@color/black"
-            android:textSize="20sp" />
-
-    </androidx.appcompat.widget.Toolbar>
-
     <LinearLayout
         android:id="@+id/emptyLayout"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:background="@color/gray"
+        android:gravity="center"
         android:orientation="vertical"
-        android:background="@color/gray2"
         android:visibility="gone">
 
         <ImageView
-            android:id="@+id/imageView"
             android:layout_width="50dp"
             android:layout_height="50dp"
-            android:layout_gravity="center"
-            android:layout_marginTop="350dp"
             android:layout_marginBottom="5dp"
-            app:srcCompat="@drawable/warn" />
+            android:src="@drawable/warn" />
 
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_gravity="center_vertical"
             android:fontFamily="@font/bmjua_font"
             android:gravity="center"
             android:text="장바구니에 담긴 상품이 없습니다."
-            android:textColor="#000000"
+            android:textColor="@color/black"
             android:textSize="23sp" />
 
         <Button
-            android:id="@+id/button2"
+            android:id="@+id/storeListBtn"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
@@ -70,7 +42,6 @@
             android:background="@drawable/btn_fill2_mint"
             android:backgroundTint="@color/mint"
             android:fontFamily="@font/bmjua_font"
-            android:gravity="center"
             android:text="배달음식 보러가기"
             android:textColor="@color/white"
             android:textSize="18sp" />
@@ -81,18 +52,43 @@
         android:id="@+id/slidingUpPanelLayout"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:layout_marginBottom="7dp"
         android:gravity="bottom"
         android:orientation="vertical"
         android:visibility="visible"
         app:umanoDragView="@id/recruitLayout"
         app:umanoOverlay="false"
-        app:umanoParallaxOffset="100dp"
         app:umanoShadowHeight="4dp">
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:orientation="vertical">
+
+            <androidx.appcompat.widget.Toolbar
+                android:id="@+id/orderToolbar"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/white"
+                app:contentInsetStart="0dp">
+
+                <ImageButton
+                    android:id="@+id/backBtn"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:backgroundTint="@color/white"
+                    android:src="@drawable/back" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:fontFamily="@font/bmjua_font"
+                    android:text="@string/cart"
+                    android:textColor="@color/black"
+                    android:textSize="20sp" />
+
+            </androidx.appcompat.widget.Toolbar>
 
             <View
                 android:layout_width="match_parent"
@@ -209,7 +205,7 @@
                 android:layout_marginRight="20dp"
                 android:layout_marginBottom="15dp"
                 android:layout_weight="1"
-                android:background="@drawable/btn_fill2_mint"
+                android:background="@drawable/btn_fill_mint"
                 android:fontFamily="@font/bmjua_font"
                 android:text="@string/upload"
                 android:textColor="@color/white"
@@ -225,9 +221,10 @@
                 <LinearLayout
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:orientation="vertical">
+                    android:orientation="horizontal">
 
                     <TextView
+                        android:id="@+id/selectTimeTV"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginLeft="20dp"
@@ -236,34 +233,23 @@
                         android:textColor="@color/black"
                         android:textSize="20sp" />
 
-                    <TextView
-                        android:id="@+id/selectTimeTV"
+                    <View
+                        android:layout_width="0dp"
+                        android:layout_height="0dp"
+                        android:layout_weight="1" />
+
+                    <Button
+                        android:id="@+id/datePickerBtn"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginLeft="20dp"
+                        android:layout_marginEnd="20dp"
+                        android:background="@drawable/btn_fill_mint"
                         android:fontFamily="@font/bmjua_font"
-                        android:text="시간선택 임시"
-                        android:textColor="#000000"
-                        android:textSize="20sp" />
+                        android:text="시간 선택"
+                        android:textColor="@color/white"
+                        android:textSize="19sp" />
 
                 </LinearLayout>
-
-                <View
-                    android:layout_width="0dp"
-                    android:layout_height="0dp"
-                    android:layout_weight="1" />
-
-                <Button
-                    android:id="@+id/button"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginRight="20dp"
-                    android:background="@drawable/btn_fill_mint"
-                    android:backgroundTint="@color/mint"
-                    android:fontFamily="@font/bmjua_font"
-                    android:text="Button"
-                    android:textColor="@color/white"
-                    android:textSize="19sp" />
 
             </LinearLayout>
 
@@ -289,27 +275,28 @@
                     android:layout_weight="1" />
 
                 <Button
-                    android:id="@+id/minusPersonBtn"
+                    android:id="@+id/minusBtn"
                     android:layout_width="24dp"
                     android:layout_height="24dp"
-                    android:layout_marginRight="4dp"
                     android:background="@drawable/minus_icon" />
 
                 <TextView
                     android:id="@+id/selectPersonTV"
-                    android:layout_width="wrap_content"
+                    android:layout_width="50dp"
                     android:layout_height="wrap_content"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginRight="10dp"
                     android:fontFamily="@font/bmjua_font"
+                    android:gravity="center"
                     android:text="@string/selectPerson"
                     android:textColor="@color/black"
                     android:textSize="20sp" />
 
                 <Button
-                    android:id="@+id/addPersonBtn"
+                    android:id="@+id/addBtn"
                     android:layout_width="24dp"
                     android:layout_height="24dp"
-                    android:layout_marginLeft="4dp"
-                    android:layout_marginRight="20dp"
+                    android:layout_marginEnd="20dp"
                     android:background="@drawable/plus_icon" />
 
             </LinearLayout>
@@ -323,7 +310,7 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginLeft="20dp"
+                    android:layout_marginStart="20dp"
                     android:fontFamily="@font/bmjua_font"
                     android:text="@string/selectPlace"
                     android:textColor="@color/black"
@@ -336,9 +323,10 @@
 
                 <EditText
                     android:id="@+id/selectPlaceET"
-                    android:layout_width="200dp"
+                    android:layout_width="160dp"
                     android:layout_height="wrap_content"
-                    android:layout_marginRight="20dp"
+                    android:layout_marginEnd="20dp"
+                    android:gravity="center"
                     android:textColor="@color/black"
                     android:textSize="20sp" />
 
@@ -350,9 +338,10 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="20dp"
+                android:layout_marginTop="15dp"
                 android:layout_marginRight="20dp"
                 android:layout_marginBottom="15dp"
-                android:background="@drawable/btn_fill_green"
+                android:background="@drawable/btn_fill2_mint"
                 android:fontFamily="@font/bmjua_font"
                 android:text="@string/upload"
                 android:textColor="@color/white"

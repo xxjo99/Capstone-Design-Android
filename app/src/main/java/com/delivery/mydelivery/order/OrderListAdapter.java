@@ -70,11 +70,11 @@ public class OrderListAdapter extends RecyclerView.Adapter<OrderListAdapter.View
         }
 
         holder.menuPriceTV.setText(order.getTotalPrice() + "원"); // 메뉴 총 가격
-        holder.amountTV.setText(order.getAmount() + ""); // 메뉴 개수
+        holder.amountTV.setText(order.getAmount() + "개"); // 메뉴 개수
 
         // 메뉴 개수 수정
         holder.decreaseBtn.setOnClickListener(view -> {
-            if (order.getAmount() != 1) {
+            if (order.getAmount() > 1) {
                 int amount = order.getAmount() - 1;
                 int price = order.getTotalPrice() - (order.getTotalPrice() / order.getAmount());
 

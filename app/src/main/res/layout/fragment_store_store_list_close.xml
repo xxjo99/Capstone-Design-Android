@@ -4,9 +4,15 @@
     android:layout_height="match_parent"
     android:orientation="vertical">
 
-    <!-- 매장 리스트 -->
+    <!-- 오픈한 매장 리스트-->
     <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/storeListRecyclerView"
+        android:id="@+id/openedStoreListRecyclerView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+
+    <!-- 마감한 매장 리스트 -->
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/closedStoreListRecyclerView"
         android:layout_width="match_parent"
         android:layout_height="wrap_content" />
 

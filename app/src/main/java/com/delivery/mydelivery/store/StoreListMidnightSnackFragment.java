@@ -27,9 +27,12 @@ import retrofit2.Response;
 public class StoreListMidnightSnackFragment extends Fragment {
 
     // 리사이클러뷰, 어댑터, 리스트
-    RecyclerView storeListRecyclerView;
-    StoreListAdapter storeListAdapter;
-    List<StoreVO> storeList;
+    RecyclerView openedStoreListRecyclerView;
+    RecyclerView closedStoreListRecyclerView;
+    OpenedStoreListAdapter openedStoreListAdapter;
+    ClosedStoreListAdapter closedStoreListAdapter;
+    List<StoreVO> openedStoreList;
+    List<StoreVO> closedStoreList;
 
     // view, context
     View view;
@@ -43,7 +46,7 @@ public class StoreListMidnightSnackFragment extends Fragment {
     @Override
     public View onCreateView(@Nullable LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         assert inflater != null;
-        view = inflater.inflate(R.layout.fragment_store_store_list, container, false);
+        view = inflater.inflate(R.layout.fragment_store_store_list_open, container, false);
         context = getContext();
 
         // 유저 정보
@@ -52,29 +55,55 @@ public class StoreListMidnightSnackFragment extends Fragment {
         UserVO user = gson.fromJson(loginInfo, UserVO.class);
 
         // 리사이클러뷰 설정
-        storeListRecyclerView = view.findViewById(R.id.storeListRecyclerView);
-        RecyclerView.LayoutManager manager = new LinearLayoutManager(context);
-        storeListRecyclerView.setLayoutManager(manager);
-        storeListRecyclerView.setHasFixedSize(true);
+        openedStoreListRecyclerView = view.findViewById(R.id.openedStoreListRecyclerView);
+        closedStoreListRecyclerView = view.findViewById(R.id.closedStoreListRecyclerView);
+        RecyclerView.LayoutManager manager1 = new LinearLayoutManager(context);
+        RecyclerView.LayoutManager manager2 = new LinearLayoutManager(context);
+        openedStoreListRecyclerView.setLayoutManager(manager1);
+        closedStoreListRecyclerView.setLayoutManager(manager2);
+        openedStoreListRecyclerView.setHasFixedSize(true);
+        closedStoreListRecyclerView.setHasFixedSize(true);
 
         // 리스트에 데이터 추가, 어댑터 연결
-        setStoreList(user.getSchool());
+        setOpenedStoreList(user.getSchool());
+        setClosedStoreList(user.getSchool());
 
         return view;
     }
 
-    // 매장리스트 추가, 어댑터 연결
-    private void setStoreList(String deliveryAvailablePlace) {
+    // 오픈한 매장리스트 추가, 어댑터 연결
+    private void setOpenedStoreList(String deliveryAvailablePlace) {
         retrofitService = new RetrofitService();
         storeApi = retrofitService.getRetrofit().create(StoreApi.class);
 
-        storeApi.getStoreList("야식", deliveryAvailablePlace)
+        storeApi.getOpenedStoreList("야식", deliveryAvailablePlace)
                 .enqueue(new Callback<List<StoreVO>>() {
                     @Override
                     public void onResponse(@NonNull Call<List<StoreVO>> call, @NonNull Response<List<StoreVO>> response) {
-                        storeList = response.body();
-                        storeListAdapter = new StoreListAdapter(storeList, context);
-                        storeListRecyclerView.setAdapter(storeListAdapter);
+                        openedStoreList = response.body();
+                        openedStoreListAdapter = new OpenedStoreListAdapter(openedStoreList, context);
+                        openedStoreListRecyclerView.setAdapter(openedStoreListAdapter);
+                    }
+
+                    @Override
+                    public void onFailure(@NonNull Call<List<StoreVO>> call, @NonNull Throwable t) {
+
+                    }
+                });
+    }
+
+    // 마감한 매장리스트 추가, 어댑터 연결
+    private void setClosedStoreList(String deliveryAvailablePlace) {
+        retrofitService = new RetrofitService();
+        storeApi = retrofitService.getRetrofit().create(StoreApi.class);
+
+        storeApi.getClosedStoreList("야식", deliveryAvailablePlace)
+                .enqueue(new Callback<List<StoreVO>>() {
+                    @Override
+                    public void onResponse(@NonNull Call<List<StoreVO>> call, @NonNull Response<List<StoreVO>> response) {
+                        closedStoreList = response.body();
+                        closedStoreListAdapter = new ClosedStoreListAdapter(closedStoreList, context);
+                        closedStoreListRecyclerView.setAdapter(closedStoreListAdapter);
                     }
 
                     @Override

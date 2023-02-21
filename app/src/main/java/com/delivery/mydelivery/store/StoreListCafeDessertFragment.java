@@ -28,7 +28,7 @@ public class StoreListCafeDessertFragment extends Fragment {
 
     // 리사이클러뷰, 어댑터, 리스트
     RecyclerView storeListRecyclerView;
-    StoreListAdapter storeListAdapter;
+    OpenedStoreListAdapter openedStoreListAdapter;
     List<StoreVO> storeList;
 
     // view, context
@@ -43,7 +43,7 @@ public class StoreListCafeDessertFragment extends Fragment {
     @Override
     public View onCreateView(@Nullable LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         assert inflater != null;
-        view = inflater.inflate(R.layout.fragment_store_store_list, container, false);
+        view = inflater.inflate(R.layout.fragment_store_store_list_open, container, false);
         context = getContext();
 
         // 유저 정보
@@ -52,7 +52,7 @@ public class StoreListCafeDessertFragment extends Fragment {
         UserVO user = gson.fromJson(loginInfo, UserVO.class);
 
         // 리사이클러뷰 설정
-        storeListRecyclerView = view.findViewById(R.id.storeListRecyclerView);
+        storeListRecyclerView = view.findViewById(R.id.openedStoreListRecyclerView);
         RecyclerView.LayoutManager manager = new LinearLayoutManager(context);
         storeListRecyclerView.setLayoutManager(manager);
         storeListRecyclerView.setHasFixedSize(true);
@@ -68,13 +68,13 @@ public class StoreListCafeDessertFragment extends Fragment {
         retrofitService = new RetrofitService();
         storeApi = retrofitService.getRetrofit().create(StoreApi.class);
 
-        storeApi.getStoreList("카페, 디저트", deliveryAvailablePlace)
+        storeApi.getOpenedStoreList("카페, 디저트", deliveryAvailablePlace)
                 .enqueue(new Callback<List<StoreVO>>() {
                     @Override
                     public void onResponse(@NonNull Call<List<StoreVO>> call, @NonNull Response<List<StoreVO>> response) {
                         storeList = response.body();
-                        storeListAdapter = new StoreListAdapter(storeList, context);
-                        storeListRecyclerView.setAdapter(storeListAdapter);
+                        openedStoreListAdapter = new OpenedStoreListAdapter(storeList, context);
+                        storeListRecyclerView.setAdapter(openedStoreListAdapter);
                     }
 
                     @Override
