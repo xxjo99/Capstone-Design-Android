@@ -96,7 +96,7 @@ public class AuthRegisterActivity extends AppCompatActivity {
                     authNumET.setEnabled(false); // 인증번호를 입력하지 못하도록 입력창 비활성화
 
                     checkAuthNumBtn.setEnabled(false); // 인증번호 검사버튼 비활성화
-                    checkAuthNumBtn.setBackgroundResource(R.drawable.btn_fill2_gray);
+                    checkAuthNumBtn.setBackgroundResource(R.drawable.btn_fill_gray);
 
                     nextBtn.setEnabled(true);
                     nextBtn.setBackgroundResource(R.drawable.btn_fill2_mint);
@@ -133,10 +133,10 @@ public class AuthRegisterActivity extends AppCompatActivity {
                         // 인증번호 입력, 전송 비활성화, 인증번호 검증버튼 활성화, 색 변경
                         authNumET.setEnabled(true);
                         sendAuthNumBtn.setEnabled(false);
-                        sendAuthNumBtn.setBackgroundResource(R.drawable.btn_fill2_gray);
+                        sendAuthNumBtn.setBackgroundResource(R.drawable.btn_fill_gray);
 
                         checkAuthNumBtn.setEnabled(true);
-                        checkAuthNumBtn.setBackgroundResource(R.drawable.btn_fill2_mint);
+                        checkAuthNumBtn.setBackgroundResource(R.drawable.btn_fill_green);
                     }
 
                     @Override
