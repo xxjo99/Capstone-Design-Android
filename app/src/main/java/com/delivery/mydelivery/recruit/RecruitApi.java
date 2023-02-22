@@ -19,14 +19,21 @@ public interface RecruitApi {
     @GET("/recruit/find/user/{userId}")
     Call<Boolean> findRecruit(@Path("userId") int userId);
 
+    // 모집글에 참가한 사용자의 수
     @GET("/recruit/participants/count/{recruitId}")
     Call<Integer> getParticipantCount(@Path("recruitId") int recruitId);
 
+    // 모집글에 참가한 유저
     @GET("/recruit/find/user/{recruitId}/{userId}")
     Call<Boolean> findUserInRecruit(@Path("recruitId") int recruitId, @Path("userId") int userId);
 
+    // 참가
     @POST("/recruit/participate")
     Call<ParticipantVO> participate(@Body ParticipantVO participant);
+
+    // 모집글 정보
+    @GET("/recruit/recruit/{recruitId}")
+    Call<RecruitVO> getRecruit(@Path("recruitId") int recruitId);
 
     // 해당 유저가 참가한 글 검색
     @GET("/recruit/find/recruits/{userId}")

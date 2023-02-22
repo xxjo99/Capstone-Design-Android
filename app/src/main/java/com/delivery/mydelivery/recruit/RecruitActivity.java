@@ -188,11 +188,11 @@ public class RecruitActivity extends AppCompatActivity {
         // 최종금액계산 추가
         setPayment(storeId, recruitId, user.getUserId());
 
-        // 결제버튼
+        // 결제페이지 이동 버튼
         paymentBtn = findViewById(R.id.paymentBtn);
         paymentBtn.setOnClickListener(view -> {
-            Intent paymentIntent = new Intent(RecruitActivity.this, PaymentActivity.class);
-            startActivity(paymentIntent);
+            String phoneNum = user.getPhoneNum();
+            movePayment(recruitId, phoneNum);
         });
     }
 
@@ -387,25 +387,44 @@ public class RecruitActivity extends AppCompatActivity {
                 });
     }
 
+    // 결제페이지 이동
+    private void movePayment(int recruitId, String phoneNum) {
+        retrofitService = new RetrofitService();
+        recruitApi = retrofitService.getRetrofit().create(RecruitApi.class);
+
+        recruitApi.getRecruit(recruitId)
+                .enqueue(new Callback<RecruitVO>() {
+                    @Override
+                    public void onResponse(@NonNull Call<RecruitVO> call, @NonNull Response<RecruitVO> response) {
+                        RecruitVO recruit = response.body();
+                        String place = Objects.requireNonNull(recruit).getPlace();
+
+                        Intent paymentIntent = new Intent(RecruitActivity.this, PaymentActivity.class);
+
+                        paymentIntent.putExtra("place", place); // 장소
+                        paymentIntent.putExtra("phoneNum", phoneNum); // 휴대폰번호
+                        paymentIntent.putExtra("orderPrice", orderPriceTV.getText().toString()); // 상품금액
+                        paymentIntent.putExtra("deliveryTip", beforeDeliveryTipTV.getText()); // 배달비
+                        paymentIntent.putExtra("finalDeliveryTip", finalDeliveryTipTV.getText().toString()); // 할인된 배달비
+                        paymentIntent.putExtra("finalPayment", finalPaymentTV.getText().toString()); // 최종결제금액
+
+                        startActivity(paymentIntent);
+                    }
+
+                    @Override
+                    public void onFailure(@NonNull Call<RecruitVO> call, @NonNull Throwable t) {
+
+                    }
+                });
+
+    }
+
     // 디바이스 넓이
     private int getWidth(Activity activity) {
         Display display = activity.getWindowManager().getDefaultDisplay();
         Point size = new Point();
         display.getRealSize(size);
         return size.x;
-    }
-
-    // 새로고침
-    @Override
-    protected void onRestart() {
-        finish();
-        overridePendingTransition(0, 0);
-        Intent intent = getIntent();
-        intent.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
-        startActivity(intent);
-        overridePendingTransition(0, 0);
-
-        super.onRestart();
     }
 
 }
