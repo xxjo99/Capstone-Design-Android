@@ -15,9 +15,12 @@ import android.widget.TimePicker;
 
 import com.delivery.mydelivery.R;
 
+import java.sql.Timestamp;
 import java.time.DayOfWeek;
 import java.time.LocalDateTime;
 import java.time.format.TextStyle;
+import java.util.Calendar;
+import java.util.Date;
 import java.util.Locale;
 
 @SuppressLint("SetTextI18n")
@@ -30,6 +33,7 @@ public class DatePickerDialog {
     Button confirmBtn;
 
     String date; // 선택된 날짜
+    int selectedVal; // 선택한 날짜의 인덱스
 
     public DatePickerDialog(Context context) {
         this.context = context;
@@ -85,7 +89,11 @@ public class DatePickerDialog {
 
         // datePicker 이벤트, 날짜 지정
         date = dateArr[0];
-        datePicker.setOnValueChangedListener((picker, oldVal, newVal) -> date = dateArr[newVal]);
+        selectedVal = 0;
+        datePicker.setOnValueChangedListener((picker, oldVal, newVal) -> {
+            date = dateArr[newVal];
+            selectedVal = newVal;
+        });
 
         dialog.show();
 
@@ -95,8 +103,25 @@ public class DatePickerDialog {
             int minute = timePicker.getMinute();
             String time = hour + "시 " + minute + "분";
 
+            // db에 저장할 데이터
+            int selectedMonth, selectedDay;
+
+            if (selectedVal == 0) { // 오늘
+                selectedMonth = todayMonth;
+                selectedDay = todayDay;
+            } else { // 내일
+                selectedMonth = nextMonth;
+                selectedDay = nextDay;
+            }
+
+            Calendar calendar = Calendar.getInstance();
+            int year = calendar.get(Calendar.YEAR);
+            int currentYear = year - 1900; // date에 저장할 년도, 1900년 부터 시작
+
+            Date selectedDate = new Date(currentYear, selectedMonth - 1, selectedDay, hour, minute);
+            OrderListActivity.dateTime = new Timestamp(selectedDate.getTime()).toString();
+
             OrderListActivity.selectTimeTV.setText(date + " " + time);
-            System.out.println(date + " " + time);
             OrderListActivity.selectTimeTV.setVisibility(View.VISIBLE);
             dialog.dismiss();
         });

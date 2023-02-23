@@ -120,7 +120,7 @@
                 android:fontFamily="@font/bmjua_font"
                 android:text="@string/confirm"
                 android:textColor="@color/white"
-                android:textSize="14sp" />
+                android:textSize="17sp" />
 
         </LinearLayout>
 

@@ -31,6 +31,7 @@ import retrofit2.Response;
 public class OrderListAdapter extends RecyclerView.Adapter<OrderListAdapter.ViewHolder> {
 
     private final List<OrderVO> orderList; // 주문 리스트
+    int point; // 유저 포인트
     Context context; // context
 
     // 레트로핏, api
@@ -40,8 +41,9 @@ public class OrderListAdapter extends RecyclerView.Adapter<OrderListAdapter.View
     OrderApi orderApi;
 
     // 생성자
-    public OrderListAdapter(List<OrderVO> orderList, Context context) {
+    public OrderListAdapter(List<OrderVO> orderList, int point, Context context) {
         this.orderList = orderList;
+        this.point = point;
         this.context = context;
     }
 
@@ -60,7 +62,7 @@ public class OrderListAdapter extends RecyclerView.Adapter<OrderListAdapter.View
         OrderVO order = orderList.get(position);
         OrderListActivity.storeId = order.getStoreId();
         // 매장이름, 선택한 옵션, 가격, 개수 세팅
-        setStoreName(order.getStoreId()); // 매장 이름
+        setStoreName(order.getStoreId(), point); // 매장 이름
         setMenuName(order.getMenuId(), holder); // 메뉴 이름
 
         if (!order.getSelectOption().equals("")) {
@@ -138,8 +140,8 @@ public class OrderListAdapter extends RecyclerView.Adapter<OrderListAdapter.View
         }
     }
 
-    // 매장이름 지정
-    private void setStoreName(int storeId) {
+    // 매장정보 추가
+    private void setStoreName(int storeId, int point) {
         retrofitService = new RetrofitService();
         storeApi = retrofitService.getRetrofit().create(StoreApi.class);
 
@@ -149,7 +151,30 @@ public class OrderListAdapter extends RecyclerView.Adapter<OrderListAdapter.View
                     public void onResponse(@NonNull Call<StoreVO> call, @NonNull Response<StoreVO> response) {
                         StoreVO store = response.body();
                         assert store != null;
-                        OrderListActivity.storeNameTV.setText(store.getStoreName());
+
+                        String storeName = store.getStoreName();
+                        int minimumDeliveryPrice = store.getMinimumDeliveryPrice();
+                        String deliveryTipStr = store.getDeliveryTip();
+
+                        OrderListActivity.storeNameTV.setText(storeName);
+                        OrderListActivity.minimumDeliveryPriceTV.setText(minimumDeliveryPrice + "원");
+                        OrderListActivity.deliveryTipTV.setText(deliveryTipStr + "원");
+
+                        // 주문가능 확인
+                        // 사용자가 가진 포인트보다 배달비가 더 높은지 확인
+                        int deliveryTip = Integer.parseInt(deliveryTipStr);
+
+                        if (OrderListActivity.totalPrice < minimumDeliveryPrice) {
+                            OrderListActivity.slidingOpenBtn.setEnabled(false);
+                            OrderListActivity.slidingOpenBtn.setBackgroundResource(R.drawable.btn_fill_gray);
+                            OrderListActivity.slidingOpenBtn.setText(minimumDeliveryPrice + "원 이상 주문가능");
+                        } else {
+                            OrderListActivity.slidingOpenBtn.setEnabled(true);
+                            OrderListActivity.slidingOpenBtn.setBackgroundResource(R.drawable.btn_fill_mint);
+                            OrderListActivity.slidingOpenBtn.setText("글 등록하기");
+                        }
+
+                        OrderListActivity.deliveryAvailableFlag = deliveryTip <= point;
                     }
 
                     @Override

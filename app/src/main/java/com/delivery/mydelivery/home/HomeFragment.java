@@ -1,6 +1,8 @@
 package com.delivery.mydelivery.home;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
+import android.content.res.TypedArray;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -66,7 +68,16 @@ public class HomeFragment extends Fragment {
                     @Override
                     public void onResponse(@NonNull Call<List<CategoryVO>> call, @NonNull Response<List<CategoryVO>> response) {
                         categoryList = response.body();
-                        homeCategoryAdapter.setCategoryList(categoryList);
+
+                        // 이미지 추가
+                        int[] categoryImgList = {
+                                R.drawable.meat, R.drawable.meat, R.drawable.meat, R.drawable.meat, R.drawable.meat,
+                                R.drawable.meat, R.drawable.meat, R.drawable.meat, R.drawable.meat, R.drawable.meat,
+                                R.drawable.meat, R.drawable.meat, R.drawable.meat, R.drawable.meat, R.drawable.meat
+                        };
+
+
+                       homeCategoryAdapter.setCategoryList(categoryList, categoryImgList);
                     }
 
                     @Override

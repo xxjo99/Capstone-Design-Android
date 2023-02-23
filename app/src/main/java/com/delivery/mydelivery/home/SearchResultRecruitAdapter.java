@@ -62,7 +62,7 @@ public class SearchResultRecruitAdapter extends RecyclerView.Adapter<SearchResul
 
         int storeId = recruit.getStoreId();
         int userId = recruit.getUserId();
-        String deliveryTime = recruit.getDeliveryTime();
+        String deliveryTime = recruit.getDeliveryTime().toString();// **************************************************************************************
         int person = recruit.getPerson();
         String place = recruit.getPlace();
 

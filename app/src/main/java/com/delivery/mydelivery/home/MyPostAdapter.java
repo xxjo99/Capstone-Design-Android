@@ -59,7 +59,7 @@ public class MyPostAdapter extends RecyclerView.Adapter<MyPostAdapter.ViewHolder
 
         int storeId = recruit.getStoreId();
         int userId = recruit.getUserId();
-        String deliveryTime = recruit.getDeliveryTime();
+        String deliveryTime = recruit.getDeliveryTime().toString();  // **************************************************************************************
         int person = recruit.getPerson();
         String place = recruit.getPlace();
 

@@ -110,14 +110,63 @@
                         android:id="@+id/storeNameTV"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_marginLeft="15dp"
-                        android:layout_marginTop="15dp"
-                        android:layout_marginRight="15dp"
-                        android:layout_marginBottom="25dp"
+                        android:layout_margin="15dp"
                         android:fontFamily="@font/bmjua_font"
                         android:text="@string/storeName"
                         android:textColor="@color/black"
                         android:textSize="20sp" />
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="15dp"
+                        android:layout_marginRight="15dp"
+                        android:layout_marginBottom="15dp"
+                        android:orientation="horizontal">
+
+                        <TextView
+                            android:layout_width="80dp"
+                            android:layout_height="wrap_content"
+                            android:layout_marginEnd="20dp"
+                            android:fontFamily="@font/bmjua_font"
+                            android:text="@string/minimumDeliveryPrice"
+                            android:textColor="@color/black" />
+
+                        <TextView
+                            android:id="@+id/minimumDeliveryPriceTV"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:fontFamily="@font/bmjua_font"
+                            android:text="@string/deliveryTip"
+                            android:textColor="@color/black" />
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="15dp"
+                        android:layout_marginRight="15dp"
+                        android:layout_marginBottom="25dp"
+                        android:orientation="horizontal">
+
+                        <TextView
+                            android:layout_width="80dp"
+                            android:layout_height="wrap_content"
+                            android:layout_marginEnd="20dp"
+                            android:fontFamily="@font/bmjua_font"
+                            android:text="@string/deliveryTip"
+                            android:textColor="@color/black" />
+
+                        <TextView
+                            android:id="@+id/deliveryTipTV"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:fontFamily="@font/bmjua_font"
+                            android:text="@string/deliveryTip"
+                            android:textColor="@color/black" />
+
+                    </LinearLayout>
 
                     <View
                         android:layout_width="match_parent"

@@ -32,8 +32,8 @@ public class MyPageFragment extends Fragment {
 
     // 포인트
     TextView pointTV;
-    TextView addPointTV;
-    TextView pointHistoryTV;
+    Button addPointBtn;
+    Button pointHistoryBtn;
 
     // 개인정보
     TextView myInfoTV;
@@ -74,19 +74,19 @@ public class MyPageFragment extends Fragment {
 
         // 초기화
         pointTV = view.findViewById(R.id.pointTV);
-        addPointTV = view.findViewById(R.id.addPointTV);
-        pointHistoryTV = view.findViewById(R.id.pointHistoryTV);
+        addPointBtn = view.findViewById(R.id.addPointBtn);
+        pointHistoryBtn = view.findViewById(R.id.pointHistoryBtn);
 
         pointTV.setText(user.getPoint() + "P");// 보유 포인트
 
         // 충전페이지 이동
-        addPointTV.setOnClickListener(view -> {
+        addPointBtn.setOnClickListener(view -> {
             Intent intent = new Intent(getActivity(), PointActivity.class);
             startActivity(intent);
         });
 
         // 포인트 이용내역 페이지 이동
-        pointHistoryTV.setOnClickListener(view -> {
+        pointHistoryBtn.setOnClickListener(view -> {
             Intent intent = new Intent(getActivity(), PointHistoryActivity.class);
             startActivity(intent);
         });

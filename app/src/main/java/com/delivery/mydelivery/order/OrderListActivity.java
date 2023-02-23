@@ -39,10 +39,20 @@ import retrofit2.Response;
 @SuppressLint("SetTextI18n")
 public class OrderListActivity extends AppCompatActivity {
 
-    // 매장 아이디, 이름
+    // 매장 아이디, 이름, 최소주문금액, 배달팁, 배달 가능 확인 flag
     public static int storeId;
     @SuppressLint("StaticFieldLeak")
     public static TextView storeNameTV;
+    @SuppressLint("StaticFieldLeak")
+    public static TextView minimumDeliveryPriceTV;
+    @SuppressLint("StaticFieldLeak")
+    public static TextView deliveryTipTV;
+    public static boolean deliveryAvailableFlag = false;
+
+    public static String dateTime; // db에 저장할 시간
+
+    // 포인트 충전 다이얼로그
+    AddPointDialog addPointDialog;
 
     // 툴바, 뒤로가기 버튼
     Toolbar toolbar;
@@ -65,7 +75,8 @@ public class OrderListActivity extends AppCompatActivity {
     LinearLayout emptyLayout;
     Button storeListBtn;
     SlidingUpPanelLayout slidingUpPanelLayout;
-    Button slidingOpenBtn;
+    @SuppressLint("StaticFieldLeak")
+    public static Button slidingOpenBtn;
 
     // 시간, 인원, 장소선택, 등록 버튼
     @SuppressLint("StaticFieldLeak")
@@ -99,10 +110,13 @@ public class OrderListActivity extends AppCompatActivity {
         // 초기화
         storeNameTV = findViewById(R.id.storeNameTV);
         totalPriceTV = findViewById(R.id.totalPriceTV);
+        minimumDeliveryPriceTV = findViewById(R.id.minimumDeliveryPriceTV);
+        deliveryTipTV = findViewById(R.id.deliveryTipTV);
         slidingUpPanelLayout = findViewById(R.id.slidingUpPanelLayout);
         emptyLayout = findViewById(R.id.emptyLayout);
         storeListBtn = findViewById(R.id.storeListBtn);
         slidingOpenBtn = findViewById(R.id.slidingOpenBtn);
+        addPointDialog = new AddPointDialog(context);
 
         // 매장 리스트 이동
         storeListBtn.setOnClickListener(view -> {
@@ -134,9 +148,10 @@ public class OrderListActivity extends AppCompatActivity {
         Gson gson = new Gson();
         UserVO user = gson.fromJson(loginInfo, UserVO.class);
         int userId = user.getUserId();
+        int point = user.getPoint();
 
         // 담은 메뉴 가져옴
-        setOrder(userId);
+        setOrder(userId, point);
 
         // 메뉴 추가 버튼, 해당 매장 액티비티로 이동
         addMenuBtn = findViewById(R.id.addMenuBtn);
@@ -149,14 +164,19 @@ public class OrderListActivity extends AppCompatActivity {
 
         // 모집글 등록 펼치기 버튼
         slidingOpenBtn.setOnClickListener(view -> {
-            if (slidingUpPanelLayout.getPanelState() == SlidingUpPanelLayout.PanelState.COLLAPSED) {
-                slidingUpPanelLayout.setPanelState(SlidingUpPanelLayout.PanelState.ANCHORED);
-                slidingOpenBtn.setBackgroundResource(R.drawable.btn_fill_gray);
-                slidingOpenBtn.setText("닫기");
+
+            if (!deliveryAvailableFlag) { // 보유한 포인트가 배달비보다 적을경우
+                addPointDialog.callDialog();
             } else {
-                slidingUpPanelLayout.setPanelState(SlidingUpPanelLayout.PanelState.COLLAPSED);
-                slidingOpenBtn.setBackgroundResource(R.drawable.btn_fill_mint);
-                slidingOpenBtn.setText("글 등록하기");
+                if (slidingUpPanelLayout.getPanelState() == SlidingUpPanelLayout.PanelState.COLLAPSED) {
+                    slidingUpPanelLayout.setPanelState(SlidingUpPanelLayout.PanelState.ANCHORED);
+                    slidingOpenBtn.setBackgroundResource(R.drawable.btn_fill_gray);
+                    slidingOpenBtn.setText("닫기");
+                } else {
+                    slidingUpPanelLayout.setPanelState(SlidingUpPanelLayout.PanelState.COLLAPSED);
+                    slidingOpenBtn.setBackgroundResource(R.drawable.btn_fill_mint);
+                    slidingOpenBtn.setText("글 등록하기");
+                }
             }
         });
 
@@ -221,7 +241,7 @@ public class OrderListActivity extends AppCompatActivity {
                 recruit.setStoreId(storeId); // 매장 아이디
                 recruit.setPlace(selectPlaceET.getText().toString()); // 배달장소
                 recruit.setPerson(person); // 모집인원
-                recruit.setDeliveryTime(selectTimeTV.getText().toString());
+                // recruit.setDeliveryTime(dateTime); // 배달 시간
 
                 findRecruit(userId, recruit);// 모집글 등록
             }
@@ -230,7 +250,7 @@ public class OrderListActivity extends AppCompatActivity {
     }
 
     // 장바구니 목록 생성
-    private void setOrder(int userId) {
+    private void setOrder(int userId, int point) {
         retrofitService = new RetrofitService();
         orderApi = retrofitService.getRetrofit().create(OrderApi.class);
 
@@ -249,7 +269,7 @@ public class OrderListActivity extends AppCompatActivity {
                             emptyLayout.setVisibility(View.GONE);
                             slidingUpPanelLayout.setVisibility(View.VISIBLE);
 
-                            orderListAdapter = new OrderListAdapter(orderList, context);
+                            orderListAdapter = new OrderListAdapter(orderList, point, context);
                             orderRecyclerView.setAdapter(orderListAdapter);
 
                             // 총 금액 계산
@@ -299,7 +319,7 @@ public class OrderListActivity extends AppCompatActivity {
         retrofitService = new RetrofitService();
         orderApi = retrofitService.getRetrofit().create(OrderApi.class);
 
-        orderApi.registerRecruit(recruit)
+        orderApi.registerRecruit(recruit, dateTime)
                 .enqueue(new Callback<Void>() {
                     @Override
                     public void onResponse(@NonNull Call<Void> call, @NonNull Response<Void> response) {
