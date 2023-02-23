@@ -54,17 +54,17 @@
 
     <string name="meat">고기</string>
     <string name="lunch_box">도시락</string>
-    <string name="japanese_food">돈까스, 회, 일식</string>
-    <string name="baekban">백반, 죽, 국수</string>
+    <string name="japanese_food">일식</string>
+    <string name="baekban">백반, 국수</string>
     <string name="snack">분식</string>
     <string name="asian_food">아시안</string>
     <string name="midnight_snack">야식</string>
     <string name="western_food">양식</string>
     <string name="jokbal_bossam">족발, 보쌈</string>
     <string name="chinese_food">중식</string>
-    <string name="steamed_stew">찜, 탕, 찌개</string>
+    <string name="stew">찌개</string>
     <string name="chicken">치킨</string>
-    <string name="cafe_dessert">카페, 디저트</string>
+    <string name="dessert">디저트</string>
     <string name="fast_food">패스트 푸드</string>
     <string name="pizza">피자</string>
 

@@ -47,13 +47,13 @@ public class StoreViewPagerAdapter extends FragmentStateAdapter {
                 return new StoreListChineseFragment();
 
             case 10: // 찜, 탕, 찌개
-                return new StoreListSteamedStewFragment();
+                return new StoreListStewFragment();
 
             case 11: // 치킨
                 return new StoreListChickenFragment();
 
             case 12: // 카페, 디저트
-                return new StoreListCafeDessertFragment();
+                return new StoreListDessertFragment();
 
             case 13: // 패스트 푸드
                 return new StoreListFastFoodFragment();

@@ -1,8 +1,7 @@
 package com.delivery.mydelivery.home;
 
-import android.annotation.SuppressLint;
 import android.content.Context;
-import android.content.res.TypedArray;
+import android.graphics.Rect;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -26,7 +25,7 @@ import retrofit2.Response;
 public class HomeFragment extends Fragment {
 
     // 리사이클러뷰, 어댑터, 리스트
-    RecyclerView categoryView;
+    RecyclerView categoryRecyclerView;
     HomeCategoryAdapter homeCategoryAdapter;
     List<CategoryVO> categoryList;
 
@@ -46,13 +45,15 @@ public class HomeFragment extends Fragment {
         assert container != null;
         context = container.getContext();
 
-        // 카테고리 뷰 그리드뷰로 설정
-        categoryView = view.findViewById(R.id.categoryRecyclerView);
-        categoryView.setLayoutManager(new GridLayoutManager(context, 5));
+        // 리사이클러뷰설정
+        categoryRecyclerView = view.findViewById(R.id.categoryRecyclerView);
+        categoryRecyclerView.setLayoutManager(new GridLayoutManager(context, 5));
+        categoryRecyclerView.setHasFixedSize(true);
+        categoryRecyclerView.addItemDecoration(new ItemDecoration()); // 여백 설정
 
         // 어댑터 추가, 카테고리 추가
         homeCategoryAdapter = new HomeCategoryAdapter();
-        categoryView.setAdapter(homeCategoryAdapter);
+        categoryRecyclerView.setAdapter(homeCategoryAdapter);
         setCategory();
 
         return view;
@@ -71,19 +72,30 @@ public class HomeFragment extends Fragment {
 
                         // 이미지 추가
                         int[] categoryImgList = {
-                                R.drawable.meat, R.drawable.meat, R.drawable.meat, R.drawable.meat, R.drawable.meat,
-                                R.drawable.meat, R.drawable.meat, R.drawable.meat, R.drawable.meat, R.drawable.meat,
-                                R.drawable.meat, R.drawable.meat, R.drawable.meat, R.drawable.meat, R.drawable.meat
+                                R.drawable.category_icon_meat, R.drawable.category_icon_lunch_box, R.drawable.category_icon_japanese_food, R.drawable.category_icon_baekban, R.drawable.category_icon_snack,
+                                R.drawable.category_icon_meat, R.drawable.category_icon_meat, R.drawable.category_icon_western_food, R.drawable.category_icon_meat, R.drawable.category_icon_meat,
+                                R.drawable.category_icon_stew, R.drawable.category_icon_chicken, R.drawable.category_icon_cafe_dessert, R.drawable.category_icon_fast_food, R.drawable.category_icon_pizza
                         };
 
 
-                       homeCategoryAdapter.setCategoryList(categoryList, categoryImgList);
+                        homeCategoryAdapter.setCategoryList(categoryList, categoryImgList);
                     }
 
                     @Override
                     public void onFailure(@NonNull Call<List<CategoryVO>> call, @NonNull Throwable t) {
                     }
                 });
+    }
+
+    // 여백 설정
+    public static class ItemDecoration extends RecyclerView.ItemDecoration {
+        @Override
+        public void getItemOffsets(@NonNull Rect outRect, @NonNull View view, @NonNull RecyclerView parent, @NonNull RecyclerView.State state) {
+            super.getItemOffsets(outRect, view, parent, state);
+            outRect.left = 40;
+            outRect.right = 40;
+            outRect.bottom = 60;
+        }
     }
 
 }

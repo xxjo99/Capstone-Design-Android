@@ -27,9 +27,12 @@ import retrofit2.Response;
 public class StoreListBaekbanFragment extends Fragment {
 
     // 리사이클러뷰, 어댑터, 리스트
-    RecyclerView storeListRecyclerView;
+    RecyclerView openedStoreListRecyclerView;
+    RecyclerView closedStoreListRecyclerView;
     OpenedStoreListAdapter openedStoreListAdapter;
-    List<StoreVO> storeList;
+    ClosedStoreListAdapter closedStoreListAdapter;
+    List<StoreVO> openedStoreList;
+    List<StoreVO> closedStoreList;
 
     // view, context
     View view;
@@ -52,29 +55,55 @@ public class StoreListBaekbanFragment extends Fragment {
         UserVO user = gson.fromJson(loginInfo, UserVO.class);
 
         // 리사이클러뷰 설정
-        storeListRecyclerView = view.findViewById(R.id.openedStoreListRecyclerView);
-        RecyclerView.LayoutManager manager = new LinearLayoutManager(context);
-        storeListRecyclerView.setLayoutManager(manager);
-        storeListRecyclerView.setHasFixedSize(true);
+        openedStoreListRecyclerView = view.findViewById(R.id.openedStoreListRecyclerView);
+        closedStoreListRecyclerView = view.findViewById(R.id.closedStoreListRecyclerView);
+        RecyclerView.LayoutManager manager1 = new LinearLayoutManager(context);
+        RecyclerView.LayoutManager manager2 = new LinearLayoutManager(context);
+        openedStoreListRecyclerView.setLayoutManager(manager1);
+        closedStoreListRecyclerView.setLayoutManager(manager2);
+        openedStoreListRecyclerView.setHasFixedSize(true);
+        closedStoreListRecyclerView.setHasFixedSize(true);
 
         // 리스트에 데이터 추가, 어댑터 연결
-        setStoreList(user.getSchool());
+        setOpenedStoreList(user.getSchool());
+        setClosedStoreList(user.getSchool());
 
         return view;
     }
 
-    // 매장리스트 추가, 어댑터 연결
-    private void setStoreList(String deliveryAvailablePlace) {
+    // 오픈한 매장리스트 추가, 어댑터 연결
+    private void setOpenedStoreList(String deliveryAvailablePlace) {
         retrofitService = new RetrofitService();
         storeApi = retrofitService.getRetrofit().create(StoreApi.class);
 
-        storeApi.getOpenedStoreList("백반, 죽, 국수", deliveryAvailablePlace)
+        storeApi.getOpenedStoreList("백반, 국수", deliveryAvailablePlace)
                 .enqueue(new Callback<List<StoreVO>>() {
                     @Override
                     public void onResponse(@NonNull Call<List<StoreVO>> call, @NonNull Response<List<StoreVO>> response) {
-                        storeList = response.body();
-                        openedStoreListAdapter = new OpenedStoreListAdapter(storeList, context);
-                        storeListRecyclerView.setAdapter(openedStoreListAdapter);
+                        openedStoreList = response.body();
+                        openedStoreListAdapter = new OpenedStoreListAdapter(openedStoreList, context);
+                        openedStoreListRecyclerView.setAdapter(openedStoreListAdapter);
+                    }
+
+                    @Override
+                    public void onFailure(@NonNull Call<List<StoreVO>> call, @NonNull Throwable t) {
+
+                    }
+                });
+    }
+
+    // 마감한 매장리스트 추가, 어댑터 연결
+    private void setClosedStoreList(String deliveryAvailablePlace) {
+        retrofitService = new RetrofitService();
+        storeApi = retrofitService.getRetrofit().create(StoreApi.class);
+
+        storeApi.getClosedStoreList("고기", deliveryAvailablePlace)
+                .enqueue(new Callback<List<StoreVO>>() {
+                    @Override
+                    public void onResponse(@NonNull Call<List<StoreVO>> call, @NonNull Response<List<StoreVO>> response) {
+                        closedStoreList = response.body();
+                        closedStoreListAdapter = new ClosedStoreListAdapter(closedStoreList, context);
+                        closedStoreListRecyclerView.setAdapter(closedStoreListAdapter);
                     }
 
                     @Override

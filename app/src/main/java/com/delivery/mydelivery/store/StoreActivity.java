@@ -92,11 +92,11 @@ public class StoreActivity extends AppCompatActivity {
                     break;
 
                 case 2:
-                    tab.setText("돈까스, 회, 일식");
+                    tab.setText("일식");
                     break;
 
                 case 3:
-                    tab.setText("백반, 죽, 국수");
+                    tab.setText("백반, 국수");
                     break;
 
                 case 4:
@@ -124,7 +124,7 @@ public class StoreActivity extends AppCompatActivity {
                     break;
 
                 case 10:
-                    tab.setText("찜, 탕, 찌개");
+                    tab.setText("찌개");
                     break;
 
                 case 11:
@@ -132,7 +132,7 @@ public class StoreActivity extends AppCompatActivity {
                     break;
 
                 case 12:
-                    tab.setText("카페, 디저트");
+                    tab.setText("디저트");
                     break;
 
                 case 13:
