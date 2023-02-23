@@ -66,7 +66,7 @@ public class RecruitOrderListAdapter extends RecyclerView.Adapter<RecruitOrderLi
         setMenuName(menuId, holder);// 메뉴 이름
         setContentNameList(selectedOptionList, holder);// 선택한 옵션 목록
         holder.menuPriceTV.setText(price + "원");// 가격
-        holder.amountTV.setText(amount + "");// 개수
+        holder.amountTV.setText(amount + "개");// 개수
 
         // 메뉴 개수 수정
         holder.decreaseBtn.setOnClickListener(view -> {

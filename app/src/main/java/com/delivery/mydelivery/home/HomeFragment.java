@@ -1,6 +1,8 @@
 package com.delivery.mydelivery.home;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
+import android.content.res.TypedArray;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -14,6 +16,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.delivery.mydelivery.R;
 import com.delivery.mydelivery.retrofit.RetrofitService;
+
 import java.util.List;
 
 import retrofit2.Call;
@@ -35,7 +38,6 @@ public class HomeFragment extends Fragment {
     View view;
     Context context;
 
-
     @Nullable
     @Override
     public View onCreateView(@Nullable LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -44,7 +46,7 @@ public class HomeFragment extends Fragment {
         assert container != null;
         context = container.getContext();
 
-        // 그리드뷰로 설정
+        // 카테고리 뷰 그리드뷰로 설정
         categoryView = view.findViewById(R.id.categoryRecyclerView);
         categoryView.setLayoutManager(new GridLayoutManager(context, 5));
 
@@ -66,7 +68,16 @@ public class HomeFragment extends Fragment {
                     @Override
                     public void onResponse(@NonNull Call<List<CategoryVO>> call, @NonNull Response<List<CategoryVO>> response) {
                         categoryList = response.body();
-                        homeCategoryAdapter.setCategoryList(categoryList);
+
+                        // 이미지 추가
+                        int[] categoryImgList = {
+                                R.drawable.meat, R.drawable.meat, R.drawable.meat, R.drawable.meat, R.drawable.meat,
+                                R.drawable.meat, R.drawable.meat, R.drawable.meat, R.drawable.meat, R.drawable.meat,
+                                R.drawable.meat, R.drawable.meat, R.drawable.meat, R.drawable.meat, R.drawable.meat
+                        };
+
+
+                       homeCategoryAdapter.setCategoryList(categoryList, categoryImgList);
                     }
 
                     @Override

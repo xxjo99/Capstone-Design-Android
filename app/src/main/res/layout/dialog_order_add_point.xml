@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/registerDialogLayout"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_marginBottom="20dp"
+    android:background="@drawable/dialog"
+    android:orientation="vertical">
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:fontFamily="@font/bmjua_font"
+        android:gravity="center"
+        android:includeFontPadding="false"
+        android:paddingLeft="50dp"
+        android:paddingTop="30dp"
+        android:paddingRight="50dp"
+        android:paddingBottom="30dp"
+        android:text="포인트가 부족합니다.\n포인트를 충전하시겠습니까?"
+        android:textColor="@color/black"
+        android:textSize="20sp" />
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="@color/gray" />
+
+    <LinearLayout
+        android:id="@+id/participateBtnLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <Button
+            android:id="@+id/addPointBtn"
+            style="?android:attr/buttonBarButtonStyle"
+            android:layout_width="wrap_content"
+            android:layout_height="55dp"
+            android:layout_weight="1"
+            android:fontFamily="@font/bmjua_font"
+            android:text="충전하기"
+            android:textColor="@color/green"
+            android:textSize="20sp" />
+
+        <Button
+            android:id="@+id/cancelBtn"
+            style="?android:attr/buttonBarButtonStyle"
+            android:layout_width="wrap_content"
+            android:layout_height="55dp"
+            android:layout_weight="1"
+            android:fontFamily="@font/bmjua_font"
+            android:text="@string/cancel"
+            android:textColor="@color/black"
+            android:textSize="20sp" />
+
+    </LinearLayout>
+
+</LinearLayout>

@@ -46,7 +46,7 @@ public class StoreListMeatFragment extends Fragment {
     @Override
     public View onCreateView(@Nullable LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         assert inflater != null;
-        view = inflater.inflate(R.layout.fragment_store_store_list, container, false);
+        view = inflater.inflate(R.layout.fragment_store_store_list_open, container, false);
         context = getContext();
 
         // 유저 정보

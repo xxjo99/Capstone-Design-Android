@@ -10,6 +10,7 @@ import retrofit2.http.DELETE;
 import retrofit2.http.GET;
 import retrofit2.http.POST;
 import retrofit2.http.Path;
+import retrofit2.http.Query;
 
 public interface OrderApi {
 
@@ -39,5 +40,5 @@ public interface OrderApi {
 
     // 모집글 등록
     @POST("/order/register/recruit")
-    Call<Void> registerRecruit(@Body RecruitVO recruit);
+    Call<Void> registerRecruit(@Body RecruitVO recruit, @Query("deliveryTime") String deliveryTime);
 }

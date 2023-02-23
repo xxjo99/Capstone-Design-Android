@@ -8,7 +8,6 @@ import android.graphics.Paint;
 import android.graphics.Point;
 import android.os.Bundle;
 import android.view.Display;
-import android.view.View;
 import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.ImageView;
@@ -40,8 +39,9 @@ import retrofit2.Response;
 @SuppressLint("SetTextI18n")
 public class RecruitActivity extends AppCompatActivity {
 
-    // 삭제 dialog
+    // 삭제, 탈퇴 dialog
     RecruitDeleteDialog recruitDeleteDialog;
+    RecruitLeaveDialog recruitLeaveDialog;
 
     // 툴바, 툴바 버튼
     Toolbar toolbar;
@@ -105,6 +105,7 @@ public class RecruitActivity extends AppCompatActivity {
 
         // dialog
         recruitDeleteDialog = new RecruitDeleteDialog(this, recruitId);
+        recruitLeaveDialog = new RecruitLeaveDialog(this, recruitId, user.getUserId());
 
         // 툴바
         toolbar = findViewById(R.id.recruitToolbar);
@@ -115,13 +116,20 @@ public class RecruitActivity extends AppCompatActivity {
         backBtn = findViewById(R.id.backBtn);
         backBtn.setOnClickListener(view -> finish());
 
-        // 모집글 삭제
+        // 모집글 삭제 버튼
         deleteBtn = findViewById(R.id.deleteBtn);
 
-        // 등록자가 자신이 아니라면 삭제버튼 보이지않도록 설정
+        // 등록자, 참가자에 따른 텍스트 변경
         setDeleteBtnVisibility(recruitId, user.getUserId());
 
-        deleteBtn.setOnClickListener(view -> recruitDeleteDialog.callDialog());
+        // 삭제
+        deleteBtn.setOnClickListener(view -> {
+            if (deleteBtn.getText().toString().equals("삭제하기")) {
+                recruitDeleteDialog.callDialog();
+            } else {
+                recruitLeaveDialog.callDialog();
+            }
+        });
 
         // 매장정보 초기화
         storeIV = findViewById(R.id.storeIV);
@@ -180,15 +188,15 @@ public class RecruitActivity extends AppCompatActivity {
         // 최종금액계산 추가
         setPayment(storeId, recruitId, user.getUserId());
 
-        // 결제버튼
+        // 결제페이지 이동 버튼
         paymentBtn = findViewById(R.id.paymentBtn);
         paymentBtn.setOnClickListener(view -> {
-            Intent paymentIntent = new Intent(RecruitActivity.this, PaymentActivity.class);
-            startActivity(paymentIntent);
+            String phoneNum = user.getPhoneNum();
+            movePayment(recruitId, phoneNum);
         });
     }
 
-    // 삭제버튼 보일지 말지 설정
+    // 삭제 or 탈퇴 결정
     public void setDeleteBtnVisibility(int recruitId, int userId) {
         retrofitService = new RetrofitService();
         recruitApi = retrofitService.getRetrofit().create(RecruitApi.class);
@@ -201,9 +209,9 @@ public class RecruitActivity extends AppCompatActivity {
 
                         assert participant != null;
                         if (participant.getUserId() == userId) {
-                            deleteBtn.setVisibility(View.VISIBLE);
+                            deleteBtn.setText("삭제하기");
                         } else {
-                            deleteBtn.setVisibility(View.GONE);
+                            deleteBtn.setText("탈퇴하기");
                         }
                     }
 
@@ -379,25 +387,44 @@ public class RecruitActivity extends AppCompatActivity {
                 });
     }
 
+    // 결제페이지 이동
+    private void movePayment(int recruitId, String phoneNum) {
+        retrofitService = new RetrofitService();
+        recruitApi = retrofitService.getRetrofit().create(RecruitApi.class);
+
+        recruitApi.getRecruit(recruitId)
+                .enqueue(new Callback<RecruitVO>() {
+                    @Override
+                    public void onResponse(@NonNull Call<RecruitVO> call, @NonNull Response<RecruitVO> response) {
+                        RecruitVO recruit = response.body();
+                        String place = Objects.requireNonNull(recruit).getPlace();
+
+                        Intent paymentIntent = new Intent(RecruitActivity.this, PaymentActivity.class);
+
+                        paymentIntent.putExtra("place", place); // 장소
+                        paymentIntent.putExtra("phoneNum", phoneNum); // 휴대폰번호
+                        paymentIntent.putExtra("orderPrice", orderPriceTV.getText().toString()); // 상품금액
+                        paymentIntent.putExtra("deliveryTip", beforeDeliveryTipTV.getText()); // 배달비
+                        paymentIntent.putExtra("finalDeliveryTip", finalDeliveryTipTV.getText().toString()); // 할인된 배달비
+                        paymentIntent.putExtra("finalPayment", finalPaymentTV.getText().toString()); // 최종결제금액
+
+                        startActivity(paymentIntent);
+                    }
+
+                    @Override
+                    public void onFailure(@NonNull Call<RecruitVO> call, @NonNull Throwable t) {
+
+                    }
+                });
+
+    }
+
     // 디바이스 넓이
     private int getWidth(Activity activity) {
         Display display = activity.getWindowManager().getDefaultDisplay();
         Point size = new Point();
         display.getRealSize(size);
         return size.x;
-    }
-
-    // 새로고침
-    @Override
-    protected void onRestart() {
-        finish();
-        overridePendingTransition(0, 0);
-        Intent intent = getIntent();
-        intent.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
-        startActivity(intent);
-        overridePendingTransition(0, 0);
-
-        super.onRestart();
     }
 
 }

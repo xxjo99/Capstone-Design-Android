@@ -123,7 +123,7 @@ public class ParticipateDialog {
 
             // 사용자가 가진 포인트가 해당 매장의 배달비보다 적다면 참여 불가
             if (userPoint < deliveryTipInt) {
-                Toast.makeText(context, "참여불가", Toast.LENGTH_SHORT).show();
+                Toast.makeText(context, "참여불가, 포인트 부족", Toast.LENGTH_SHORT).show();
                 dialog.dismiss();
             } else {
                 ParticipantVO participant = new ParticipantVO();

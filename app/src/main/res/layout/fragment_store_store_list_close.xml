@@ -13,7 +13,6 @@
     <!-- 마감한 매장 리스트 -->
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/closedStoreListRecyclerView"
-        android:background="@color/gray2"
         android:layout_width="match_parent"
         android:layout_height="wrap_content" />
 

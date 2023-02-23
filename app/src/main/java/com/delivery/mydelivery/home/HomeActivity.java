@@ -1,6 +1,7 @@
 package com.delivery.mydelivery.home;
 
 import android.annotation.SuppressLint;
+import android.app.FragmentTransaction;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
@@ -33,7 +34,8 @@ public class HomeActivity extends AppCompatActivity {
     private MyPageFragment myPageFragment;
 
     // 툴바, 툴바 텍스트
-    Toolbar toolbar;
+    @SuppressLint("StaticFieldLeak")
+    public static Toolbar toolbar;
     TextView infoTV;
 
     @SuppressLint("NonConstantResourceId")
@@ -196,8 +198,6 @@ public class HomeActivity extends AppCompatActivity {
 
                 default:
                     return false;
-
-
         }
     });
 }

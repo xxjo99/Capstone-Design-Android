@@ -2,7 +2,6 @@ package com.delivery.mydelivery.store;
 
 import android.annotation.SuppressLint;
 import android.content.Context;
-import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -14,7 +13,6 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
 import com.delivery.mydelivery.R;
-import com.delivery.mydelivery.menu.MenuListActivity;
 
 import java.util.List;
 
@@ -34,7 +32,7 @@ public class ClosedStoreListAdapter extends RecyclerView.Adapter<ClosedStoreList
     @Override
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         LayoutInflater inflater = LayoutInflater.from(parent.getContext());
-        View view = inflater.inflate(R.layout.item_store_store, parent, false);
+        View view = inflater.inflate(R.layout.item_store_store_close, parent, false);
         return new ViewHolder(view);
     }
 

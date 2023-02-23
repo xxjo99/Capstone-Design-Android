@@ -22,18 +22,20 @@ import java.util.List;
 public class HomeCategoryAdapter extends RecyclerView.Adapter<HomeCategoryAdapter.ViewHolder> {
 
     private List<CategoryVO> categoryList; // 카테고리 리스트
+    private int[] categoryImgList; // 카테고리 이미지 리스트
     Context context; // context
 
-    // 카테고리 리스트에 데이터 추가
+    // 데이터 추가
     @SuppressLint("NotifyDataSetChanged")
-    public void setCategoryList(List<CategoryVO> categoryList) {
+    public void setCategoryList(List<CategoryVO> categoryList, int[] categoryImgList) {
         this.categoryList = categoryList;
+        this.categoryImgList = categoryImgList;
         notifyDataSetChanged();
     }
 
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
-        holder.onBind(categoryList.get(position));
+        holder.onBind(categoryList.get(position), categoryImgList[position]);
     }
 
     @Override
@@ -73,8 +75,8 @@ public class HomeCategoryAdapter extends RecyclerView.Adapter<HomeCategoryAdapte
         }
 
         // 카테고리 이미지, 이름 지정
-        void onBind(CategoryVO category) {
-            Glide.with(itemView).load("https://picsum.photos/200").placeholder(R.drawable.ic_launcher_background).into(categoryIV);
+        void onBind(CategoryVO category, int categoryImg) {
+            Glide.with(itemView).load(categoryImg).placeholder(R.drawable.ic_launcher_background).into(categoryIV);
             categoryTV.setText(category.getCategoryName());
         }
     }

@@ -10,7 +10,7 @@ public class RecruitVO {
     private String registrantPlace;
     private int storeId;
     private String place;
-    private String deliveryTime;
+    private Timestamp deliveryTime;
     private int person;
 
     public int getRecruitId() {
@@ -53,11 +53,11 @@ public class RecruitVO {
         this.place = place;
     }
 
-    public String getDeliveryTime() {
+    public Timestamp getDeliveryTime() {
         return deliveryTime;
     }
 
-    public void setDeliveryTime(String deliveryTime) {
+    public void setDeliveryTime(Timestamp deliveryTime) {
         this.deliveryTime = deliveryTime;
     }
 
@@ -77,7 +77,7 @@ public class RecruitVO {
                 ", registrantPlace='" + registrantPlace + '\'' +
                 ", storeId=" + storeId +
                 ", place='" + place + '\'' +
-                ", deliveryTime='" + deliveryTime + '\'' +
+                ", deliveryTime=" + deliveryTime +
                 ", person=" + person +
                 '}';
     }

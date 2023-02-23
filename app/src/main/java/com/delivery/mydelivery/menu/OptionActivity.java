@@ -55,15 +55,16 @@ public class OptionActivity extends AppCompatActivity {
     OptionAdapter optionAdapter;
     List<OptionVO> optionList;
 
-    // 개수 텍스트뷰, 증가, 감소 버튼
-    TextView amountTV;
-    ImageButton increaseBtn;
-    ImageButton decreaseBtn;
-
     public static int menuPrice; // 메뉴의 총 가격
     @SuppressLint("StaticFieldLeak")
     public static Button addMenuBtn; // 장바구니 담기 버튼
     public static List<String> selectOptionList; // 선택한 옵션의 리스트
+    public static List<Boolean> selectedOptionFlagList; // 모든 옵션이 선택됐는지 확인
+
+    // 개수 텍스트뷰, 증가, 감소 버튼
+    TextView amountTV;
+    ImageButton increaseBtn;
+    ImageButton decreaseBtn;
 
     int amount; // 현재 메뉴 개수
 
@@ -104,7 +105,7 @@ public class OptionActivity extends AppCompatActivity {
         String participantType = intent.getStringExtra("participantType"); // 참가 타입
         int recruitId = intent.getIntExtra("recruitId", 0); // 모집글 아이디
 
-        // xml 변수 초기화
+        // 초기화
         menuIV = findViewById(R.id.menuIV);
         menuNameTV = findViewById(R.id.menuNameTV);
         menuInfoTV = findViewById(R.id.menuInfoTV);
@@ -128,8 +129,8 @@ public class OptionActivity extends AppCompatActivity {
         optionRecyclerView.setLayoutManager(manager);
         optionRecyclerView.setHasFixedSize(true);
 
-        // 옵션 데이터 추가, 어댑터 적용
-        setOption(menuId);
+        selectedOptionFlagList = new ArrayList<>(); // 초기화
+        setOption(menuId); // 어댑터 추가
 
         // 수량 초기화
         amount = 1;

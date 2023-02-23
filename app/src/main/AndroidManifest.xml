@@ -58,7 +58,9 @@
             android:windowSoftInputMode="adjustResize" />
 
         <!-- home -->
-        <activity android:name=".home.HomeActivity" />
+        <activity
+            android:name=".home.HomeActivity"
+            android:windowSoftInputMode="adjustPan|stateHidden" />
 
         <!-- store -->
         <activity android:name=".store.StoreActivity" />
@@ -73,6 +75,7 @@
         <!-- recruit -->
         <activity android:name=".recruit.RecruitActivity" />
         <activity android:name=".recruit.RecruitOrderListActivity" />
+        <activity android:name=".recruit.PaymentActivity" />
 
         <!-- point -->
         <activity

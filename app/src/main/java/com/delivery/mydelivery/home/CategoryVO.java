@@ -5,7 +5,6 @@ public class CategoryVO {
 
     private int categoryId; // pk
     private String categoryName; // 카테고리 이름
-    private String categoryImgUrl; // 카테고리 이미지 주소
 
     public int getCategoryId() {
         return categoryId;
@@ -21,13 +20,5 @@ public class CategoryVO {
 
     public void setCategoryName(String categoryName) {
         this.categoryName = categoryName;
-    }
-
-    public String getCategoryImgUrl() {
-        return categoryImgUrl;
-    }
-
-    public void setCategoryImgUrl(String categoryImgUrl) {
-        this.categoryImgUrl = categoryImgUrl;
     }
 }

@@ -63,7 +63,7 @@ public class RecruitListAdapter extends RecyclerView.Adapter<RecruitListAdapter.
 
         int storeId = recruit.getStoreId();
         int userId = recruit.getUserId();
-        String time = recruit.getDeliveryTime();
+        String time = recruit.getDeliveryTime().toString();// **************************************************************************************
         int person = recruit.getPerson();
         String place = recruit.getPlace();
 
