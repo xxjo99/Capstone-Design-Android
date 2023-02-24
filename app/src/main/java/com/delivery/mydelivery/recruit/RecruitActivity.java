@@ -8,6 +8,7 @@ import android.graphics.Paint;
 import android.graphics.Point;
 import android.os.Bundle;
 import android.view.Display;
+import android.view.View;
 import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.ImageView;
@@ -29,6 +30,10 @@ import com.delivery.mydelivery.store.StoreVO;
 import com.delivery.mydelivery.user.UserVO;
 import com.google.gson.Gson;
 
+import java.sql.Timestamp;
+import java.time.Instant;
+import java.time.LocalDateTime;
+import java.time.ZoneId;
 import java.util.List;
 import java.util.Objects;
 
@@ -187,6 +192,9 @@ public class RecruitActivity extends AppCompatActivity {
 
         // 최종금액계산 추가
         setPayment(storeId, recruitId, user.getUserId());
+
+        // 배달시간 검사
+        checkDeliveryTime(recruitId);
 
         // 결제페이지 이동 버튼
         paymentBtn = findViewById(R.id.paymentBtn);
@@ -386,6 +394,62 @@ public class RecruitActivity extends AppCompatActivity {
                     }
                 });
     }
+
+    /* 배달 시간 검사
+       배달 시간이 되었다면 결제 페이지 이동 버튼 활성화
+       메뉴 변경 비 활성화 */
+    private void checkDeliveryTime(int recruitId) {
+        retrofitService = new RetrofitService();
+        recruitApi = retrofitService.getRetrofit().create(RecruitApi.class);
+
+        recruitApi.getRecruit(recruitId)
+                .enqueue(new Callback<RecruitVO>() {
+                    @Override
+                    public void onResponse(@NonNull Call<RecruitVO> call, @NonNull Response<RecruitVO> response) {
+                        RecruitVO recruit = response.body();
+
+                        LocalDateTime currentTime = LocalDateTime.now(); // 현재 시간
+                        // 배달시간
+                        Timestamp timestamp = Objects.requireNonNull(recruit).getDeliveryTime();
+                        Instant instant = timestamp.toInstant();
+                        LocalDateTime deliveryTime = instant.atZone(ZoneId.of("Asia/Seoul")).toLocalDateTime();
+
+                        // 현재시간과 배달시간 비교
+                        if (!deliveryTime.isAfter(currentTime)) { // 배달시간이 현재시간 이전일경우
+                            checkMenuTV.setVisibility(View.GONE);
+
+                            paymentBtn.setEnabled(true);
+                            paymentBtn.setBackgroundResource(R.drawable.btn_fill_mint);
+                            paymentBtn.setText("결제하기");
+                        } else {
+                            checkMenuTV.setEnabled(true);
+
+                            int month = deliveryTime.getMonthValue(); // 월
+                            int day = deliveryTime.getDayOfMonth(); // 일
+                            int hour = deliveryTime.getHour(); // 시간
+                            int minute = deliveryTime.getMinute(); // 분
+
+                            String deliveryTimeText = "";
+                            if (currentTime.getMonthValue() == month && currentTime.getDayOfMonth() == day) {
+                                deliveryTimeText = hour + "시 " + minute + "분 이후 결제 가능";
+                            } else {
+                                deliveryTimeText = month + "/" + day + " " + hour + "시 " + minute + "분 이후 결제 가능";
+                            }
+
+                            paymentBtn.setEnabled(false);
+                            paymentBtn.setBackgroundResource(R.drawable.btn_fill_gray);
+                            paymentBtn.setText(deliveryTimeText);
+                        }
+
+                    }
+
+                    @Override
+                    public void onFailure(@NonNull Call<RecruitVO> call, @NonNull Throwable t) {
+
+                    }
+                });
+    }
+
 
     // 결제페이지 이동
     private void movePayment(int recruitId, String phoneNum) {

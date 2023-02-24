@@ -73,7 +73,7 @@ public class HomeFragment extends Fragment {
                         // 이미지 추가
                         int[] categoryImgList = {
                                 R.drawable.category_icon_meat, R.drawable.category_icon_lunch_box, R.drawable.category_icon_japanese_food, R.drawable.category_icon_baekban, R.drawable.category_icon_snack,
-                                R.drawable.category_icon_meat, R.drawable.category_icon_meat, R.drawable.category_icon_western_food, R.drawable.category_icon_meat, R.drawable.category_icon_meat,
+                                R.drawable.category_icon_asian, R.drawable.category_icon_midnight_snack, R.drawable.category_icon_western_food, R.drawable.category_icon_jokbal_bossam, R.drawable.category_icon_chinese,
                                 R.drawable.category_icon_stew, R.drawable.category_icon_chicken, R.drawable.category_icon_cafe_dessert, R.drawable.category_icon_fast_food, R.drawable.category_icon_pizza
                         };
 
