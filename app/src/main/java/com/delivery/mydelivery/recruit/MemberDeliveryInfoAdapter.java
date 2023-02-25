@@ -8,6 +8,7 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
+import androidx.core.content.ContextCompat;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.delivery.mydelivery.R;
@@ -58,6 +59,16 @@ public class MemberDeliveryInfoAdapter extends RecyclerView.Adapter<MemberDelive
         // 해당 유저의 총 주문금액
         int recruitId = participant.getRecruitId();
         serParticipantTotalPrice(recruitId, userId, holder);
+
+        // 결제 상태
+        int paymentStatus = participant.getPaymentStatus();
+        if (paymentStatus == 0) {
+            holder.paymentStatusTV.setText("결제대기");
+            holder.paymentStatusTV.setTextColor(ContextCompat.getColor(context.getApplicationContext(), R.color.red));
+        } else {
+            holder.paymentStatusTV.setText("결제완료");
+            holder.paymentStatusTV.setTextColor(ContextCompat.getColor(context.getApplicationContext(), R.color.mint));
+        }
     }
 
     @Override
@@ -72,12 +83,14 @@ public class MemberDeliveryInfoAdapter extends RecyclerView.Adapter<MemberDelive
     public static class ViewHolder extends RecyclerView.ViewHolder {
         TextView userNameTV;
         TextView totalPriceTV;
+        TextView paymentStatusTV;
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
 
             userNameTV = itemView.findViewById(R.id.userNameTV);
             totalPriceTV = itemView.findViewById(R.id.totalPriceTV);
+            paymentStatusTV = itemView.findViewById(R.id.paymentStatusTV);
         }
     }
 

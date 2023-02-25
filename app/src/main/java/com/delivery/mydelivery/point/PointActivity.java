@@ -2,6 +2,7 @@ package com.delivery.mydelivery.point;
 
 import android.annotation.SuppressLint;
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
@@ -82,6 +83,16 @@ public class PointActivity extends AppCompatActivity {
         add1Btn = findViewById(R.id.add1Btn);
         add3Btn = findViewById(R.id.add3Btn);
         add5Btn = findViewById(R.id.add5Btn);
+
+        // 전 액티비티에서 넘어온 값
+        Intent intent = getIntent();
+        int addPoint = intent.getIntExtra("addPoint", 0);
+
+        if (addPoint != 0) {
+            pointET.setText(addPoint + "");
+            addPointBtn.setBackgroundResource(R.drawable.btn_fill_green);
+            addPointBtn.setEnabled(true);
+        }
 
         pointCk(); // 입력한 금액 검사
 
@@ -237,6 +248,7 @@ public class PointActivity extends AppCompatActivity {
                         pointHistory.setPoint((int) point);
                         pointHistory.setType("충전");
                         pointHistory.setBalance(userPoint);
+                        pointHistory.setContent("포인트 충전");
 
                         addPoint(user, pointHistory);
                         finish();

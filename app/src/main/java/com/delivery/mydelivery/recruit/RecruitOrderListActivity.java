@@ -13,6 +13,7 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
+import androidx.core.widget.NestedScrollView;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -38,10 +39,12 @@ public class RecruitOrderListActivity extends AppCompatActivity {
 
     // 레이아웃
     LinearLayout emptyLayout;
+    NestedScrollView orderListLayout;
 
-    // 매장이름, 리사이클러뷰, 메뉴 추가버튼, 총 금액
+    // 매장이름, 리사이클러뷰, 메뉴 리스트 버튼, 메뉴 추가버튼, 총 금액
     TextView storeNameTV;
     RecyclerView recruitOrderListRecyclerView;
+    Button menuListBtn;
     Button addMenuBtn;
     @SuppressLint("StaticFieldLeak")
     public static TextView totalPriceTV;
@@ -79,17 +82,24 @@ public class RecruitOrderListActivity extends AppCompatActivity {
         int recruitId = intent.getIntExtra("recruitId", 0);
         int storeId = intent.getIntExtra("storeId", 0);
         int userId = intent.getIntExtra("userId", 0);
+        int paymentStatus = intent.getIntExtra("paymentStatus", 0);
 
         // 초기화
         emptyLayout = findViewById(R.id.emptyLayout);
+        orderListLayout = findViewById(R.id.orderListLayout);
 
         storeNameTV = findViewById(R.id.storeNameTV);
         recruitOrderListRecyclerView = findViewById(R.id.recruitOrderListRecyclerView);
+        menuListBtn = findViewById(R.id.menuListBtn);
         addMenuBtn = findViewById(R.id.addMenuBtn);
         totalPriceTV = findViewById(R.id.totalPriceTV);
 
         // 매장이름 추가
         setStoreName(storeId);
+
+        if (paymentStatus == 1) {
+            addMenuBtn.setVisibility(View.GONE);
+        }
 
         // 리사이클러뷰 설정
         recruitOrderListRecyclerView = findViewById(R.id.recruitOrderListRecyclerView);
@@ -98,7 +108,16 @@ public class RecruitOrderListActivity extends AppCompatActivity {
         recruitOrderListRecyclerView.setHasFixedSize(true);
 
         // 해당 모집글에서 유저가 담은 메뉴 리스트 추가
-        setOrder(recruitId, userId);
+        setOrder(recruitId, userId, paymentStatus);
+
+        // 메뉴 리스트 이동 버튼
+        menuListBtn.setOnClickListener(view -> {
+            Intent storeMoveIntent = new Intent(RecruitOrderListActivity.this, MenuListActivity.class);
+            storeMoveIntent.putExtra("participantType", "참가자");
+            storeMoveIntent.putExtra("storeId", storeId);
+            storeMoveIntent.putExtra("recruitId", recruitId);
+            startActivity(storeMoveIntent);
+        });
 
         // 메뉴 추가, 해당 매장으로 이동
         addMenuBtn.setOnClickListener(view -> {
@@ -132,7 +151,7 @@ public class RecruitOrderListActivity extends AppCompatActivity {
     }
 
     // 리사이클러뷰에 메뉴 목록 추가
-    private void setOrder(int recruitId, int userId) {
+    private void setOrder(int recruitId, int userId, int paymentStatus) {
         retrofitService = new RetrofitService();
         recruitApi = retrofitService.getRetrofit().create(RecruitApi.class);
 
@@ -151,7 +170,7 @@ public class RecruitOrderListActivity extends AppCompatActivity {
                             emptyLayout.setVisibility(View.GONE);
                             recruitOrderListRecyclerView.setVisibility(View.VISIBLE);
 
-                            recruitOrderListAdapter = new RecruitOrderListAdapter(orderList, context);
+                            recruitOrderListAdapter = new RecruitOrderListAdapter(orderList, paymentStatus, context);
                             recruitOrderListRecyclerView.setAdapter(recruitOrderListAdapter);
 
                             // 총 금액 계산
