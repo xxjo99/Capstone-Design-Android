@@ -91,7 +91,7 @@
                 android:fontFamily="@font/bmjua_font"
                 android:text="@string/login"
                 android:textColor="@color/white"
-                android:textSize="20sp" />
+                android:textSize="25sp" />
 
         </LinearLayout>
 

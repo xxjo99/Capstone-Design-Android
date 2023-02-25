@@ -6,9 +6,56 @@
     android:orientation="vertical"
     tools:context=".home.RecruitListFragment">
 
-    <androidx.core.widget.NestedScrollView
+    <LinearLayout
+        android:id="@+id/emptyLayout"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:background="@color/white"
+        android:gravity="center"
+        android:orientation="vertical"
+        android:visibility="gone">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/bmjua_font"
+            android:gravity="center"
+            android:text="참여가능한 게시글이 없습니다."
+            android:textColor="@color/gray4"
+            android:textSize="23sp" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
+            android:fontFamily="@font/bmjua_font"
+            android:gravity="center"
+            android:text="모집글을 작성해보세요!"
+            android:textColor="@color/gray4"
+            android:textSize="19sp" />
+
+        <Button
+            android:id="@+id/storeListBtn"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginLeft="105dp"
+            android:layout_marginTop="15dp"
+            android:layout_marginRight="105dp"
+            android:background="@drawable/btn_fill2_mint"
+            android:backgroundTint="@color/mint"
+            android:fontFamily="@font/bmjua_font"
+            android:text="배달음식 보러가기"
+            android:textColor="@color/white"
+            android:textSize="18sp" />
+
+    </LinearLayout>
+
+    <androidx.core.widget.NestedScrollView
+        android:id="@+id/recruitLayout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:visibility="visible">
 
         <LinearLayout
             android:layout_width="match_parent"

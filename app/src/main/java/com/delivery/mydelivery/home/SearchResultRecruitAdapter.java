@@ -23,6 +23,10 @@ import com.delivery.mydelivery.user.UserApi;
 import com.delivery.mydelivery.user.UserVO;
 import com.google.gson.Gson;
 
+import java.sql.Timestamp;
+import java.time.LocalDateTime;
+import java.time.ZoneId;
+import java.util.Calendar;
 import java.util.List;
 
 import retrofit2.Call;
@@ -62,7 +66,7 @@ public class SearchResultRecruitAdapter extends RecyclerView.Adapter<SearchResul
 
         int storeId = recruit.getStoreId();
         int userId = recruit.getUserId();
-        String deliveryTime = recruit.getDeliveryTime();
+        String deliveryTime = changeDeliveryTime(recruit.getDeliveryTime());
         int person = recruit.getPerson();
         String place = recruit.getPlace();
 
@@ -138,7 +142,6 @@ public class SearchResultRecruitAdapter extends RecyclerView.Adapter<SearchResul
 
                     @Override
                     public void onFailure(@NonNull Call<StoreVO> call, @NonNull Throwable t) {
-
                     }
                 });
     }
@@ -212,5 +215,44 @@ public class SearchResultRecruitAdapter extends RecyclerView.Adapter<SearchResul
                     public void onFailure(@NonNull Call<Boolean> call, @NonNull Throwable t) {
                     }
                 });
+    }
+
+    // 배달 시간 변환
+    private String changeDeliveryTime(Timestamp timestamp) {
+        LocalDateTime localDateTime = timestamp.toInstant().atZone(ZoneId.of("Asia/Seoul")).toLocalDateTime();
+
+        int month = localDateTime.getMonthValue(); // 월
+        int day = localDateTime.getDayOfMonth(); // 일
+        int hour = localDateTime.getHour(); // 시간
+        int minute = localDateTime.getMinute(); // 분
+
+        // 요일
+        int dayOfWeek = localDateTime.getDayOfWeek().getValue();
+        String dayOfWeekStr = "";
+        switch (dayOfWeek) {
+            case Calendar.SUNDAY:
+                dayOfWeekStr = "일";
+                break;
+            case Calendar.MONDAY:
+                dayOfWeekStr = "월";
+                break;
+            case Calendar.TUESDAY:
+                dayOfWeekStr = "화";
+                break;
+            case Calendar.WEDNESDAY:
+                dayOfWeekStr = "수";
+                break;
+            case Calendar.THURSDAY:
+                dayOfWeekStr = "목";
+                break;
+            case Calendar.FRIDAY:
+                dayOfWeekStr = "금";
+                break;
+            case Calendar.SATURDAY:
+                dayOfWeekStr = "토";
+                break;
+        }
+
+        return month + "/" + day + "(" + dayOfWeekStr + ") " + hour + "시 " + minute + "분";
     }
 }

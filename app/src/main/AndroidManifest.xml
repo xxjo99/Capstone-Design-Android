@@ -75,6 +75,7 @@
         <!-- recruit -->
         <activity android:name=".recruit.RecruitActivity" />
         <activity android:name=".recruit.RecruitOrderListActivity" />
+        <activity android:name=".recruit.PaymentActivity" />
 
         <!-- point -->
         <activity

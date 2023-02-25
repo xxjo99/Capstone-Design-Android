@@ -239,6 +239,7 @@ public class PointActivity extends AppCompatActivity {
                         pointHistory.setBalance(userPoint);
 
                         addPoint(user, pointHistory);
+                        finish();
                     }
 
                 }).requestPayment();

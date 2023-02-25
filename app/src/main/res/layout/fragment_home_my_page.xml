@@ -10,9 +10,9 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="25dp"
+        android:layout_marginLeft="30dp"
         android:layout_marginTop="10dp"
-        android:layout_marginRight="25dp"
+        android:layout_marginRight="30dp"
         android:layout_marginBottom="15dp"
         android:orientation="horizontal">
 
@@ -32,10 +32,13 @@
 
         <Button
             android:id="@+id/logoutBtn"
+            style="?android:attr/borderlessButtonStyle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:backgroundTint="@color/white"
             android:fontFamily="@font/bmjua_font"
             android:text="@string/logout"
+            android:textColor="@color/red"
             android:textSize="20sp" />
 
     </LinearLayout>
@@ -74,16 +77,17 @@
             android:layout_gravity="center"
             android:orientation="horizontal">
 
-            <TextView
-                android:id="@+id/addPointTV"
+            <Button
+                android:id="@+id/addPointBtn"
+                style="?android:attr/borderlessButtonStyle"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
+                android:backgroundTint="@color/white"
                 android:fontFamily="@font/bmjua_font"
                 android:gravity="center"
                 android:padding="20dp"
                 android:text="@string/addPoint"
-                android:textColor="@color/black"
                 android:textSize="15sp" />
 
             <View
@@ -92,16 +96,18 @@
                 android:layout_gravity="center"
                 android:background="@color/gray" />
 
-            <TextView
-                android:id="@+id/pointHistoryTV"
+            <Button
+                android:id="@+id/pointHistoryBtn"
+                style="?android:attr/borderlessButtonStyle"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
+                android:backgroundTint="@color/white"
                 android:fontFamily="@font/bmjua_font"
                 android:gravity="center"
                 android:padding="20dp"
+                android:stateListAnimator="@null"
                 android:text="내역"
-                android:textColor="@color/black"
                 android:textSize="15sp" />
 
         </LinearLayout>
@@ -120,7 +126,7 @@
         android:orientation="vertical">
 
         <TextView
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginLeft="25dp"
             android:layout_marginTop="15dp"
@@ -129,7 +135,7 @@
             android:fontFamily="@font/bmjua_font"
             android:text="주문내역"
             android:textColor="@color/black"
-            android:textSize="20sp" />
+            android:textSize="18sp" />
 
         <View
             android:layout_width="match_parent"
@@ -138,7 +144,7 @@
 
         <TextView
             android:id="@+id/myInfoTV"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginLeft="25dp"
             android:layout_marginTop="15dp"
@@ -147,7 +153,7 @@
             android:fontFamily="@font/bmjua_font"
             android:text="내정보"
             android:textColor="@color/black"
-            android:textSize="20sp" />
+            android:textSize="18sp" />
 
         <View
             android:layout_width="match_parent"
@@ -156,7 +162,7 @@
 
         <TextView
             android:id="@+id/modifyPwTV"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginLeft="25dp"
             android:layout_marginTop="15dp"
@@ -165,7 +171,7 @@
             android:fontFamily="@font/bmjua_font"
             android:text="비밀번호 변경"
             android:textColor="@color/black"
-            android:textSize="20sp" />
+            android:textSize="18sp" />
 
         <View
             android:layout_width="match_parent"
@@ -173,11 +179,5 @@
             android:background="@color/gray" />
 
     </LinearLayout>
-
-    <View
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="1"
-        android:background="@color/gray" />
 
 </LinearLayout>
