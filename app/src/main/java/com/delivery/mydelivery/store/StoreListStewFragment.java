@@ -24,7 +24,7 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-public class StoreListSteamedStewFragment extends Fragment {
+public class StoreListStewFragment extends Fragment {
 
     // 리사이클러뷰, 어댑터, 리스트
     RecyclerView openedStoreListRecyclerView;
@@ -97,7 +97,7 @@ public class StoreListSteamedStewFragment extends Fragment {
         retrofitService = new RetrofitService();
         storeApi = retrofitService.getRetrofit().create(StoreApi.class);
 
-        storeApi.getClosedStoreList("찜, 탕, 찌개", deliveryAvailablePlace)
+        storeApi.getClosedStoreList("찌개", deliveryAvailablePlace)
                 .enqueue(new Callback<List<StoreVO>>() {
                     @Override
                     public void onResponse(@NonNull Call<List<StoreVO>> call, @NonNull Response<List<StoreVO>> response) {

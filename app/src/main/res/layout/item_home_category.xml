@@ -3,23 +3,23 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
+    android:gravity="center"
     android:orientation="vertical">
 
     <ImageView
+        android:scaleType="centerInside"
         android:id="@+id/categoryIV"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
         android:layout_gravity="center"
-        android:layout_marginLeft="3dp"
-        android:layout_marginRight="3dp"
-        android:layout_marginBottom="5dp" />
+        android:layout_marginBottom="5dp"
+        android:src="@drawable/category_icon_meat" />
 
     <TextView
         android:id="@+id/categoryTV"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
-        android:layout_marginBottom="20dp"
         android:fontFamily="@font/bmjua_font"
         android:singleLine="true"
         android:text="@string/category"
