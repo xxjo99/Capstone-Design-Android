@@ -73,7 +73,7 @@ public class RecruitActivity extends AppCompatActivity {
     // 나의 배달 정보, 메뉴 확인 텍스트버튼
     TextView userNameTV;
     TextView totalPriceTV;
-    TextView checkMenuTV;
+    TextView orderListTV;
 
     // 결제금액계산
     TextView orderPriceTV;
@@ -158,18 +158,10 @@ public class RecruitActivity extends AppCompatActivity {
         // 나의 배달 정보 초기화
         userNameTV = findViewById(R.id.userNameTV);
         totalPriceTV = findViewById(R.id.totalPriceTV);
-        checkMenuTV = findViewById(R.id.checkMenuTV);
+        orderListTV = findViewById(R.id.orderListTV);
 
-        // 담은 메뉴 확인 이동버튼
-        checkMenuTV.setOnClickListener(view -> {
-            Intent checkMenuIntent = new Intent(this, RecruitOrderListActivity.class);
-
-            checkMenuIntent.putExtra("recruitId", recruitId);
-            checkMenuIntent.putExtra("storeId", storeId);
-            checkMenuIntent.putExtra("userId", user.getUserId());
-
-            startActivity(checkMenuIntent);
-        });
+        // 담은 메뉴 확인 이동 버튼
+        orderListTV.setOnClickListener(view -> moveOrderListActivity(recruitId, user.getUserId(), storeId));
 
         userNameTV.setText(user.getName()); // 사용자 이름
 
@@ -193,8 +185,8 @@ public class RecruitActivity extends AppCompatActivity {
         // 최종금액계산 추가
         setPayment(storeId, recruitId, user.getUserId());
 
-        // 배달시간 검사
-        checkDeliveryTime(recruitId);
+        // 결제완료 검사
+        checkPaymentComplete(recruitId, user.getUserId());
 
         // 결제페이지 이동 버튼
         paymentBtn = findViewById(R.id.paymentBtn);
@@ -395,9 +387,67 @@ public class RecruitActivity extends AppCompatActivity {
                 });
     }
 
+    // 장바구니 이동
+    private void moveOrderListActivity(int recruitId, int userId, int storeId) {
+        retrofitService = new RetrofitService();
+        recruitApi = retrofitService.getRetrofit().create(RecruitApi.class);
+
+        recruitApi.getParticipant(recruitId, userId)
+                .enqueue(new Callback<ParticipantVO>() {
+                    @Override
+                    public void onResponse(@NonNull Call<ParticipantVO> call, @NonNull Response<ParticipantVO> response) {
+                        ParticipantVO participant = response.body();
+                        int paymentStatus = Objects.requireNonNull(participant).getPaymentStatus();
+
+                        Intent checkMenuIntent = new Intent(context, RecruitOrderListActivity.class);
+
+                        checkMenuIntent.putExtra("recruitId", recruitId);
+                        checkMenuIntent.putExtra("storeId", storeId);
+                        checkMenuIntent.putExtra("userId", userId);
+                        checkMenuIntent.putExtra("paymentStatus", paymentStatus);
+
+                        startActivity(checkMenuIntent);
+                    }
+
+                    @Override
+                    public void onFailure(@NonNull Call<ParticipantVO> call, @NonNull Throwable t) {
+
+                    }
+                });
+    }
+
+    // 결제 완료 검사
+    private void checkPaymentComplete(int recruitId, int userId) {
+        retrofitService = new RetrofitService();
+        recruitApi = retrofitService.getRetrofit().create(RecruitApi.class);
+
+        recruitApi.getParticipant(recruitId, userId)
+                .enqueue(new Callback<ParticipantVO>() {
+                    @Override
+                    public void onResponse(@NonNull Call<ParticipantVO> call, @NonNull Response<ParticipantVO> response) {
+                        ParticipantVO participant = response.body();
+                        int paymentStatus = Objects.requireNonNull(participant).getPaymentStatus();
+                        System.out.println(paymentStatus);
+
+                        if (paymentStatus == 0) {
+                            checkDeliveryTime(recruitId);
+                        } else {
+                            paymentBtn.setText("결제완료");
+                            paymentBtn.setEnabled(false);
+                            paymentBtn.setBackgroundResource(R.drawable.btn_fill_gray);
+                            deleteBtn.setVisibility(View.GONE);
+                        }
+
+                    }
+
+                    @Override
+                    public void onFailure(@NonNull Call<ParticipantVO> call, @NonNull Throwable t) {
+                    }
+                });
+    }
+
     /* 배달 시간 검사
-       배달 시간이 되었다면 결제 페이지 이동 버튼 활성화
-       메뉴 변경 비 활성화 */
+       배달 시간이 되었다면 결제 페이지 이동 버튼 활성화 */
     private void checkDeliveryTime(int recruitId) {
         retrofitService = new RetrofitService();
         recruitApi = retrofitService.getRetrofit().create(RecruitApi.class);
@@ -416,20 +466,18 @@ public class RecruitActivity extends AppCompatActivity {
 
                         // 현재시간과 배달시간 비교
                         if (!deliveryTime.isAfter(currentTime)) { // 배달시간이 현재시간 이전일경우
-                            checkMenuTV.setVisibility(View.GONE);
-
                             paymentBtn.setEnabled(true);
                             paymentBtn.setBackgroundResource(R.drawable.btn_fill_mint);
                             paymentBtn.setText("결제하기");
-                        } else {
-                            checkMenuTV.setEnabled(true);
 
+                            deleteBtn.setText("탈퇴하기");
+                        } else {
                             int month = deliveryTime.getMonthValue(); // 월
                             int day = deliveryTime.getDayOfMonth(); // 일
                             int hour = deliveryTime.getHour(); // 시간
                             int minute = deliveryTime.getMinute(); // 분
 
-                            String deliveryTimeText = "";
+                            String deliveryTimeText;
                             if (currentTime.getMonthValue() == month && currentTime.getDayOfMonth() == day) {
                                 deliveryTimeText = hour + "시 " + minute + "분 이후 결제 가능";
                             } else {
@@ -450,7 +498,6 @@ public class RecruitActivity extends AppCompatActivity {
                 });
     }
 
-
     // 결제페이지 이동
     private void movePayment(int recruitId, String phoneNum) {
         retrofitService = new RetrofitService();
@@ -465,6 +512,8 @@ public class RecruitActivity extends AppCompatActivity {
 
                         Intent paymentIntent = new Intent(RecruitActivity.this, PaymentActivity.class);
 
+                        paymentIntent.putExtra("recruitId", recruitId);
+                        paymentIntent.putExtra("storeName", storeNameTV.getText().toString()); // 매장
                         paymentIntent.putExtra("place", place); // 장소
                         paymentIntent.putExtra("phoneNum", phoneNum); // 휴대폰번호
                         paymentIntent.putExtra("orderPrice", orderPriceTV.getText().toString()); // 상품금액
@@ -489,6 +538,19 @@ public class RecruitActivity extends AppCompatActivity {
         Point size = new Point();
         display.getRealSize(size);
         return size.x;
+    }
+
+    // 재시작
+    @Override
+    protected void onRestart() {
+        finish();
+        overridePendingTransition(0, 0);
+        Intent intent = getIntent();
+        intent.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
+        startActivity(intent);
+        overridePendingTransition(0, 0);
+
+        super.onRestart();
     }
 
 }

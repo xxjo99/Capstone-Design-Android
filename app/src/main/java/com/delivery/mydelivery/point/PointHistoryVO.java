@@ -9,6 +9,7 @@ public class PointHistoryVO {
     private int point;
     private String type;
     private int balance;
+    private String content;
     private Timestamp dateTime;
 
     public int getPointId() {
@@ -49,6 +50,14 @@ public class PointHistoryVO {
 
     public void setBalance(int balance) {
         this.balance = balance;
+    }
+
+    public String getContent() {
+        return content;
+    }
+
+    public void setContent(String content) {
+        this.content = content;
     }
 
     public Timestamp getDateTime() {

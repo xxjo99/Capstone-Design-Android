@@ -249,7 +249,7 @@
                         android:layout_weight="1" />
 
                     <TextView
-                        android:id="@+id/checkMenuTV"
+                        android:id="@+id/orderListTV"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center"
@@ -295,7 +295,6 @@
             <View
                 android:layout_width="match_parent"
                 android:layout_height="7dp"
-                android:layout_marginTop="5dp"
                 android:layout_marginBottom="5dp"
                 android:background="@color/gray" />
 

@@ -33,12 +33,54 @@
     <View
         android:layout_width="match_parent"
         android:layout_height="1dp"
-        android:layout_marginBottom="10dp"
         android:background="@color/gray" />
 
+    <LinearLayout
+        android:id="@+id/emptyLayout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/gray"
+        android:gravity="center"
+        android:orientation="vertical"
+        android:visibility="gone">
+
+        <ImageView
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:layout_marginBottom="5dp"
+            android:src="@drawable/warn" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/bmjua_font"
+            android:gravity="center"
+            android:text="장바구니에 담긴 상품이 없습니다."
+            android:textColor="@color/black"
+            android:textSize="23sp" />
+
+        <Button
+            android:id="@+id/menuListBtn"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginLeft="45dp"
+            android:layout_marginTop="35dp"
+            android:layout_marginRight="45dp"
+            android:background="@drawable/btn_fill2_mint"
+            android:backgroundTint="@color/mint"
+            android:fontFamily="@font/bmjua_font"
+            android:text="메뉴 보러가기"
+            android:textColor="@color/white"
+            android:textSize="18sp" />
+
+    </LinearLayout>
+
     <androidx.core.widget.NestedScrollView
+        android:id="@+id/orderListLayout"
         android:layout_width="match_parent"
         android:layout_height="0dp"
+        android:layout_marginTop="10dp"
         android:layout_weight="1">
 
         <LinearLayout
@@ -63,26 +105,6 @@
                 android:layout_width="match_parent"
                 android:layout_height="7dp"
                 android:background="@color/gray" />
-
-            <LinearLayout
-                android:id="@+id/emptyLayout"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:orientation="vertical"
-                android:visibility="gone">
-
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text="비어있음"
-                    android:textSize="30sp" />
-
-                <View
-                    android:layout_width="match_parent"
-                    android:layout_height="1dp"
-                    android:background="@color/gray" />
-
-            </LinearLayout>
 
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/recruitOrderListRecyclerView"

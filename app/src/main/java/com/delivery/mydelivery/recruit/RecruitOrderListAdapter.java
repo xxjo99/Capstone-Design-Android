@@ -30,6 +30,7 @@ import retrofit2.Response;
 public class RecruitOrderListAdapter extends RecyclerView.Adapter<RecruitOrderListAdapter.ViewHolder> {
 
     private final List<ParticipantOrderVO> orderList; // 담은 메뉴
+    int paymentStatus; // 결제상태
     Context context; // context
 
     // 레트로핏, api
@@ -39,8 +40,9 @@ public class RecruitOrderListAdapter extends RecyclerView.Adapter<RecruitOrderLi
     RecruitApi recruitApi;
 
     // 생성자
-    public RecruitOrderListAdapter(List<ParticipantOrderVO> orderList, Context context) {
+    public RecruitOrderListAdapter(List<ParticipantOrderVO> orderList, int paymentStatus, Context context) {
         this.orderList = orderList;
+        this.paymentStatus = paymentStatus;
         this.context = context;
     }
 
@@ -67,6 +69,12 @@ public class RecruitOrderListAdapter extends RecyclerView.Adapter<RecruitOrderLi
         setContentNameList(selectedOptionList, holder);// 선택한 옵션 목록
         holder.menuPriceTV.setText(price + "원");// 가격
         holder.amountTV.setText(amount + "개");// 개수
+
+        if (paymentStatus == 1) {
+            holder.deleteBtn.setVisibility(View.GONE);
+            holder.decreaseBtn.setVisibility(View.GONE);
+            holder.increaseBtn.setVisibility(View.GONE);
+        }
 
         // 메뉴 개수 수정
         holder.decreaseBtn.setOnClickListener(view -> {
@@ -167,7 +175,6 @@ public class RecruitOrderListAdapter extends RecyclerView.Adapter<RecruitOrderLi
                         List<String> contentNameResult = response.body();
 
                         holder.optionListTV.setText("");
-
                         if (contentNameResult != null) {
                             for (int i = 0; i < Objects.requireNonNull(contentNameResult).size(); i++) {
 
@@ -177,9 +184,8 @@ public class RecruitOrderListAdapter extends RecyclerView.Adapter<RecruitOrderLi
                                     holder.optionListTV.append(contentNameResult.get(i) + ", ");
                                 }
                             }
-                        } else {
-                            holder.optionListTV.setVisibility(View.GONE);
                         }
+
                     }
 
                     @Override
@@ -196,11 +202,11 @@ public class RecruitOrderListAdapter extends RecyclerView.Adapter<RecruitOrderLi
         recruitApi.modifyAmount(order)
                 .enqueue(new Callback<ParticipantOrderVO>() {
                     @Override
-                    public void onResponse(Call<ParticipantOrderVO> call, Response<ParticipantOrderVO> response) {
+                    public void onResponse(@NonNull Call<ParticipantOrderVO> call, @NonNull Response<ParticipantOrderVO> response) {
                     }
 
                     @Override
-                    public void onFailure(Call<ParticipantOrderVO> call, Throwable t) {
+                    public void onFailure(@NonNull Call<ParticipantOrderVO> call, @NonNull Throwable t) {
                     }
                 });
     }
