@@ -3,8 +3,8 @@
     android:id="@+id/registerDialogLayout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:layout_marginBottom="20dp"
     android:background="@drawable/dialog"
+    android:layout_margin="30dp"
     android:orientation="vertical">
 
     <TextView
@@ -14,11 +14,12 @@
         android:fontFamily="@font/bmjua_font"
         android:gravity="center"
         android:includeFontPadding="false"
+        android:lineSpacingExtra="5dp"
         android:paddingLeft="50dp"
-        android:paddingTop="30dp"
+        android:paddingTop="25dp"
         android:paddingRight="50dp"
-        android:paddingBottom="30dp"
-        android:text="삭제하시겠습니까?"
+        android:paddingBottom="25dp"
+        android:text="삭제하시겠습니까?\n삭제 후 24시간 동안\n참가와 등록이 제한됩니다."
         android:textColor="@color/black"
         android:textSize="25sp" />
 

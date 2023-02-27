@@ -1,7 +1,5 @@
 package com.delivery.mydelivery.user;
 
-import com.delivery.mydelivery.order.OrderVO;
-
 import java.util.List;
 
 import retrofit2.Call;
@@ -9,6 +7,7 @@ import retrofit2.http.Body;
 import retrofit2.http.GET;
 import retrofit2.http.POST;
 import retrofit2.http.Path;
+import retrofit2.http.Query;
 
 public interface UserApi {
 
@@ -31,4 +30,21 @@ public interface UserApi {
     // 정보 수정
     @POST("/user/modify")
     Call<UserVO> modify(@Body UserVO user);
+
+    // 이용제한 생성
+    @POST("/user/restriction/set/period")
+    Call<Void> setParticipationRestriction(@Query("userId") int userId);
+
+    // 이용제한 확인
+    @GET("/user/participation/restriction/check/{userId}")
+    Call<Boolean> checkParticipationRestriction(@Path("userId") int userId);
+
+    // 이용제한 지난지 확인, 지났으면 이용제한 제거
+    @GET("/user/restriction/check/{userId}")
+    Call<Boolean> checkRestriction(@Path("userId") int userId);
+
+    // 포인트 차감
+    @POST("/user/deduct/point")
+    Call<Void> deductPoint(@Query("userId") int userId, @Query("deductPoint") int deductPoint);
+
 }

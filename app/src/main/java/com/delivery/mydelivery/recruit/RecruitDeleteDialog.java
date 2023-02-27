@@ -6,7 +6,6 @@ import android.app.Dialog;
 import android.content.Context;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
-import android.view.Gravity;
 import android.view.Window;
 import android.view.WindowManager;
 import android.widget.Button;
@@ -25,15 +24,17 @@ import retrofit2.Response;
 public class RecruitDeleteDialog {
 
     int recruitId; // 모집글 아이디
+    int participantCount; // 참가자 수
     private final Context context;
 
     // 레트로핏, api
     RetrofitService retrofitService;
     RecruitApi recruitApi;
 
-    public RecruitDeleteDialog(Context context, int recruitId) {
+    public RecruitDeleteDialog(Context context, int recruitId, int participantCount) {
         this.context = context;
         this.recruitId = recruitId;
+        this.participantCount = participantCount;
     }
 
     public void callDialog() {
@@ -42,11 +43,10 @@ public class RecruitDeleteDialog {
         dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
         dialog.setContentView(R.layout.dialog_recruit_delete);
         dialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
-        dialog.getWindow().setGravity(Gravity.BOTTOM);
 
         // 크기 지정
         WindowManager.LayoutParams params = dialog.getWindow().getAttributes();
-        params.width = WindowManager.LayoutParams.WRAP_CONTENT;
+        params.width = WindowManager.LayoutParams.MATCH_PARENT;
         params.height = WindowManager.LayoutParams.WRAP_CONTENT;
         dialog.getWindow().setAttributes(params);
 
@@ -63,11 +63,11 @@ public class RecruitDeleteDialog {
 
         cancelBtn.setOnClickListener(view -> dialog.dismiss());
     }
-    
+
     public void deleteRecruit(int recruitId) {
         retrofitService = new RetrofitService();
         recruitApi = retrofitService.getRetrofit().create(RecruitApi.class);
-        
+
         recruitApi.deleteRecruit(recruitId)
                 .enqueue(new Callback<Void>() {
                     @Override
