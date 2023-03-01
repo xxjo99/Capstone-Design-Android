@@ -20,7 +20,7 @@ public interface RecruitApi {
     @GET("/recruit/find/user/{userId}")
     Call<Boolean> findRecruit(@Path("userId") int userId);
 
-    // 모집글에 참가한 사용자의 수
+    // 모집글에 참가한 유저의 수
     @GET("/recruit/participants/count/{recruitId}")
     Call<Integer> getParticipantCount(@Path("recruitId") int recruitId);
 

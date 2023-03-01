@@ -11,6 +11,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -36,6 +37,7 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
+@SuppressLint("SetTextI18n")
 public class PointActivity extends AppCompatActivity {
 
     // 툴바, 툴바 버튼
@@ -50,6 +52,11 @@ public class PointActivity extends AppCompatActivity {
     Button add3Btn;
     Button add5Btn;
 
+    LinearLayout afterPointLayout;
+    TextView afterPointTV;
+
+    int userPoint; // 보유중인 포인트
+
     String applicationId = "63e5e127755e27001f59de55"; // 부트페이 id
 
     // retrofit, api, gson
@@ -60,7 +67,6 @@ public class PointActivity extends AppCompatActivity {
 
     Context context; // context
 
-    @SuppressLint("SetTextI18n")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -84,6 +90,17 @@ public class PointActivity extends AppCompatActivity {
         add3Btn = findViewById(R.id.add3Btn);
         add5Btn = findViewById(R.id.add5Btn);
 
+        afterPointLayout = findViewById(R.id.afterPointLayout);
+        afterPointTV = findViewById(R.id.afterPointTV);
+
+        // 현재 보유중인 포인트
+        String loginInfo = PreferenceManager.getLoginInfo(context);
+        Gson gson = new Gson();
+        UserVO user = gson.fromJson(loginInfo, UserVO.class);
+        userPoint = user.getPoint();
+
+        afterPointTV.setText(userPoint + "P");
+
         // 전 액티비티에서 넘어온 값
         Intent intent = getIntent();
         int addPoint = intent.getIntExtra("addPoint", 0);
@@ -105,7 +122,6 @@ public class PointActivity extends AppCompatActivity {
             }
 
             point += 10000;
-
             pointET.setText(Integer.toString(point));
         });
 
@@ -117,7 +133,6 @@ public class PointActivity extends AppCompatActivity {
             }
 
             point += 30000;
-
             pointET.setText(Integer.toString(point));
         });
 
@@ -129,7 +144,6 @@ public class PointActivity extends AppCompatActivity {
             }
 
             point += 50000;
-
             pointET.setText(Integer.toString(point));
         });
 
@@ -167,11 +181,18 @@ public class PointActivity extends AppCompatActivity {
                     pointCkTV.setVisibility(View.GONE);
                     addPointBtn.setBackgroundResource(R.drawable.btn_fill_green);
                     addPointBtn.setEnabled(true);
+
+                    // 충전 후 잔액 변경
+                    afterPointLayout.setVisibility(View.VISIBLE);
+                    int afterPoint = userPoint + point;
+                    afterPointTV.setText(afterPoint + "P");
                 } else { // 1000원 미만
                     pointET.setBackgroundResource(R.drawable.et_border_red_bottom);
                     pointCkTV.setVisibility(View.VISIBLE);
                     addPointBtn.setBackgroundResource(R.drawable.btn_fill_gray);
                     addPointBtn.setEnabled(false);
+
+                    afterPointLayout.setVisibility(View.GONE);
                 }
             }
 

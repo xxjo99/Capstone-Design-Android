@@ -30,5 +30,4 @@ public class RetrofitService {
     public Retrofit getRetrofit() {
         return retrofit;
     }
-
 }

@@ -38,8 +38,10 @@ public class RecruitOrderListActivity extends AppCompatActivity {
     ImageButton backBtn;
 
     // 레이아웃
-    LinearLayout emptyLayout;
-    NestedScrollView orderListLayout;
+    @SuppressLint("StaticFieldLeak")
+    public static LinearLayout emptyLayout;
+    @SuppressLint("StaticFieldLeak")
+    public static NestedScrollView orderListLayout;
 
     // 매장이름, 리사이클러뷰, 메뉴 리스트 버튼, 메뉴 추가버튼, 총 금액
     TextView storeNameTV;

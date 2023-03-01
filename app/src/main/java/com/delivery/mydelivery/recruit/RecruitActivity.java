@@ -108,10 +108,6 @@ public class RecruitActivity extends AppCompatActivity {
         Gson gson = new Gson();
         UserVO user = gson.fromJson(loginInfo, UserVO.class);
 
-        // dialog
-        recruitDeleteDialog = new RecruitDeleteDialog(this, recruitId);
-        recruitLeaveDialog = new RecruitLeaveDialog(this, recruitId, user.getUserId());
-
         // 툴바
         toolbar = findViewById(R.id.recruitToolbar);
         setSupportActionBar(toolbar);
@@ -127,12 +123,12 @@ public class RecruitActivity extends AppCompatActivity {
         // 등록자, 참가자에 따른 텍스트 변경
         setDeleteBtnVisibility(recruitId, user.getUserId());
 
-        // 삭제
+        // 삭제 or 탈퇴
         deleteBtn.setOnClickListener(view -> {
             if (deleteBtn.getText().toString().equals("삭제하기")) {
-                recruitDeleteDialog.callDialog();
+                createDeleteDialog(recruitId);
             } else {
-                recruitLeaveDialog.callDialog();
+                createLeaveDialog(recruitId);
             }
         });
 
@@ -182,7 +178,7 @@ public class RecruitActivity extends AppCompatActivity {
         finalDeliveryTipTV = findViewById(R.id.finalDeliveryTipTV);
         finalPaymentTV = findViewById(R.id.finalPaymentTV);
 
-        // 최종금액계산 추가
+        // 최종금액계산 추가, 탈퇴 다이얼로그 추가
         setPayment(storeId, recruitId, user.getUserId());
 
         // 결제완료 검사
@@ -218,6 +214,62 @@ public class RecruitActivity extends AppCompatActivity {
                     @Override
                     public void onFailure(@NonNull Call<ParticipantVO> call, @NonNull Throwable t) {
 
+                    }
+                });
+    }
+
+    // 삭제 다이얼로그 생성
+    private void createDeleteDialog(int recruitId) {
+        retrofitService = new RetrofitService();
+        recruitApi = retrofitService.getRetrofit().create(RecruitApi.class);
+
+        recruitApi.getParticipantCount(recruitId)
+                .enqueue(new Callback<Integer>() {
+                    @Override
+                    public void onResponse(@NonNull Call<Integer> call, @NonNull Response<Integer> response) {
+                        Integer participantCount = response.body();
+
+                        if (participantCount < 2) { // 참가자수 2명 미만일경우 패널티 부과 x
+                            recruitDeleteDialog.callDialog(0);
+                        } else { // 그렇지 않다면 패널티 부과
+                            recruitDeleteDialog.callDialog(1);
+                        }
+                    }
+
+                    @Override
+                    public void onFailure(@NonNull Call<Integer> call, @NonNull Throwable t) {
+
+                    }
+                });
+    }
+
+    // 탈퇴 다이얼로그 생성
+    private void createLeaveDialog(int recruitId) {
+        retrofitService = new RetrofitService();
+        recruitApi = retrofitService.getRetrofit().create(RecruitApi.class);
+
+        recruitApi.getRecruit(recruitId)
+                .enqueue(new Callback<RecruitVO>() {
+                    @Override
+                    public void onResponse(@NonNull Call<RecruitVO> call, @NonNull Response<RecruitVO> response) {
+                        RecruitVO recruit = response.body();
+
+                        LocalDateTime currentTime = LocalDateTime.now(); // 현재 시간
+                        // 배달시간
+                        Timestamp timestamp = Objects.requireNonNull(recruit).getDeliveryTime();
+                        Instant instant = timestamp.toInstant();
+                        LocalDateTime deliveryTime = instant.atZone(ZoneId.of("Asia/Seoul")).toLocalDateTime();
+
+                        // 현재시간과 배달시간 비교
+                        if (!deliveryTime.isAfter(currentTime)) { // 배달시간이 현재시간 이후일경우
+                            recruitLeaveDialog.callDialog(1);
+                        } else { // 배달시간이 현재시간 이전일경우
+                            recruitLeaveDialog.callDialog(0);
+                        }
+                    }
+
+                    @Override
+                    public void onFailure(@NonNull Call<RecruitVO> call, @NonNull Throwable t) {
                     }
                 });
     }
@@ -363,6 +415,10 @@ public class RecruitActivity extends AppCompatActivity {
 
                         int finalDeliveryTipResult = Integer.parseInt(deliveryTip) / participantCount;
                         finalDeliveryTipTV.setText(finalDeliveryTipResult + "원");
+
+                        // 삭제, 탈퇴 다이얼로그 추가
+                        recruitLeaveDialog = new RecruitLeaveDialog(context, recruitId, userId, finalDeliveryTipResult);
+                        recruitDeleteDialog = new RecruitDeleteDialog(context, recruitId, userId, participantCount);
                     }
 
                     @Override
@@ -465,12 +521,16 @@ public class RecruitActivity extends AppCompatActivity {
                         LocalDateTime deliveryTime = instant.atZone(ZoneId.of("Asia/Seoul")).toLocalDateTime();
 
                         // 현재시간과 배달시간 비교
-                        if (!deliveryTime.isAfter(currentTime)) { // 배달시간이 현재시간 이전일경우
-                            paymentBtn.setEnabled(true);
-                            paymentBtn.setBackgroundResource(R.drawable.btn_fill_mint);
-                            paymentBtn.setText("결제하기");
+                        if (!deliveryTime.isAfter(currentTime)) { // 배달시간이 현재시간 이후일경우 결제버튼 활성화
 
-                            deleteBtn.setText("탈퇴하기");
+                            if (deleteBtn.getText().toString().equals("삭제하기")) { // 등록자일경우 참가한 인원 검사
+                                checkParticipantCount(recruitId);
+                            } else {
+                                paymentBtn.setEnabled(true);
+                                paymentBtn.setBackgroundResource(R.drawable.btn_fill_mint);
+                                paymentBtn.setText("결제하기");
+                                deleteBtn.setText("탈퇴하기");
+                            }
                         } else {
                             int month = deliveryTime.getMonthValue(); // 월
                             int day = deliveryTime.getDayOfMonth(); // 일
@@ -493,6 +553,37 @@ public class RecruitActivity extends AppCompatActivity {
 
                     @Override
                     public void onFailure(@NonNull Call<RecruitVO> call, @NonNull Throwable t) {
+
+                    }
+                });
+    }
+
+    // 참가자수 검사
+    private void checkParticipantCount(int recruitId) {
+        retrofitService = new RetrofitService();
+        recruitApi = retrofitService.getRetrofit().create(RecruitApi.class);
+
+        recruitApi.getParticipantCount(recruitId)
+                .enqueue(new Callback<Integer>() {
+                    @Override
+                    public void onResponse(@NonNull Call<Integer> call, @NonNull Response<Integer> response) {
+                        Integer participantCount = response.body();
+
+                        if (participantCount < 2) { // 참가자수 2명 미만일경우 삭제
+                            paymentBtn.setEnabled(true);
+                            paymentBtn.setBackgroundResource(R.drawable.btn_fill_gray);
+                            paymentBtn.setText("2명미만, 배달불가");
+                            deleteBtn.setText("삭제하기");
+                        } else { // 2명 이상일경우 탈퇴
+                            paymentBtn.setEnabled(true);
+                            paymentBtn.setBackgroundResource(R.drawable.btn_fill_mint);
+                            paymentBtn.setText("결제하기");
+                            deleteBtn.setText("탈퇴하기");
+                        }
+                    }
+
+                    @Override
+                    public void onFailure(@NonNull Call<Integer> call, @NonNull Throwable t) {
 
                     }
                 });
