@@ -59,10 +59,11 @@ public class OptionContentAdapter extends RecyclerView.Adapter<OptionContentAdap
         holder.optionCheckBox.setChecked(false);
 
         checkOption();
+        deliveryAvabilableCheck();
         // 옵션 선택 이벤트
         holder.optionCheckBox.setOnClickListener(view -> {
             int price = OptionActivity.menuPrice;
-            String optionContentId = Integer.toString(optionContent.getMenuOptionContentId());
+            int optionContentId = optionContent.getMenuOptionContentId();
 
             if (((CheckBox) view).isChecked()) { // 옵션 선택
 
@@ -81,19 +82,8 @@ public class OptionContentAdapter extends RecyclerView.Adapter<OptionContentAdap
                 selectedCount--;
             }
 
-            if (selectedCount >= minimumSelection) {
-                if (maximumSelection == 0) {
-                    OptionActivity.selectedOptionFlagList.set(optionPosition, true);
-                } else if (selectedCount == maximumSelection) {
-                    OptionActivity.selectedOptionFlagList.set(optionPosition, true);
-                } else {
-                    OptionActivity.selectedOptionFlagList.set(optionPosition, false);
-                }
-            } else {
-                OptionActivity.selectedOptionFlagList.set(optionPosition, false);
-            }
-
             checkOption();
+            deliveryAvabilableCheck();
         });
     }
 
@@ -118,8 +108,29 @@ public class OptionContentAdapter extends RecyclerView.Adapter<OptionContentAdap
         }
     }
 
-    // 모든 값이 true인지 체크
+    // 옵션 체크
     public void checkOption() {
+        if (minimumSelection == 0) {
+            OptionActivity.selectedOptionFlagList.set(optionPosition, true);
+        } else {
+            if (maximumSelection == 0) {
+                if (selectedCount < minimumSelection) {
+                    OptionActivity.selectedOptionFlagList.set(optionPosition, false);
+                } else {
+                    OptionActivity.selectedOptionFlagList.set(optionPosition, true);
+                }
+            } else {
+                if (selectedCount >= minimumSelection && selectedCount <= maximumSelection) {
+                    OptionActivity.selectedOptionFlagList.set(optionPosition, true);
+                } else {
+                    OptionActivity.selectedOptionFlagList.set(optionPosition, false);
+                }
+            }
+        }
+    }
+
+    // 배달 가능한지 체크
+    public void deliveryAvabilableCheck() {
         boolean result = true;
 
         for (Boolean bool : OptionActivity.selectedOptionFlagList) {
@@ -136,7 +147,6 @@ public class OptionContentAdapter extends RecyclerView.Adapter<OptionContentAdap
             OptionActivity.addMenuBtn.setBackgroundResource(R.drawable.btn_fill_gray);
             OptionActivity.addMenuBtn.setEnabled(false);
         }
-
-
     }
+
 }

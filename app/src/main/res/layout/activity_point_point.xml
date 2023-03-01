@@ -57,13 +57,45 @@
         android:textColor="@color/red"
         android:visibility="gone" />
 
+    <LinearLayout
+        android:id="@+id/afterPointLayout"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="35dp"
+        android:layout_marginEnd="35dp"
+        android:orientation="horizontal"
+        android:visibility="gone">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/bmjua_font"
+            android:text="거래 후 잔액"
+            android:textSize="13sp" />
+
+        <View
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_weight="1" />
+
+        <TextView
+            android:id="@+id/afterPointTV"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/bmjua_font"
+            android:text="point"
+            android:textColor="@color/black"
+            android:textSize="13sp" />
+
+    </LinearLayout>
+
     <!-- 금액추가 -->
     <GridLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
         android:layout_marginLeft="25dp"
-        android:layout_marginTop="15dp"
+        android:layout_marginTop="20dp"
         android:layout_marginRight="25dp"
         android:orientation="horizontal"
         android:rowCount="3">
@@ -72,7 +104,8 @@
             android:id="@+id/add1Btn"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:background="@color/gray"
+            android:layout_marginEnd="18dp"
+            android:background="@drawable/btn_border_full_gray"
             android:fontFamily="@font/bmjua_font"
             android:text="+1만" />
 
@@ -80,7 +113,8 @@
             android:id="@+id/add3Btn"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:background="@color/gray"
+            android:layout_marginEnd="18dp"
+            android:background="@drawable/btn_border_full_gray"
             android:fontFamily="@font/bmjua_font"
             android:text="+3만" />
 
@@ -88,7 +122,8 @@
             android:id="@+id/add5Btn"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:background="@color/gray"
+            android:layout_marginEnd="18dp"
+            android:background="@drawable/btn_border_full_gray"
             android:fontFamily="@font/bmjua_font"
             android:text="+5만" />
 
@@ -104,11 +139,11 @@
         android:id="@+id/addPointBtn"
         style="?android:attr/borderlessButtonStyle"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="55dp"
         android:layout_gravity="bottom"
         android:layout_marginLeft="20dp"
         android:layout_marginRight="20dp"
-        android:layout_marginBottom="15dp"
+        android:layout_marginBottom="18dp"
         android:background="@drawable/btn_fill_gray"
         android:enabled="false"
         android:fontFamily="@font/bmjua_font"

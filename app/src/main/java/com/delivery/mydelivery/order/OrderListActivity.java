@@ -24,6 +24,7 @@ import com.delivery.mydelivery.recruit.RecruitApi;
 import com.delivery.mydelivery.recruit.RecruitVO;
 import com.delivery.mydelivery.preferenceManager.PreferenceManager;
 import com.delivery.mydelivery.store.StoreActivity;
+import com.delivery.mydelivery.user.UserApi;
 import com.delivery.mydelivery.user.UserVO;
 import com.delivery.mydelivery.retrofit.RetrofitService;
 import com.google.gson.Gson;
@@ -49,7 +50,7 @@ public class OrderListActivity extends AppCompatActivity {
     public static TextView deliveryTipTV;
     public static boolean deliveryAvailableFlag = false;
 
-    public static String dateTime; // db에 저장할 시간
+    public static String dateTime; // db에 저장할 시간데이터
 
     // 포인트 충전 다이얼로그
     AddPointDialog addPointDialog;
@@ -71,10 +72,11 @@ public class OrderListActivity extends AppCompatActivity {
     // 메뉴 추가 버튼
     Button addMenuBtn;
 
-    // 레이아웃, 매장 리스트 이동 버튼슬라이딩패널 펼치기 / 닫기 버튼
-    LinearLayout emptyLayout;
+    // 레이아웃, 매장 리스트 이동 버튼, 슬라이딩 패널, 펼치기 / 닫기 버튼
+    @SuppressLint("StaticFieldLeak")
+    public static LinearLayout emptyLayout;
     Button storeListBtn;
-    SlidingUpPanelLayout slidingUpPanelLayout;
+    public static SlidingUpPanelLayout slidingUpPanelLayout;
     @SuppressLint("StaticFieldLeak")
     public static Button slidingOpenBtn;
 
@@ -98,6 +100,7 @@ public class OrderListActivity extends AppCompatActivity {
     RetrofitService retrofitService;
     OrderApi orderApi;
     RecruitApi recruitApi;
+    UserApi userApi;
 
     Context context;
 
@@ -162,9 +165,13 @@ public class OrderListActivity extends AppCompatActivity {
             startActivity(intent);
         });
 
+        // 등록 가능한지 검사
+        checkParticipate(userId);
+
         // 모집글 등록 펼치기 버튼
         slidingOpenBtn.setOnClickListener(view -> {
 
+            // 등록 가능 여부 판별
             if (!deliveryAvailableFlag) { // 보유한 포인트가 배달비보다 적을경우
                 addPointDialog.callDialog();
             } else {
@@ -243,7 +250,7 @@ public class OrderListActivity extends AppCompatActivity {
                 recruit.setPerson(person); // 모집인원
                 // recruit.setDeliveryTime(dateTime); // 배달 시간
 
-                findRecruit(userId, recruit);// 모집글 등록
+                registerRecruit(recruit);// 모집글 등록
             }
         });
 
@@ -284,13 +291,39 @@ public class OrderListActivity extends AppCompatActivity {
 
                     @Override
                     public void onFailure(@NonNull Call<List<OrderVO>> call, @NonNull Throwable t) {
+                    }
+                });
+    }
+
+    // 이용제한 검사
+    private void checkParticipate(int userId) {
+        retrofitService = new RetrofitService();
+        userApi = retrofitService.getRetrofit().create(UserApi.class);
+
+        userApi.checkRestriction(userId)
+                .enqueue(new Callback<Boolean>() {
+                    @Override
+                    public void onResponse(@NonNull Call<Boolean> call, @NonNull Response<Boolean> response) {
+                        Boolean checkRestrictionFlag = response.body();
+
+                        if (Boolean.TRUE.equals(checkRestrictionFlag)) { // 이용제한 없음, 해당 유저가 등록한 글이 있는지 검사
+                            findRecruit(userId);
+                        } else { // 등록불가
+                            slidingOpenBtn.setBackgroundResource(R.drawable.btn_fill_gray);
+                            slidingOpenBtn.setText("이용제한");
+                            slidingOpenBtn.setEnabled(false);
+                        }
+                    }
+
+                    @Override
+                    public void onFailure(@NonNull Call<Boolean> call, @NonNull Throwable t) {
 
                     }
                 });
     }
 
-    // 해당 사용자의 등록글이 있는지 검색 후 없다면 글 등록
-    public void findRecruit(int userId, RecruitVO recruit) {
+    // 해당 사용자의 등록글이 있는지 검색 후 없다면 등록
+    public void findRecruit(int userId) {
         retrofitService = new RetrofitService();
         recruitApi = retrofitService.getRetrofit().create(RecruitApi.class);
 
@@ -300,10 +333,14 @@ public class OrderListActivity extends AppCompatActivity {
                     public void onResponse(@NonNull Call<Boolean> call, @NonNull Response<Boolean> response) {
                         boolean flag = Boolean.TRUE.equals(response.body());
 
-                        if (flag) {
-                            registerRecruit(recruit);
-                        } else {
-                            Toast.makeText(context, "하나의 글만 등록가능", Toast.LENGTH_SHORT).show();
+                        if (flag) { // 등록된 글 없음, 등록 가능
+                            slidingOpenBtn.setBackgroundResource(R.drawable.btn_fill_mint);
+                            slidingOpenBtn.setText("글 등록하기");
+                            slidingOpenBtn.setEnabled(true);
+                        } else { // 등록된 글 있음, 등록 불가
+                            slidingOpenBtn.setBackgroundResource(R.drawable.btn_fill_gray);
+                            slidingOpenBtn.setText("하나의 글만 등록가능");
+                            slidingOpenBtn.setEnabled(false);
                         }
                     }
 

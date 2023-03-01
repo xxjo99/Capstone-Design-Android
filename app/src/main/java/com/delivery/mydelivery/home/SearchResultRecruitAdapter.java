@@ -7,6 +7,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
@@ -89,7 +90,8 @@ public class SearchResultRecruitAdapter extends RecyclerView.Adapter<SearchResul
             int recruitId = recruit.getRecruitId();
             int participateUserId = user.getUserId();
 
-            checkParticipate(recruitId, participateUserId, holder, person, place, deliveryTime, storeId);
+            // 참가상태 확인
+            checkParticipate(participateUserId, recruitId, holder, person, place, deliveryTime, storeId);
         });
     }
 
@@ -185,29 +187,23 @@ public class SearchResultRecruitAdapter extends RecyclerView.Adapter<SearchResul
                 });
     }
 
-    // 해당 참가글에 참가했는지 아닌지 구분, 다이얼로그 열기
-    private void checkParticipate(int recruitId, int participantId, SearchResultRecruitAdapter.ViewHolder holder, int person, String place, String deliveryTime, int storeId) {
+    // 참가상태 확인, 미참가시 이용제한 확인
+    private void checkParticipate(int participateUserId, int recruitId, SearchResultRecruitAdapter.ViewHolder holder, int person, String place, String deliveryTime, int storeId) {
         retrofitService = new RetrofitService();
         recruitApi = retrofitService.getRetrofit().create(RecruitApi.class);
 
-        recruitApi.findUserInRecruit(recruitId, participantId)
+        recruitApi.findUserInRecruit(recruitId, participateUserId)
                 .enqueue(new Callback<Boolean>() {
                     @Override
                     public void onResponse(@NonNull Call<Boolean> call, @NonNull Response<Boolean> response) {
 
-                        if (Boolean.TRUE.equals(response.body())) { // 참가되어있는 상태
+                        if (Boolean.TRUE.equals(response.body())) { // 참가
                             Intent intent = new Intent(context, RecruitActivity.class);
                             intent.putExtra("recruitId", recruitId);
                             intent.putExtra("storeId", storeId);
                             context.startActivity(intent);
-                        } else {
-                            ParticipateDialog participateDialog = new ParticipateDialog(context);
-
-                            String storeName = holder.storeNameTV.getText().toString(); // 매장 이름
-
-                            // 매장 이름, 모집인원 수, 현재 참가자 수 , 장소, 배달시간, 배달팁, 모집글 아이디, 참가자 아이디
-                            participateDialog.setData(storeName, holder.participantCount, person, place, deliveryTime, holder.deliveryTip, recruitId, participantId, storeId);
-                            participateDialog.callDialog();
+                        } else { // 미참가, 이용제한 확인
+                            checkRestriction(participateUserId, recruitId, holder, person, place, deliveryTime, storeId);
                         }
                     }
 
@@ -215,6 +211,41 @@ public class SearchResultRecruitAdapter extends RecyclerView.Adapter<SearchResul
                     public void onFailure(@NonNull Call<Boolean> call, @NonNull Throwable t) {
                     }
                 });
+    }
+
+    // 이용제한 확인
+    private void checkRestriction(int participateUserId, int recruitId, SearchResultRecruitAdapter.ViewHolder holder, int person, String place, String deliveryTime, int storeId) {
+        retrofitService = new RetrofitService();
+        userApi = retrofitService.getRetrofit().create(UserApi.class);
+
+        userApi.checkRestriction(participateUserId)
+                .enqueue(new Callback<Boolean>() {
+                    @Override
+                    public void onResponse(@NonNull Call<Boolean> call, @NonNull Response<Boolean> response) {
+                        Boolean checkRestrictionFlag = response.body();
+
+                        if (Boolean.TRUE.equals(checkRestrictionFlag)) { // 참가 가능, 다이얼로그 생성
+                            createDialog(participateUserId, recruitId, holder, person, place, deliveryTime, storeId);
+                        } else { // 참가불가
+                            Toast.makeText(context, "참가 불가", Toast.LENGTH_SHORT).show();
+                        }
+                    }
+
+                    @Override
+                    public void onFailure(@NonNull Call<Boolean> call, @NonNull Throwable t) {
+
+                    }
+                });
+    }
+
+    // 모집글 상세 다이얼로그 생성
+    private void createDialog(int participateUserId, int recruitId, SearchResultRecruitAdapter.ViewHolder holder, int recruitPerson, String place, String deliveryTime, int storeId) {
+        ParticipateDialog participateDialog = new ParticipateDialog(context);
+
+        String storeName = holder.storeNameTV.getText().toString(); // 매장 이름
+        // 매장 이름, 모집인원 수, 현재 참가자 수, 장소, 배달시간, 배달팁, 모집글 아이디, 참가자 아이디, 매장 아이디
+        participateDialog.setData(storeName, holder.participantCount, recruitPerson, place, deliveryTime, holder.deliveryTip, recruitId, participateUserId, storeId);
+        participateDialog.callDialog();
     }
 
     // 배달 시간 변환

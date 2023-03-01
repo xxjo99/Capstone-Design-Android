@@ -64,13 +64,7 @@ public class OrderListAdapter extends RecyclerView.Adapter<OrderListAdapter.View
         // 매장이름, 선택한 옵션, 가격, 개수 세팅
         setStoreName(order.getStoreId(), point); // 매장 이름
         setMenuName(order.getMenuId(), holder); // 메뉴 이름
-
-        if (!order.getSelectOption().equals("")) {
-            setContentNameList(order.getSelectOption(), holder);// 선택 옵션 리스트
-        } else {
-            holder.optionListTV.setVisibility(View.GONE);
-        }
-
+        setContentNameList(order.getSelectOption(), holder);// 선택 옵션 리스트
         holder.menuPriceTV.setText(order.getTotalPrice() + "원"); // 메뉴 총 가격
         holder.amountTV.setText(order.getAmount() + "개"); // 메뉴 개수
 
@@ -160,20 +154,8 @@ public class OrderListAdapter extends RecyclerView.Adapter<OrderListAdapter.View
                         OrderListActivity.minimumDeliveryPriceTV.setText(minimumDeliveryPrice + "원");
                         OrderListActivity.deliveryTipTV.setText(deliveryTipStr + "원");
 
-                        // 주문가능 확인
                         // 사용자가 가진 포인트보다 배달비가 더 높은지 확인
                         int deliveryTip = Integer.parseInt(deliveryTipStr);
-
-                        if (OrderListActivity.totalPrice < minimumDeliveryPrice) {
-                            OrderListActivity.slidingOpenBtn.setEnabled(false);
-                            OrderListActivity.slidingOpenBtn.setBackgroundResource(R.drawable.btn_fill_gray);
-                            OrderListActivity.slidingOpenBtn.setText(minimumDeliveryPrice + "원 이상 주문가능");
-                        } else {
-                            OrderListActivity.slidingOpenBtn.setEnabled(true);
-                            OrderListActivity.slidingOpenBtn.setBackgroundResource(R.drawable.btn_fill_mint);
-                            OrderListActivity.slidingOpenBtn.setText("글 등록하기");
-                        }
-
                         OrderListActivity.deliveryAvailableFlag = deliveryTip <= point;
                     }
 
@@ -267,6 +249,12 @@ public class OrderListAdapter extends RecyclerView.Adapter<OrderListAdapter.View
                         OrderListActivity.totalPriceTV.setText(OrderListActivity.totalPrice + "원");
                         orderList.remove(position);
                         notifyDataSetChanged();
+
+                        // 삭제 후 장바구니가 비어있다면 레이아웃 변경
+                        if (orderList.size() == 0) {
+                            OrderListActivity.emptyLayout.setVisibility(View.VISIBLE);
+                            OrderListActivity.slidingUpPanelLayout.setVisibility(View.GONE);
+                        }
                     }
 
                     @Override

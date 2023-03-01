@@ -8,6 +8,7 @@ import retrofit2.http.DELETE;
 import retrofit2.http.GET;
 import retrofit2.http.POST;
 import retrofit2.http.Path;
+import retrofit2.http.Query;
 
 public interface RecruitApi {
 
@@ -19,11 +20,11 @@ public interface RecruitApi {
     @GET("/recruit/find/user/{userId}")
     Call<Boolean> findRecruit(@Path("userId") int userId);
 
-    // 모집글에 참가한 사용자의 수
+    // 모집글에 참가한 유저의 수
     @GET("/recruit/participants/count/{recruitId}")
     Call<Integer> getParticipantCount(@Path("recruitId") int recruitId);
 
-    // 모집글에 참가한 유저
+    // 해당모집글에 해당 유저가 존재한다면 true 반환
     @GET("/recruit/find/user/{recruitId}/{userId}")
     Call<Boolean> findUserInRecruit(@Path("recruitId") int recruitId, @Path("userId") int userId);
 
@@ -86,4 +87,12 @@ public interface RecruitApi {
     // 등록자 검색
     @GET("/recruit/find/registrant/{recruitId}")
     Call<ParticipantVO> findRegistrant(@Path("recruitId") int recruitId);
+
+    // 해당 모집글에 참가한 유저 반환
+    @GET("recruit/get/participant/{recruitId}/{userId}")
+    Call<ParticipantVO> getParticipant(@Path("recruitId") int recruitId, @Path("userId") int userId);
+
+    // 결제하기
+    @POST("/recruit/payment")
+    Call<Void> payment(@Query("recruitId") int recruitId, @Query("userId") int userId, @Query("usedPoint") int usedPoint, @Query("content") String content);
 }

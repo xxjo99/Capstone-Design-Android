@@ -58,7 +58,7 @@ public class OptionActivity extends AppCompatActivity {
     public static int menuPrice; // 메뉴의 총 가격
     @SuppressLint("StaticFieldLeak")
     public static Button addMenuBtn; // 장바구니 담기 버튼
-    public static List<String> selectOptionList; // 선택한 옵션의 리스트
+    public static List<Integer> selectOptionList; // 선택한 옵션의 리스트
     public static List<Boolean> selectedOptionFlagList; // 모든 옵션이 선택됐는지 확인
 
     // 개수 텍스트뷰, 증가, 감소 버튼
@@ -184,7 +184,7 @@ public class OptionActivity extends AppCompatActivity {
                 order.setTotalPrice(menuPrice); // 최종 메뉴 가격
 
                 // 선택한 옵션을 텍스트로 변환후 저장
-                String selectOptionStr = String.join(",", selectOptionList);
+                String selectOptionStr = String.join(",", selectOptionList.stream().map(String::valueOf).toArray(String[]::new));
                 order.setSelectOption(selectOptionStr);
 
                 // 장바구니에 다른 매장의 메뉴가 들어있는지 확인후 없다면 장바구니에 메뉴 추가
@@ -199,7 +199,7 @@ public class OptionActivity extends AppCompatActivity {
                 order.setAmount(amount);
                 order.setTotalPrice(menuPrice);
 
-                String selectOptionStr = String.join(",", selectOptionList);
+                String selectOptionStr = String.join(",", selectOptionList.stream().map(String::valueOf).toArray(String[]::new));
                 order.setSelectOption(selectOptionStr);
 
                 addMenuInRecruit(order);
@@ -238,7 +238,7 @@ public class OptionActivity extends AppCompatActivity {
     }
 
     // 가격 수정
-    public static void modifyPrice(int modifyPrice, String optionContentId, int flag) {
+    public static void modifyPrice(int modifyPrice, int optionContentId, int flag) {
         menuPrice = modifyPrice;
         addMenuBtn.setText(menuPrice + "원 담기");
 
@@ -247,6 +247,9 @@ public class OptionActivity extends AppCompatActivity {
             selectOptionList.add(optionContentId);
         } else { // 옵션 제거
             selectOptionList.remove(Integer.valueOf(optionContentId));
+            for (int i = 0; i < selectOptionList.size(); i++) {
+                System.out.println(selectOptionList.get(i));
+            }
         }
 
     }

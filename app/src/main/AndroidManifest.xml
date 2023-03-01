@@ -76,6 +76,7 @@
         <activity android:name=".recruit.RecruitActivity" />
         <activity android:name=".recruit.RecruitOrderListActivity" />
         <activity android:name=".recruit.PaymentActivity" />
+        <activity android:name=".recruit.CompletePaymentActivity" />
 
         <!-- point -->
         <activity
