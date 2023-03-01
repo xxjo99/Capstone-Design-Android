@@ -204,7 +204,7 @@ public class RecruitListAdapter extends RecyclerView.Adapter<RecruitListAdapter.
                             intent.putExtra("storeId", storeId);
                             context.startActivity(intent);
                         } else { // 미참가, 이용제한 확인
-                            checkParticipationRestriction(participateUserId, recruitId, holder, person, place, deliveryTime, storeId);
+                            checkRestriction(participateUserId, recruitId, holder, person, place, deliveryTime, storeId);
                         }
                     }
 
@@ -215,31 +215,6 @@ public class RecruitListAdapter extends RecyclerView.Adapter<RecruitListAdapter.
     }
 
     // 이용제한 확인
-    private void checkParticipationRestriction(int participateUserId, int recruitId, RecruitListAdapter.ViewHolder holder, int person, String place, String deliveryTime, int storeId) {
-        retrofitService = new RetrofitService();
-        userApi = retrofitService.getRetrofit().create(UserApi.class);
-
-        userApi.checkParticipationRestriction(participateUserId)
-                .enqueue(new Callback<Boolean>() {
-                    @Override
-                    public void onResponse(@NonNull Call<Boolean> call, @NonNull Response<Boolean> response) {
-                        Boolean checkParticipationRestrictionFlag = response.body();
-
-                        if (Boolean.TRUE.equals(checkParticipationRestrictionFlag)) { // 이용제한이 없을경우 모집글 상세 다이얼로그 생성
-                            createDialog(participateUserId, recruitId, holder, person, place, deliveryTime, storeId);
-                        } else { // 그렇지 않을 경우 이용제한 지난지 확인
-                            checkRestriction(participateUserId, recruitId, holder, person, place, deliveryTime, storeId);
-                        }
-                    }
-
-                    @Override
-                    public void onFailure(@NonNull Call<Boolean> call, @NonNull Throwable t) {
-
-                    }
-                });
-    }
-
-    // 이용제한 기간 지난지 확인
     private void checkRestriction(int participateUserId, int recruitId, RecruitListAdapter.ViewHolder holder, int person, String place, String deliveryTime, int storeId) {
         retrofitService = new RetrofitService();
         userApi = retrofitService.getRetrofit().create(UserApi.class);
@@ -250,9 +225,9 @@ public class RecruitListAdapter extends RecyclerView.Adapter<RecruitListAdapter.
                     public void onResponse(@NonNull Call<Boolean> call, @NonNull Response<Boolean> response) {
                         Boolean checkRestrictionFlag = response.body();
 
-                        if (Boolean.TRUE.equals(checkRestrictionFlag)) { // 기간 지남, 참가 가능, 다이얼로그 생성
+                        if (Boolean.TRUE.equals(checkRestrictionFlag)) { // 참가 가능, 다이얼로그 생성
                             createDialog(participateUserId, recruitId, holder, person, place, deliveryTime, storeId);
-                        } else { // 기간 지나지 않았을 경우 참가 불가
+                        } else { // 참가불가
                             Toast.makeText(context, "참가 불가", Toast.LENGTH_SHORT).show();
                         }
                     }

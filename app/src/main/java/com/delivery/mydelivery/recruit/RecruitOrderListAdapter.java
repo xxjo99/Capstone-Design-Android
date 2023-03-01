@@ -226,6 +226,12 @@ public class RecruitOrderListAdapter extends RecyclerView.Adapter<RecruitOrderLi
                         RecruitOrderListActivity.totalPriceTV.setText(RecruitOrderListActivity.totalPrice + "원");
                         orderList.remove(position);
                         notifyDataSetChanged();
+
+                        // 삭제 후 장바구니가 비어있다면 레이아웃 변경
+                        if (orderList.size() == 0) {
+                            RecruitOrderListActivity.orderListLayout.setVisibility(View.GONE);
+                            RecruitOrderListActivity.emptyLayout.setVisibility(View.VISIBLE);
+                        }
                     }
 
                     @Override

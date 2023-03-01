@@ -35,9 +35,9 @@ public interface UserApi {
     @POST("/user/restriction/set/period")
     Call<Void> setParticipationRestriction(@Query("userId") int userId);
 
-    // 이용제한 확인
-    @GET("/user/participation/restriction/check/{userId}")
-    Call<Boolean> checkParticipationRestriction(@Path("userId") int userId);
+    // 이용제한 반환
+    @GET("/user/restriction/get/{userId}")
+    public ParticipationRestrictionVO getParticipationRestriction(@Path("userId") int userId);
 
     // 이용제한 지난지 확인, 지났으면 이용제한 제거
     @GET("/user/restriction/check/{userId}")
