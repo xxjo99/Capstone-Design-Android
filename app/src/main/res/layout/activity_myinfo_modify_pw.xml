@@ -45,7 +45,7 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:fontFamily="@font/bmjua_font"
-            android:text="현재 비밀번호와 변경할 비밀번호를"
+            android:text="현재 비밀번호와 변경할"
             android:textColor="@color/black"
             android:textSize="25sp" />
 
@@ -54,7 +54,7 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:fontFamily="@font/bmjua_font"
-            android:text="입력해주세요."
+            android:text="비밀번호를 입력해주세요."
             android:textColor="@color/black"
             android:textSize="25sp" />
 
