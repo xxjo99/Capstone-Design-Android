@@ -94,7 +94,7 @@ public class OrderListActivity extends AppCompatActivity {
     DatePickerDialog datePickerDialog;
 
     // 초기 인원수
-    int person = 1;
+    int person = 2;
 
     // 레트로핏, api
     RetrofitService retrofitService;
@@ -198,6 +198,8 @@ public class OrderListActivity extends AppCompatActivity {
 
         // 초기인원수 지정
         selectPersonTV.setText(person + "명");
+        minusPersonBtn.setBackgroundResource(R.drawable.minus_icon_gray);
+        minusPersonBtn.setEnabled(false);
 
         // 날짜 선택, datePicker 다이얼로그
         datePickerDialog = new DatePickerDialog(context);
@@ -210,11 +212,18 @@ public class OrderListActivity extends AppCompatActivity {
                 selectPersonTV.setText(person + "명");
             }
 
-            if (person <= 1) {
+            if (person == 2) {
                 minusPersonBtn.setBackgroundResource(R.drawable.minus_icon_gray);
+                addPersonBtn.setBackgroundResource(R.drawable.plus_icon);
+
+                minusPersonBtn.setEnabled(false);
+                addPersonBtn.setEnabled(true);
             } else {
                 addPersonBtn.setBackgroundResource(R.drawable.plus_icon);
                 minusPersonBtn.setBackgroundResource(R.drawable.minus_icon);
+
+                minusPersonBtn.setEnabled(true);
+                addPersonBtn.setEnabled(true);
             }
         });
 
@@ -226,16 +235,23 @@ public class OrderListActivity extends AppCompatActivity {
 
             if (person >= 4) {
                 addPersonBtn.setBackgroundResource(R.drawable.plus_icon_gray);
+                minusPersonBtn.setBackgroundResource(R.drawable.minus_icon);
+
+                minusPersonBtn.setEnabled(true);
+                addPersonBtn.setEnabled(false);
             } else {
                 addPersonBtn.setBackgroundResource(R.drawable.plus_icon);
                 minusPersonBtn.setBackgroundResource(R.drawable.minus_icon);
+
+                minusPersonBtn.setEnabled(true);
+                addPersonBtn.setEnabled(true);
             }
         });
 
         // 모집글 등록
         registerBtn.setOnClickListener(view -> {
 
-            if (selectTimeTV.getText().toString().equals("배달 받을 시간을 선택해주세요.")) {
+            if (selectTimeTV.getText().toString().equals("시간 선택")) {
                 Toast.makeText(context, "배달 받을 시간을 선택해주세요.", Toast.LENGTH_SHORT).show();
             } else if (selectPlaceET.length() == 0) {
                 Toast.makeText(context, "배달 받을 장소를 입력해주세요", Toast.LENGTH_SHORT).show();

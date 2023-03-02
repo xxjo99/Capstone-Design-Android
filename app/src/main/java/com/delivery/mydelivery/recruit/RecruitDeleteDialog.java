@@ -1,7 +1,6 @@
 package com.delivery.mydelivery.recruit;
 
 import android.annotation.SuppressLint;
-import android.app.Activity;
 import android.app.Dialog;
 import android.content.Context;
 import android.graphics.Color;
@@ -10,7 +9,6 @@ import android.view.Window;
 import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 
@@ -59,7 +57,7 @@ public class RecruitDeleteDialog {
         if (deleteType == 0) { // 참가인원 2인 미만, 패널티 x
             penaltyTV.setText("삭제하시겠습니까?");
         } else { // 2인 이상, 패널티 o
-            penaltyTV.setText("삭제하시겠습니까?\\n삭제 후 24시간 동안\\n참가와 등록이 제한됩니다.");
+            penaltyTV.setText("삭제하시겠습니까?\n삭제 후 24시간 동안\n참가와 등록이 제한됩니다.");
         }
 
         dialog.show();
@@ -86,9 +84,8 @@ public class RecruitDeleteDialog {
                             setParticipationRestriction(userId);
                         }
 
-                        Toast.makeText(context, "삭제완료", Toast.LENGTH_SHORT).show();
                         dialog.dismiss();
-                        ((Activity) context).finish();
+                        createDialog(deleteType);
                     }
 
                     @Override
@@ -113,5 +110,11 @@ public class RecruitDeleteDialog {
                     public void onFailure(@NonNull Call<Void> call, @NonNull Throwable t) {
                     }
                 });
+    }
+
+    // 삭제완료 안내 다이얼로그 생성, 패널티 구분
+    private void createDialog(int type) {
+        RecruitDeleteNoticeDialog dialog = new RecruitDeleteNoticeDialog(context);
+        dialog.callDialog(type);
     }
 }
