@@ -278,7 +278,7 @@
                         android:layout_height="wrap_content"
                         android:layout_marginLeft="20dp"
                         android:fontFamily="@font/bmjua_font"
-                        android:text="시간선택"
+                        android:text="시간 선택"
                         android:textColor="@color/black"
                         android:textSize="20sp" />
 

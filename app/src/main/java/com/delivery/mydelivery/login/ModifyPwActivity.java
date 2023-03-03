@@ -69,6 +69,10 @@ public class ModifyPwActivity extends AppCompatActivity {
         pwCkET = findViewById(R.id.pwCkET);
         modifyPwBtn = findViewById(R.id.modifyPwBtn);
 
+        // 마스킹문자 변경
+        pwET.setTransformationMethod(new CustomPasswordTransformationMethod());
+        pwCkET.setTransformationMethod(new CustomPasswordTransformationMethod());
+
         // 입력한 이메일
         Intent intent = getIntent();
         String email = intent.getStringExtra("email");

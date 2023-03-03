@@ -7,7 +7,6 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
@@ -20,6 +19,7 @@ import com.delivery.mydelivery.recruit.RecruitVO;
 import com.delivery.mydelivery.retrofit.RetrofitService;
 import com.delivery.mydelivery.store.StoreApi;
 import com.delivery.mydelivery.store.StoreVO;
+import com.delivery.mydelivery.user.ParticipationRestrictionVO;
 import com.delivery.mydelivery.user.UserApi;
 import com.delivery.mydelivery.user.UserVO;
 import com.google.gson.Gson;
@@ -29,6 +29,7 @@ import java.time.LocalDateTime;
 import java.time.ZoneId;
 import java.util.Calendar;
 import java.util.List;
+import java.util.Objects;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -226,8 +227,8 @@ public class SearchResultRecruitAdapter extends RecyclerView.Adapter<SearchResul
 
                         if (Boolean.TRUE.equals(checkRestrictionFlag)) { // 참가 가능, 다이얼로그 생성
                             createDialog(participateUserId, recruitId, holder, person, place, deliveryTime, storeId);
-                        } else { // 참가불가
-                            Toast.makeText(context, "참가 불가", Toast.LENGTH_SHORT).show();
+                        } else { // 참가불가, 이용제한 안내 다이얼로그 생성
+                            createRestrictionDialog(participateUserId);
                         }
                     }
 
@@ -246,6 +247,29 @@ public class SearchResultRecruitAdapter extends RecyclerView.Adapter<SearchResul
         // 매장 이름, 모집인원 수, 현재 참가자 수, 장소, 배달시간, 배달팁, 모집글 아이디, 참가자 아이디, 매장 아이디
         participateDialog.setData(storeName, holder.participantCount, recruitPerson, place, deliveryTime, holder.deliveryTip, recruitId, participateUserId, storeId);
         participateDialog.callDialog();
+    }
+
+    // 이용제한 안내 다이얼로그 생성
+    private void createRestrictionDialog(int userId) {
+        retrofitService = new RetrofitService();
+        userApi = retrofitService.getRetrofit().create(UserApi.class);
+
+        userApi.getParticipationRestriction(userId)
+                .enqueue(new Callback<ParticipationRestrictionVO>() {
+                    @Override
+                    public void onResponse(@NonNull Call<ParticipationRestrictionVO> call, @NonNull Response<ParticipationRestrictionVO> response) {
+                        ParticipationRestrictionVO participationRestriction = response.body();
+                        Timestamp restrictionPeriod = Objects.requireNonNull(participationRestriction).getRestrictionPeriod();
+
+                        ParticipationRestrictionDialog dialog = new ParticipationRestrictionDialog(restrictionPeriod, context);
+                        dialog.callDialog();
+                    }
+
+                    @Override
+                    public void onFailure(@NonNull Call<ParticipationRestrictionVO> call, @NonNull Throwable t) {
+
+                    }
+                });
     }
 
     // 배달 시간 변환

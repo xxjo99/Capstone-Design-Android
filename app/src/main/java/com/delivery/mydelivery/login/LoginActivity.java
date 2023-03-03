@@ -1,6 +1,5 @@
 package com.delivery.mydelivery.login;
 
-import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
@@ -70,6 +69,8 @@ public class LoginActivity extends AppCompatActivity {
         emailET = findViewById(R.id.emailET);
         pwET = findViewById(R.id.pwET);
         loginBtn = findViewById(R.id.loginBtn);
+
+        pwET.setTransformationMethod(new CustomPasswordTransformationMethod()); // 마스킹문자 변경
 
         // 로그인 버튼 이벤트
         loginBtn.setOnClickListener(view -> {

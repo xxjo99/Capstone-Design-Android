@@ -37,7 +37,7 @@ public interface UserApi {
 
     // 이용제한 반환
     @GET("/user/restriction/get/{userId}")
-    public ParticipationRestrictionVO getParticipationRestriction(@Path("userId") int userId);
+    Call<ParticipationRestrictionVO> getParticipationRestriction(@Path("userId") int userId);
 
     // 이용제한 지난지 확인, 지났으면 이용제한 제거
     @GET("/user/restriction/check/{userId}")

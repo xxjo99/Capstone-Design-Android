@@ -1,7 +1,6 @@
 package com.delivery.mydelivery.recruit;
 
 import android.annotation.SuppressLint;
-import android.app.Activity;
 import android.app.Dialog;
 import android.content.Context;
 import android.graphics.Color;
@@ -10,7 +9,6 @@ import android.view.Window;
 import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 
@@ -87,9 +85,8 @@ public class RecruitLeaveDialog {
                             deductPoint(userId, deductPoint);
                         }
 
-                        Toast.makeText(context, "탈퇴완료", Toast.LENGTH_SHORT).show();
                         dialog.dismiss();
-                        ((Activity) context).finish();
+                        createDialog(leaveType, deductPoint);
                     }
 
                     @Override
@@ -132,4 +129,11 @@ public class RecruitLeaveDialog {
                     }
                 });
     }
+
+    // 탈퇴완료 안내 다이얼로그 생성, 포인트 차감, 참가 제한 구분
+    private void createDialog(int type, int deductPoint) {
+        RecruitLeaveNoticeDialog dialog = new RecruitLeaveNoticeDialog(context);
+        dialog.callDialog(type, deductPoint);
+    }
+
 }
