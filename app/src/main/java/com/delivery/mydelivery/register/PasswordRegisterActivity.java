@@ -13,6 +13,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
 import com.delivery.mydelivery.R;
+import com.delivery.mydelivery.login.CustomPasswordTransformationMethod;
 import com.delivery.mydelivery.user.UserVO;
 
 import java.util.Objects;
@@ -57,6 +58,10 @@ public class PasswordRegisterActivity extends AppCompatActivity {
         pwET = findViewById(R.id.pwET);
         pwCkET = findViewById(R.id.pwCkET);
         nextBtn = findViewById(R.id.nextBtn);
+
+        // 마스킹문자 변경
+        pwET.setTransformationMethod(new CustomPasswordTransformationMethod());
+        pwCkET.setTransformationMethod(new CustomPasswordTransformationMethod());
 
         pwRegExCk(); // 실시간 비밀번호 정규식 검사
         pwMatchingCk(); // 실시간 비밀번호 일치 검사

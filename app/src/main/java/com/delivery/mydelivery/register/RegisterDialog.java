@@ -25,7 +25,7 @@ public class RegisterDialog {
         final Dialog dialog = new Dialog(context);
 
         dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
-        dialog.setContentView(R.layout.dialog_cancel_register);
+        dialog.setContentView(R.layout.dialog_register_cancel);
         dialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
 
         // 크기 지정

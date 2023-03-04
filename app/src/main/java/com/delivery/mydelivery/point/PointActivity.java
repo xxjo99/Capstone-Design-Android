@@ -272,6 +272,12 @@ public class PointActivity extends AppCompatActivity {
                         pointHistory.setContent("포인트 충전");
 
                         addPoint(user, pointHistory);
+
+                        Intent pointCompleteIntent = new Intent(PointActivity.this, PointCompleteActivity.class);
+                        pointCompleteIntent.putExtra("addPoint", (int) point);
+                        pointCompleteIntent.putExtra("afterPoint", userPoint);
+                        startActivity(pointCompleteIntent);
+
                         finish();
                     }
 
