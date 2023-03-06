@@ -95,4 +95,9 @@ public interface RecruitApi {
     // 결제하기
     @POST("/recruit/payment")
     Call<Void> payment(@Query("recruitId") int recruitId, @Query("userId") int userId, @Query("usedPoint") int usedPoint, @Query("content") String content);
+
+    // 마감시간이 지나고, 결제가 완료되지 않은 유저가 있다면 포인트 차감 후 강퇴
+    @POST("/recruit/check/paymentStatus")
+    Call<Void> checkParticipantPaymentStatus(@Query("recruitId") int recruitId);
+
 }
