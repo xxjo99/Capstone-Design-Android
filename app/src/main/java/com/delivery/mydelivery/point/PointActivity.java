@@ -7,6 +7,7 @@ import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.util.Log;
+import android.view.MotionEvent;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -67,6 +68,7 @@ public class PointActivity extends AppCompatActivity {
 
     Context context; // context
 
+    @SuppressLint("ClickableViewAccessibility")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -112,6 +114,19 @@ public class PointActivity extends AppCompatActivity {
         }
 
         pointCk(); // 입력한 금액 검사
+
+        // 금액 삭제
+        pointET.setOnTouchListener((v, event) -> {
+            final int DRAWABLE_RIGHT = 2;
+
+            if (event.getAction() == MotionEvent.ACTION_UP) {
+                if (event.getRawX() >= (pointET.getRight() - pointET.getCompoundDrawables()[DRAWABLE_RIGHT].getBounds().width())) {
+                    pointET.setText(null);
+                    return true;
+                }
+            }
+            return false;
+        });
 
         // 금액 추가
         add1Btn.setOnClickListener(view -> {
