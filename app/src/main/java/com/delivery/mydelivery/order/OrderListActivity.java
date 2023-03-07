@@ -254,7 +254,7 @@ public class OrderListActivity extends AppCompatActivity {
             if (selectTimeTV.getText().toString().equals("시간 선택")) {
                 Toast.makeText(context, "배달 받을 시간을 선택해주세요.", Toast.LENGTH_SHORT).show();
             } else if (selectPlaceET.length() == 0) {
-                Toast.makeText(context, "배달 받을 장소를 입력해주세요", Toast.LENGTH_SHORT).show();
+                Toast.makeText(context, "배달 받을 장소를 입력해주세요.", Toast.LENGTH_SHORT).show();
             } else {
                 // 객체 생성, 객체에 필요한 데이터 추가
                 RecruitVO recruit = new RecruitVO();
@@ -264,7 +264,7 @@ public class OrderListActivity extends AppCompatActivity {
                 recruit.setStoreId(storeId); // 매장 아이디
                 recruit.setPlace(selectPlaceET.getText().toString()); // 배달장소
                 recruit.setPerson(person); // 모집인원
-                // recruit.setDeliveryTime(dateTime); // 배달 시간
+                recruit.setDeliveryStart(0); // 배달 시작 구분, 초기값 0
 
                 registerRecruit(recruit);// 모집글 등록
             }

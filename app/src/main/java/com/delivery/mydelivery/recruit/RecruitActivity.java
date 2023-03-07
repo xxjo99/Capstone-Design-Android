@@ -44,9 +44,10 @@ import retrofit2.Response;
 @SuppressLint("SetTextI18n")
 public class RecruitActivity extends AppCompatActivity {
 
-    // 삭제, 탈퇴 dialog
+    // dialog
     RecruitDeleteDialog recruitDeleteDialog;
     RecruitLeaveDialog recruitLeaveDialog;
+    RecruitPaymentNoticeDialog recruitPaymentNoticeDialog;
 
     // 툴바, 툴바 버튼
     Toolbar toolbar;
@@ -102,6 +103,9 @@ public class RecruitActivity extends AppCompatActivity {
         Intent intent = getIntent();
         int storeId = intent.getIntExtra("storeId", 0);
         int recruitId = intent.getIntExtra("recruitId", 0);
+
+        // 결제를 완료하지 않은 인원이 있다면 강퇴
+        checkParticipantPaymentStatus(recruitId);
 
         // 사용자정보
         String loginInfo = PreferenceManager.getLoginInfo(context);
@@ -483,7 +487,6 @@ public class RecruitActivity extends AppCompatActivity {
                     public void onResponse(@NonNull Call<ParticipantVO> call, @NonNull Response<ParticipantVO> response) {
                         ParticipantVO participant = response.body();
                         int paymentStatus = Objects.requireNonNull(participant).getPaymentStatus();
-                        System.out.println(paymentStatus);
 
                         if (paymentStatus == 0) {
                             checkDeliveryTime(recruitId);
@@ -523,14 +526,23 @@ public class RecruitActivity extends AppCompatActivity {
                         // 현재시간과 배달시간 비교
                         if (!deliveryTime.isAfter(currentTime)) { // 배달시간이 현재시간 이후일경우 결제버튼 활성화
 
-                            if (deleteBtn.getText().toString().equals("삭제하기")) { // 등록자일경우 참가한 인원 검사
-                                checkParticipantCount(recruitId);
+                            if (deleteBtn.getText().toString().equals("삭제하기")) { // 등록자일경우 참가인원 수에 따라 탈퇴, 삭제 버튼 변경
+                                isMoreThanTwo(recruitId);
                             } else {
                                 paymentBtn.setEnabled(true);
                                 paymentBtn.setBackgroundResource(R.drawable.btn_fill_mint);
                                 paymentBtn.setText("결제하기");
                                 deleteBtn.setText("탈퇴하기");
                             }
+
+                            LocalDateTime paymentDeadline = deliveryTime.plusMinutes(10); // 결제마감시간 = 배달시간 + 10분
+
+                            // 결제 안내 다이얼로그 생성
+                            if (!currentTime.isAfter(paymentDeadline)) {
+                                recruitPaymentNoticeDialog = new RecruitPaymentNoticeDialog(paymentDeadline, context);
+                                recruitPaymentNoticeDialog.callDialog();
+                            }
+
                         } else {
                             int month = deliveryTime.getMonthValue(); // 월
                             int day = deliveryTime.getDayOfMonth(); // 일
@@ -558,8 +570,8 @@ public class RecruitActivity extends AppCompatActivity {
                 });
     }
 
-    // 참가자수 검사
-    private void checkParticipantCount(int recruitId) {
+    // 참가자 수가 2명 이상 인지 검사, 2명 미만일 경우 삭제, 이상일 경우 탈퇴 버튼으로 변경
+    private void isMoreThanTwo(int recruitId) {
         retrofitService = new RetrofitService();
         recruitApi = retrofitService.getRetrofit().create(RecruitApi.class);
 
@@ -569,8 +581,8 @@ public class RecruitActivity extends AppCompatActivity {
                     public void onResponse(@NonNull Call<Integer> call, @NonNull Response<Integer> response) {
                         Integer participantCount = response.body();
 
-                        if (participantCount < 2) { // 참가자수 2명 미만일경우 삭제
-                            paymentBtn.setEnabled(true);
+                        if (participantCount < 2) { // 참가자수 2명 미만일경우 삭제로 변경
+                            paymentBtn.setEnabled(false);
                             paymentBtn.setBackgroundResource(R.drawable.btn_fill_gray);
                             paymentBtn.setText("2명미만, 배달불가");
                             deleteBtn.setText("삭제하기");
@@ -620,7 +632,80 @@ public class RecruitActivity extends AppCompatActivity {
 
                     }
                 });
+    }
 
+    // 마감시간이 지나고, 2명 이상일 경우 결제가 완료되지 않은 유저가 있다면 포인트 차감 후 강퇴
+    private void checkParticipantPaymentStatus(int recruitId) {
+        retrofitService = new RetrofitService();
+        recruitApi = retrofitService.getRetrofit().create(RecruitApi.class);
+
+        recruitApi.getRecruit(recruitId)
+                .enqueue(new Callback<RecruitVO>() {
+                    @Override
+                    public void onResponse(@NonNull Call<RecruitVO> call, @NonNull Response<RecruitVO> response) {
+                        RecruitVO recruit = response.body();
+
+                        LocalDateTime currentTime = LocalDateTime.now(); // 현재시간
+                        // 배달시간
+                        Timestamp timestamp = Objects.requireNonNull(recruit).getDeliveryTime();
+                        Instant instant = timestamp.toInstant();
+                        LocalDateTime deliveryTime = instant.atZone(ZoneId.of("Asia/Seoul")).toLocalDateTime();
+
+                        LocalDateTime paymentDeadline = deliveryTime.plusMinutes(10); // 결제마감시간 = 배달시간 + 10분
+
+                        // 결제마감시간이 지났을 때 참가인원 수 검사
+                        if (currentTime.isAfter(paymentDeadline)) {
+                            checkParticipantCount(recruitId);
+                        }
+                    }
+
+                    @Override
+                    public void onFailure(@NonNull Call<RecruitVO> call, @NonNull Throwable t) {
+                    }
+                });
+    }
+
+    // 참가인원 수 검사
+    private void checkParticipantCount(int recruitId) {
+        retrofitService = new RetrofitService();
+        recruitApi = retrofitService.getRetrofit().create(RecruitApi.class);
+
+        recruitApi.getParticipantCount(recruitId)
+                .enqueue(new Callback<Integer>() {
+                    @Override
+                    public void onResponse(@NonNull Call<Integer> call, @NonNull Response<Integer> response) {
+                        Integer participantCount = response.body();
+
+                        // 2명 이상일 경우 결제하지 않은 인원 강퇴
+                        if (participantCount >= 2) {
+                            kickUser(recruitId);
+                        }
+                    }
+
+                    @Override
+                    public void onFailure(@NonNull Call<Integer> call, @NonNull Throwable t) {
+
+                    }
+                });
+    }
+
+    // 결제가 완료되지 않은 유저가 있다면 포인트 차감 후 강퇴
+    private void kickUser(int recruitId) {
+        retrofitService = new RetrofitService();
+        recruitApi = retrofitService.getRetrofit().create(RecruitApi.class);
+
+        recruitApi.checkParticipantPaymentStatus(recruitId)
+                .enqueue(new Callback<Void>() {
+                    @Override
+                    public void onResponse(@NonNull Call<Void> call, @NonNull Response<Void> response) {
+                        // 강퇴 후 배달승인대기로 변경
+                        paymentBtn.setText("배달승인대기중");
+                    }
+
+                    @Override
+                    public void onFailure(@NonNull Call<Void> call, @NonNull Throwable t) {
+                    }
+                });
     }
 
     // 디바이스 넓이

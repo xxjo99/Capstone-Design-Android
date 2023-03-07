@@ -49,7 +49,7 @@ public class MyPostFragment extends Fragment {
 
     // 레트로핏, api
     RetrofitService retrofitService;
-    RecruitApi api;
+    RecruitApi recruitApi;
 
     @Nullable
     @Override
@@ -90,9 +90,9 @@ public class MyPostFragment extends Fragment {
 
     private void setRecruitList(int userId) {
         retrofitService = new RetrofitService();
-        api = retrofitService.getRetrofit().create(RecruitApi.class);
+        recruitApi = retrofitService.getRetrofit().create(RecruitApi.class);
 
-        api.findRecruitList(userId)
+        recruitApi.findRecruitList(userId)
                 .enqueue(new Callback<List<RecruitVO>>() {
                     @Override
                     public void onResponse(@NonNull Call<List<RecruitVO>> call, @NonNull Response<List<RecruitVO>> response) {

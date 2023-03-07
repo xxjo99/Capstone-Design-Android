@@ -36,6 +36,9 @@ public class PaymentActivity extends AppCompatActivity {
     Toolbar toolbar;
     ImageButton backBtn;
 
+    // 남은 결제시간 다이얼로그
+    RecruitRemainPaymentTimeDialog remainPaymentTimeDialog;
+
     TextView placeTV;
     TextView phoneNumTV;
 
@@ -73,9 +76,7 @@ public class PaymentActivity extends AppCompatActivity {
         setSupportActionBar(toolbar);
         Objects.requireNonNull(getSupportActionBar()).setDisplayShowTitleEnabled(false);
 
-        // 뒤로가기 버튼
-        backBtn = findViewById(R.id.backBtn);
-        backBtn.setOnClickListener(view -> finish());
+        backBtn = findViewById(R.id.backBtn); // 뒤로가기 버튼
 
         // 전 액티비티에서 넘겨받은 값
         Intent intent = getIntent();
@@ -87,6 +88,9 @@ public class PaymentActivity extends AppCompatActivity {
         String deliveryTip = intent.getStringExtra("deliveryTip");
         String finalDeliveryTip = intent.getStringExtra("finalDeliveryTip");
         String finalPayment = intent.getStringExtra("finalPayment");
+
+        // 남은시간 다이얼로그 생성
+        backBtn.setOnClickListener(view -> createRemainPaymentTimeDialog(recruitId));
 
         // 유저 정보
         String loginInfo = PreferenceManager.getLoginInfo(this);
@@ -160,6 +164,27 @@ public class PaymentActivity extends AppCompatActivity {
 
         });
 
+    }
+
+    // 남은 결제 시간 다이얼로그 생성
+    private void createRemainPaymentTimeDialog(int recruitId) {
+        retrofitService = new RetrofitService();
+        recruitApi = retrofitService.getRetrofit().create(RecruitApi.class);
+
+        recruitApi.getRecruit(recruitId)
+                .enqueue(new Callback<RecruitVO>() {
+                    @Override
+                    public void onResponse(@NonNull Call<RecruitVO> call, @NonNull Response<RecruitVO> response) {
+                        RecruitVO recruit = response.body();
+                        remainPaymentTimeDialog = new RecruitRemainPaymentTimeDialog(recruit, context);
+                        remainPaymentTimeDialog.callDialog();
+                    }
+
+                    @Override
+                    public void onFailure(@NonNull Call<RecruitVO> call, @NonNull Throwable t) {
+
+                    }
+                });
     }
 
     // 결제

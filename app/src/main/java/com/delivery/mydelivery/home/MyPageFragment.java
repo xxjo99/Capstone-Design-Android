@@ -10,6 +10,7 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.TextView;
 
+import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
@@ -20,8 +21,16 @@ import com.delivery.mydelivery.myInfo.MyInfoActivity;
 import com.delivery.mydelivery.point.PointActivity;
 import com.delivery.mydelivery.point.PointHistoryActivity;
 import com.delivery.mydelivery.preferenceManager.PreferenceManager;
+import com.delivery.mydelivery.retrofit.RetrofitService;
+import com.delivery.mydelivery.user.UserApi;
 import com.delivery.mydelivery.user.UserVO;
 import com.google.gson.Gson;
+
+import java.util.Objects;
+
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 // 내정보 프래그먼트
 public class MyPageFragment extends Fragment {
@@ -43,6 +52,10 @@ public class MyPageFragment extends Fragment {
     View view;
     Context context;
 
+    // 레트로핏, api
+    RetrofitService retrofitService;
+    UserApi userApi;
+
     @SuppressLint("SetTextI18n")
     @Nullable
     @Override
@@ -61,8 +74,6 @@ public class MyPageFragment extends Fragment {
         userNameTV = view.findViewById(R.id.userNameTV);
         logoutBtn = view.findViewById(R.id.logoutBtn);
 
-        userNameTV.setText(user.getName()); // 사용자 닉네임
-
         // 로그아웃
         logoutBtn.setOnClickListener(view -> {
             PreferenceManager.logout(context);
@@ -77,7 +88,7 @@ public class MyPageFragment extends Fragment {
         addPointBtn = view.findViewById(R.id.addPointBtn);
         pointHistoryBtn = view.findViewById(R.id.pointHistoryBtn);
 
-        pointTV.setText(user.getPoint() + "P");// 보유 포인트
+        setUserInfo(user.getUserId()); // 유저정보 추가
 
         // 충전페이지 이동
         addPointBtn.setOnClickListener(view -> {
@@ -108,6 +119,29 @@ public class MyPageFragment extends Fragment {
         });
 
         return view;
+    }
+
+    // 유저정보 추가
+    private void setUserInfo(int userId) {
+        retrofitService = new RetrofitService();
+        userApi = retrofitService.getRetrofit().create(UserApi.class);
+
+        userApi.getUser(userId)
+                .enqueue(new Callback<UserVO>() {
+                    @SuppressLint("SetTextI18n")
+                    @Override
+                    public void onResponse(@NonNull Call<UserVO> call, @NonNull Response<UserVO> response) {
+                        UserVO user = response.body();
+
+                        userNameTV.setText(Objects.requireNonNull(user).getName());
+                        pointTV.setText(user.getPoint() + "P");
+                    }
+
+                    @Override
+                    public void onFailure(@NonNull Call<UserVO> call, @NonNull Throwable t) {
+
+                    }
+                });
     }
 
 }

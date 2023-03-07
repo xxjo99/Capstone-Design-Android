@@ -12,6 +12,7 @@ public class RecruitVO {
     private String place;
     private Timestamp deliveryTime;
     private int person;
+    private int deliveryStart;
 
     public int getRecruitId() {
         return recruitId;
@@ -69,16 +70,11 @@ public class RecruitVO {
         this.person = person;
     }
 
-    @Override
-    public String toString() {
-        return "RecruitVO{" +
-                "recruitId=" + recruitId +
-                ", userId=" + userId +
-                ", registrantPlace='" + registrantPlace + '\'' +
-                ", storeId=" + storeId +
-                ", place='" + place + '\'' +
-                ", deliveryTime=" + deliveryTime +
-                ", person=" + person +
-                '}';
+    public int getDeliveryStart() {
+        return deliveryStart;
+    }
+
+    public void setDeliveryStart(int deliveryStart) {
+        this.deliveryStart = deliveryStart;
     }
 }
