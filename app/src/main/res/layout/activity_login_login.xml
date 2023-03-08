@@ -48,7 +48,7 @@
                 android:hint="@string/loginEmailInput"
                 android:padding="18dp"
                 android:singleLine="true"
-                android:textSize="20sp" />
+                android:textSize="18sp" />
 
         </com.google.android.material.textfield.TextInputLayout>
 
@@ -69,7 +69,7 @@
                 android:inputType="textPassword"
                 android:padding="18dp"
                 android:singleLine="true"
-                android:textSize="20sp" />
+                android:textSize="18sp" />
 
         </com.google.android.material.textfield.TextInputLayout>
 

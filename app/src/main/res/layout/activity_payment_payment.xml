@@ -90,20 +90,94 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="10dp"
                     android:layout_marginBottom="5dp"
                     android:fontFamily="@font/bmjua_font"
                     android:text="@string/request"
                     android:textColor="@color/black"
-                    android:textSize="18sp" />
+                    android:textSize="16sp" />
+
+                <!-- 요청 사항 -->
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="45dp"
+                    android:background="@drawable/btn_fill3_mint"
+                    android:orientation="horizontal">
+                    <CheckBox
+                        android:layout_gravity="center_vertical"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="5dp">
+                    </CheckBox>
+
+                    <TextView
+                        android:layout_gravity="center_vertical"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="일회용 수저, 포크 안 주셔도 돼요"
+                        android:fontFamily="@font/bmjua_font"
+                        android:textColor="@color/black"
+                        android:textSize="15dp">
+                    </TextView>
+
+                </LinearLayout>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="5dp"
+                    android:layout_marginTop="15dp"
+                    android:fontFamily="@font/bmjua_font"
+                    android:text="가게 사장님께"
+                    android:textColor="@color/gray4"
+                    android:textSize="15sp" />
 
                 <EditText
-                    android:id="@+id/emailET"
+                    android:id="@+id/storeET"
                     android:layout_width="match_parent"
+                    android:layout_height="45dp"
+                    android:layout_marginTop="5dp"
+                    android:background="@drawable/btn_fill3_gray"
+                    android:fontFamily="@font/bmjua_font"
+                    android:hint="@string/enter_request_store"
+                    android:paddingLeft="12dp"
+                    android:textSize="15sp" />
+
+            </LinearLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_marginTop="5dp"
+                android:layout_marginBottom="5dp"
+                android:background="@color/gray" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="15dp"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:fontFamily="@font/bmjua_font"
-                    android:hint="@string/enter_request"
+                    android:text="라이더님께"
+                    android:textColor="@color/gray4"
                     android:textSize="15sp" />
+
+                <EditText
+                    android:id="@+id/riderET"
+                    android:layout_width="match_parent"
+                    android:layout_height="45dp"
+                    android:layout_marginTop="5dp"
+                    android:layout_marginBottom="5dp"
+                    android:background="@drawable/btn_fill3_gray"
+                    android:fontFamily="@font/bmjua_font"
+                    android:hint="@string/enter_request_rider"
+                    android:paddingLeft="12dp"
+                    android:textSize="15sp" />
+
+
 
             </LinearLayout>
 
