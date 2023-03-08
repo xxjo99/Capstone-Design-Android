@@ -31,6 +31,10 @@ public interface UserApi {
     @POST("/user/modify")
     Call<UserVO> modify(@Body UserVO user);
 
+    // 토큰 저장
+    @POST("/user/set/token")
+    Call<Void> setToken(@Query("email") String email, @Query("token") String token);
+
     // 이용제한 생성
     @POST("/user/restriction/set/period")
     Call<Void> setParticipationRestriction(@Query("userId") int userId);

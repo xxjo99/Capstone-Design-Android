@@ -16,6 +16,8 @@ import androidx.fragment.app.Fragment;
 
 import com.delivery.mydelivery.MainActivity;
 import com.delivery.mydelivery.R;
+import com.delivery.mydelivery.firebase.FirebaseApi;
+import com.delivery.mydelivery.firebase.MessageDTO;
 import com.delivery.mydelivery.myInfo.ModifyPwActivity;
 import com.delivery.mydelivery.myInfo.MyInfoActivity;
 import com.delivery.mydelivery.point.PointActivity;
@@ -28,6 +30,7 @@ import com.google.gson.Gson;
 
 import java.util.Objects;
 
+import okhttp3.ResponseBody;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -143,5 +146,7 @@ public class MyPageFragment extends Fragment {
                     }
                 });
     }
+
+
 
 }
