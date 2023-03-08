@@ -19,7 +19,6 @@
         <EditText
             android:id="@+id/searchET"
             android:layout_width="match_parent"
-            android:layout_marginTop="20dp"
             android:layout_height="45dp"
             android:background="@drawable/et_fill_gray"
             android:drawableStart="@drawable/search_icon"
@@ -32,6 +31,30 @@
             android:padding="10dp"
             android:singleLine="true"
             android:textColorHint="@color/gray2" />
+
+    </LinearLayout>
+
+    <!-- 가게를 검색해보세요 부분 -->
+    <LinearLayout
+        android:id="@+id/searchImageLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="60dp"
+        android:gravity="center"
+        android:orientation="vertical">
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/search_icon2" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/bmjua_font"
+            android:text="가게를 검색해보세요"
+            android:textColor="@color/gray2"
+            android:textSize="25dp" />
 
     </LinearLayout>
 

@@ -113,7 +113,7 @@
     <string name="hello_blank_fragment">Hello blank fragment</string>
 
     <string name="point">포인트</string>
-    <string name="addPoint">충전</string>
+    <string name="addPoint">충전하기</string>
     <string name="pointHistory">포인트 이용내역</string>
 
 </resources>
