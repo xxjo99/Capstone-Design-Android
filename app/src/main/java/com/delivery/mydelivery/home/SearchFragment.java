@@ -13,7 +13,6 @@ import android.widget.LinearLayout;
 
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentTransaction;
 import androidx.viewpager2.widget.ViewPager2;
 
 import com.delivery.mydelivery.R;
@@ -30,6 +29,7 @@ public class SearchFragment extends Fragment {
     EditText searchET;
 
     // 레이아웃, 탭 레이아웃, 뷰페이저
+    LinearLayout searchImageLayout;
     LinearLayout searchFragmentLayout;
     LinearLayout searchResultLayout;
     TabLayout searchTab;
@@ -58,6 +58,7 @@ public class SearchFragment extends Fragment {
         searchET = view.findViewById(R.id.searchET);
 
         // 레이아웃, 탭 레이아웃, 뷰페이저 초기화
+        searchImageLayout = view.findViewById(R.id.searchImageLayout);
         searchFragmentLayout = view.findViewById(R.id.searchFragmentLayout);
         searchResultLayout = view.findViewById(R.id.searchResultLayout);
         searchTab = view.findViewById(R.id.searchTab);
@@ -82,6 +83,7 @@ public class SearchFragment extends Fragment {
                 SearchResultRecruit.searchRecruitResult(keyword, user.getSchool());
 
                 searchResultLayout.setVisibility(View.VISIBLE);
+                searchImageLayout.setVisibility(View.GONE);
             }
             return true;
         });

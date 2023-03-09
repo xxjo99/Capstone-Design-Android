@@ -112,6 +112,11 @@
                 android:layout_height="wrap_content"
                 android:nestedScrollingEnabled="false" />
 
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="@color/gray" />
+
             <Button
                 android:id="@+id/addMenuBtn"
                 android:layout_width="match_parent"

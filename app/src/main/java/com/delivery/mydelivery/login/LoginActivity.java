@@ -15,9 +15,11 @@ import androidx.appcompat.widget.Toolbar;
 
 import com.delivery.mydelivery.MainActivity;
 import com.delivery.mydelivery.R;
+import com.delivery.mydelivery.firebase.FirebaseMessagingService;
 import com.delivery.mydelivery.home.HomeActivity;
 import com.delivery.mydelivery.preferenceManager.PreferenceManager;
 import com.delivery.mydelivery.register.EmailRegisterActivity;
+import com.delivery.mydelivery.user.UserApi;
 import com.delivery.mydelivery.user.UserVO;
 import com.delivery.mydelivery.retrofit.RetrofitService;
 import com.google.gson.Gson;
@@ -44,7 +46,8 @@ public class LoginActivity extends AppCompatActivity {
     TextView findPwTV;
 
     RetrofitService retrofitService;
-    LoginApi api;
+    LoginApi loginApi;
+    UserApi userApi;
     Gson gson;
 
     Context context;
@@ -109,12 +112,15 @@ public class LoginActivity extends AppCompatActivity {
     private void login(String email, String pw) {
         // 레트로핏, api 초기화
         retrofitService = new RetrofitService();
-        api = retrofitService.getRetrofit().create(LoginApi.class);
+        loginApi = retrofitService.getRetrofit().create(LoginApi.class);
 
-        api.login(email, pw)
+        loginApi.login(email, pw)
                 .enqueue(new Callback<UserVO>() {
                     @Override
                     public void onResponse(@NonNull Call<UserVO> call, @NonNull Response<UserVO> response) {
+                        // 토큰 생성후 저장
+                        FirebaseMessagingService firebaseMessagingService = new FirebaseMessagingService(email);
+                        
                         Toast.makeText(LoginActivity.this, "로그인 성공", Toast.LENGTH_SHORT).show();
 
                         UserVO userInfo = response.body(); // 유저 정보를 받아옴
@@ -140,4 +146,5 @@ public class LoginActivity extends AppCompatActivity {
                     }
                 });
     }
+
 }

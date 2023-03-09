@@ -43,7 +43,6 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="5dp"
             android:layout_marginBottom="10dp"
             android:fontFamily="@font/bmjua_font"
             android:text="@string/email"
@@ -57,7 +56,6 @@
             android:backgroundTint="@color/gray4"
             android:enabled="false"
             android:fontFamily="@font/bmjua_font"
-            android:paddingStart="8dp"
             android:paddingBottom="15dp"
             android:text="@string/email"
             android:textColor="@color/gray4"
@@ -75,7 +73,6 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="5dp"
             android:layout_marginBottom="10dp"
             android:fontFamily="@font/bmjua_font"
             android:text="@string/name"
@@ -88,9 +85,8 @@
             android:layout_height="wrap_content"
             android:backgroundTint="@color/gray4"
             android:fontFamily="@font/bmjua_font"
-            android:paddingStart="8dp"
-            android:singleLine="true"
             android:paddingBottom="15dp"
+            android:singleLine="true"
             android:text="@string/name"
             android:textColor="@color/black"
             android:textSize="17sp"
@@ -107,7 +103,6 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="5dp"
             android:layout_marginBottom="10dp"
             android:fontFamily="@font/bmjua_font"
             android:text="@string/phone_num"
@@ -121,9 +116,41 @@
             android:backgroundTint="@color/gray4"
             android:fontFamily="@font/bmjua_font"
             android:inputType="number"
-            android:paddingStart="8dp"
             android:paddingBottom="15dp"
+            android:singleLine="true"
             android:text="@string/phone_num"
+            android:textColor="@color/black"
+            android:textSize="17sp"
+            tools:ignore="RtlSymmetry" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="20dp"
+        android:orientation="vertical">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="10dp"
+            android:fontFamily="@font/bmjua_font"
+            android:text="@string/school"
+            android:textColor="@color/gray3"
+            android:textSize="17sp" />
+
+        <AutoCompleteTextView
+            android:id="@+id/schoolET"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:backgroundTint="@color/gray4"
+            android:completionThreshold="1"
+            android:fontFamily="@font/bmjua_font"
+            android:inputType="number"
+            android:paddingBottom="15dp"
+            android:singleLine="true"
+            android:text="@string/school"
             android:textColor="@color/black"
             android:textSize="17sp"
             tools:ignore="RtlSymmetry" />

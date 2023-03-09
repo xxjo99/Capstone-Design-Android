@@ -12,6 +12,7 @@ public class UserVO implements Serializable {
     private String phoneNum; // 사용자 휴대폰 번호
     private String school; // 학교
     private int point; // 포인트
+    private String token; // 토큰
 
     public int getUserId() {
         return userId;
@@ -69,16 +70,11 @@ public class UserVO implements Serializable {
         this.point = point;
     }
 
-    @Override
-    public String toString() {
-        return "UserVO{" +
-                "userId=" + userId +
-                ", email='" + email + '\'' +
-                ", pw='" + pw + '\'' +
-                ", name='" + name + '\'' +
-                ", phoneNum='" + phoneNum + '\'' +
-                ", school='" + school + '\'' +
-                ", point=" + point +
-                '}';
+    public String getToken() {
+        return token;
+    }
+
+    public void setToken(String token) {
+        this.token = token;
     }
 }
