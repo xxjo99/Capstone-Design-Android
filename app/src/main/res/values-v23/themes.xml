@@ -19,6 +19,5 @@
         <item name="android:windowActionBarOverlay">true</item>
         <item name="windowNoTitle">true</item>
         <!-- 배경색 설정 - 하얀색 -->
-        <item name="android:windowBackground">@color/white</item>
     </style>
 </resources>

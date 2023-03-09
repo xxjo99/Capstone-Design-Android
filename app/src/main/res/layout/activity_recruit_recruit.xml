@@ -183,6 +183,27 @@
 
             </LinearLayout>
 
+            <!-- 파티원이 없을 때 -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginTop="50dp"
+                android:layout_marginBottom="50dp"
+                android:orientation="vertical"
+                android:visibility="gone">
+
+                <TextView
+                    android:id="@+id/textView2"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="15dp"
+                    android:layout_marginBottom="15dp"
+                    android:fontFamily="@font/bmjua_font"
+                    android:gravity="center"
+                    android:text="모집글 참가자가 없습니다."
+                    android:textSize="18sp" />
+            </LinearLayout>
+
             <View
                 android:layout_width="match_parent"
                 android:layout_height="7dp"
@@ -191,6 +212,7 @@
                 android:background="@color/gray" />
 
             <!-- 내 배달정보 -->
+
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
