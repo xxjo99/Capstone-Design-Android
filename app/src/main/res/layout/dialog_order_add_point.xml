@@ -40,7 +40,8 @@
             android:layout_weight="1"
             android:fontFamily="@font/bmjua_font"
             android:text="충전하기"
-            android:textColor="@color/green"
+            android:background="@drawable/btn_border_left_fill_mint"
+            android:textColor="@color/white"
             android:textSize="20sp" />
 
         <Button
@@ -49,6 +50,7 @@
             android:layout_width="wrap_content"
             android:layout_height="55dp"
             android:layout_weight="1"
+            android:background="@drawable/btn_right_fill3_gray"
             android:fontFamily="@font/bmjua_font"
             android:text="@string/cancel"
             android:textColor="@color/black"

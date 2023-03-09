@@ -55,7 +55,7 @@
                 android:layout_weight="1"
                 android:fontFamily="@font/bmjua_font"
                 android:text="@string/confirm"
-                android:background="@drawable/btn_left_fill3_gray"
+                android:background="@drawable/btn_left_fill3_mint"
                 android:textColor="@color/white"
                 android:textSize="22sp" />
 

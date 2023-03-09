@@ -119,4 +119,6 @@
     <string name="addPoint">충전하기</string>
     <string name="pointHistory">포인트 이용내역</string>
 
+    <string name="orderHistory">주문내역</string>
+    <string name="order_store_History">매장 이름</string>
 </resources>

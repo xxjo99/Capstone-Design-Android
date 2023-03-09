@@ -1,11 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools">
-
     <!-- 네트워크 사용위한 퍼미션 -->
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
-
 
     <application
         android:allowBackup="true"
@@ -18,7 +16,13 @@
         android:theme="@style/Theme.MyDelivery"
         android:usesCleartextTraffic="true"
         tools:targetApi="31">
-
+        <activity
+            android:name=".order.order_history"
+            android:exported="false">
+            <meta-data
+                android:name="android.app.lib_name"
+                android:value="" />
+        </activity>
         <activity
             android:name=".MainActivity"
             android:exported="true">
@@ -31,9 +35,7 @@
             <meta-data
                 android:name="android.app.lib_name"
                 android:value="" />
-        </activity>
-
-        <!-- register -->
+        </activity> <!-- register -->
         <activity
             android:name=".register.EmailRegisterActivity"
             android:windowSoftInputMode="adjustResize" />
@@ -48,53 +50,36 @@
             android:windowSoftInputMode="adjustResize" />
         <activity
             android:name=".register.CompleteActivity"
-            android:windowSoftInputMode="adjustResize" />
-
-        <!-- login -->
+            android:windowSoftInputMode="adjustResize" /> <!-- login -->
         <activity android:name=".login.LoginActivity" />
         <activity
             android:name=".login.FindPwActivity"
             android:windowSoftInputMode="adjustResize" />
         <activity
             android:name=".login.ModifyPwActivity"
-            android:windowSoftInputMode="adjustResize" />
-
-        <!-- home -->
+            android:windowSoftInputMode="adjustResize" /> <!-- home -->
         <activity
             android:name=".home.HomeActivity"
-            android:windowSoftInputMode="adjustPan|stateHidden" />
-
-        <!-- store -->
-        <activity android:name=".store.StoreActivity" />
-
-        <!-- menu -->
+            android:windowSoftInputMode="adjustPan|stateHidden" /> <!-- store -->
+        <activity android:name=".store.StoreActivity" /> <!-- menu -->
         <activity android:name=".menu.MenuListActivity" />
-        <activity android:name=".menu.OptionActivity" />
-
-        <!-- order -->
-        <activity android:name=".order.OrderListActivity" />
-
-        <!-- recruit -->
+        <activity android:name=".menu.OptionActivity" /> <!-- order -->
+        <activity android:name=".order.OrderListActivity" /> <!-- recruit -->
         <activity android:name=".recruit.RecruitActivity" />
         <activity android:name=".recruit.RecruitOrderListActivity" />
         <activity android:name=".recruit.PaymentActivity" />
-        <activity android:name=".recruit.CompletePaymentActivity" />
-
-        <!-- point -->
+        <activity android:name=".recruit.CompletePaymentActivity" /> <!-- point -->
         <activity
             android:name=".point.PointActivity"
             android:windowSoftInputMode="adjustResize" />
         <activity android:name=".point.PointHistoryActivity" />
-        <activity android:name=".point.PointCompleteActivity" />
-
-        <!-- myInfo -->
+        <activity android:name=".point.PointCompleteActivity" /> <!-- myInfo -->
         <activity
             android:name=".myInfo.MyInfoActivity"
             android:windowSoftInputMode="adjustResize" />
         <activity
             android:name=".myInfo.ModifyPwActivity"
             android:windowSoftInputMode="adjustResize" />
-
     </application>
 
 </manifest>

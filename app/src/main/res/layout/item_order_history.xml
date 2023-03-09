@@ -14,12 +14,12 @@
         android:paddingBottom="20dp">
 
         <TextView
-            android:id="@+id/orderdateTimeTV"
+            android:id="@+id/dateTimeTV"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:fontFamily="@font/bmjua_font"
             android:lineSpacingExtra="5dp"
-            android:text="배달날짜"
+            android:text="주문완료 시간"
             android:textSize="12sp" />
 
         <LinearLayout
@@ -38,7 +38,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:fontFamily="@font/bmjua_font"
-                    android:text="@string/orderHistory"
+                    android:text="@string/order_store_History"
                     android:textColor="@color/black"
                     android:textSize="20sp" />
 
@@ -48,11 +48,11 @@
                     android:layout_weight="1" />
 
                 <TextView
-                    android:id="@+id/pointTV"
+                    android:id="@+id/total_pointTV"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:fontFamily="@font/bmjua_font"
-                    android:text="포인트"
+                    android:text="배달비 + 음식값"
                     android:textColor="@color/black"
                     android:textSize="20sp" />
 
@@ -63,13 +63,6 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="15dp"
                 android:orientation="horizontal">
-
-                <TextView
-                    android:id="@+id/typeTV"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:fontFamily="@font/bmjua_font"
-                    android:text="사용타입" />
 
                 <View
                     android:layout_width="0dp"
@@ -82,7 +75,7 @@
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
                     android:fontFamily="@font/bmjua_font"
-                    android:text="잔액" />
+                    android:text="내가 시킨 메뉴들" />
 
             </LinearLayout>
 
