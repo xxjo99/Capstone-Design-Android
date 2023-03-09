@@ -2,12 +2,13 @@
 
     <string name="app_name">MyDelivery</string>
 
-    <string name="emailInput">배달비 공유 서비스 아이디를 설정합니다\n이메일을 입력해주세요.</string>
-    <string name="pwInput1">보안 수준이 높은 비밀번호 만들기</string>
-    <string name="pwInput2">비밀번호는 8~20자이어야 하고\n영문,숫자,특수기호(!@$%)를 포함하여야 합니다.</string>
-    <string name="joinInput">안전한 서비스 사용을 위해\n이메일 인증을 해주세요.</string>
-    <string name="joinPrivacy">배달비 공유 서비스에서 사용하실\n닉네임, 생년월일, 휴대폰번호, 학교를 \n입력해주세요. </string>
-    <string name="loginEmailInput">이메일을 입력해주세요.</string>
+    <string name="emailInput">(앱이름)에서 사용할\n아이디를 입력해주세요.</string>
+    <string name="pwInput1">비밀번호 설정</string>
+    <string name="pwInput2">8~20자, 영문,숫자,특수기호(!@$%)를 포함</string>
+    <string name="pwInput3">보안성이 높은 비밀번호 설정</string>
+    <string name="joinInput">안전한 서비스 사용을 위해\n이메일 인증을 진행합니다.</string>
+    <string name="joinPrivacy">(앱이름)에서 사용할\n정보를 입력해주세요. </string>
+    <string name="loginEmailInput">아이디(이메일)을 입력해주세요.</string>
     <string name="emailHint">이메일을 입력해주세요.</string>
     <string name="loginPwInput">비밀번호를 입력해주세요.</string>
     <string name="telInput">전화번호를 입력해주세요. </string>
@@ -17,8 +18,8 @@
     <string name="email">이메일</string>
     <string name="pw">비밀번호</string>
     <string name="pwCk">비밀번호 확인</string>
-    <string name="pwCkInput">비밀번호를 다시 한번 입력해주세요</string>
-    <string name="pwReg">8~20, 영어, 특수문자 포함</string>
+    <string name="pwCkInput">비밀번호를 한번 더 입력해주세요</string>
+    <string name="pwReg">비밀번호 (영문+숫자+특수문자 8자 이상)</string>
     <string name="name">닉네임</string>
     <string name="birth">생년월일</string>
     <string name="phone_num">휴대폰번호</string>
@@ -110,10 +111,14 @@
     <string name="request">요청사항</string>
     <string name="paymentPrice">결제금액</string>
     <string name="enter_request">요청사항을 입력해주세요.</string>
-    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="enter_request_store">예) 견과류 빼주세요, 덜 맵게 해주세요</string>
+    <string name="enter_request_rider">배달 시 요청사항을 적어주세요</string>
 
     <string name="point">포인트</string>
     <string name="addPoint">충전하기</string>
     <string name="pointHistory">포인트 이용내역</string>
+    <string name="orderHistory">주문내역</string>
+
+    <string name="order_store_History">매장 이름</string>
 
 </resources>

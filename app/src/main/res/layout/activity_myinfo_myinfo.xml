@@ -115,7 +115,8 @@
             android:layout_height="wrap_content"
             android:backgroundTint="@color/gray4"
             android:fontFamily="@font/bmjua_font"
-            android:inputType="number"
+            android:inputType="phone"
+            android:maxLength="13"
             android:paddingBottom="15dp"
             android:singleLine="true"
             android:text="@string/phone_num"
@@ -141,13 +142,12 @@
             android:textSize="17sp" />
 
         <AutoCompleteTextView
-            android:id="@+id/schoolET"
+            android:id="@+id/schoolAutoCompleteTV"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:backgroundTint="@color/gray4"
             android:completionThreshold="1"
             android:fontFamily="@font/bmjua_font"
-            android:inputType="number"
             android:paddingBottom="15dp"
             android:singleLine="true"
             android:text="@string/school"

@@ -95,18 +95,18 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
-        android:layout_marginStart="10dp"
-        android:layout_marginTop="30dp"
+        android:layout_marginStart="5dp"
+        android:layout_marginTop="12dp"
         android:foregroundGravity="center"
         android:orientation="horizontal"
-        android:rowCount="3">
+        android:rowCount="4">
 
         <Button
             android:id="@+id/add1Btn"
             android:layout_width="80dp"
             android:layout_height="40dp"
-            android:layout_marginEnd="18dp"
-            android:background="@drawable/btn_border_full_gray"
+            android:layout_marginEnd="10dp"
+            android:background="@drawable/btn_border_fill_gray"
             android:fontFamily="@font/bmjua_font"
             android:text="+1만" />
 
@@ -114,8 +114,8 @@
             android:id="@+id/add3Btn"
             android:layout_width="80dp"
             android:layout_height="40dp"
-            android:layout_marginEnd="18dp"
-            android:background="@drawable/btn_border_full_gray"
+            android:layout_marginEnd="10dp"
+            android:background="@drawable/btn_border_fill_gray"
             android:fontFamily="@font/bmjua_font"
             android:text="+3만" />
 
@@ -123,8 +123,8 @@
             android:id="@+id/add5Btn"
             android:layout_width="80dp"
             android:layout_height="40dp"
-            android:layout_marginEnd="18dp"
-            android:background="@drawable/btn_border_full_gray"
+            android:layout_marginEnd="10dp"
+            android:background="@drawable/btn_border_fill_gray"
             android:fontFamily="@font/bmjua_font"
             android:text="+5만" />
 
@@ -132,8 +132,8 @@
             android:id="@+id/add10Btn"
             android:layout_width="80dp"
             android:layout_height="40dp"
-            android:layout_marginEnd="18dp"
-            android:background="@drawable/btn_border_full_gray"
+            android:layout_marginEnd="10dp"
+            android:background="@drawable/btn_border_fill_gray"
             android:fontFamily="@font/bmjua_font"
             android:text="+10만" />
 

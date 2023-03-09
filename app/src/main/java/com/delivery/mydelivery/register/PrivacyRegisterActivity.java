@@ -3,6 +3,7 @@ package com.delivery.mydelivery.register;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.telephony.PhoneNumberFormattingTextWatcher;
 import android.view.KeyEvent;
 import android.widget.ArrayAdapter;
 import android.widget.AutoCompleteTextView;
@@ -42,14 +43,13 @@ public class PrivacyRegisterActivity extends AppCompatActivity {
     AutoCompleteTextView schoolAutoCompleteTV;
     Button registerBtn;
 
+    private List<String> schoolList; // 학교 리스트
+    UserVO userVO; // 데이터를 담을 객체
+
     // 레트로핏, api
     RetrofitService retrofitService;
     UserApi userApi;
     RegisterApi registerApi;
-
-    private List<String> schoolList; // 학교 리스트
-
-    UserVO userVO; // 데이터를 담을 객체
 
     Context context;
 
@@ -75,6 +75,9 @@ public class PrivacyRegisterActivity extends AppCompatActivity {
         phoneNumET = findViewById(R.id.phoneNumET);
         schoolAutoCompleteTV = findViewById(R.id.schoolAutoCompleteTV);
         registerBtn = findViewById(R.id.registerBtn);
+
+        // 하이픈 자동 입력
+        phoneNumET.addTextChangedListener(new PhoneNumberFormattingTextWatcher());
 
         // 학교리스트 추가, 어댑터 연결
         setSchoolAutoCompleteTV();

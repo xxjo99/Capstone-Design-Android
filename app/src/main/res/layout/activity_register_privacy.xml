@@ -4,6 +4,9 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:layout_marginLeft="10dp"
+    android:layout_marginRight="10dp"
+    android:layout_marginBottom="15dp"
     android:orientation="vertical"
     tools:context=".register.PrivacyRegisterActivity">
 
@@ -39,9 +42,11 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="10dp"
+                android:layout_marginStart="15dp"
                 android:layout_marginTop="50dp"
+                android:layout_marginBottom="20dp"
                 android:fontFamily="@font/bmjua_font"
+                android:lineSpacingExtra="8dp"
                 android:text="@string/joinPrivacy"
                 android:textColor="@color/black"
                 android:textSize="25sp" />
@@ -55,8 +60,9 @@
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="10dp"
-                    android:layout_marginEnd="10dp"
+                    android:layout_marginStart="15dp"
+                    android:layout_marginEnd="15dp"
+                    android:layout_marginBottom="15dp"
                     android:orientation="vertical">
 
                     <TextView
@@ -67,16 +73,16 @@
                         android:singleLine="true"
                         android:text="@string/name"
                         android:textColor="@color/black"
-                        android:textSize="20sp" />
+                        android:textSize="18sp" />
 
                     <EditText
                         android:id="@+id/nameET"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_marginTop="10dp"
+                        android:layout_marginTop="5dp"
                         android:background="@drawable/et_border"
                         android:fontFamily="@font/bmjua_font"
-                        android:hint="사용할 닉네임을 입력해주세요"
+                        android:hint="닉네임을 입력해주세요"
                         android:inputType="text"
                         android:nextFocusDown="@+id/phoneNumET"
                         android:padding="18dp"
@@ -88,9 +94,9 @@
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="10dp"
-                    android:layout_marginTop="20dp"
-                    android:layout_marginEnd="10dp"
+                    android:layout_marginStart="15dp"
+                    android:layout_marginTop="15dp"
+                    android:layout_marginEnd="15dp"
                     android:orientation="vertical">
 
                     <TextView
@@ -99,17 +105,18 @@
                         android:fontFamily="@font/bmjua_font"
                         android:text="@string/phone_num"
                         android:textColor="@color/black"
-                        android:textSize="20sp" />
+                        android:textSize="18sp" />
 
                     <EditText
                         android:id="@+id/phoneNumET"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_marginTop="10dp"
+                        android:layout_marginTop="5dp"
                         android:background="@drawable/et_border"
                         android:fontFamily="@font/bmjua_font"
-                        android:hint="휴대폰 번호를 입력하세요"
-                        android:inputType="number"
+                        android:hint="휴대폰 번호를 입력해주세요"
+                        android:inputType="phone"
+                        android:maxLength="13"
                         android:nextFocusDown="@+id/schoolAutoCompleteTV"
                         android:padding="18dp"
                         android:singleLine="true"
@@ -120,29 +127,29 @@
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="10dp"
-                    android:layout_marginTop="20dp"
-                    android:layout_marginEnd="10dp"
+                    android:layout_marginStart="15dp"
+                    android:layout_marginEnd="15dp"
                     android:orientation="vertical">
 
                     <TextView
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:fontFamily="@font/bmjua_font"
+                        android:layout_marginTop="30dp"
                         android:text="@string/school"
                         android:textColor="@color/black"
-                        android:textSize="20sp" />
+                        android:textSize="18sp" />
 
                     <AutoCompleteTextView
                         android:id="@+id/schoolAutoCompleteTV"
                         android:layout_width="match_parent"
                         android:layout_height="56dp"
-                        android:layout_marginTop="10dp"
+                        android:layout_marginTop="5dp"
                         android:background="@drawable/et_border"
                         android:completionThreshold="1"
                         android:fontFamily="@font/bmjua_font"
                         android:gravity="center_vertical"
-                        android:hint="학교를 입력하세요"
+                        android:hint="학교를 입력해주세요"
                         android:inputType="text"
                         android:padding="18dp"
                         android:singleLine="true"
