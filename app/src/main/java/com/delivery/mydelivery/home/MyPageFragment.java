@@ -16,8 +16,6 @@ import androidx.fragment.app.Fragment;
 
 import com.delivery.mydelivery.MainActivity;
 import com.delivery.mydelivery.R;
-import com.delivery.mydelivery.firebase.FirebaseApi;
-import com.delivery.mydelivery.firebase.MessageDTO;
 import com.delivery.mydelivery.myInfo.ModifyPwActivity;
 import com.delivery.mydelivery.myInfo.MyInfoActivity;
 import com.delivery.mydelivery.point.PointActivity;
@@ -30,7 +28,6 @@ import com.google.gson.Gson;
 
 import java.util.Objects;
 
-import okhttp3.ResponseBody;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -77,8 +74,9 @@ public class MyPageFragment extends Fragment {
         userNameTV = view.findViewById(R.id.userNameTV);
         logoutBtn = view.findViewById(R.id.logoutBtn);
 
-        // 로그아웃
+        // 토큰 삭제 후 로그아웃
         logoutBtn.setOnClickListener(view -> {
+            deleteToken(user.getUserId());
             PreferenceManager.logout(context);
 
             Intent intent = new Intent(getActivity(), MainActivity.class);
@@ -147,6 +145,21 @@ public class MyPageFragment extends Fragment {
                 });
     }
 
+    // 토큰 삭제
+    private void deleteToken(int userId) {
+        retrofitService = new RetrofitService();
+        userApi = retrofitService.getRetrofit().create(UserApi.class);
 
+        userApi.deleteToken(userId)
+                .enqueue(new Callback<Void>() {
+                    @Override
+                    public void onResponse(@NonNull Call<Void> call, @NonNull Response<Void> response) {
+                    }
+
+                    @Override
+                    public void onFailure(@NonNull Call<Void> call, @NonNull Throwable t) {
+                    }
+                });
+    }
 
 }

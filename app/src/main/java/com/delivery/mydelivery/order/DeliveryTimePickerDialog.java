@@ -24,7 +24,11 @@ import java.util.Date;
 import java.util.Locale;
 
 @SuppressLint("SetTextI18n")
-public class DatePickerDialog {
+public class DeliveryTimePickerDialog {
+
+    // 매장오픈시간
+    Timestamp openTime;
+    Timestamp closeTime;
 
     private final Context context;
 
@@ -35,7 +39,9 @@ public class DatePickerDialog {
     String date; // 선택된 날짜
     int selectedVal; // 선택한 날짜의 인덱스
 
-    public DatePickerDialog(Context context) {
+    public DeliveryTimePickerDialog(Timestamp openTime, Timestamp closeTime, Context context) {
+        this.openTime = openTime;
+        this.closeTime = closeTime;
         this.context = context;
     }
 
@@ -43,7 +49,7 @@ public class DatePickerDialog {
         final Dialog dialog = new Dialog(context);
 
         dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
-        dialog.setContentView(R.layout.dialog_date_picker);
+        dialog.setContentView(R.layout.dialog_delivery_time_picker);
         dialog.getWindow().setGravity(Gravity.BOTTOM);
 
         // 크기 지정

@@ -79,18 +79,26 @@
             android:textColor="@color/gray3"
             android:textSize="17sp" />
 
-        <EditText
-            android:id="@+id/nameET"
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:backgroundTint="@color/gray4"
-            android:fontFamily="@font/bmjua_font"
-            android:paddingBottom="15dp"
-            android:singleLine="true"
-            android:text="@string/name"
-            android:textColor="@color/black"
-            android:textSize="17sp"
-            tools:ignore="RtlSymmetry" />
+            android:orientation="horizontal">
+
+            <EditText
+                android:id="@+id/nameET"
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_height="wrap_content"
+                android:backgroundTint="@color/gray4"
+                android:fontFamily="@font/bmjua_font"
+                android:paddingBottom="15dp"
+                android:singleLine="true"
+                android:text="@string/name"
+                android:textColor="@color/black"
+                android:textSize="17sp"
+                tools:ignore="RtlSymmetry" />
+
+        </LinearLayout>
 
     </LinearLayout>
 

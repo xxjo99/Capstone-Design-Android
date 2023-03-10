@@ -39,10 +39,12 @@ public class PrivacyRegisterActivity extends AppCompatActivity {
     ImageButton closeBtn;
 
     EditText nameET;
+    Button duplicationCkBtn;
     EditText phoneNumET;
     AutoCompleteTextView schoolAutoCompleteTV;
     Button registerBtn;
 
+    Boolean duplicationCk = false; // 닉네임 중복검사 통과 확인
     private List<String> schoolList; // 학교 리스트
     UserVO userVO; // 데이터를 담을 객체
 
@@ -72,6 +74,7 @@ public class PrivacyRegisterActivity extends AppCompatActivity {
 
         // 초기화
         nameET = findViewById(R.id.nameET);
+        duplicationCkBtn = findViewById(R.id.duplicationCkBtn);
         phoneNumET = findViewById(R.id.phoneNumET);
         schoolAutoCompleteTV = findViewById(R.id.schoolAutoCompleteTV);
         registerBtn = findViewById(R.id.registerBtn);
@@ -82,16 +85,31 @@ public class PrivacyRegisterActivity extends AppCompatActivity {
         // 학교리스트 추가, 어댑터 연결
         setSchoolAutoCompleteTV();
 
+        // 닉네임 중복검사
+        duplicationCkBtn.setOnClickListener(view -> {
+
+            if (nameET.getText().toString().isEmpty()) {
+                Toast.makeText(context, "닉네임을 입력해주세요..", Toast.LENGTH_SHORT).show();
+            } else {
+                String name = nameET.getText().toString();
+                duplicationCk(name);
+            }
+        });
+
         // 회원가입 버튼
         registerBtn.setOnClickListener(view -> {
             String name = nameET.getText().toString();
             String phoneNum = phoneNumET.getText().toString();
             String school = schoolAutoCompleteTV.getText().toString();
 
-            if (name.isEmpty() || phoneNum.isEmpty() || school.isEmpty()) { // 입력칸중 하나라도 비어있을경우
-                Toast.makeText(PrivacyRegisterActivity.this, "빈칸 입력", Toast.LENGTH_SHORT).show();
+            if (!duplicationCk) {
+                Toast.makeText(context, "닉네임 중복검사를 진행해주세요.", Toast.LENGTH_SHORT).show();
             } else {
-                register(name, phoneNum, school);
+                if (name.isEmpty() || phoneNum.isEmpty() || school.isEmpty()) { // 입력칸중 하나라도 비어있을경우
+                    Toast.makeText(PrivacyRegisterActivity.this, "모든 입력값은 필수입니다.", Toast.LENGTH_SHORT).show();
+                } else {
+                    register(name, phoneNum, school);
+                }
             }
 
         });
@@ -112,6 +130,33 @@ public class PrivacyRegisterActivity extends AppCompatActivity {
 
                     @Override
                     public void onFailure(@NonNull Call<List<String>> call, @NonNull Throwable t) {
+                    }
+                });
+    }
+
+    // 닉네임 중복검사
+    private void duplicationCk(String name) {
+        retrofitService = new RetrofitService();
+        userApi = retrofitService.getRetrofit().create(UserApi.class);
+
+        userApi.findName(name)
+                .enqueue(new Callback<Boolean>() {
+                    @Override
+                    public void onResponse(@NonNull Call<Boolean> call, @NonNull Response<Boolean> response) {
+                        Boolean duplicationNameCk = response.body();
+
+                        if (Boolean.TRUE.equals(duplicationNameCk)) { // 중복된 닉네임 없을경우
+                            duplicationCk = true;
+                            Toast.makeText(context, "사용가능한 닉네임입니다.", Toast.LENGTH_SHORT).show();
+                        } else {
+                            duplicationCk = false;
+                            Toast.makeText(context, "이미 존재하는 닉네임입니다.", Toast.LENGTH_SHORT).show();
+                        }
+                    }
+
+                    @Override
+                    public void onFailure(@NonNull Call<Boolean> call, @NonNull Throwable t) {
+
                     }
                 });
     }

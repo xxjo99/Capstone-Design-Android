@@ -24,12 +24,15 @@ import com.delivery.mydelivery.recruit.RecruitApi;
 import com.delivery.mydelivery.recruit.RecruitVO;
 import com.delivery.mydelivery.preferenceManager.PreferenceManager;
 import com.delivery.mydelivery.store.StoreActivity;
+import com.delivery.mydelivery.store.StoreApi;
+import com.delivery.mydelivery.store.StoreVO;
 import com.delivery.mydelivery.user.UserApi;
 import com.delivery.mydelivery.user.UserVO;
 import com.delivery.mydelivery.retrofit.RetrofitService;
 import com.google.gson.Gson;
 import com.sothree.slidinguppanel.SlidingUpPanelLayout;
 
+import java.sql.Timestamp;
 import java.util.List;
 import java.util.Objects;
 
@@ -91,7 +94,7 @@ public class OrderListActivity extends AppCompatActivity {
     Button registerBtn;
 
     // 시간 선택 다이얼로그
-    DatePickerDialog datePickerDialog;
+    DeliveryTimePickerDialog deliveryTimePickerDialog;
 
     // 초기 인원수
     int person = 2;
@@ -101,6 +104,7 @@ public class OrderListActivity extends AppCompatActivity {
     OrderApi orderApi;
     RecruitApi recruitApi;
     UserApi userApi;
+    StoreApi storeApi;
 
     Context context;
 
@@ -201,9 +205,8 @@ public class OrderListActivity extends AppCompatActivity {
         minusPersonBtn.setBackgroundResource(R.drawable.minus_icon_gray);
         minusPersonBtn.setEnabled(false);
 
-        // 날짜 선택, datePicker 다이얼로그
-        datePickerDialog = new DatePickerDialog(context);
-        datePickerBtn.setOnClickListener(view -> datePickerDialog.callDialog());
+        // 배달시간 선택 다이얼로그
+        datePickerBtn.setOnClickListener(view -> createDeliveryTimePickerDialog());
 
         // 인원 추가, 감소
         minusPersonBtn.setOnClickListener(view -> {
@@ -363,6 +366,29 @@ public class OrderListActivity extends AppCompatActivity {
                     @Override
                     public void onFailure(@NonNull Call<Boolean> call, @NonNull Throwable t) {
 
+                    }
+                });
+    }
+
+    // 배달시간 선택 다이얼로그 생성
+    private void createDeliveryTimePickerDialog() {
+        retrofitService = new RetrofitService();
+        storeApi = retrofitService.getRetrofit().create(StoreApi.class);
+
+        storeApi.getStore(storeId)
+                .enqueue(new Callback<StoreVO>() {
+                    @Override
+                    public void onResponse(@NonNull Call<StoreVO> call, @NonNull Response<StoreVO> response) {
+                        StoreVO store = new StoreVO();
+                        Timestamp openTime = store.getOpenTime();
+                        Timestamp closeTime = store.getCloseTime();
+
+                        deliveryTimePickerDialog = new DeliveryTimePickerDialog(openTime, closeTime, context);
+                        deliveryTimePickerDialog.callDialog();
+                    }
+
+                    @Override
+                    public void onFailure(@NonNull Call<StoreVO> call, @NonNull Throwable t) {
                     }
                 });
     }

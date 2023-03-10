@@ -14,6 +14,7 @@ import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.delivery.mydelivery.R;
+import com.delivery.mydelivery.recruit.RecruitApi;
 import com.delivery.mydelivery.retrofit.RetrofitService;
 
 import java.util.List;
@@ -31,7 +32,8 @@ public class HomeFragment extends Fragment {
 
     // 레트로핏, api
     RetrofitService retrofitService;
-    HomeApi api;
+    HomeApi homeApi;
+    RecruitApi recruitApi;
 
     // view, context
     View view;
@@ -62,9 +64,9 @@ public class HomeFragment extends Fragment {
     // 카테고리 리스트 가져오는 api
     private void setCategory() {
         retrofitService = new RetrofitService();
-        api = retrofitService.getRetrofit().create(HomeApi.class);
+        homeApi = retrofitService.getRetrofit().create(HomeApi.class);
 
-        api.getCategoryList()
+        homeApi.getCategoryList()
                 .enqueue(new Callback<List<CategoryVO>>() {
                     @Override
                     public void onResponse(@NonNull Call<List<CategoryVO>> call, @NonNull Response<List<CategoryVO>> response) {

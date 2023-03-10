@@ -15,6 +15,10 @@ public interface UserApi {
     @GET("/user/find/id/{userId}")
     Call<UserVO> getUser(@Path("userId") int userId);
 
+    // 이름 검색, 중복된 이름 없다면 true 반환
+    @GET("/user/check/name/{name}")
+    Call<Boolean> findName(@Path("name") String name);
+
     // 학교 리스트 가져옴
     @GET("/user/schools")
     Call<List<String>> getAllSchool();
@@ -32,8 +36,12 @@ public interface UserApi {
     Call<UserVO> modify(@Body UserVO user);
 
     // 토큰 저장
-    @POST("/user/set/token")
-    Call<Void> setToken(@Query("email") String email, @Query("token") String token);
+    @POST("/user/save/token")
+    Call<Void> saveToken(@Query("email") String email, @Query("token") String token);
+
+    // 토큰 삭제
+    @POST("/user/delete/token")
+    Call<Void> deleteToken(@Query("userId") int userId);
 
     // 이용제한 생성
     @POST("/user/restriction/set/period")
