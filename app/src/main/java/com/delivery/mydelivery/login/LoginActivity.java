@@ -47,7 +47,6 @@ public class LoginActivity extends AppCompatActivity {
 
     RetrofitService retrofitService;
     LoginApi loginApi;
-    UserApi userApi;
     Gson gson;
 
     Context context;
@@ -120,8 +119,6 @@ public class LoginActivity extends AppCompatActivity {
                     public void onResponse(@NonNull Call<UserVO> call, @NonNull Response<UserVO> response) {
                         // 토큰 생성후 저장
                         FirebaseMessagingService firebaseMessagingService = new FirebaseMessagingService(email);
-                        
-                        Toast.makeText(LoginActivity.this, "로그인 성공", Toast.LENGTH_SHORT).show();
 
                         UserVO userInfo = response.body(); // 유저 정보를 받아옴
 

@@ -13,6 +13,7 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 
 import com.delivery.mydelivery.R;
+import com.delivery.mydelivery.firebase.FirebaseApi;
 import com.delivery.mydelivery.retrofit.RetrofitService;
 import com.delivery.mydelivery.user.UserApi;
 
@@ -32,6 +33,7 @@ public class RecruitDeleteDialog {
     RetrofitService retrofitService;
     RecruitApi recruitApi;
     UserApi userApi;
+    FirebaseApi firebaseApi;
 
     public RecruitDeleteDialog(Context context, int recruitId, int userId, int participantCount) {
         this.context = context;
@@ -65,7 +67,10 @@ public class RecruitDeleteDialog {
         Button deleteBtn = dialog.findViewById(R.id.deleteBtn);
         Button cancelBtn = dialog.findViewById(R.id.cancelBtn);
 
-        deleteBtn.setOnClickListener(view -> deleteRecruit(recruitId, userId, deleteType, dialog));
+        deleteBtn.setOnClickListener(view -> {
+            sendMessageDeleteRecruit(); // 알림전송
+            deleteRecruit(recruitId, userId, deleteType, dialog); // 삭제
+        });
 
         cancelBtn.setOnClickListener(view -> dialog.dismiss());
     }
@@ -79,7 +84,7 @@ public class RecruitDeleteDialog {
                     @Override
                     public void onResponse(@NonNull Call<Void> call, @NonNull Response<Void> response) {
 
-                        // 2인 이상일경우 참가제한 생성
+                        // 2인 이상일경우 이용제한 생성
                         if (deleteType != 0) {
                             setParticipationRestriction(userId);
                         }
@@ -95,8 +100,8 @@ public class RecruitDeleteDialog {
                 });
     }
 
-    // 참가제한 생성
-    public void setParticipationRestriction(int userId) {
+    // 이용제한 생성
+    private void setParticipationRestriction(int userId) {
         retrofitService = new RetrofitService();
         userApi = retrofitService.getRetrofit().create(UserApi.class);
 
@@ -108,6 +113,25 @@ public class RecruitDeleteDialog {
 
                     @Override
                     public void onFailure(@NonNull Call<Void> call, @NonNull Throwable t) {
+                    }
+                });
+    }
+
+    // 삭제알림 전송
+    private void sendMessageDeleteRecruit() {
+        retrofitService = new RetrofitService();
+        firebaseApi = retrofitService.getRetrofit().create(FirebaseApi.class);
+
+        firebaseApi.sendMessageDeleteRecruit(recruitId)
+                .enqueue(new Callback<Void>() {
+                    @Override
+                    public void onResponse(@NonNull Call<Void> call, @NonNull Response<Void> response) {
+                        System.out.println("전송완료");
+                    }
+
+                    @Override
+                    public void onFailure(@NonNull Call<Void> call, @NonNull Throwable t) {
+
                     }
                 });
     }

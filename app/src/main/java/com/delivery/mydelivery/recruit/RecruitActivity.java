@@ -12,6 +12,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -61,10 +62,11 @@ public class RecruitActivity extends AppCompatActivity {
     TextView deliveryTipTV;
     TextView minimumDeliveryPriceTV;
 
-    // 리사이클러뷰, 어댑터, 리스트
+    // 레이아웃, 리사이클러뷰, 어댑터, 리스트
     RecyclerView memberRecyclerView;
     MemberAdapter memberAdapter;
     List<ParticipantVO> participantList;
+    LinearLayout noParticipantLayout;
     RecyclerView memberDeliveryInfoRecyclerView;
     MemberDeliveryInfoAdapter memberDeliveryInfoAdapter;
     List<ParticipantVO> participantDeliveryInfoList;
@@ -166,6 +168,9 @@ public class RecruitActivity extends AppCompatActivity {
         userNameTV.setText(user.getName()); // 사용자 이름
 
         getOrdersTotalPrice(recruitId, user.getUserId()); // 총 주문금액
+
+        // 참가한 파티원이 없을경우 보여질 레이아웃 초기화
+        noParticipantLayout = findViewById(R.id.noParticipantLayout);
 
         // 리사이클러뷰 설정
         memberDeliveryInfoRecyclerView = findViewById(R.id.memberDeliveryInfoRecyclerView);
@@ -369,8 +374,18 @@ public class RecruitActivity extends AppCompatActivity {
                     @Override
                     public void onResponse(@NonNull Call<List<ParticipantVO>> call, @NonNull Response<List<ParticipantVO>> response) {
                         participantDeliveryInfoList = response.body();
-                        memberDeliveryInfoAdapter = new MemberDeliveryInfoAdapter(participantDeliveryInfoList, context);
-                        memberDeliveryInfoRecyclerView.setAdapter(memberDeliveryInfoAdapter);
+
+                        // 참가한 유저가 있는지 확인
+                        if (Objects.requireNonNull(participantDeliveryInfoList).isEmpty()) {
+                            noParticipantLayout.setVisibility(View.VISIBLE);
+                            memberDeliveryInfoRecyclerView.setVisibility(View.GONE);
+                        } else {
+                            noParticipantLayout.setVisibility(View.GONE);
+                            memberDeliveryInfoRecyclerView.setVisibility(View.VISIBLE);
+
+                            memberDeliveryInfoAdapter = new MemberDeliveryInfoAdapter(participantDeliveryInfoList, context);
+                            memberDeliveryInfoRecyclerView.setAdapter(memberDeliveryInfoAdapter);
+                        }
                     }
 
                     @Override

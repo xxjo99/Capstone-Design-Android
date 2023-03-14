@@ -90,20 +90,60 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="10dp"
                     android:layout_marginBottom="5dp"
                     android:fontFamily="@font/bmjua_font"
                     android:text="@string/request"
                     android:textColor="@color/black"
                     android:textSize="18sp" />
 
+                <!-- 요청 사항 -->
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginBottom="5dp"
+                    android:fontFamily="@font/bmjua_font"
+                    android:text="가게 사장님께"
+                    android:textColor="@color/gray4"
+                    android:textSize="15sp" />
+
                 <EditText
-                    android:id="@+id/emailET"
+                    android:id="@+id/storeET"
+                    android:layout_width="match_parent"
+                    android:layout_height="45dp"
+                    android:layout_marginTop="5dp"
+                    android:background="@drawable/btn_fill3_gray"
+                    android:fontFamily="@font/bmjua_font"
+                    android:hint="@string/enter_request_store"
+                    android:paddingStart="12dp"
+                    android:textSize="15sp" />
+
+                <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:fontFamily="@font/bmjua_font"
-                    android:hint="@string/enter_request"
-                    android:textSize="15sp" />
+                    android:layout_marginTop="20dp"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/bmjua_font"
+                        android:text="라이더님께"
+                        android:textColor="@color/gray4"
+                        android:textSize="15sp" />
+
+                    <EditText
+                        android:id="@+id/riderET"
+                        android:layout_width="match_parent"
+                        android:layout_height="45dp"
+                        android:layout_marginTop="5dp"
+                        android:layout_marginBottom="5dp"
+                        android:background="@drawable/btn_fill3_gray"
+                        android:fontFamily="@font/bmjua_font"
+                        android:hint="@string/enter_request_rider"
+                        android:paddingStart="12dp"
+                        android:textSize="15sp" />
+                </LinearLayout>
 
             </LinearLayout>
 

@@ -16,6 +16,10 @@ public interface RecruitApi {
     @GET("/recruit/recruits/{registrantPlace}")
     Call<List<RecruitVO>> getRecruitList(@Path("registrantPlace") String registrantPlace);
 
+    // 모집글 조회, 마감시간이 가까운 순부터 정렬
+    @GET("/recruit/recruits/order/{registrantPlace}")
+    Call<List<RecruitVO>> getRecruitListOrder(@Path("registrantPlace") String registrantPlace);
+
     // 해당 사용자의 등록글 존재여부 검색
     @GET("/recruit/find/user/{userId}")
     Call<Boolean> findRecruit(@Path("userId") int userId);
