@@ -98,6 +98,12 @@
             android:name=".myInfo.OrderHistoryActivity"
             android:windowSoftInputMode="adjustResize" />
 
+        <!-- notice -->
+        <activity
+            android:name=".notice.NoticeActivity"
+            android:windowSoftInputMode="adjustResize" />
+
+
     </application>
 
 </manifest>

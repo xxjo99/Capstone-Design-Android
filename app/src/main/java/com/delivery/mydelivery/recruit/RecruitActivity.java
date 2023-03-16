@@ -207,7 +207,7 @@ public class RecruitActivity extends AppCompatActivity {
         recruitApi = retrofitService.getRetrofit().create(RecruitApi.class);
 
         recruitApi.findRegistrant(recruitId)
-                .enqueue(new Callback<ParticipantVO>() {
+                .enqueue(new Callback<>() {
                     @Override
                     public void onResponse(@NonNull Call<ParticipantVO> call, @NonNull Response<ParticipantVO> response) {
                         ParticipantVO participant = response.body();
@@ -233,7 +233,7 @@ public class RecruitActivity extends AppCompatActivity {
         recruitApi = retrofitService.getRetrofit().create(RecruitApi.class);
 
         recruitApi.getParticipantCount(recruitId)
-                .enqueue(new Callback<Integer>() {
+                .enqueue(new Callback<>() {
                     @Override
                     public void onResponse(@NonNull Call<Integer> call, @NonNull Response<Integer> response) {
                         Integer participantCount = response.body();
@@ -258,7 +258,7 @@ public class RecruitActivity extends AppCompatActivity {
         recruitApi = retrofitService.getRetrofit().create(RecruitApi.class);
 
         recruitApi.getRecruit(recruitId)
-                .enqueue(new Callback<RecruitVO>() {
+                .enqueue(new Callback<>() {
                     @Override
                     public void onResponse(@NonNull Call<RecruitVO> call, @NonNull Response<RecruitVO> response) {
                         RecruitVO recruit = response.body();
@@ -289,7 +289,7 @@ public class RecruitActivity extends AppCompatActivity {
         storeApi = retrofitService.getRetrofit().create(StoreApi.class);
 
         storeApi.getStore(storeId)
-                .enqueue(new Callback<StoreVO>() {
+                .enqueue(new Callback<>() {
                     @Override
                     public void onResponse(@NonNull Call<StoreVO> call, @NonNull Response<StoreVO> response) {
                         StoreVO store = response.body();
@@ -319,7 +319,7 @@ public class RecruitActivity extends AppCompatActivity {
         recruitApi = retrofitService.getRetrofit().create(RecruitApi.class);
 
         recruitApi.getParticipantList(recruitId)
-                .enqueue(new Callback<List<ParticipantVO>>() {
+                .enqueue(new Callback<>() {
                     @Override
                     public void onResponse(@NonNull Call<List<ParticipantVO>> call, @NonNull Response<List<ParticipantVO>> response) {
                         participantList = response.body();
@@ -345,7 +345,7 @@ public class RecruitActivity extends AppCompatActivity {
         recruitApi = retrofitService.getRetrofit().create(RecruitApi.class);
 
         recruitApi.getOrdersTotalPrice(recruitId, userId)
-                .enqueue(new Callback<Integer>() {
+                .enqueue(new Callback<>() {
                     @Override
                     public void onResponse(@NonNull Call<Integer> call, @NonNull Response<Integer> response) {
                         Integer totalPrice = response.body();
@@ -370,7 +370,7 @@ public class RecruitActivity extends AppCompatActivity {
         recruitApi = retrofitService.getRetrofit().create(RecruitApi.class);
 
         recruitApi.getParticipantListExceptMine(recruitId, userId)
-                .enqueue(new Callback<List<ParticipantVO>>() {
+                .enqueue(new Callback<>() {
                     @Override
                     public void onResponse(@NonNull Call<List<ParticipantVO>> call, @NonNull Response<List<ParticipantVO>> response) {
                         participantDeliveryInfoList = response.body();
@@ -403,7 +403,7 @@ public class RecruitActivity extends AppCompatActivity {
 
         // 상품금액
         recruitApi.getOrdersTotalPrice(recruitId, userId)
-                .enqueue(new Callback<Integer>() {
+                .enqueue(new Callback<>() {
                     @Override
                     public void onResponse(@NonNull Call<Integer> call, @NonNull Response<Integer> response) {
                         Integer orderPriceResult = response.body();
@@ -418,7 +418,7 @@ public class RecruitActivity extends AppCompatActivity {
 
         // 배달팁
         storeApi.getStore(storeId)
-                .enqueue(new Callback<StoreVO>() {
+                .enqueue(new Callback<>() {
                     @Override
                     public void onResponse(@NonNull Call<StoreVO> call, @NonNull Response<StoreVO> response) {
                         StoreVO store = response.body();
@@ -448,7 +448,7 @@ public class RecruitActivity extends AppCompatActivity {
 
         // 최종결제금액
         recruitApi.getFinalPayment(recruitId, storeId, userId)
-                .enqueue(new Callback<Integer>() {
+                .enqueue(new Callback<>() {
                     @Override
                     public void onResponse(@NonNull Call<Integer> call, @NonNull Response<Integer> response) {
                         Integer finalPayment = response.body();
@@ -468,7 +468,7 @@ public class RecruitActivity extends AppCompatActivity {
         recruitApi = retrofitService.getRetrofit().create(RecruitApi.class);
 
         recruitApi.getParticipant(recruitId, userId)
-                .enqueue(new Callback<ParticipantVO>() {
+                .enqueue(new Callback<>() {
                     @Override
                     public void onResponse(@NonNull Call<ParticipantVO> call, @NonNull Response<ParticipantVO> response) {
                         ParticipantVO participant = response.body();
@@ -497,7 +497,7 @@ public class RecruitActivity extends AppCompatActivity {
         recruitApi = retrofitService.getRetrofit().create(RecruitApi.class);
 
         recruitApi.getParticipant(recruitId, userId)
-                .enqueue(new Callback<ParticipantVO>() {
+                .enqueue(new Callback<>() {
                     @Override
                     public void onResponse(@NonNull Call<ParticipantVO> call, @NonNull Response<ParticipantVO> response) {
                         ParticipantVO participant = response.body();
@@ -527,7 +527,7 @@ public class RecruitActivity extends AppCompatActivity {
         recruitApi = retrofitService.getRetrofit().create(RecruitApi.class);
 
         recruitApi.getRecruit(recruitId)
-                .enqueue(new Callback<RecruitVO>() {
+                .enqueue(new Callback<>() {
                     @Override
                     public void onResponse(@NonNull Call<RecruitVO> call, @NonNull Response<RecruitVO> response) {
                         RecruitVO recruit = response.body();
@@ -591,7 +591,7 @@ public class RecruitActivity extends AppCompatActivity {
         recruitApi = retrofitService.getRetrofit().create(RecruitApi.class);
 
         recruitApi.getParticipantCount(recruitId)
-                .enqueue(new Callback<Integer>() {
+                .enqueue(new Callback<>() {
                     @Override
                     public void onResponse(@NonNull Call<Integer> call, @NonNull Response<Integer> response) {
                         Integer participantCount = response.body();
@@ -622,7 +622,7 @@ public class RecruitActivity extends AppCompatActivity {
         recruitApi = retrofitService.getRetrofit().create(RecruitApi.class);
 
         recruitApi.getRecruit(recruitId)
-                .enqueue(new Callback<RecruitVO>() {
+                .enqueue(new Callback<>() {
                     @Override
                     public void onResponse(@NonNull Call<RecruitVO> call, @NonNull Response<RecruitVO> response) {
                         RecruitVO recruit = response.body();
@@ -655,7 +655,7 @@ public class RecruitActivity extends AppCompatActivity {
         recruitApi = retrofitService.getRetrofit().create(RecruitApi.class);
 
         recruitApi.getRecruit(recruitId)
-                .enqueue(new Callback<RecruitVO>() {
+                .enqueue(new Callback<>() {
                     @Override
                     public void onResponse(@NonNull Call<RecruitVO> call, @NonNull Response<RecruitVO> response) {
                         RecruitVO recruit = response.body();
@@ -686,7 +686,7 @@ public class RecruitActivity extends AppCompatActivity {
         recruitApi = retrofitService.getRetrofit().create(RecruitApi.class);
 
         recruitApi.getParticipantCount(recruitId)
-                .enqueue(new Callback<Integer>() {
+                .enqueue(new Callback<>() {
                     @Override
                     public void onResponse(@NonNull Call<Integer> call, @NonNull Response<Integer> response) {
                         Integer participantCount = response.body();
@@ -710,7 +710,7 @@ public class RecruitActivity extends AppCompatActivity {
         recruitApi = retrofitService.getRetrofit().create(RecruitApi.class);
 
         recruitApi.checkParticipantPaymentStatus(recruitId)
-                .enqueue(new Callback<Void>() {
+                .enqueue(new Callback<>() {
                     @Override
                     public void onResponse(@NonNull Call<Void> call, @NonNull Response<Void> response) {
                         // 강퇴 후 배달승인대기로 변경
