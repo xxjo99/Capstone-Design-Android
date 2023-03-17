@@ -267,7 +267,7 @@ public class OrderListActivity extends AppCompatActivity {
                 recruit.setStoreId(storeId); // 매장 아이디
                 recruit.setPlace(selectPlaceET.getText().toString()); // 배달장소
                 recruit.setPerson(person); // 모집인원
-                recruit.setDeliveryStart(0); // 배달 시작 구분, 초기값 0
+                recruit.setReceiptState(0); // 배달 시작 구분, 초기값 0
 
                 registerRecruit(recruit);// 모집글 등록
             }

@@ -103,6 +103,10 @@
             android:name=".notice.NoticeActivity"
             android:windowSoftInputMode="adjustResize" />
 
+        <!-- delivery -->
+        <activity
+            android:name=".delivery.CheckDeliveryActivity"
+            android:windowSoftInputMode="adjustResize" />
 
     </application>
 

@@ -18,6 +18,7 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
+import androidx.core.widget.NestedScrollView;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -84,8 +85,15 @@ public class RecruitActivity extends AppCompatActivity {
     TextView finalDeliveryTipTV;
     TextView finalPaymentTV;
 
-    // 결제버튼
+    // 결제 버튼
     Button paymentBtn;
+
+    // 배달 상태에 따라 보여질 레이아웃, 텍스트, 메뉴 확인 버튼
+    LinearLayout receiptLayout;
+    TextView deliveryStateTV;
+    Button checkOrderBtn;
+    NestedScrollView recruitScrollView;
+    LinearLayout paymentLayout;
 
     // 레트로핏, api
     RetrofitService retrofitService;
@@ -137,6 +145,18 @@ public class RecruitActivity extends AppCompatActivity {
                 createLeaveDialog(recruitId);
             }
         });
+
+        // 레이아웃, 버튼 초기화
+        receiptLayout = findViewById(R.id.receiptLayout);
+        deliveryStateTV = findViewById(R.id.deliveryStateTV);
+        checkOrderBtn = findViewById(R.id.checkOrderBtn);
+        recruitScrollView = findViewById(R.id.recruitScrollView);
+        paymentLayout = findViewById(R.id.paymentLayout);
+
+        checkDeliveryState(recruitId); // 배달상태 확인 (접수 전, 후, 배달 시작)
+
+        // 담은 메뉴 확인 액티비티 이동
+        checkOrderBtn.setOnClickListener(view -> moveOrderListActivity(recruitId, user.getUserId(), storeId));
 
         // 매장정보 초기화
         storeIV = findViewById(R.id.storeIV);
@@ -190,10 +210,10 @@ public class RecruitActivity extends AppCompatActivity {
         // 최종금액계산 추가, 탈퇴 다이얼로그 추가
         setPayment(storeId, recruitId, user.getUserId());
 
-        // 결제완료 검사
+        // 결제 완료 검사
         checkPaymentComplete(recruitId, user.getUserId());
 
-        // 결제페이지 이동 버튼
+        // 결제 페이지 이동 버튼
         paymentBtn = findViewById(R.id.paymentBtn);
         paymentBtn.setOnClickListener(view -> {
             String phoneNum = user.getPhoneNum();
@@ -279,6 +299,54 @@ public class RecruitActivity extends AppCompatActivity {
 
                     @Override
                     public void onFailure(@NonNull Call<RecruitVO> call, @NonNull Throwable t) {
+                    }
+                });
+    }
+
+    // 배달 상태에 따른 레이아웃 변경
+    private void checkDeliveryState(int recruitId) {
+        retrofitService = new RetrofitService();
+        recruitApi = retrofitService.getRetrofit().create(RecruitApi.class);
+
+        recruitApi.getRecruit(recruitId)
+                .enqueue(new Callback<>() {
+                    @Override
+                    public void onResponse(@NonNull Call<RecruitVO> call, @NonNull Response<RecruitVO> response) {
+                        RecruitVO recruit = response.body();
+                        int receiptState = Objects.requireNonNull(recruit).getReceiptState();
+
+                        // 레이아웃, 버튼 초기화
+                        receiptLayout = findViewById(R.id.receiptLayout);
+                        deliveryStateTV = findViewById(R.id.deliveryStateTV);
+                        checkOrderBtn = findViewById(R.id.checkOrderBtn);
+                        recruitScrollView = findViewById(R.id.recruitScrollView);
+                        paymentLayout = findViewById(R.id.paymentLayout);
+
+                        if (receiptState == 0) { // 배달 접수 전
+                            receiptLayout.setVisibility(View.GONE);
+
+                            recruitScrollView.setVisibility(View.VISIBLE);
+                            paymentLayout.setVisibility(View.VISIBLE);
+                        } else if (receiptState == 1) { // 배달 접수
+                            receiptLayout.setVisibility(View.VISIBLE);
+                            deliveryStateTV.setText("배달이 접수되었습니다.");
+                            checkOrderBtn.setVisibility(View.VISIBLE);
+
+                            recruitScrollView.setVisibility(View.GONE);
+                            paymentLayout.setVisibility(View.GONE);
+                        } else { // 배달 출발 (2)
+                            receiptLayout.setVisibility(View.VISIBLE);
+                            deliveryStateTV.setText("배달이 시작되었습니다.");
+
+                            checkOrderBtn.setVisibility(View.GONE);
+                            recruitScrollView.setVisibility(View.GONE);
+                            paymentLayout.setVisibility(View.GONE);
+                        }
+                    }
+
+                    @Override
+                    public void onFailure(@NonNull Call<RecruitVO> call, @NonNull Throwable t) {
+
                     }
                 });
     }

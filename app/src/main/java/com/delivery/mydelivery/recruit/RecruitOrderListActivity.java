@@ -138,7 +138,7 @@ public class RecruitOrderListActivity extends AppCompatActivity {
         storeApi = retrofitService.getRetrofit().create(StoreApi.class);
 
         storeApi.getStore(storeId)
-                .enqueue(new Callback<StoreVO>() {
+                .enqueue(new Callback<>() {
                     @Override
                     public void onResponse(@NonNull Call<StoreVO> call, @NonNull Response<StoreVO> response) {
                         StoreVO store = response.body();
@@ -158,7 +158,7 @@ public class RecruitOrderListActivity extends AppCompatActivity {
         recruitApi = retrofitService.getRetrofit().create(RecruitApi.class);
 
         recruitApi.getOrderList(recruitId, userId)
-                .enqueue(new Callback<List<ParticipantOrderVO>>() {
+                .enqueue(new Callback<>() {
                     @Override
                     public void onResponse(@NonNull Call<List<ParticipantOrderVO>> call, @NonNull Response<List<ParticipantOrderVO>> response) {
                         orderList = response.body();
