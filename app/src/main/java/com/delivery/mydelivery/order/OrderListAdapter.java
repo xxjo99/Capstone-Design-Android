@@ -140,7 +140,7 @@ public class OrderListAdapter extends RecyclerView.Adapter<OrderListAdapter.View
         storeApi = retrofitService.getRetrofit().create(StoreApi.class);
 
         storeApi.getStore(storeId)
-                .enqueue(new Callback<StoreVO>() {
+                .enqueue(new Callback<>() {
                     @Override
                     public void onResponse(@NonNull Call<StoreVO> call, @NonNull Response<StoreVO> response) {
                         StoreVO store = response.body();
@@ -171,7 +171,7 @@ public class OrderListAdapter extends RecyclerView.Adapter<OrderListAdapter.View
         menuApi = retrofitService.getRetrofit().create(MenuApi.class);
 
         menuApi.getMenu(menuId)
-                .enqueue(new Callback<MenuVO>() {
+                .enqueue(new Callback<>() {
                     @Override
                     public void onResponse(@NonNull Call<MenuVO> call, @NonNull Response<MenuVO> response) {
                         MenuVO menu = response.body();
@@ -192,7 +192,7 @@ public class OrderListAdapter extends RecyclerView.Adapter<OrderListAdapter.View
         orderApi = retrofitService.getRetrofit().create(OrderApi.class);
 
         orderApi.getContentNameList(contentNameList)
-                .enqueue(new Callback<List<String>>() {
+                .enqueue(new Callback<>() {
                     @Override
                     public void onResponse(@NonNull Call<List<String>> call, @NonNull Response<List<String>> response) {
                         List<String> contentNameResult = response.body();
@@ -222,7 +222,7 @@ public class OrderListAdapter extends RecyclerView.Adapter<OrderListAdapter.View
         orderApi = retrofitService.getRetrofit().create(OrderApi.class);
 
         orderApi.modifyAmount(order)
-                .enqueue(new Callback<OrderVO>() {
+                .enqueue(new Callback<>() {
                     @Override
                     public void onResponse(@NonNull Call<OrderVO> call, @NonNull Response<OrderVO> response) {
                     }
@@ -240,7 +240,7 @@ public class OrderListAdapter extends RecyclerView.Adapter<OrderListAdapter.View
         orderApi = retrofitService.getRetrofit().create(OrderApi.class);
 
         orderApi.deleteOrder(orderId)
-                .enqueue(new Callback<Void>() {
+                .enqueue(new Callback<>() {
                     @SuppressLint("NotifyDataSetChanged")
                     @Override
                     public void onResponse(@NonNull Call<Void> call, @NonNull Response<Void> response) {

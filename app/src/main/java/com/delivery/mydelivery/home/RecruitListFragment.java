@@ -49,7 +49,7 @@ public class RecruitListFragment extends Fragment {
 
     // 레트로핏, api
     RetrofitService retrofitService;
-    RecruitApi api;
+    RecruitApi recruitApi;
 
     @Nullable
     @Override
@@ -90,10 +90,10 @@ public class RecruitListFragment extends Fragment {
     // 모집글 목록 생성
     private void setRecruitList(String registrantPlace) {
         retrofitService = new RetrofitService();
-        api = retrofitService.getRetrofit().create(RecruitApi.class);
+        recruitApi = retrofitService.getRetrofit().create(RecruitApi.class);
 
-        api.getRecruitList(registrantPlace)
-                .enqueue(new Callback<List<RecruitVO>>() {
+        recruitApi.getRecruitList(registrantPlace)
+                .enqueue(new Callback<>() {
                     @Override
                     public void onResponse(@NonNull Call<List<RecruitVO>> call, @NonNull Response<List<RecruitVO>> response) {
                         recruitList = response.body();

@@ -48,7 +48,6 @@ public class RecruitListAdapter extends RecyclerView.Adapter<RecruitListAdapter.
     UserApi userApi;
     RecruitApi recruitApi;
 
-
     // 생성자
     public RecruitListAdapter(List<RecruitVO> recruitList, Context context) {
         this.recruitList = recruitList;
@@ -135,7 +134,7 @@ public class RecruitListAdapter extends RecyclerView.Adapter<RecruitListAdapter.
         storeApi = retrofitService.getRetrofit().create(StoreApi.class);
 
         storeApi.getStore(storeId)
-                .enqueue(new Callback<StoreVO>() {
+                .enqueue(new Callback<>() {
                     @Override
                     public void onResponse(@NonNull Call<StoreVO> call, @NonNull Response<StoreVO> response) {
                         StoreVO store = response.body();
@@ -157,7 +156,7 @@ public class RecruitListAdapter extends RecyclerView.Adapter<RecruitListAdapter.
         userApi = retrofitService.getRetrofit().create(UserApi.class);
 
         userApi.getUser(userId)
-                .enqueue(new Callback<UserVO>() {
+                .enqueue(new Callback<>() {
                     @Override
                     public void onResponse(@NonNull Call<UserVO> call, @NonNull Response<UserVO> response) {
                         UserVO user = response.body();
@@ -178,7 +177,7 @@ public class RecruitListAdapter extends RecyclerView.Adapter<RecruitListAdapter.
         recruitApi = retrofitService.getRetrofit().create(RecruitApi.class);
 
         recruitApi.getParticipantCount(recruitId)
-                .enqueue(new Callback<Integer>() {
+                .enqueue(new Callback<>() {
                     @Override
                     public void onResponse(@NonNull Call<Integer> call, @NonNull Response<Integer> response) {
                         holder.participantCount = response.body();
@@ -196,7 +195,7 @@ public class RecruitListAdapter extends RecyclerView.Adapter<RecruitListAdapter.
         recruitApi = retrofitService.getRetrofit().create(RecruitApi.class);
 
         recruitApi.findUserInRecruit(recruitId, participateUserId)
-                .enqueue(new Callback<Boolean>() {
+                .enqueue(new Callback<>() {
                     @Override
                     public void onResponse(@NonNull Call<Boolean> call, @NonNull Response<Boolean> response) {
 
@@ -222,7 +221,7 @@ public class RecruitListAdapter extends RecyclerView.Adapter<RecruitListAdapter.
         userApi = retrofitService.getRetrofit().create(UserApi.class);
 
         userApi.checkRestriction(participateUserId)
-                .enqueue(new Callback<Boolean>() {
+                .enqueue(new Callback<>() {
                     @Override
                     public void onResponse(@NonNull Call<Boolean> call, @NonNull Response<Boolean> response) {
                         Boolean checkRestrictionFlag = response.body();
@@ -257,7 +256,7 @@ public class RecruitListAdapter extends RecyclerView.Adapter<RecruitListAdapter.
         userApi = retrofitService.getRetrofit().create(UserApi.class);
 
         userApi.getParticipationRestriction(userId)
-                .enqueue(new Callback<ParticipationRestrictionVO>() {
+                .enqueue(new Callback<>() {
                     @Override
                     public void onResponse(@NonNull Call<ParticipationRestrictionVO> call, @NonNull Response<ParticipationRestrictionVO> response) {
                         ParticipationRestrictionVO participationRestriction = response.body();

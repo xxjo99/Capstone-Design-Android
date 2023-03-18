@@ -1,5 +1,6 @@
 package com.delivery.mydelivery.delivery;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.widget.Button;
 import android.widget.ImageButton;
@@ -38,6 +39,12 @@ public class CheckDeliveryActivity extends AppCompatActivity {
         // 초기화
         checkDeliveryBtn = findViewById(R.id.checkDeliveryBtn);
         receivedDeliveryBtn = findViewById(R.id.receivedDeliveryBtn);
+
+        // 배달 리스트 액티비티 이동
+        checkDeliveryBtn.setOnClickListener(view -> {
+            Intent intent = new Intent(CheckDeliveryActivity.this, ReceiptDeliveryActivity.class);
+            startActivity(intent);
+        });
 
     }
 }

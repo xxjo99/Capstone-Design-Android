@@ -107,6 +107,9 @@
         <activity
             android:name=".delivery.CheckDeliveryActivity"
             android:windowSoftInputMode="adjustResize" />
+        <activity
+            android:name=".delivery.ReceiptDeliveryActivity"
+            android:windowSoftInputMode="adjustResize" />
 
     </application>
 
