@@ -279,6 +279,7 @@ public class PointActivity extends AppCompatActivity {
                         int userPoint = user.getPoint() + (int) point;
                         user.setPoint(userPoint);
 
+                        // 포인트 충전 내역 추가
                         PointHistoryVO pointHistory = new PointHistoryVO();
                         pointHistory.setUserId(user.getUserId());
                         pointHistory.setPoint((int) point);
@@ -304,8 +305,9 @@ public class PointActivity extends AppCompatActivity {
         userApi = retrofitService.getRetrofit().create(UserApi.class);
         pointApi = retrofitService.getRetrofit().create(PointApi.class);
 
+        // 보유 포인트 변경
         userApi.modify(user)
-                .enqueue(new Callback<UserVO>() {
+                .enqueue(new Callback<>() {
                     @Override
                     public void onResponse(@NonNull Call<UserVO> call, @NonNull Response<UserVO> response) {
                     }
@@ -315,8 +317,9 @@ public class PointActivity extends AppCompatActivity {
                     }
                 });
 
+        // 포인트 이용내역 추가
         pointApi.addPointHistory(pointHistory)
-                .enqueue(new Callback<Void>() {
+                .enqueue(new Callback<>() {
                     @Override
                     public void onResponse(@NonNull Call<Void> call, @NonNull Response<Void> response) {
                         gson = new GsonBuilder().create();

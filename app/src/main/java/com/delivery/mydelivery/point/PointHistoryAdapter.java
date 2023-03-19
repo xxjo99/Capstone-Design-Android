@@ -55,14 +55,16 @@ public class PointHistoryAdapter extends RecyclerView.Adapter<PointHistoryAdapte
 
         holder.dateTimeTV.setText(time); // 일자
         holder.pointHistoryTV.setText(content); // 내용
-        // 사용 or 충전 포인트
-        if (type.equals("충전")) {
-            holder.pointTV.setText("+" + point + "P");
-        } else {
+
+        // 포인트 이용 타입
+        if (type.equals("사용")) { // 포인트 사용 (결제, 패널티 등)
             holder.pointTV.setText("-" + point + "P");
+        } else { // 포인트 충전, 환불
+            holder.pointTV.setText("+" + point + "P");
         }
-        holder.typeTV.setText(type);
-        holder.balanceTV.setText("잔액 " + balance + "P");
+
+        holder.typeTV.setText(type); // 포인트 이용 타입
+        holder.balanceTV.setText("잔액 " + balance + "P"); // 포인트 이용 후 남은 잔액
     }
 
     @Override

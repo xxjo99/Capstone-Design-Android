@@ -18,4 +18,9 @@ public interface DeliveryApi {
     // 배달 시작 알림 전송, 모집글 배달 상태 변경
     @POST("/delivery/start")
     Call<Void> receiptDelivery(@Query("recruitId") int recruitId);
+
+    // 배달이 출발한 모집글 리스트
+    @GET("/delivery/started/deliveryList")
+    Call<List<RecruitVO>> getStartedDeliveryList();
+
 }

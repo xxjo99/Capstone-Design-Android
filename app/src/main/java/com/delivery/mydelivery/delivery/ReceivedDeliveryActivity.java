@@ -24,7 +24,7 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-public class ReceiptDeliveryActivity extends AppCompatActivity {
+public class ReceivedDeliveryActivity extends AppCompatActivity {
 
     // 툴바, 툴바 버튼
     Toolbar toolbar;
@@ -36,7 +36,7 @@ public class ReceiptDeliveryActivity extends AppCompatActivity {
 
     // 리사이클러뷰, 어댑터, 리스트
     RecyclerView deliveryListRecyclerView;
-    ReceiptDeliveryListAdapter receiptDeliveryListAdapter;
+    ReceivedDeliveryListAdapter receivedDeliveryListAdapter;
     List<RecruitVO> recruitList;
 
     // 레트로핏, api
@@ -48,7 +48,7 @@ public class ReceiptDeliveryActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_delivery_receipt);
+        setContentView(R.layout.activity_delivery_received);
         context = this;
 
         // 툴바
@@ -70,7 +70,7 @@ public class ReceiptDeliveryActivity extends AppCompatActivity {
         deliveryListRecyclerView.setLayoutManager(manager);
         deliveryListRecyclerView.setHasFixedSize(true);
 
-        // 접수가능한 배달 목록 추가
+        // 접수한 배달 목록 추가
         setDeliveryList();
     }
 
@@ -78,7 +78,7 @@ public class ReceiptDeliveryActivity extends AppCompatActivity {
         retrofitService = new RetrofitService();
         deliveryApi = retrofitService.getRetrofit().create(DeliveryApi.class);
 
-        deliveryApi.getDeliveryList()
+        deliveryApi.getStartedDeliveryList()
                 .enqueue(new Callback<>() {
                     @Override
                     public void onResponse(@NonNull Call<List<RecruitVO>> call, @NonNull Response<List<RecruitVO>> response) {
@@ -91,8 +91,8 @@ public class ReceiptDeliveryActivity extends AppCompatActivity {
                             emptyLayout.setVisibility(View.GONE);
                             deliveryScrollView.setVisibility(View.VISIBLE);
 
-                            receiptDeliveryListAdapter = new ReceiptDeliveryListAdapter(recruitList, context);
-                            deliveryListRecyclerView.setAdapter(receiptDeliveryListAdapter);
+                            receivedDeliveryListAdapter = new ReceivedDeliveryListAdapter(recruitList, context);
+                            deliveryListRecyclerView.setAdapter(receivedDeliveryListAdapter);
                         }
                     }
 

@@ -17,6 +17,7 @@ import androidx.appcompat.widget.Toolbar;
 
 import com.delivery.mydelivery.R;
 import com.delivery.mydelivery.point.PointActivity;
+import com.delivery.mydelivery.point.PointApi;
 import com.delivery.mydelivery.preferenceManager.PreferenceManager;
 import com.delivery.mydelivery.retrofit.RetrofitService;
 import com.delivery.mydelivery.user.UserVO;
@@ -63,6 +64,7 @@ public class PaymentActivity extends AppCompatActivity {
     // 레트로핏, api, gson
     RetrofitService retrofitService;
     RecruitApi recruitApi;
+    PointApi pointApi;
     Gson gson;
 
     @Override
@@ -172,7 +174,7 @@ public class PaymentActivity extends AppCompatActivity {
         recruitApi = retrofitService.getRetrofit().create(RecruitApi.class);
 
         recruitApi.getRecruit(recruitId)
-                .enqueue(new Callback<RecruitVO>() {
+                .enqueue(new Callback<>() {
                     @Override
                     public void onResponse(@NonNull Call<RecruitVO> call, @NonNull Response<RecruitVO> response) {
                         RecruitVO recruit = response.body();
@@ -191,9 +193,11 @@ public class PaymentActivity extends AppCompatActivity {
     private void payment(int recruitId, int userId, int usedPoint, String content, UserVO user) {
         retrofitService = new RetrofitService();
         recruitApi = retrofitService.getRetrofit().create(RecruitApi.class);
+        pointApi = retrofitService.getRetrofit().create(PointApi.class);
 
+        // 결제
         recruitApi.payment(recruitId, userId, usedPoint, content)
-                .enqueue(new Callback<Void>() {
+                .enqueue(new Callback<>() {
                     @Override
                     public void onResponse(@NonNull Call<Void> call, @NonNull Response<Void> response) {
                         user.setPoint(user.getPoint() - usedPoint);

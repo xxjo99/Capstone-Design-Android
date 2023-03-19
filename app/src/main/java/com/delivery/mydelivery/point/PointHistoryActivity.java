@@ -83,7 +83,7 @@ public class PointHistoryActivity extends AppCompatActivity {
         pointApi = retrofitService.getRetrofit().create(PointApi.class);
 
         pointApi.getPointHistory(userId)
-                .enqueue(new Callback<List<PointHistoryVO>>() {
+                .enqueue(new Callback<>() {
                     @Override
                     public void onResponse(@NonNull Call<List<PointHistoryVO>> call, @NonNull Response<List<PointHistoryVO>> response) {
                         pointHistoryList = response.body();

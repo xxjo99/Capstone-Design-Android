@@ -46,5 +46,11 @@ public class CheckDeliveryActivity extends AppCompatActivity {
             startActivity(intent);
         });
 
+        // 접수한 배달 리스트 액티비티 이동
+        receivedDeliveryBtn.setOnClickListener(view -> {
+            Intent intent = new Intent(CheckDeliveryActivity.this, ReceivedDeliveryActivity.class);
+            startActivity(intent);
+        });
+
     }
 }

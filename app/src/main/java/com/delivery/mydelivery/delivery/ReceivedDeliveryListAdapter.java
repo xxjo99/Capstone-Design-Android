@@ -3,12 +3,12 @@ package com.delivery.mydelivery.delivery;
 import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.content.Context;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
@@ -30,7 +30,7 @@ import retrofit2.Response;
 
 // 모집글 리스트 어댑터
 @SuppressLint("SetTextI18n")
-public class DeliveryListAdapter extends RecyclerView.Adapter<DeliveryListAdapter.ViewHolder> {
+public class ReceivedDeliveryListAdapter extends RecyclerView.Adapter<ReceivedDeliveryListAdapter.ViewHolder> {
 
     private final List<RecruitVO> recruitList; // 모집글 리스트
     Context context; // context
@@ -39,10 +39,9 @@ public class DeliveryListAdapter extends RecyclerView.Adapter<DeliveryListAdapte
     RetrofitService retrofitService;
     StoreApi storeApi;
     UserApi userApi;
-    DeliveryApi deliveryApi;
 
     // 생성자
-    public DeliveryListAdapter(List<RecruitVO> recruitList, Context context) {
+    public ReceivedDeliveryListAdapter(List<RecruitVO> recruitList, Context context) {
         this.recruitList = recruitList;
         this.context = context;
     }
@@ -52,12 +51,12 @@ public class DeliveryListAdapter extends RecyclerView.Adapter<DeliveryListAdapte
     @Override
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         LayoutInflater inflater = LayoutInflater.from(parent.getContext());
-        View view = inflater.inflate(R.layout.item_delivery_delivery, parent, false);
+        View view = inflater.inflate(R.layout.item_delivery_received, parent, false);
         return new ViewHolder(view);
     }
 
     @Override
-    public void onBindViewHolder(@NonNull DeliveryListAdapter.ViewHolder holder, int position) {
+    public void onBindViewHolder(@NonNull ReceivedDeliveryListAdapter.ViewHolder holder, int position) {
         RecruitVO recruit = recruitList.get(position);
 
         // 매장이름 지정
@@ -69,8 +68,11 @@ public class DeliveryListAdapter extends RecyclerView.Adapter<DeliveryListAdapte
         String place = recruit.getPlace();
         setPlace(userId, place, holder);
 
-        // 배달 접수
-        holder.receiptDeliveryBtn.setOnClickListener(view -> receiptDelivery(recruit.getRecruitId()));
+        // 알림전송 액티비티 이동
+        holder.sendCompleteMessageBtn.setOnClickListener(view -> {
+            Intent intent = new Intent(context, SendCompleteMessageActivity.class);
+            context.startActivity(intent);
+        });
 
     }
 
@@ -86,19 +88,19 @@ public class DeliveryListAdapter extends RecyclerView.Adapter<DeliveryListAdapte
     public static class ViewHolder extends RecyclerView.ViewHolder {
         TextView storeNameTV;
         TextView placeTV;
-        Button receiptDeliveryBtn;
+        Button sendCompleteMessageBtn;
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
 
             storeNameTV = itemView.findViewById(R.id.storeNameTV);
             placeTV = itemView.findViewById(R.id.placeTV);
-            receiptDeliveryBtn = itemView.findViewById(R.id.receiptDeliveryBtn);
+            sendCompleteMessageBtn = itemView.findViewById(R.id.sendCompleteMessageBtn);
         }
     }
 
     // 매장이름 지정
-    private void setStoreName(int storeId, DeliveryListAdapter.ViewHolder holder) {
+    private void setStoreName(int storeId, ReceivedDeliveryListAdapter.ViewHolder holder) {
         retrofitService = new RetrofitService();
         storeApi = retrofitService.getRetrofit().create(StoreApi.class);
 
@@ -119,7 +121,7 @@ public class DeliveryListAdapter extends RecyclerView.Adapter<DeliveryListAdapte
     }
 
     // 장소 지정
-    private void setPlace(int userId, String place, DeliveryListAdapter.ViewHolder holder) {
+    private void setPlace(int userId, String place, ReceivedDeliveryListAdapter.ViewHolder holder) {
         retrofitService = new RetrofitService();
         userApi = retrofitService.getRetrofit().create(UserApi.class);
 
@@ -135,26 +137,6 @@ public class DeliveryListAdapter extends RecyclerView.Adapter<DeliveryListAdapte
 
                     @Override
                     public void onFailure(@NonNull Call<UserVO> call, @NonNull Throwable t) {
-
-                    }
-                });
-    }
-
-    // 배달 접수
-    private void receiptDelivery(int recruitId) {
-        retrofitService = new RetrofitService();
-        deliveryApi = retrofitService.getRetrofit().create(DeliveryApi.class);
-
-        deliveryApi.receiptDelivery(recruitId)
-                .enqueue(new Callback<>() {
-                    @Override
-                    public void onResponse(@NonNull Call<Void> call, @NonNull Response<Void> response) {
-                        Toast.makeText(context, "배달이 접수되었습니다.", Toast.LENGTH_SHORT).show();
-                        ((Activity) context).finish();
-                    }
-
-                    @Override
-                    public void onFailure(@NonNull Call<Void> call, @NonNull Throwable t) {
 
                     }
                 });

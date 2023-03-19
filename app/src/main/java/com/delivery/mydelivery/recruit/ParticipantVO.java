@@ -6,6 +6,7 @@ public class ParticipantVO {
     private int recruitId;
     private int userId;
     private String participantType;
+    private int paymentMoney;
     private int paymentStatus;
 
     public int getParticipantId() {
@@ -38,6 +39,14 @@ public class ParticipantVO {
 
     public void setParticipantType(String participantType) {
         this.participantType = participantType;
+    }
+
+    public int getPaymentMoney() {
+        return paymentMoney;
+    }
+
+    public void setPaymentMoney(int paymentMoney) {
+        this.paymentMoney = paymentMoney;
     }
 
     public int getPaymentStatus() {
