@@ -96,6 +96,9 @@
         <activity
             android:name=".myInfo.OrderHistoryActivity"
             android:windowSoftInputMode="adjustResize" />
+        <activity
+            android:name=".myInfo.OrderHistoryDetailActivity"
+            android:windowSoftInputMode="adjustResize" />
 
         <!-- notice -->
         <activity

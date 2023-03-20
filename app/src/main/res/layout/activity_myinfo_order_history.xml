@@ -2,11 +2,11 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:orientation="vertical">
+    android:orientation="vertical"
+    android:layout_height="match_parent">
 
     <androidx.appcompat.widget.Toolbar
-        android:id="@+id/pointHistoryToolbar"
+        android:id="@+id/orderHistoryToolbar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@color/white"
@@ -24,7 +24,7 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:fontFamily="@font/bmjua_font"
-            android:text="@string/orderHistory"
+            android:text="주문 내역"
             android:textColor="@color/black"
             android:textSize="20sp" />
 
@@ -39,25 +39,19 @@
         android:orientation="vertical"
         android:visibility="gone">
 
-        <ImageView
-            android:layout_width="30dp"
-            android:layout_height="30dp"
-            android:layout_marginBottom="5dp"
-            android:src="@drawable/warn_gray" />
-
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:fontFamily="@font/bmjua_font"
             android:gravity="center"
-            android:text="이용내역이 없습니다."
+            android:text="주문내역이 없습니다."
             android:textColor="@color/gray4"
-            android:textSize="21sp" />
+            android:textSize="23sp" />
 
     </LinearLayout>
 
     <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/pointHistoryRecyclerView"
+        android:id="@+id/orderHistoryRecyclerView"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="20dp" />

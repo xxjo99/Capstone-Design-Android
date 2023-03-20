@@ -2,14 +2,13 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:orientation="vertical">
+    android:orientation="vertical"
+    android:layout_height="match_parent">
 
     <androidx.appcompat.widget.Toolbar
-        android:id="@+id/deliveryToolbar"
+        android:id="@+id/orderHistoryToolbar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="10dp"
         android:background="@color/white"
         app:contentInsetStart="0dp">
 
@@ -18,16 +17,14 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:backgroundTint="@color/white"
-            android:minHeight="48dp"
             android:src="@drawable/back" />
 
         <TextView
-            android:id="@+id/infoTV"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:fontFamily="@font/bmjua_font"
-            android:text="배달 완료 알림 전송"
+            android:text="상세 주문 내역"
             android:textColor="@color/black"
             android:textSize="20sp" />
 
@@ -37,21 +34,8 @@
         android:id="@+id/pictureIV"
         android:layout_width="200dp"
         android:layout_height="200dp"
-        android:layout_gravity="center"
-        android:visibility="gone" />
+        android:layout_gravity="center" />
 
-    <Button
-        android:id="@+id/takePictureBtn"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:text="촬영" />
 
-    <Button
-        android:id="@+id/sendMessageBtn"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:text="알림 전송" />
 
 </LinearLayout>
