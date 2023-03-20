@@ -118,6 +118,7 @@ public class SendCompleteMessageActivity extends AppCompatActivity {
                 .enqueue(new Callback<>() {
                     @Override
                     public void onResponse(@NonNull Call<Void> call, @NonNull Response<Void> response) {
+                        System.out.println(response);
                         Toast.makeText(context, "배달이 완료되었습니다.", Toast.LENGTH_SHORT).show();
                         finish();
                     }

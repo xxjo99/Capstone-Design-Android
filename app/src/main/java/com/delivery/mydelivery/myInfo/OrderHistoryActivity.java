@@ -34,7 +34,7 @@ public class OrderHistoryActivity extends AppCompatActivity {
     // 리사이클러뷰, 어댑터, 리스트, 레이아웃
     RecyclerView orderHistoryRecyclerView;
     OrderHistoryAdapter orderHistoryAdapter;
-    List<OrderHistoryVO> orderHistoryList;
+    List<OrderHistoryVO2> orderHistoryList;
     LinearLayout emptyLayout;
 
     // 레트로핏, api
@@ -82,7 +82,7 @@ public class OrderHistoryActivity extends AppCompatActivity {
         orderHistoryApi.getOrderHistory(userId)
                 .enqueue(new Callback<>() {
                     @Override
-                    public void onResponse(@NonNull Call<List<OrderHistoryVO>> call, @NonNull Response<List<OrderHistoryVO>> response) {
+                    public void onResponse(@NonNull Call<List<OrderHistoryVO2>> call, @NonNull Response<List<OrderHistoryVO2>> response) {
                         orderHistoryList = response.body();
 
                         if (Objects.requireNonNull(orderHistoryList).isEmpty()) {
@@ -98,8 +98,7 @@ public class OrderHistoryActivity extends AppCompatActivity {
                     }
 
                     @Override
-                    public void onFailure(@NonNull Call<List<OrderHistoryVO>> call, @NonNull Throwable t) {
-                        System.out.println("throw       " + t);
+                    public void onFailure(@NonNull Call<List<OrderHistoryVO2>> call, @NonNull Throwable t) {
                     }
                 });
 

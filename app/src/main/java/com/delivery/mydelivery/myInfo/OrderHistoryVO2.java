@@ -2,7 +2,7 @@ package com.delivery.mydelivery.myInfo;
 
 import java.sql.Timestamp;
 
-public class OrderHistoryVO {
+public class OrderHistoryVO2 {
 
     private int orderHistoryId;
     private int recruitId;
@@ -10,7 +10,6 @@ public class OrderHistoryVO {
     private int storeId;
     private int paymentMoney;
     private int participantCount;
-    private byte[] deliveryCompletePicture;
     private Timestamp deliveryDate;
 
     public int getOrderHistoryId() {
@@ -59,14 +58,6 @@ public class OrderHistoryVO {
 
     public void setParticipantCount(int participantCount) {
         this.participantCount = participantCount;
-    }
-
-    public byte[] getDeliveryCompletePicture() {
-        return deliveryCompletePicture;
-    }
-
-    public void setDeliveryCompletePicture(byte[] deliveryCompletePicture) {
-        this.deliveryCompletePicture = deliveryCompletePicture;
     }
 
     public Timestamp getDeliveryDate() {

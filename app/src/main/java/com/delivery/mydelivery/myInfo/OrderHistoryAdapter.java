@@ -31,14 +31,14 @@ import retrofit2.Response;
 @SuppressLint("SetTextI18n")
 public class OrderHistoryAdapter extends RecyclerView.Adapter<OrderHistoryAdapter.ViewHolder> {
 
-    private final List<OrderHistoryVO> orderHistoryList; // 주문 리스트
+    private final List<OrderHistoryVO2> orderHistoryList; // 주문 리스트
     Context context; // context
 
     RetrofitService retrofitService;
     StoreApi storeApi;
 
     // 생성자
-    public OrderHistoryAdapter(List<OrderHistoryVO> orderHistoryList, Context context) {
+    public OrderHistoryAdapter(List<OrderHistoryVO2> orderHistoryList, Context context) {
         this.orderHistoryList = orderHistoryList;
         this.context = context;
     }
@@ -55,7 +55,7 @@ public class OrderHistoryAdapter extends RecyclerView.Adapter<OrderHistoryAdapte
     // 데이터 셋팅
     @Override
     public void onBindViewHolder(@NonNull OrderHistoryAdapter.ViewHolder holder, int position) {
-        OrderHistoryVO orderHistory = orderHistoryList.get(position);
+        OrderHistoryVO2 orderHistory = orderHistoryList.get(position);
 
         // 매장 이미지, 이름
         getStoreInfo(orderHistory.getStoreId(), holder);
@@ -68,8 +68,6 @@ public class OrderHistoryAdapter extends RecyclerView.Adapter<OrderHistoryAdapte
 
         holder.participantCountTV.setText(orderHistory.getParticipantCount() + "명"); // 참여인원
         holder.paymentMoneyTV.setText(orderHistory.getPaymentMoney() + "P"); // 지불금액
-
-        System.out.println(orderHistory.getDeliveryCompletePicture());
 
         // 상세주문내역으로 이동
         holder.itemView.setOnClickListener(view -> {
@@ -120,7 +118,6 @@ public class OrderHistoryAdapter extends RecyclerView.Adapter<OrderHistoryAdapte
                         String text = "https://img1.daumcdn.net/thumb/R1280x0/?scode=mtistory&fname=https://k.kakaocdn.net/dn/EShJF/btquPLT192D/SRxSvXqcWjHRTju3kHcOQK/img.png";
                         Glide.with(context).load(/*storeImage*/ text).placeholder(R.drawable.ic_launcher_background).override(100, 100).into(holder.storeIV);
                         holder.storeNameTV.setText(Objects.requireNonNull(store).getStoreName());
-
                     }
 
                     @Override

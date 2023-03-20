@@ -29,6 +29,7 @@ import java.util.Objects;
 
 import okhttp3.OkHttpClient;
 import okhttp3.Request;
+import okhttp3.ResponseBody;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -84,13 +85,19 @@ public class OrderHistoryDetailActivity extends AppCompatActivity {
         orderHistoryApi.getImage(recruitId, userId)
                 .enqueue(new Callback<>() {
                     @Override
-                    public void onResponse(Call<byte[]> call, Response<byte[]> response) {
+                    public void onResponse(@NonNull Call<ResponseBody> call, @NonNull Response<ResponseBody> response) {
+                        try {
+                            byte[] byteImageArray = Objects.requireNonNull(response.body()).bytes();
+                            Bitmap imageBitmap = BitmapFactory.decodeByteArray(byteImageArray,0, byteImageArray.length);
+                            pictureIV.setImageBitmap(imageBitmap);
 
+                        } catch (IOException e) {
+                            e.printStackTrace();
+                        }
                     }
 
                     @Override
-                    public void onFailure(Call<byte[]> call, Throwable t) {
-
+                    public void onFailure(@NonNull Call<ResponseBody> call, @NonNull Throwable t) {
                     }
                 });
     }
