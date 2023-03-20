@@ -7,6 +7,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -40,7 +41,7 @@ public class HomeActivity extends AppCompatActivity {
     TextView infoTV;
 
     // 배달 확인 버튼
-    Button checkDeliveryBtn;
+    ImageButton checkDeliveryBtn;
 
     @SuppressLint("NonConstantResourceId")
     @Override

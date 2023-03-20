@@ -15,12 +15,13 @@
         app:contentInsetStart="0dp"
         app:menu="@menu/home_toolbar">
 
-        <Button
+        <ImageButton
             android:id="@+id/checkDeliveryBtn"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="10dp"
-            android:background="@drawable/btn_fill_mint"
+            android:src="@drawable/bell_icon"
+            android:background="@color/white"
             android:fontFamily="@font/bmjua_font"
             android:text="배달 확인"
             android:textColor="@color/white"
