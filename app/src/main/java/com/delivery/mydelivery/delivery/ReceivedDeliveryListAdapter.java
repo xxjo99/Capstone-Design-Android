@@ -71,6 +71,7 @@ public class ReceivedDeliveryListAdapter extends RecyclerView.Adapter<ReceivedDe
         // 알림전송 액티비티 이동
         holder.sendCompleteMessageBtn.setOnClickListener(view -> {
             Intent intent = new Intent(context, SendCompleteMessageActivity.class);
+            intent.putExtra("recruitId", recruit.getRecruitId());
             context.startActivity(intent);
         });
 

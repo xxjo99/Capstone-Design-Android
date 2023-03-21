@@ -125,7 +125,7 @@ public class MyInfoActivity extends AppCompatActivity {
         userApi = retrofitService.getRetrofit().create(UserApi.class);
 
         userApi.getAllSchool()
-                .enqueue(new Callback<List<String>>() {
+                .enqueue(new Callback<>() {
                     @Override
                     public void onResponse(@NonNull Call<List<String>> call, @NonNull Response<List<String>> response) {
                         schoolList = response.body();
@@ -242,7 +242,7 @@ public class MyInfoActivity extends AppCompatActivity {
         userApi = retrofitService.getRetrofit().create(UserApi.class);
 
         userApi.modify(user)
-                .enqueue(new Callback<UserVO>() {
+                .enqueue(new Callback<>() {
                     @Override
                     public void onResponse(@NonNull Call<UserVO> call, @NonNull Response<UserVO> response) {
                         gson = new GsonBuilder().create();

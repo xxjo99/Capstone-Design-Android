@@ -23,7 +23,6 @@
             android:src="@drawable/bell_icon"
             android:background="@color/white"
             android:fontFamily="@font/bmjua_font"
-            android:text="배달 확인"
             android:textColor="@color/white"
             android:textSize="15sp" />
 

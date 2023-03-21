@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical">
@@ -8,21 +9,25 @@
         android:id="@+id/deliveryToolbar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@color/white">
+        android:layout_marginBottom="10dp"
+        android:background="@color/white"
+        app:contentInsetStart="0dp">
 
         <ImageButton
             android:id="@+id/backBtn"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:backgroundTint="@color/white"
+            android:minHeight="48dp"
             android:src="@drawable/back" />
 
         <TextView
+            android:id="@+id/infoTV"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:fontFamily="@font/bmjua_font"
-            android:text="배달 인증"
+            android:text="배달 완료 알림 전송"
             android:textColor="@color/black"
             android:textSize="20sp" />
 
@@ -35,32 +40,31 @@
 
     <Button
         android:id="@+id/takePictureBtn"
-        android:layout_marginTop="50dp"
         android:layout_width="120dp"
         android:layout_height="55dp"
+        android:layout_gravity="center"
+        android:layout_marginTop="50dp"
         android:layout_marginBottom="50dp"
         android:background="@drawable/btn_fill_mint"
         android:fontFamily="@font/bmjua_font"
+        android:text="촬영"
         android:textColor="@color/white"
-        android:textSize="22sp"
-        android:layout_gravity="center"
-        android:text="촬영" />
+        android:textSize="22sp" />
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_weight="1"
-        android:orientation="vertical"
         android:layout_marginBottom="15dp"
+        android:layout_weight="1"
         android:gravity="center_horizontal|bottom"
+        android:orientation="vertical"
         android:padding="10dp">
-
 
         <com.google.android.material.textfield.TextInputLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:gravity="center_horizontal|bottom"
-            android:layout_margin="10dp">
+            android:layout_margin="10dp"
+            android:gravity="center_horizontal|bottom">
 
             <EditText
                 android:id="@+id/messageET"
@@ -75,15 +79,17 @@
                 android:textSize="18sp" />
 
         </com.google.android.material.textfield.TextInputLayout>
-    <Button
-        android:id="@+id/deliveryfinshBtn"
-        style="?android:attr/borderlessButtonStyle"
-        android:layout_width="match_parent"
-        android:layout_height="60dp"
-        android:background="@drawable/btn_fill2_mint"
-        android:fontFamily="@font/bmjua_font"
-        android:text="배달 완료"
-        android:textColor="@color/white"
-        android:textSize="25sp" />
+
+        <Button
+            android:id="@+id/deliveryFinishBtn"
+            style="?android:attr/borderlessButtonStyle"
+            android:layout_width="match_parent"
+            android:layout_height="60dp"
+            android:background="@drawable/btn_fill2_mint"
+            android:fontFamily="@font/bmjua_font"
+            android:text="배달 완료"
+            android:textColor="@color/white"
+            android:textSize="25sp" />
     </LinearLayout>
+
 </LinearLayout>

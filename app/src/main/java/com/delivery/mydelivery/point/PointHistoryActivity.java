@@ -75,7 +75,6 @@ public class PointHistoryActivity extends AppCompatActivity {
         UserVO user = gson.fromJson(loginInfo, UserVO.class);
         int userId = user.getUserId();
         getPointHistory(userId);
-
     }
 
     private void getPointHistory(int userId) {
@@ -106,6 +105,6 @@ public class PointHistoryActivity extends AppCompatActivity {
 
                     }
                 });
-
     }
+
 }
