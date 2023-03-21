@@ -7,7 +7,6 @@ import android.os.Bundle;
 import android.provider.MediaStore;
 import android.view.View;
 import android.widget.Button;
-import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.Toast;
@@ -37,7 +36,7 @@ public class SendCompleteMessageActivity extends AppCompatActivity {
 
     ImageView pictureIV;
     Button takePictureBtn;
-    Button sendMessageBtn;
+    Button deliveryFinishBtn;
 
     Bitmap pictureBitmap;
 
@@ -66,7 +65,7 @@ public class SendCompleteMessageActivity extends AppCompatActivity {
         // 초기화
         pictureIV = findViewById(R.id.pictureIV);
         takePictureBtn = findViewById(R.id.takePictureBtn);
-        sendMessageBtn = findViewById(R.id.sendMessageBtn);
+        deliveryFinishBtn = findViewById(R.id.deliveryFinishBtn);
 
         // 사진 촬영
         takePictureBtn.setOnClickListener(view -> {
@@ -76,7 +75,7 @@ public class SendCompleteMessageActivity extends AppCompatActivity {
 
         // 알림 전송, 배달 완료
         // 촬영하지 않았다면 전송 불가
-        sendMessageBtn.setOnClickListener(view -> {
+        deliveryFinishBtn.setOnClickListener(view -> {
             if (pictureBitmap != null) {
                 completeDelivery(recruitId, pictureBitmap);
             } else {
