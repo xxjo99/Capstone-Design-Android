@@ -12,7 +12,7 @@ public class RecruitVO {
     private String place;
     private Timestamp deliveryTime;
     private int person;
-    private int deliveryStart;
+    private int receiptState;
 
     public int getRecruitId() {
         return recruitId;
@@ -70,11 +70,11 @@ public class RecruitVO {
         this.person = person;
     }
 
-    public int getDeliveryStart() {
-        return deliveryStart;
+    public int getReceiptState() {
+        return receiptState;
     }
 
-    public void setDeliveryStart(int deliveryStart) {
-        this.deliveryStart = deliveryStart;
+    public void setReceiptState(int receiptState) {
+        this.receiptState = receiptState;
     }
 }

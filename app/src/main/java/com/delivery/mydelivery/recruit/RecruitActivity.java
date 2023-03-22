@@ -18,6 +18,7 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
+import androidx.core.widget.NestedScrollView;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -84,8 +85,15 @@ public class RecruitActivity extends AppCompatActivity {
     TextView finalDeliveryTipTV;
     TextView finalPaymentTV;
 
-    // 결제버튼
+    // 결제 버튼
     Button paymentBtn;
+
+    // 배달 상태에 따라 보여질 레이아웃, 텍스트, 메뉴 확인 버튼
+    LinearLayout receiptLayout;
+    TextView deliveryStateTV;
+    Button checkOrderBtn;
+    NestedScrollView recruitScrollView;
+    LinearLayout paymentLayout;
 
     // 레트로핏, api
     RetrofitService retrofitService;
@@ -137,6 +145,18 @@ public class RecruitActivity extends AppCompatActivity {
                 createLeaveDialog(recruitId);
             }
         });
+
+        // 레이아웃, 버튼 초기화
+        receiptLayout = findViewById(R.id.receiptLayout);
+        deliveryStateTV = findViewById(R.id.deliveryStateTV);
+        checkOrderBtn = findViewById(R.id.checkOrderBtn);
+        recruitScrollView = findViewById(R.id.recruitScrollView);
+        paymentLayout = findViewById(R.id.paymentLayout);
+
+        checkDeliveryState(recruitId); // 배달상태 확인 (접수 전, 후, 배달 시작)
+
+        // 담은 메뉴 확인 액티비티 이동
+        checkOrderBtn.setOnClickListener(view -> moveOrderListActivity(recruitId, user.getUserId(), storeId));
 
         // 매장정보 초기화
         storeIV = findViewById(R.id.storeIV);
@@ -190,10 +210,10 @@ public class RecruitActivity extends AppCompatActivity {
         // 최종금액계산 추가, 탈퇴 다이얼로그 추가
         setPayment(storeId, recruitId, user.getUserId());
 
-        // 결제완료 검사
+        // 결제 완료 검사
         checkPaymentComplete(recruitId, user.getUserId());
 
-        // 결제페이지 이동 버튼
+        // 결제 페이지 이동 버튼
         paymentBtn = findViewById(R.id.paymentBtn);
         paymentBtn.setOnClickListener(view -> {
             String phoneNum = user.getPhoneNum();
@@ -207,7 +227,7 @@ public class RecruitActivity extends AppCompatActivity {
         recruitApi = retrofitService.getRetrofit().create(RecruitApi.class);
 
         recruitApi.findRegistrant(recruitId)
-                .enqueue(new Callback<ParticipantVO>() {
+                .enqueue(new Callback<>() {
                     @Override
                     public void onResponse(@NonNull Call<ParticipantVO> call, @NonNull Response<ParticipantVO> response) {
                         ParticipantVO participant = response.body();
@@ -233,7 +253,7 @@ public class RecruitActivity extends AppCompatActivity {
         recruitApi = retrofitService.getRetrofit().create(RecruitApi.class);
 
         recruitApi.getParticipantCount(recruitId)
-                .enqueue(new Callback<Integer>() {
+                .enqueue(new Callback<>() {
                     @Override
                     public void onResponse(@NonNull Call<Integer> call, @NonNull Response<Integer> response) {
                         Integer participantCount = response.body();
@@ -258,7 +278,7 @@ public class RecruitActivity extends AppCompatActivity {
         recruitApi = retrofitService.getRetrofit().create(RecruitApi.class);
 
         recruitApi.getRecruit(recruitId)
-                .enqueue(new Callback<RecruitVO>() {
+                .enqueue(new Callback<>() {
                     @Override
                     public void onResponse(@NonNull Call<RecruitVO> call, @NonNull Response<RecruitVO> response) {
                         RecruitVO recruit = response.body();
@@ -283,13 +303,61 @@ public class RecruitActivity extends AppCompatActivity {
                 });
     }
 
+    // 배달 상태에 따른 레이아웃 변경
+    private void checkDeliveryState(int recruitId) {
+        retrofitService = new RetrofitService();
+        recruitApi = retrofitService.getRetrofit().create(RecruitApi.class);
+
+        recruitApi.getRecruit(recruitId)
+                .enqueue(new Callback<>() {
+                    @Override
+                    public void onResponse(@NonNull Call<RecruitVO> call, @NonNull Response<RecruitVO> response) {
+                        RecruitVO recruit = response.body();
+                        int receiptState = Objects.requireNonNull(recruit).getReceiptState();
+
+                        // 레이아웃, 버튼 초기화
+                        receiptLayout = findViewById(R.id.receiptLayout);
+                        deliveryStateTV = findViewById(R.id.deliveryStateTV);
+                        checkOrderBtn = findViewById(R.id.checkOrderBtn);
+                        recruitScrollView = findViewById(R.id.recruitScrollView);
+                        paymentLayout = findViewById(R.id.paymentLayout);
+
+                        if (receiptState == 0) { // 배달 접수 전
+                            receiptLayout.setVisibility(View.GONE);
+
+                            recruitScrollView.setVisibility(View.VISIBLE);
+                            paymentLayout.setVisibility(View.VISIBLE);
+                        } else if (receiptState == 1) { // 배달 접수
+                            receiptLayout.setVisibility(View.VISIBLE);
+                            deliveryStateTV.setText("배달이 접수되었습니다.");
+                            checkOrderBtn.setVisibility(View.VISIBLE);
+
+                            recruitScrollView.setVisibility(View.GONE);
+                            paymentLayout.setVisibility(View.GONE);
+                        } else { // 배달 출발 (2)
+                            receiptLayout.setVisibility(View.VISIBLE);
+                            deliveryStateTV.setText("배달이 시작되었습니다.");
+
+                            checkOrderBtn.setVisibility(View.GONE);
+                            recruitScrollView.setVisibility(View.GONE);
+                            paymentLayout.setVisibility(View.GONE);
+                        }
+                    }
+
+                    @Override
+                    public void onFailure(@NonNull Call<RecruitVO> call, @NonNull Throwable t) {
+
+                    }
+                });
+    }
+
     // 매장정보 생성
     private void setStore(int storeId) {
         retrofitService = new RetrofitService();
         storeApi = retrofitService.getRetrofit().create(StoreApi.class);
 
         storeApi.getStore(storeId)
-                .enqueue(new Callback<StoreVO>() {
+                .enqueue(new Callback<>() {
                     @Override
                     public void onResponse(@NonNull Call<StoreVO> call, @NonNull Response<StoreVO> response) {
                         StoreVO store = response.body();
@@ -319,7 +387,7 @@ public class RecruitActivity extends AppCompatActivity {
         recruitApi = retrofitService.getRetrofit().create(RecruitApi.class);
 
         recruitApi.getParticipantList(recruitId)
-                .enqueue(new Callback<List<ParticipantVO>>() {
+                .enqueue(new Callback<>() {
                     @Override
                     public void onResponse(@NonNull Call<List<ParticipantVO>> call, @NonNull Response<List<ParticipantVO>> response) {
                         participantList = response.body();
@@ -345,7 +413,7 @@ public class RecruitActivity extends AppCompatActivity {
         recruitApi = retrofitService.getRetrofit().create(RecruitApi.class);
 
         recruitApi.getOrdersTotalPrice(recruitId, userId)
-                .enqueue(new Callback<Integer>() {
+                .enqueue(new Callback<>() {
                     @Override
                     public void onResponse(@NonNull Call<Integer> call, @NonNull Response<Integer> response) {
                         Integer totalPrice = response.body();
@@ -370,7 +438,7 @@ public class RecruitActivity extends AppCompatActivity {
         recruitApi = retrofitService.getRetrofit().create(RecruitApi.class);
 
         recruitApi.getParticipantListExceptMine(recruitId, userId)
-                .enqueue(new Callback<List<ParticipantVO>>() {
+                .enqueue(new Callback<>() {
                     @Override
                     public void onResponse(@NonNull Call<List<ParticipantVO>> call, @NonNull Response<List<ParticipantVO>> response) {
                         participantDeliveryInfoList = response.body();
@@ -403,7 +471,7 @@ public class RecruitActivity extends AppCompatActivity {
 
         // 상품금액
         recruitApi.getOrdersTotalPrice(recruitId, userId)
-                .enqueue(new Callback<Integer>() {
+                .enqueue(new Callback<>() {
                     @Override
                     public void onResponse(@NonNull Call<Integer> call, @NonNull Response<Integer> response) {
                         Integer orderPriceResult = response.body();
@@ -418,7 +486,7 @@ public class RecruitActivity extends AppCompatActivity {
 
         // 배달팁
         storeApi.getStore(storeId)
-                .enqueue(new Callback<StoreVO>() {
+                .enqueue(new Callback<>() {
                     @Override
                     public void onResponse(@NonNull Call<StoreVO> call, @NonNull Response<StoreVO> response) {
                         StoreVO store = response.body();
@@ -448,7 +516,7 @@ public class RecruitActivity extends AppCompatActivity {
 
         // 최종결제금액
         recruitApi.getFinalPayment(recruitId, storeId, userId)
-                .enqueue(new Callback<Integer>() {
+                .enqueue(new Callback<>() {
                     @Override
                     public void onResponse(@NonNull Call<Integer> call, @NonNull Response<Integer> response) {
                         Integer finalPayment = response.body();
@@ -468,7 +536,7 @@ public class RecruitActivity extends AppCompatActivity {
         recruitApi = retrofitService.getRetrofit().create(RecruitApi.class);
 
         recruitApi.getParticipant(recruitId, userId)
-                .enqueue(new Callback<ParticipantVO>() {
+                .enqueue(new Callback<>() {
                     @Override
                     public void onResponse(@NonNull Call<ParticipantVO> call, @NonNull Response<ParticipantVO> response) {
                         ParticipantVO participant = response.body();
@@ -497,7 +565,7 @@ public class RecruitActivity extends AppCompatActivity {
         recruitApi = retrofitService.getRetrofit().create(RecruitApi.class);
 
         recruitApi.getParticipant(recruitId, userId)
-                .enqueue(new Callback<ParticipantVO>() {
+                .enqueue(new Callback<>() {
                     @Override
                     public void onResponse(@NonNull Call<ParticipantVO> call, @NonNull Response<ParticipantVO> response) {
                         ParticipantVO participant = response.body();
@@ -527,7 +595,7 @@ public class RecruitActivity extends AppCompatActivity {
         recruitApi = retrofitService.getRetrofit().create(RecruitApi.class);
 
         recruitApi.getRecruit(recruitId)
-                .enqueue(new Callback<RecruitVO>() {
+                .enqueue(new Callback<>() {
                     @Override
                     public void onResponse(@NonNull Call<RecruitVO> call, @NonNull Response<RecruitVO> response) {
                         RecruitVO recruit = response.body();
@@ -591,7 +659,7 @@ public class RecruitActivity extends AppCompatActivity {
         recruitApi = retrofitService.getRetrofit().create(RecruitApi.class);
 
         recruitApi.getParticipantCount(recruitId)
-                .enqueue(new Callback<Integer>() {
+                .enqueue(new Callback<>() {
                     @Override
                     public void onResponse(@NonNull Call<Integer> call, @NonNull Response<Integer> response) {
                         Integer participantCount = response.body();
@@ -622,7 +690,7 @@ public class RecruitActivity extends AppCompatActivity {
         recruitApi = retrofitService.getRetrofit().create(RecruitApi.class);
 
         recruitApi.getRecruit(recruitId)
-                .enqueue(new Callback<RecruitVO>() {
+                .enqueue(new Callback<>() {
                     @Override
                     public void onResponse(@NonNull Call<RecruitVO> call, @NonNull Response<RecruitVO> response) {
                         RecruitVO recruit = response.body();
@@ -655,7 +723,7 @@ public class RecruitActivity extends AppCompatActivity {
         recruitApi = retrofitService.getRetrofit().create(RecruitApi.class);
 
         recruitApi.getRecruit(recruitId)
-                .enqueue(new Callback<RecruitVO>() {
+                .enqueue(new Callback<>() {
                     @Override
                     public void onResponse(@NonNull Call<RecruitVO> call, @NonNull Response<RecruitVO> response) {
                         RecruitVO recruit = response.body();
@@ -686,7 +754,7 @@ public class RecruitActivity extends AppCompatActivity {
         recruitApi = retrofitService.getRetrofit().create(RecruitApi.class);
 
         recruitApi.getParticipantCount(recruitId)
-                .enqueue(new Callback<Integer>() {
+                .enqueue(new Callback<>() {
                     @Override
                     public void onResponse(@NonNull Call<Integer> call, @NonNull Response<Integer> response) {
                         Integer participantCount = response.body();
@@ -710,7 +778,7 @@ public class RecruitActivity extends AppCompatActivity {
         recruitApi = retrofitService.getRetrofit().create(RecruitApi.class);
 
         recruitApi.checkParticipantPaymentStatus(recruitId)
-                .enqueue(new Callback<Void>() {
+                .enqueue(new Callback<>() {
                     @Override
                     public void onResponse(@NonNull Call<Void> call, @NonNull Response<Void> response) {
                         // 강퇴 후 배달승인대기로 변경

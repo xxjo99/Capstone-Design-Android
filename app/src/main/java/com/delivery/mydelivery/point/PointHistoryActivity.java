@@ -75,7 +75,6 @@ public class PointHistoryActivity extends AppCompatActivity {
         UserVO user = gson.fromJson(loginInfo, UserVO.class);
         int userId = user.getUserId();
         getPointHistory(userId);
-
     }
 
     private void getPointHistory(int userId) {
@@ -83,7 +82,7 @@ public class PointHistoryActivity extends AppCompatActivity {
         pointApi = retrofitService.getRetrofit().create(PointApi.class);
 
         pointApi.getPointHistory(userId)
-                .enqueue(new Callback<List<PointHistoryVO>>() {
+                .enqueue(new Callback<>() {
                     @Override
                     public void onResponse(@NonNull Call<List<PointHistoryVO>> call, @NonNull Response<List<PointHistoryVO>> response) {
                         pointHistoryList = response.body();
@@ -106,6 +105,6 @@ public class PointHistoryActivity extends AppCompatActivity {
 
                     }
                 });
-
     }
+
 }

@@ -1,9 +1,13 @@
 package com.delivery.mydelivery.myInfo;
 
 import android.content.Context;
+import android.content.Intent;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageButton;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 
 import androidx.annotation.NonNull;
@@ -18,24 +22,25 @@ import com.delivery.mydelivery.retrofit.RetrofitService;
 import com.delivery.mydelivery.user.UserVO;
 import com.google.gson.Gson;
 
+import java.io.IOException;
+import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
 
+import okhttp3.OkHttpClient;
+import okhttp3.Request;
+import okhttp3.ResponseBody;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-public class OrderHistoryActivity extends AppCompatActivity {
+public class OrderHistoryDetailActivity extends AppCompatActivity {
 
     // 툴바, 뒤로가기 버튼
     Toolbar toolbar;
     ImageButton backBtn;
 
-    // 리사이클러뷰, 어댑터, 리스트, 레이아웃
-    RecyclerView orderHistoryRecyclerView;
-    OrderHistoryAdapter orderHistoryAdapter;
-    List<OrderHistoryVO2> orderHistoryList;
-    LinearLayout emptyLayout;
+    ImageView pictureIV;
 
     // 레트로핏, api
     RetrofitService retrofitService;
@@ -46,7 +51,7 @@ public class OrderHistoryActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_myinfo_order_history);
+        setContentView(R.layout.activity_myinfo_order_history_detail);
         context = this;
 
         // 툴바
@@ -58,50 +63,44 @@ public class OrderHistoryActivity extends AppCompatActivity {
         backBtn = findViewById(R.id.backBtn);
         backBtn.setOnClickListener(view -> finish());
 
-        // 리사이클러뷰 설정
-        orderHistoryRecyclerView = findViewById(R.id.orderHistoryRecyclerView);
-        RecyclerView.LayoutManager manager = new LinearLayoutManager(this);
-        orderHistoryRecyclerView.setLayoutManager(manager);
-        orderHistoryRecyclerView.setHasFixedSize(true);
-
         // 초기화
-        emptyLayout = findViewById(R.id.emptyLayout);
+        pictureIV = findViewById(R.id.pictureIV);
 
-        // 주문내역 추가
+        // 상세 주문내역 추가
+        Intent intent = getIntent();
+        int recruitId = intent.getIntExtra("recruitId", 0);
+
         String loginInfo = PreferenceManager.getLoginInfo(context);
         Gson gson = new Gson();
         UserVO user = gson.fromJson(loginInfo, UserVO.class);
         int userId = user.getUserId();
-        getOrderHistory(userId);
+        getOrderHistoryDetail(recruitId, userId);
     }
 
-    private void getOrderHistory(int userId) {
+    // 배달 완료 이미지 추가
+    public void getOrderHistoryDetail(int recruitId, int userId) {
         retrofitService = new RetrofitService();
         orderHistoryApi = retrofitService.getRetrofit().create(OrderHistoryApi.class);
 
-        orderHistoryApi.getOrderHistory(userId)
+        orderHistoryApi.getImage(recruitId, userId)
                 .enqueue(new Callback<>() {
                     @Override
-                    public void onResponse(@NonNull Call<List<OrderHistoryVO2>> call, @NonNull Response<List<OrderHistoryVO2>> response) {
-                        orderHistoryList = response.body();
+                    public void onResponse(@NonNull Call<ResponseBody> call, @NonNull Response<ResponseBody> response) {
+                        try {
+                            byte[] byteImageArray = Objects.requireNonNull(response.body()).bytes();
+                            Bitmap imageBitmap = BitmapFactory.decodeByteArray(byteImageArray,0, byteImageArray.length);
+                            pictureIV.setImageBitmap(imageBitmap);
 
-                        if (Objects.requireNonNull(orderHistoryList).isEmpty()) {
-                            emptyLayout.setVisibility(View.VISIBLE);
-                            orderHistoryRecyclerView.setVisibility(View.GONE);
-                        } else {
-                            emptyLayout.setVisibility(View.GONE);
-                            orderHistoryRecyclerView.setVisibility(View.VISIBLE);
-
-                            orderHistoryAdapter = new OrderHistoryAdapter(orderHistoryList, context);
-                            orderHistoryRecyclerView.setAdapter(orderHistoryAdapter);
+                        } catch (IOException e) {
+                            e.printStackTrace();
                         }
                     }
 
                     @Override
-                    public void onFailure(@NonNull Call<List<OrderHistoryVO2>> call, @NonNull Throwable t) {
+                    public void onFailure(@NonNull Call<ResponseBody> call, @NonNull Throwable t) {
                     }
                 });
-
     }
+
 
 }

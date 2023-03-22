@@ -18,6 +18,7 @@ import com.delivery.mydelivery.MainActivity;
 import com.delivery.mydelivery.R;
 import com.delivery.mydelivery.myInfo.ModifyPwActivity;
 import com.delivery.mydelivery.myInfo.MyInfoActivity;
+import com.delivery.mydelivery.myInfo.OrderHistoryActivity;
 import com.delivery.mydelivery.point.PointActivity;
 import com.delivery.mydelivery.point.PointHistoryActivity;
 import com.delivery.mydelivery.preferenceManager.PreferenceManager;
@@ -43,6 +44,9 @@ public class MyPageFragment extends Fragment {
     TextView pointTV;
     Button addPointBtn;
     Button pointHistoryBtn;
+
+    // 주문내역
+    TextView orderHistoryTV;
 
     // 개인정보
     TextView myInfoTV;
@@ -104,6 +108,15 @@ public class MyPageFragment extends Fragment {
         });
 
         // 초기화
+        orderHistoryTV = view.findViewById(R.id.orderHistoryTV);
+
+        // 주문내역 액티비티 이동
+        orderHistoryTV.setOnClickListener(view -> {
+            Intent intent = new Intent(getActivity(), OrderHistoryActivity.class);
+            startActivity(intent);
+        });
+
+        // 초기화
         myInfoTV = view.findViewById(R.id.myInfoTV);
         modifyPwTV = view.findViewById(R.id.modifyPwTV);
 
@@ -128,7 +141,7 @@ public class MyPageFragment extends Fragment {
         userApi = retrofitService.getRetrofit().create(UserApi.class);
 
         userApi.getUser(userId)
-                .enqueue(new Callback<UserVO>() {
+                .enqueue(new Callback<>() {
                     @SuppressLint("SetTextI18n")
                     @Override
                     public void onResponse(@NonNull Call<UserVO> call, @NonNull Response<UserVO> response) {
@@ -151,7 +164,7 @@ public class MyPageFragment extends Fragment {
         userApi = retrofitService.getRetrofit().create(UserApi.class);
 
         userApi.deleteToken(userId)
-                .enqueue(new Callback<Void>() {
+                .enqueue(new Callback<>() {
                     @Override
                     public void onResponse(@NonNull Call<Void> call, @NonNull Response<Void> response) {
                     }

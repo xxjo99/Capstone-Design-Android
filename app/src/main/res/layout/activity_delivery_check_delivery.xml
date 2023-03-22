@@ -5,14 +5,12 @@
     android:layout_height="match_parent"
     android:orientation="vertical">
 
-    <!-- 툴바 -->
     <androidx.appcompat.widget.Toolbar
-        android:id="@+id/storeToolbar"
+        android:id="@+id/deliveryToolbar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@color/white"
-        app:contentInsetStart="0dp"
-        app:menu="@menu/store_toolbar">
+        app:contentInsetStart="0dp">
 
         <ImageButton
             android:id="@+id/backBtn"
@@ -22,43 +20,46 @@
             android:src="@drawable/back" />
 
         <TextView
-            android:id="@+id/schoolTV"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:fontFamily="@font/bmjua_font"
-            android:text="@string/school"
+            android:text="배달 확인"
             android:textColor="@color/black"
-            android:textSize="20sp" />
+            android:textSize="22sp" />
 
     </androidx.appcompat.widget.Toolbar>
-
-    <!-- 매장 리스트 -->
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:gravity="center"
         android:orientation="vertical">
 
-        <com.google.android.material.tabs.TabLayout
-            android:id="@+id/categoryTab"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            app:tabIndicatorColor="@color/black"
-            app:tabMode="scrollable" />
+        <Button
+            android:id="@+id/checkDeliveryBtn"
+            android:layout_width="200dp"
+            android:layout_height="70dp"
+            android:layout_gravity="center"
+            android:layout_marginBottom="30dp"
+            android:background="@drawable/btn_fill_mint"
+            android:fontFamily="@font/bmjua_font"
+            android:padding="20dp"
+            android:text="배달 접수"
+            android:textColor="@color/white"
+            android:textSize="22sp" />
 
-        <androidx.core.widget.NestedScrollView
-            android:layout_width="match_parent"
-            android:layout_height="match_parent">
-
-            <androidx.viewpager2.widget.ViewPager2
-                android:id="@+id/storeListViewPager"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent" />
-
-        </androidx.core.widget.NestedScrollView>
-
+        <Button
+            android:id="@+id/receivedDeliveryBtn"
+            android:layout_width="200dp"
+            android:layout_height="70dp"
+            android:layout_gravity="center"
+            android:background="@drawable/btn_fill_mint"
+            android:fontFamily="@font/bmjua_font"
+            android:padding="20dp"
+            android:text="접수한 배달"
+            android:textColor="@color/white"
+            android:textSize="22sp" />
     </LinearLayout>
-
 
 </LinearLayout>

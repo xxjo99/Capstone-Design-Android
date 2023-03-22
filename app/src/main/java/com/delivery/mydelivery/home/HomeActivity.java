@@ -6,6 +6,8 @@ import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -14,6 +16,7 @@ import androidx.appcompat.widget.Toolbar;
 import androidx.fragment.app.FragmentManager;
 
 import com.delivery.mydelivery.R;
+import com.delivery.mydelivery.delivery.CheckDeliveryActivity;
 import com.delivery.mydelivery.order.OrderListActivity;
 import com.delivery.mydelivery.preferenceManager.PreferenceManager;
 import com.delivery.mydelivery.user.UserVO;
@@ -36,6 +39,9 @@ public class HomeActivity extends AppCompatActivity {
     @SuppressLint("StaticFieldLeak")
     public static Toolbar toolbar;
     TextView infoTV;
+
+    // 배달 확인 버튼
+    ImageButton checkDeliveryBtn;
 
     @SuppressLint("NonConstantResourceId")
     @Override
@@ -197,9 +203,19 @@ public class HomeActivity extends AppCompatActivity {
 
                 default:
                     return false;
-        }
-    });
-}
+            }
+
+
+        });
+
+        // 배달 확인 페이지 이동
+        checkDeliveryBtn = findViewById(R.id.checkDeliveryBtn);
+        checkDeliveryBtn.setOnClickListener(view -> {
+            Intent intent = new Intent(HomeActivity.this, CheckDeliveryActivity.class);
+            startActivity(intent);
+        });
+
+    }
 
     // 툴바 설정
     @Override

@@ -70,6 +70,7 @@ public class RecruitOrderListAdapter extends RecyclerView.Adapter<RecruitOrderLi
         holder.menuPriceTV.setText(price + "원");// 가격
         holder.amountTV.setText(amount + "개");// 개수
 
+        // 결제 완료되었다면 메뉴 변경 불가
         if (paymentStatus == 1) {
             holder.deleteBtn.setVisibility(View.GONE);
             holder.decreaseBtn.setVisibility(View.GONE);
@@ -148,7 +149,7 @@ public class RecruitOrderListAdapter extends RecyclerView.Adapter<RecruitOrderLi
         menuApi = retrofitService.getRetrofit().create(MenuApi.class);
 
         menuApi.getMenu(menuId)
-                .enqueue(new Callback<MenuVO>() {
+                .enqueue(new Callback<>() {
                     @Override
                     public void onResponse(@NonNull Call<MenuVO> call, @NonNull Response<MenuVO> response) {
                         MenuVO menu = response.body();
@@ -169,7 +170,7 @@ public class RecruitOrderListAdapter extends RecyclerView.Adapter<RecruitOrderLi
         orderApi = retrofitService.getRetrofit().create(OrderApi.class);
 
         orderApi.getContentNameList(contentNameList)
-                .enqueue(new Callback<List<String>>() {
+                .enqueue(new Callback<>() {
                     @Override
                     public void onResponse(@NonNull Call<List<String>> call, @NonNull Response<List<String>> response) {
                         List<String> contentNameResult = response.body();
@@ -200,7 +201,7 @@ public class RecruitOrderListAdapter extends RecyclerView.Adapter<RecruitOrderLi
         recruitApi = retrofitService.getRetrofit().create(RecruitApi.class);
 
         recruitApi.modifyAmount(order)
-                .enqueue(new Callback<ParticipantOrderVO>() {
+                .enqueue(new Callback<>() {
                     @Override
                     public void onResponse(@NonNull Call<ParticipantOrderVO> call, @NonNull Response<ParticipantOrderVO> response) {
                     }
@@ -217,7 +218,7 @@ public class RecruitOrderListAdapter extends RecyclerView.Adapter<RecruitOrderLi
         recruitApi = retrofitService.getRetrofit().create(RecruitApi.class);
 
         recruitApi.deleteOrder(participantOrderId)
-                .enqueue(new Callback<Void>() {
+                .enqueue(new Callback<>() {
                     @SuppressLint("NotifyDataSetChanged")
                     @Override
                     public void onResponse(@NonNull Call<Void> call, @NonNull Response<Void> response) {

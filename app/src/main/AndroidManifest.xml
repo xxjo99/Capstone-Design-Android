@@ -2,10 +2,9 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools">
 
-    <!-- 네트워크 사용위한 퍼미션 -->
+    <!-- 네트워크 사용을 위한 퍼미션 -->
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
-
 
     <application
         android:allowBackup="true"
@@ -97,6 +96,29 @@
         <activity
             android:name=".myInfo.OrderHistoryActivity"
             android:windowSoftInputMode="adjustResize" />
+        <activity
+            android:name=".myInfo.OrderHistoryDetailActivity"
+            android:windowSoftInputMode="adjustResize" />
+
+        <!-- notice -->
+        <activity
+            android:name=".notice.NoticeActivity"
+            android:windowSoftInputMode="adjustResize" />
+
+        <!-- delivery -->
+        <activity
+            android:name=".delivery.CheckDeliveryActivity"
+            android:windowSoftInputMode="adjustResize" />
+        <activity
+            android:name=".delivery.ReceiptDeliveryActivity"
+            android:windowSoftInputMode="adjustResize" />
+        <activity
+            android:name=".delivery.ReceivedDeliveryActivity"
+            android:windowSoftInputMode="adjustResize" />
+        <activity
+            android:name=".delivery.SendCompleteMessageActivity"
+            android:windowSoftInputMode="adjustResize" />
+
 
     </application>
 

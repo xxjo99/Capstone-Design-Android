@@ -267,7 +267,7 @@ public class OrderListActivity extends AppCompatActivity {
                 recruit.setStoreId(storeId); // 매장 아이디
                 recruit.setPlace(selectPlaceET.getText().toString()); // 배달장소
                 recruit.setPerson(person); // 모집인원
-                recruit.setDeliveryStart(0); // 배달 시작 구분, 초기값 0
+                recruit.setReceiptState(0); // 배달 시작 구분, 초기값 0
 
                 registerRecruit(recruit);// 모집글 등록
             }
@@ -281,7 +281,7 @@ public class OrderListActivity extends AppCompatActivity {
         orderApi = retrofitService.getRetrofit().create(OrderApi.class);
 
         orderApi.getOrderList(userId)
-                .enqueue(new Callback<List<OrderVO>>() {
+                .enqueue(new Callback<>() {
                     @Override
                     public void onResponse(@NonNull Call<List<OrderVO>> call, @NonNull Response<List<OrderVO>> response) {
                         orderList = response.body();
@@ -320,7 +320,7 @@ public class OrderListActivity extends AppCompatActivity {
         userApi = retrofitService.getRetrofit().create(UserApi.class);
 
         userApi.checkRestriction(userId)
-                .enqueue(new Callback<Boolean>() {
+                .enqueue(new Callback<>() {
                     @Override
                     public void onResponse(@NonNull Call<Boolean> call, @NonNull Response<Boolean> response) {
                         Boolean checkRestrictionFlag = response.body();
@@ -347,7 +347,7 @@ public class OrderListActivity extends AppCompatActivity {
         recruitApi = retrofitService.getRetrofit().create(RecruitApi.class);
 
         recruitApi.findRecruit(userId)
-                .enqueue(new Callback<Boolean>() {
+                .enqueue(new Callback<>() {
                     @Override
                     public void onResponse(@NonNull Call<Boolean> call, @NonNull Response<Boolean> response) {
                         boolean flag = Boolean.TRUE.equals(response.body());
@@ -376,7 +376,7 @@ public class OrderListActivity extends AppCompatActivity {
         storeApi = retrofitService.getRetrofit().create(StoreApi.class);
 
         storeApi.getStore(storeId)
-                .enqueue(new Callback<StoreVO>() {
+                .enqueue(new Callback<>() {
                     @Override
                     public void onResponse(@NonNull Call<StoreVO> call, @NonNull Response<StoreVO> response) {
                         StoreVO store = new StoreVO();
@@ -399,10 +399,10 @@ public class OrderListActivity extends AppCompatActivity {
         orderApi = retrofitService.getRetrofit().create(OrderApi.class);
 
         orderApi.registerRecruit(recruit, dateTime)
-                .enqueue(new Callback<Void>() {
+                .enqueue(new Callback<>() {
                     @Override
                     public void onResponse(@NonNull Call<Void> call, @NonNull Response<Void> response) {
-                        Toast.makeText(context, "등록 완료", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(context, "모집글 등록 완료", Toast.LENGTH_SHORT).show();
                         finish();
                     }
 
