@@ -13,7 +13,7 @@ public class SlideImageFragment2 extends Fragment {
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        return inflater.inflate(R.layout.item_home_slide2, container, false);
+        return inflater.inflate(R.layout.item_home_banner2, container, false);
     }
 
 }
