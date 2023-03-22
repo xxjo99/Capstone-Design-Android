@@ -36,7 +36,7 @@ public class HomeFragment extends Fragment {
     ViewPager2 slideViewPager;
     SlideViewPagerAdapter slideViewPagerAdapter;
     CircleIndicator3 indicator;
-    int pageCount = 4;
+    int pageCount = 2;
 
     // 카테고리 리사이클러뷰, 어댑터, 리스트
     RecyclerView categoryRecyclerView;
@@ -82,7 +82,7 @@ public class HomeFragment extends Fragment {
         // 뷰페이저 설정
         slideViewPager.setOrientation(ViewPager2.ORIENTATION_HORIZONTAL);
         slideViewPager.setCurrentItem(1000); //시작 지점
-        slideViewPager.setOffscreenPageLimit(4); //최대 이미지 수
+        slideViewPager.setOffscreenPageLimit(2); //최대 이미지 수
 
         // 페이지 슬라이드 시 Indicator 변경, 마지막 이미지에서 슬라이드할 경우 첫 슬라이드로 이동
         slideViewPager.registerOnPageChangeCallback(new ViewPager2.OnPageChangeCallback() {

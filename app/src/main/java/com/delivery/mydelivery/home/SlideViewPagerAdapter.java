@@ -24,10 +24,6 @@ public class SlideViewPagerAdapter extends FragmentStateAdapter {
                 return new SlideImageFragment1();
             case 1 :
                 return new SlideImageFragment2();
-            case 2 :
-                return new SlideImageFragment3();
-            case 3 :
-                return new SlideImageFragment4();
         }
         return null;
     }
