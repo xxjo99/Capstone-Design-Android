@@ -5,7 +5,7 @@
     <item
         android:id="@+id/cartBtn"
         android:enabled="true"
-        android:icon="@drawable/cart_icon"
+        android:icon="@drawable/icon_cart"
         android:title="@string/cart"
         app:showAsAction="always" />
 

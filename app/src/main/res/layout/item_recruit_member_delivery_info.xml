@@ -16,7 +16,7 @@
             android:layout_width="50dp"
             android:layout_height="50dp"
             android:layout_marginBottom="8dp"
-            android:src="@drawable/star" />
+            android:src="@drawable/icon_star" />
 
         <TextView
             android:id="@+id/userNameTV"

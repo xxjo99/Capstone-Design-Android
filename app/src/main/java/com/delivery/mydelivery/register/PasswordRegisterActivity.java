@@ -108,15 +108,15 @@ public class PasswordRegisterActivity extends AppCompatActivity {
 
                 if (!pw.equals(pwCk)) {
                     nextBtn.setEnabled(false);
-                    nextBtn.setBackgroundResource(R.drawable.btn_fill2_gray);
+                    nextBtn.setBackgroundColor(getColor(R.color.gray2));
                 }
 
                 if (pwFlag && pwCkFlag) {
                     nextBtn.setEnabled(true);
-                    nextBtn.setBackgroundResource(R.drawable.btn_fill2_mint);
+                    nextBtn.setBackgroundColor(getColor(R.color.mint));
                 } else {
                     nextBtn.setEnabled(false);
-                    nextBtn.setBackgroundResource(R.drawable.btn_fill2_gray);
+                    nextBtn.setBackgroundColor(getColor(R.color.gray2));
                 }
             }
 
@@ -154,10 +154,10 @@ public class PasswordRegisterActivity extends AppCompatActivity {
 
                 if (pwFlag && pwCkFlag) {
                     nextBtn.setEnabled(true);
-                    nextBtn.setBackgroundResource(R.drawable.btn_fill2_mint);
+                    nextBtn.setBackgroundColor(getColor(R.color.mint));
                 } else {
                     nextBtn.setEnabled(false);
-                    nextBtn.setBackgroundResource(R.drawable.btn_fill2_gray);
+                    nextBtn.setBackgroundColor(getColor(R.color.gray2));
                 }
             }
 

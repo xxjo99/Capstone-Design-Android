@@ -11,7 +11,7 @@ public class NoticeActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_notice_notice);
+        setContentView(R.layout.activity_myinfo_notice);
     }
 
 }

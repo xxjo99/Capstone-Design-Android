@@ -43,7 +43,7 @@
             android:layout_width="30dp"
             android:layout_height="30dp"
             android:layout_marginBottom="5dp"
-            android:src="@drawable/warn_gray" />
+            android:src="@drawable/icon_warn_gray" />
 
         <TextView
             android:layout_width="match_parent"

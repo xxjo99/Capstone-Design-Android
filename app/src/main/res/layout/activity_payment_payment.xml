@@ -67,7 +67,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:fontFamily="@font/bmjua_font"
-                    android:text="@string/phone_num"
+                    android:text="@string/phoneNum"
                     android:textColor="@color/black"
                     android:textSize="18sp" />
 

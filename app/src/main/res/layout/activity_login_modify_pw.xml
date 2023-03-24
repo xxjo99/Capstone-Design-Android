@@ -20,7 +20,7 @@
             android:layout_gravity="right"
             android:layout_marginEnd="20dp"
             android:background="@color/white"
-            android:src="@drawable/close_icon"
+            android:src="@drawable/icon_close"
             tools:ignore="RtlHardcoded" />
 
     </androidx.appcompat.widget.Toolbar>
@@ -33,7 +33,7 @@
         android:layout_marginTop="50dp"
         android:layout_marginBottom="15dp"
         android:fontFamily="@font/bmjua_font"
-        android:text="@string/pwInput3"
+        android:text="비밀번호 설정"
         android:textColor="@color/black"
         android:textSize="25sp" />
 
@@ -57,7 +57,7 @@
                 android:layout_marginEnd="10dp"
                 android:background="@drawable/et_border"
                 android:fontFamily="@font/bmjua_font"
-                android:hint="@string/pwReg"
+                android:hint="@string/pwInput"
                 android:inputType="textPassword"
                 android:padding="18dp"
                 android:singleLine="true"

@@ -1,15 +1,16 @@
 package com.delivery.mydelivery.register;
 
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.util.Patterns;
 import android.view.KeyEvent;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -23,6 +24,7 @@ import java.util.Objects;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+import io.github.muddz.styleabletoast.StyleableToast;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -45,14 +47,19 @@ public class EmailRegisterActivity extends AppCompatActivity {
     RetrofitService retrofitService;
     RegisterApi api;
 
+    Context context;
+
     UserVO userVO; // 데이터를 담을 객체
 
     Boolean regExFlag = false; // 정규식 검사 성공 여부
+
+    InputMethodManager imm;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_register_email);
+        context = this;
 
         // dialog
         registerDialog = new RegisterDialog(this);
@@ -70,6 +77,7 @@ public class EmailRegisterActivity extends AppCompatActivity {
         emailET = findViewById(R.id.emailET);
         duplicationCkBtn = findViewById(R.id.duplicationCkBtn);
         nextBtn = findViewById(R.id.nextBtn);
+        imm = (InputMethodManager) getSystemService(INPUT_METHOD_SERVICE);
 
         emailRegExCk(); // 실시간 이메일 정규식 검사
 
@@ -78,13 +86,13 @@ public class EmailRegisterActivity extends AppCompatActivity {
             String email = emailET.getText().toString();
 
             if (email.isEmpty()) { // 공백
-                Toast.makeText(EmailRegisterActivity.this, "이메일을 입력해주세요", Toast.LENGTH_SHORT).show();
+                StyleableToast.makeText(context, "이메일을 입력해주세요.", R.style.warningToast).show();
                 nextBtn.setEnabled(false);
-                nextBtn.setBackgroundResource(R.drawable.btn_fill2_gray);
+                nextBtn.setBackgroundColor(getColor(R.color.gray2));
             } else if (!regExFlag) { // 정규식 검사 실패
-                Toast.makeText(EmailRegisterActivity.this, "이메일을 올바르게 입력해주세요", Toast.LENGTH_SHORT).show();
+                StyleableToast.makeText(context, "이메일 형식에 맞게 입력해주세요.", R.style.errorToast).show();
                 nextBtn.setEnabled(false);
-                nextBtn.setBackgroundResource(R.drawable.btn_fill2_gray);
+                nextBtn.setBackgroundColor(getColor(R.color.gray2));
             } else { // 정규식 통과
                 callDuplicateCkApi(email); // 중복검사 api 호출
             }
@@ -151,19 +159,20 @@ public class EmailRegisterActivity extends AppCompatActivity {
         nextBtn = findViewById(R.id.nextBtn);
 
         api.duplicateEmailCk(email)
-                .enqueue(new Callback<Boolean>() {
+                .enqueue(new Callback<>() {
                     @Override
                     public void onResponse(@NonNull Call<Boolean> call, @NonNull Response<Boolean> response) {
                         boolean duplicateCkResult = Boolean.TRUE.equals(response.body()); // 중복여부 저장
 
                         if (duplicateCkResult) { // 중복되지 않은 이메일
-                            Toast.makeText(EmailRegisterActivity.this, "사용가능한 이메일입니다.", Toast.LENGTH_SHORT).show();
+                            StyleableToast.makeText(context, "사용가능한 이메일입니다.", R.style.successToast).show();
                             nextBtn.setEnabled(true);
-                            nextBtn.setBackgroundResource(R.drawable.btn_fill2_mint);
+                            nextBtn.setBackgroundColor(getColor(R.color.mint));
+                            imm.hideSoftInputFromWindow(emailET.getWindowToken(), 0);
                         } else {
-                            Toast.makeText(EmailRegisterActivity.this, "중복된 이메일입니다.", Toast.LENGTH_SHORT).show();
+                            StyleableToast.makeText(context, "중복된 이메일입니다.", R.style.errorToast).show();
                             nextBtn.setEnabled(false);
-                            nextBtn.setBackgroundResource(R.drawable.btn_fill2_gray);
+                            nextBtn.setBackgroundColor(getColor(R.color.gray));
                         }
                     }
 

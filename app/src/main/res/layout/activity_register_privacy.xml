@@ -6,7 +6,6 @@
     android:layout_height="match_parent"
     android:layout_marginLeft="10dp"
     android:layout_marginRight="10dp"
-    android:layout_marginBottom="15dp"
     android:orientation="vertical"
     tools:context=".register.PrivacyRegisterActivity">
 
@@ -34,7 +33,7 @@
                     android:layout_gravity="right"
                     android:layout_marginEnd="20dp"
                     android:background="@color/white"
-                    android:src="@drawable/close_icon"
+                    android:src="@drawable/icon_close"
                     tools:ignore="RtlHardcoded" />
 
             </androidx.appcompat.widget.Toolbar>
@@ -44,31 +43,31 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="15dp"
                 android:layout_marginTop="50dp"
-                android:layout_marginBottom="20dp"
+                android:layout_marginBottom="30dp"
                 android:fontFamily="@font/bmjua_font"
                 android:lineSpacingExtra="8dp"
-                android:text="@string/joinPrivacy"
+                android:text="@string/privacyText"
                 android:textColor="@color/black"
                 android:textSize="25sp" />
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
+                android:layout_marginStart="15dp"
+                android:layout_marginEnd="15dp"
                 android:orientation="vertical">
 
                 <!-- 닉네임 -->
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="15dp"
-                    android:layout_marginEnd="15dp"
-                    android:layout_marginBottom="15dp"
+                    android:layout_marginBottom="30dp"
                     android:orientation="vertical">
 
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginTop="35dp"
+                        android:layout_marginBottom="5dp"
                         android:fontFamily="@font/bmjua_font"
                         android:singleLine="true"
                         android:text="@string/name"
@@ -78,64 +77,66 @@
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
+                        android:layout_gravity="center_vertical"
                         android:orientation="horizontal">
 
+                        <!-- 이메일 TextView -->
                         <EditText
                             android:id="@+id/nameET"
                             android:layout_width="0dp"
-                            android:layout_height="wrap_content"
-                            android:layout_marginTop="5dp"
+                            android:layout_height="60dp"
+                            android:layout_gravity="center"
                             android:layout_weight="1"
                             android:background="@drawable/et_border"
                             android:fontFamily="@font/bmjua_font"
-                            android:hint="닉네임을 입력해주세요"
-                            android:inputType="text"
-                            android:nextFocusDown="@+id/phoneNumET"
+                            android:hint="@string/nameInput"
+                            android:inputType="textEmailAddress"
                             android:padding="18dp"
+                            android:singleLine="true"
                             android:textSize="18sp" />
 
                         <!-- 인증번호 전송 Button -->
                         <Button
                             android:id="@+id/duplicationCkBtn"
+                            style="?android:attr/borderlessButtonStyle"
                             android:layout_width="wrap_content"
                             android:layout_height="60dp"
+                            android:layout_gravity="center"
                             android:layout_marginStart="10dp"
-                            android:background="@drawable/btn_fill_mint"
+                            android:background="@color/mint"
                             android:enabled="true"
                             android:fontFamily="@font/bmjua_font"
                             android:text="@string/duplicateCk"
                             android:textColor="@color/white"
-                            android:textSize="17sp" />
+                            android:textSize="18sp" />
 
                     </LinearLayout>
 
                 </LinearLayout>
 
-                <!-- 휴대폰번호 EditText -->
+                <!-- 휴대폰번호 -->
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="15dp"
-                    android:layout_marginTop="15dp"
-                    android:layout_marginEnd="15dp"
+                    android:layout_marginBottom="30dp"
                     android:orientation="vertical">
 
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:layout_marginBottom="5dp"
                         android:fontFamily="@font/bmjua_font"
-                        android:text="@string/phone_num"
+                        android:text="@string/phoneNum"
                         android:textColor="@color/black"
                         android:textSize="18sp" />
 
                     <EditText
                         android:id="@+id/phoneNumET"
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="5dp"
+                        android:layout_height="60dp"
                         android:background="@drawable/et_border"
                         android:fontFamily="@font/bmjua_font"
-                        android:hint="휴대폰 번호를 입력해주세요"
+                        android:hint="@string/phoneNumInput"
                         android:inputType="phone"
                         android:maxLength="13"
                         android:nextFocusDown="@+id/schoolAutoCompleteTV"
@@ -148,14 +149,12 @@
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="15dp"
-                    android:layout_marginEnd="15dp"
                     android:orientation="vertical">
 
                     <TextView
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_marginTop="30dp"
+                        android:layout_marginBottom="5dp"
                         android:fontFamily="@font/bmjua_font"
                         android:text="@string/school"
                         android:textColor="@color/black"
@@ -164,13 +163,12 @@
                     <AutoCompleteTextView
                         android:id="@+id/schoolAutoCompleteTV"
                         android:layout_width="match_parent"
-                        android:layout_height="56dp"
-                        android:layout_marginTop="5dp"
+                        android:layout_height="60dp"
                         android:background="@drawable/et_border"
                         android:completionThreshold="1"
                         android:fontFamily="@font/bmjua_font"
                         android:gravity="center_vertical"
-                        android:hint="학교를 입력해주세요"
+                        android:hint="@string/schoolInput"
                         android:inputType="text"
                         android:padding="18dp"
                         android:singleLine="true"
@@ -199,9 +197,9 @@
             android:layout_marginLeft="10dp"
             android:layout_marginRight="10dp"
             android:layout_marginBottom="5dp"
-            android:background="@drawable/btn_fill2_mint"
+            android:background="@color/mint"
             android:fontFamily="@font/bmjua_font"
-            android:text="@string/register"
+            android:text="@string/completeRegister"
             android:textColor="@color/white"
             android:textSize="23sp" />
 

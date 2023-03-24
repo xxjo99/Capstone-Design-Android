@@ -23,7 +23,7 @@
         android:layout_marginTop="15dp"
         android:fontFamily="@font/bmjua_font"
         android:gravity="center_horizontal"
-        android:text="회원가입이 완료되었습니다\n서비스를 이용하기 위해 로그인해주세요"
+        android:text="@string/completeRegisterText"
         android:textColor="@color/black"
         android:textSize="20dp" />
 

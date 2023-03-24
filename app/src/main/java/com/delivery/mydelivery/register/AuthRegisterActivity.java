@@ -1,12 +1,12 @@
 package com.delivery.mydelivery.register;
 
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.KeyEvent;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -18,6 +18,7 @@ import com.delivery.mydelivery.user.UserVO;
 
 import java.util.Objects;
 
+import io.github.muddz.styleabletoast.StyleableToast;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -46,10 +47,13 @@ public class AuthRegisterActivity extends AppCompatActivity {
 
     UserVO userVO; // 데이터를 담을 객체
 
+    Context context;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_register_auth);
+        context = this;
 
         // dialog
         registerDialog = new RegisterDialog(this);
@@ -80,7 +84,7 @@ public class AuthRegisterActivity extends AppCompatActivity {
         // 인증번호 전송
         sendAuthNumBtn.setOnClickListener(view -> {
             sendAuthNum(email); // 해당 이메일로 인증번호 전송
-            Toast.makeText(this, "인증번호를 전송했습니다.", Toast.LENGTH_SHORT).show();
+            StyleableToast.makeText(context, "이메일이 전송되었습니다.", R.style.messageToast).show();
         });
 
         // 인증번호 일치 여부 확인
@@ -88,20 +92,20 @@ public class AuthRegisterActivity extends AppCompatActivity {
             String authNum = authNumET.getText().toString();
 
             if (authNum.isEmpty()) { // 공백
-                Toast.makeText(AuthRegisterActivity.this, "인증번호를 입력해주세요.", Toast.LENGTH_SHORT).show();
+                StyleableToast.makeText(context, "인증번호를 입력해주세요.", R.style.warningToast).show();
             } else {
                 if (authNum.equals(sentAuthNum)) { // 인증 성공
-                    Toast.makeText(AuthRegisterActivity.this, "인증에 성공했습니다.", Toast.LENGTH_SHORT).show();
+                    StyleableToast.makeText(context, "인증에 성공했습니다.", R.style.successToast).show();
 
                     authNumET.setEnabled(false); // 인증번호를 입력하지 못하도록 입력창 비활성화
 
                     checkAuthNumBtn.setEnabled(false); // 인증번호 검사버튼 비활성화
-                    checkAuthNumBtn.setBackgroundResource(R.drawable.btn_fill_gray);
+                    checkAuthNumBtn.setBackgroundColor(getColor(R.color.gray2));
 
                     nextBtn.setEnabled(true);
-                    nextBtn.setBackgroundResource(R.drawable.btn_fill2_mint);
+                    nextBtn.setBackgroundColor(getColor(R.color.mint));
                 } else { // 인증 실패
-                    Toast.makeText(AuthRegisterActivity.this, "인증번호를 확인해주세요.", Toast.LENGTH_SHORT).show();
+                    StyleableToast.makeText(context, "인증번호를 확인해주세요.", R.style.errorToast).show();
                 }
             }
         });
@@ -125,7 +129,7 @@ public class AuthRegisterActivity extends AppCompatActivity {
         checkAuthNumBtn = findViewById(R.id.checkAuthNumBtn);
 
         api.sendAuthNum(email)
-                .enqueue(new Callback<String>() {
+                .enqueue(new Callback<>() {
                     @Override
                     public void onResponse(@NonNull Call<String> call, @NonNull Response<String> response) {
                         sentAuthNum = response.body();
@@ -133,10 +137,10 @@ public class AuthRegisterActivity extends AppCompatActivity {
                         // 인증번호 입력, 전송 비활성화, 인증번호 검증버튼 활성화, 색 변경
                         authNumET.setEnabled(true);
                         sendAuthNumBtn.setEnabled(false);
-                        sendAuthNumBtn.setBackgroundResource(R.drawable.btn_fill_gray);
+                        sendAuthNumBtn.setBackgroundColor(getColor(R.color.gray2));
 
                         checkAuthNumBtn.setEnabled(true);
-                        checkAuthNumBtn.setBackgroundResource(R.drawable.btn_fill_green);
+                        checkAuthNumBtn.setBackgroundColor(getColor(R.color.mint));
                     }
 
                     @Override

@@ -6,7 +6,7 @@
     <item
         android:id="@+id/menu_home_home"
         android:enabled="true"
-        android:icon="@drawable/home_icon"
+        android:icon="@drawable/icon_home"
         android:title="@string/home"
         app:showAsAction="always" />
 
@@ -14,7 +14,7 @@
     <item
         android:id="@+id/menu_home_post"
         android:enabled="true"
-        android:icon="@drawable/post_icon"
+        android:icon="@drawable/icon_post"
         android:title="@string/post"
         app:showAsAction="always" />
 
@@ -22,7 +22,7 @@
     <item
         android:id="@+id/menu_home_myPost"
         android:enabled="true"
-        android:icon="@drawable/mypost_icon"
+        android:icon="@drawable/icon_mypost"
         android:title="@string/myPost"
         app:showAsAction="always" />
 
@@ -30,7 +30,7 @@
     <item
         android:id="@+id/menu_home_search"
         android:enabled="true"
-        android:icon="@drawable/search_icon"
+        android:icon="@drawable/icon_search"
         android:title="@string/find"
         app:showAsAction="always" />
 
@@ -38,7 +38,7 @@
     <item
         android:id="@+id/menu_home_myPage"
         android:enabled="true"
-        android:icon="@drawable/mypage_icon"
+        android:icon="@drawable/icon_mypage"
         android:title="@string/myInfo"
         app:showAsAction="always" />
 

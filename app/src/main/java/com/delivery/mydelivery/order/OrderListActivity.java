@@ -202,7 +202,7 @@ public class OrderListActivity extends AppCompatActivity {
 
         // 초기인원수 지정
         selectPersonTV.setText(person + "명");
-        minusPersonBtn.setBackgroundResource(R.drawable.minus_icon_gray);
+        minusPersonBtn.setBackgroundResource(R.drawable.icon_minus_gray);
         minusPersonBtn.setEnabled(false);
 
         // 배달시간 선택 다이얼로그
@@ -216,14 +216,14 @@ public class OrderListActivity extends AppCompatActivity {
             }
 
             if (person == 2) {
-                minusPersonBtn.setBackgroundResource(R.drawable.minus_icon_gray);
-                addPersonBtn.setBackgroundResource(R.drawable.plus_icon);
+                minusPersonBtn.setBackgroundResource(R.drawable.icon_minus_gray);
+                addPersonBtn.setBackgroundResource(R.drawable.icon_plus);
 
                 minusPersonBtn.setEnabled(false);
                 addPersonBtn.setEnabled(true);
             } else {
-                addPersonBtn.setBackgroundResource(R.drawable.plus_icon);
-                minusPersonBtn.setBackgroundResource(R.drawable.minus_icon);
+                addPersonBtn.setBackgroundResource(R.drawable.icon_plus);
+                minusPersonBtn.setBackgroundResource(R.drawable.icon_minus);
 
                 minusPersonBtn.setEnabled(true);
                 addPersonBtn.setEnabled(true);
@@ -237,14 +237,14 @@ public class OrderListActivity extends AppCompatActivity {
             }
 
             if (person >= 4) {
-                addPersonBtn.setBackgroundResource(R.drawable.plus_icon_gray);
-                minusPersonBtn.setBackgroundResource(R.drawable.minus_icon);
+                addPersonBtn.setBackgroundResource(R.drawable.icon_plus_gray);
+                minusPersonBtn.setBackgroundResource(R.drawable.icon_minus);
 
                 minusPersonBtn.setEnabled(true);
                 addPersonBtn.setEnabled(false);
             } else {
-                addPersonBtn.setBackgroundResource(R.drawable.plus_icon);
-                minusPersonBtn.setBackgroundResource(R.drawable.minus_icon);
+                addPersonBtn.setBackgroundResource(R.drawable.icon_plus);
+                minusPersonBtn.setBackgroundResource(R.drawable.icon_minus);
 
                 minusPersonBtn.setEnabled(true);
                 addPersonBtn.setEnabled(true);

@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?> <!-- 이메일 입력 -->
+<?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
@@ -24,7 +24,7 @@
             android:layout_gravity="right"
             android:layout_marginEnd="20dp"
             android:background="@color/white"
-            android:src="@drawable/close_icon"
+            android:src="@drawable/icon_close"
             tools:ignore="RtlHardcoded" />
 
     </androidx.appcompat.widget.Toolbar>
@@ -37,7 +37,7 @@
         android:layout_marginBottom="30dp"
         android:fontFamily="@font/bmjua_font"
         android:lineSpacingExtra="8dp"
-        android:text="@string/emailInput"
+        android:text="@string/emailText"
         android:textColor="@color/black"
         android:textSize="25sp" />
 
@@ -56,13 +56,13 @@
             <EditText
                 android:id="@+id/emailET"
                 android:layout_width="0dp"
-                android:layout_height="wrap_content"
+                android:layout_height="60dp"
                 android:layout_gravity="center"
                 android:layout_marginStart="10dp"
                 android:layout_weight="1"
                 android:background="@drawable/et_border"
                 android:fontFamily="@font/bmjua_font"
-                android:hint="@string/loginEmailInput"
+                android:hint="@string/emailInput"
                 android:inputType="textEmailAddress"
                 android:padding="18dp"
                 android:singleLine="true"
@@ -71,16 +71,18 @@
             <!-- 인증번호 전송 Button -->
             <Button
                 android:id="@+id/duplicationCkBtn"
+                style="?android:attr/borderlessButtonStyle"
                 android:layout_width="wrap_content"
                 android:layout_height="60dp"
+                android:layout_gravity="center"
                 android:layout_marginStart="10dp"
                 android:layout_marginEnd="10dp"
-                android:background="@drawable/btn_fill_mint"
+                android:background="@color/mint"
                 android:enabled="true"
                 android:fontFamily="@font/bmjua_font"
                 android:text="@string/duplicateCk"
                 android:textColor="@color/white"
-                android:textSize="17sp" />
+                android:textSize="18sp" />
 
         </LinearLayout>
 
@@ -99,7 +101,7 @@
                 android:layout_marginLeft="10dp"
                 android:layout_marginRight="10dp"
                 android:layout_marginBottom="5dp"
-                android:background="@drawable/btn_fill2_gray"
+                android:background="@color/gray2"
                 android:enabled="false"
                 android:fontFamily="@font/bmjua_font"
                 android:text="@string/next"

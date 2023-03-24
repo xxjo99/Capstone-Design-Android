@@ -48,7 +48,7 @@
             android:layout_width="50dp"
             android:layout_height="50dp"
             android:layout_marginBottom="5dp"
-            android:src="@drawable/warn" />
+            android:src="@drawable/icon_warn" />
 
         <TextView
             android:layout_width="match_parent"
