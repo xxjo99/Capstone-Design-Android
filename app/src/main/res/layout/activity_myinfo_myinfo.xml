@@ -113,7 +113,7 @@
             android:layout_height="wrap_content"
             android:layout_marginBottom="10dp"
             android:fontFamily="@font/bmjua_font"
-            android:text="@string/phone_num"
+            android:text="@string/phoneNum"
             android:textColor="@color/gray3"
             android:textSize="17sp" />
 
@@ -127,7 +127,7 @@
             android:maxLength="13"
             android:paddingBottom="15dp"
             android:singleLine="true"
-            android:text="@string/phone_num"
+            android:text="@string/phoneNum"
             android:textColor="@color/black"
             android:textSize="17sp"
             tools:ignore="RtlSymmetry" />

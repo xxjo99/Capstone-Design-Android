@@ -16,13 +16,15 @@ import com.delivery.mydelivery.login.LoginActivity;
 import com.delivery.mydelivery.register.PrivacyRegisterActivity;
 import com.delivery.mydelivery.register.RegisterDialog;
 
+import io.github.muddz.styleabletoast.StyleableToast;
+
 public class MainActivity extends AppCompatActivity {
 
     Button registerFormBtn; // 회원가입 이동버튼
     Button loginFormBtn; // 로그인 이동 버튼
 
     @SuppressLint("StaticFieldLeak")
-    public static MainActivity mainActivity; // 현재 액티비티를 전역변수로 설정
+    public static MainActivity mainActivity;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -51,6 +53,11 @@ public class MainActivity extends AppCompatActivity {
         loginFormBtn.setOnClickListener(view -> {
             Intent intent = new Intent(MainActivity.this, LoginActivity.class);
             startActivity(intent);
+        });
+
+        Button toast = findViewById(R.id.toast);
+        toast.setOnClickListener(view -> {
+            StyleableToast.makeText(this, "사용가능한 이메일입니다.", R.style.warningToast).show();
         });
 
     }

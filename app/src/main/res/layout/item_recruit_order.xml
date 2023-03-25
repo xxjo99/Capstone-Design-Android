@@ -37,7 +37,7 @@
                 android:layout_height="wrap_content"
                 android:background="@color/white"
                 android:fontFamily="@font/bmjua_font"
-                android:src="@drawable/close_icon" />
+                android:src="@drawable/icon_close" />
 
         </LinearLayout>
 
@@ -75,7 +75,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:background="@color/white"
-                android:src="@drawable/minus_icon" />
+                android:src="@drawable/icon_minus" />
 
             <TextView
                 android:id="@+id/amountTV"
@@ -94,7 +94,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:background="@color/white"
-                android:src="@drawable/plus_icon" />
+                android:src="@drawable/icon_plus" />
 
         </LinearLayout>
 

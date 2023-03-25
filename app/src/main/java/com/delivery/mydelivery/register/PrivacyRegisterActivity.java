@@ -10,7 +10,6 @@ import android.widget.AutoCompleteTextView;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -24,6 +23,7 @@ import com.delivery.mydelivery.user.UserVO;
 import java.util.List;
 import java.util.Objects;
 
+import io.github.muddz.styleabletoast.StyleableToast;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -89,7 +89,7 @@ public class PrivacyRegisterActivity extends AppCompatActivity {
         duplicationCkBtn.setOnClickListener(view -> {
 
             if (nameET.getText().toString().isEmpty()) {
-                Toast.makeText(context, "닉네임을 입력해주세요..", Toast.LENGTH_SHORT).show();
+                StyleableToast.makeText(context, "닉네임을 입력해주세요.", R.style.warningToast).show();
             } else {
                 String name = nameET.getText().toString();
                 duplicationCk(name);
@@ -103,10 +103,10 @@ public class PrivacyRegisterActivity extends AppCompatActivity {
             String school = schoolAutoCompleteTV.getText().toString();
 
             if (!duplicationCk) {
-                Toast.makeText(context, "닉네임 중복검사를 진행해주세요.", Toast.LENGTH_SHORT).show();
+                StyleableToast.makeText(context, "닉네임 중복검사를 진행해주세요.", R.style.errorToast).show();
             } else {
                 if (name.isEmpty() || phoneNum.isEmpty() || school.isEmpty()) { // 입력칸중 하나라도 비어있을경우
-                    Toast.makeText(PrivacyRegisterActivity.this, "모든 입력값은 필수입니다.", Toast.LENGTH_SHORT).show();
+                    StyleableToast.makeText(context, "모든 입력값은 필수입니다.", R.style.errorToast).show();
                 } else {
                     register(name, phoneNum, school);
                 }
@@ -121,7 +121,7 @@ public class PrivacyRegisterActivity extends AppCompatActivity {
         userApi = retrofitService.getRetrofit().create(UserApi.class);
 
         userApi.getAllSchool()
-                .enqueue(new Callback<List<String>>() {
+                .enqueue(new Callback<>() {
                     @Override
                     public void onResponse(@NonNull Call<List<String>> call, @NonNull Response<List<String>> response) {
                         schoolList = response.body();
@@ -140,17 +140,17 @@ public class PrivacyRegisterActivity extends AppCompatActivity {
         userApi = retrofitService.getRetrofit().create(UserApi.class);
 
         userApi.findName(name)
-                .enqueue(new Callback<Boolean>() {
+                .enqueue(new Callback<>() {
                     @Override
                     public void onResponse(@NonNull Call<Boolean> call, @NonNull Response<Boolean> response) {
                         Boolean duplicationNameCk = response.body();
 
                         if (Boolean.TRUE.equals(duplicationNameCk)) { // 중복된 닉네임 없을경우
                             duplicationCk = true;
-                            Toast.makeText(context, "사용가능한 닉네임입니다.", Toast.LENGTH_SHORT).show();
+                            StyleableToast.makeText(context, "사용가능한 닉네임입니다.", R.style.successToast).show();
                         } else {
                             duplicationCk = false;
-                            Toast.makeText(context, "이미 존재하는 닉네임입니다.", Toast.LENGTH_SHORT).show();
+                            StyleableToast.makeText(context, "이미 존재하는 닉네임입니다.", R.style.errorToast).show();
                         }
                     }
 
@@ -175,11 +175,9 @@ public class PrivacyRegisterActivity extends AppCompatActivity {
         registerApi = retrofitService.getRetrofit().create(RegisterApi.class);
 
         registerApi.register(userVO)
-                .enqueue(new Callback<UserVO>() {
+                .enqueue(new Callback<>() {
                     @Override
                     public void onResponse(@NonNull Call<UserVO> call, @NonNull Response<UserVO> response) { // 회원가입 성공
-                        Toast.makeText(PrivacyRegisterActivity.this, "회원가입 성공", Toast.LENGTH_SHORT).show();
-
                         // 회원가입 완료페이지 이동
                         Intent intent = new Intent(PrivacyRegisterActivity.this, CompleteActivity.class);
                         startActivity(intent);

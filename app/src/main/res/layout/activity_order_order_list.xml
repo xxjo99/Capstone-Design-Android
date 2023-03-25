@@ -22,7 +22,7 @@
             android:layout_width="50dp"
             android:layout_height="50dp"
             android:layout_marginBottom="5dp"
-            android:src="@drawable/warn" />
+            android:src="@drawable/icon_warn" />
 
         <TextView
             android:layout_width="match_parent"
@@ -329,7 +329,7 @@
                     android:id="@+id/minusBtn"
                     android:layout_width="24dp"
                     android:layout_height="24dp"
-                    android:background="@drawable/minus_icon" />
+                    android:background="@drawable/icon_minus" />
 
                 <TextView
                     android:id="@+id/selectPersonTV"
@@ -348,7 +348,7 @@
                     android:layout_width="24dp"
                     android:layout_height="24dp"
                     android:layout_marginEnd="20dp"
-                    android:background="@drawable/plus_icon" />
+                    android:background="@drawable/icon_plus" />
 
             </LinearLayout>
 

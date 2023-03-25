@@ -125,7 +125,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:background="@color/white"
-                            android:src="@drawable/minus_icon" />
+                            android:src="@drawable/icon_minus" />
 
                         <TextView
                             android:id="@+id/amountTV"
@@ -145,7 +145,7 @@
                             android:layout_height="wrap_content"
                             android:layout_marginEnd="20dp"
                             android:background="@color/white"
-                            android:src="@drawable/plus_icon" />
+                            android:src="@drawable/icon_plus" />
 
                     </LinearLayout>
 

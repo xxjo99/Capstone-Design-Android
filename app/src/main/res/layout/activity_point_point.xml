@@ -40,7 +40,7 @@
         android:layout_marginRight="25dp"
         android:layout_marginBottom="10dp"
         android:background="@drawable/et_border2"
-        android:drawableEnd="@drawable/cancel_icon"
+        android:drawableEnd="@drawable/icon_cancel"
         android:fontFamily="@font/bmjua_font"
         android:hint="충전할 금액을 입력해 주세요."
         android:inputType="number"

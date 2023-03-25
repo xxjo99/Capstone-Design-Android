@@ -45,7 +45,7 @@
                 android:layout_height="wrap_content"
                 android:background="@drawable/et_border"
                 android:fontFamily="@font/bmjua_font"
-                android:hint="@string/loginEmailInput"
+                android:hint="@string/emailInput"
                 android:padding="18dp"
                 android:singleLine="true"
                 android:textSize="18sp" />

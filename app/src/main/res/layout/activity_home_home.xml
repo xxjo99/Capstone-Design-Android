@@ -20,7 +20,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="10dp"
-            android:src="@drawable/bell_icon"
+            android:src="@drawable/icon_bell"
             android:background="@color/white"
             android:fontFamily="@font/bmjua_font"
             android:textColor="@color/white"

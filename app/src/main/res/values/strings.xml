@@ -2,40 +2,41 @@
 
     <string name="app_name">MyDelivery</string>
 
-    <string name="emailInput">(앱이름)에서 사용할\n아이디를 입력해주세요.</string>
-    <string name="pwInput1">비밀번호 설정</string>
-    <string name="pwInput2">8~20자, 영문,숫자,특수기호(!@$%)를 포함</string>
-    <string name="pwInput3">보안성이 높은 비밀번호 설정</string>
-    <string name="joinInput">안전한 서비스 사용을 위해\n이메일 인증을 진행합니다.</string>
-    <string name="joinPrivacy">(앱이름)에서 사용할\n정보를 입력해주세요. </string>
-    <string name="loginEmailInput">아이디(이메일)을 입력해주세요.</string>
-    <string name="emailHint">이메일을 입력해주세요.</string>
-    <string name="loginPwInput">비밀번호를 입력해주세요.</string>
-    <string name="telInput">전화번호를 입력해주세요. </string>
-    <string name="schoolInput">학교를 입력해주세요. </string>
-    <string name="goLogin">로그인 화면으로 이동하기 </string>
+    <!-- 회원가입 -->
+    <string name="register">회원가입</string>
+    <string name="emailText">로그인에 사용할\n이메일을 입력해주세요.</string>
+    <string name="emailInput">이메일을 입력해주세요.</string>
+    <string name="authText">안전한 서비스 사용을 위해\n이메일 인증을 진행합니다.</string>
+    <string name="sendAuthNum">인증번호 전송</string>
+    <string name="authNumInput">인증번호를 입력해주세요.</string>
+    <string name="pwText">로그인에 사용할\n비밀번호를 입력해주세요.</string>
+    <string name="pwInput">비밀번호 (영문+숫자+특수문자 8자 이상)</string>
+    <string name="pwCkInput">비밀번호를 한번 더 입력해주세요.</string>
+    <string name="privacyText">기본 정보를\n입력해주세요.</string>
+    <string name="name">닉네임</string>
+    <string name="nameInput">닉네임을 입력해주세요.</string>
+    <string name="phoneNum">휴대폰 번호</string>
+    <string name="phoneNumInput">휴대폰 번호를 입력해주세요.</string>
+    <string name="school">학교</string>
+    <string name="schoolInput">학교를 입력해주세요.</string>
+    <string name="completeRegister">가입 완료</string>
+    <string name="completeRegisterText">회원가입이 완료되었습니다\n서비스를 이용하기 위해 로그인해주세요.</string>
+    <string name="goLogin">로그인 화면으로 이동하기</string>
+    <string name="duplicateCk">중복검사</string>
+    <string name="next">계속하기</string>
 
+    <!-- 로그인 -->
+    <string name="login">로그인</string>
+    <string name="loginPwInput">비밀번호를 입력해주세요.</string>
     <string name="email">이메일</string>
     <string name="pw">비밀번호</string>
     <string name="pwCk">비밀번호 확인</string>
-    <string name="pwCkInput">비밀번호를 한번 더 입력해주세요</string>
-    <string name="pwReg">비밀번호 (영문+숫자+특수문자 8자 이상)</string>
-    <string name="name">닉네임</string>
-    <string name="birth">생년월일</string>
-    <string name="phone_num">휴대폰번호</string>
-    <string name="school">학교</string>
-    <string name="duplicateCk">중복검사</string>
-    <string name="sendAuthNum">인증번호 전송</string>
-    <string name="authNumInput">인증번호를 입력해주세요.</string>
+    <string name="findPw">비밀번호 찾기</string>
 
-    <string name="register">회원가입</string>
-    <string name="login">로그인</string>
     <string name="logout">로그아웃</string>
-    <string name="next">계속하기</string>
     <string name="confirm">확인</string>
     <string name="cancel">취소</string>
     <string name="quit">나가기</string>
-    <string name="findPw">비밀번호 찾기</string>
     <string name="findPwText">회원가입 시 등록하신 이메일 주소를 입력하고\n인증번호 입력 후 확인버튼을 누르세요.</string>
     <string name="modifyPwText">보안 수준이 높은 비밀번호 만들기</string>
     <string name="modifyPwText2">비밀번호는 8~20자이어야 하고\n영문, 숫자, 특수기호(!@$%)를 포함하여야 합니다.</string>

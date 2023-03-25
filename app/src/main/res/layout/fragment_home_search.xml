@@ -21,7 +21,7 @@
             android:layout_width="match_parent"
             android:layout_height="45dp"
             android:background="@drawable/et_fill_gray"
-            android:drawableStart="@drawable/search_icon"
+            android:drawableStart="@drawable/icon_search"
             android:drawablePadding="10dp"
             android:drawableTint="@color/gray2"
             android:fontFamily="@font/bmjua_font"
@@ -46,7 +46,7 @@
         <ImageView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:src="@drawable/search_icon2" />
+            android:src="@drawable/icon_search2" />
 
         <TextView
             android:layout_width="wrap_content"
