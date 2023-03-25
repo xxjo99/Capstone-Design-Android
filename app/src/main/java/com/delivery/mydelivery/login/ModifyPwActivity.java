@@ -112,15 +112,15 @@ public class ModifyPwActivity extends AppCompatActivity {
                 // 비밀번호와 비밀번호 확인이 다르다면 버튼 비활성화
                 if (!pw.equals(pwCk)) {
                     modifyPwBtn.setEnabled(false);
-                    modifyPwBtn.setBackgroundResource(R.drawable.btn_fill2_gray);
+                    modifyPwBtn.setBackgroundColor(getColor(R.color.gray2));
                 }
 
                 if (pwFlag && pwCkFlag) {
                     modifyPwBtn.setEnabled(true);
-                    modifyPwBtn.setBackgroundResource(R.drawable.btn_fill2_mint);
+                    modifyPwBtn.setBackgroundColor(getColor(R.color.mint));
                 } else {
                     modifyPwBtn.setEnabled(false);
-                    modifyPwBtn.setBackgroundResource(R.drawable.btn_fill2_gray);
+                    modifyPwBtn.setBackgroundColor(getColor(R.color.gray2));
                 }
             }
 
@@ -158,10 +158,10 @@ public class ModifyPwActivity extends AppCompatActivity {
 
                 if (pwFlag && pwCkFlag) {
                     modifyPwBtn.setEnabled(true);
-                    modifyPwBtn.setBackgroundResource(R.drawable.btn_fill2_mint);
+                    modifyPwBtn.setBackgroundColor(getColor(R.color.mint));
                 } else {
                     modifyPwBtn.setEnabled(false);
-                    modifyPwBtn.setBackgroundResource(R.drawable.btn_fill2_gray);
+                    modifyPwBtn.setBackgroundColor(getColor(R.color.gray2));
                 }
             }
 
@@ -177,7 +177,7 @@ public class ModifyPwActivity extends AppCompatActivity {
         userApi = retrofitService.getRetrofit().create(UserApi.class);
 
         userApi.findUser(email)
-                .enqueue(new Callback<UserVO>() {
+                .enqueue(new Callback<>() {
                     @Override
                     public void onResponse(@NonNull Call<UserVO> call, @NonNull Response<UserVO> response) {
                         UserVO user = response.body();
@@ -185,7 +185,7 @@ public class ModifyPwActivity extends AppCompatActivity {
                         user.setPw(pw);
 
                         userApi.modify(user)
-                                .enqueue(new Callback<UserVO>() {
+                                .enqueue(new Callback<>() {
                                     @Override
                                     public void onResponse(@NonNull Call<UserVO> call, @NonNull Response<UserVO> response) {
                                         modifyPwDialog.callDialog();

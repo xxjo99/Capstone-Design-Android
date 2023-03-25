@@ -7,6 +7,7 @@ import android.text.Editable;
 import android.text.TextWatcher;
 import android.util.Patterns;
 import android.view.KeyEvent;
+import android.view.View;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.EditText;
@@ -35,7 +36,7 @@ public class EmailRegisterActivity extends AppCompatActivity {
     // 회원가입 종료 dialog
     RegisterDialog registerDialog;
 
-    // 툴바, 툴바 버튼
+    // 툴바, 버튼, 진행뷰
     Toolbar toolbar;
     ImageButton closeBtn;
 

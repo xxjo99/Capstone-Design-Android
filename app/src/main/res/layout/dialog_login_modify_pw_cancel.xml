@@ -9,8 +9,8 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:gravity="center"
         android:background="@drawable/layout_shadow"
+        android:gravity="center"
         android:orientation="vertical">
 
         <TextView
@@ -20,7 +20,7 @@
             android:gravity="center"
             android:includeFontPadding="false"
             android:paddingTop="15dp"
-            android:text="비밀번호 재설정"
+            android:text="@string/modifyPwCancel1"
             android:textColor="@color/black"
             android:textSize="30sp" />
 
@@ -32,7 +32,7 @@
             android:includeFontPadding="false"
             android:paddingTop="40dp"
             android:paddingBottom="40dp"
-            android:text="비밀번호 재설정을 취소하시겠습니까?"
+            android:text="@string/modifyPwCancel2"
             android:textColor="@color/gray4"
             android:textSize="20sp" />
 
@@ -42,7 +42,6 @@
             android:background="@color/gray" />
 
         <LinearLayout
-            android:id="@+id/participateBtnLayout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
 
@@ -51,9 +50,9 @@
                 android:layout_width="wrap_content"
                 android:layout_height="55dp"
                 android:layout_weight="1"
+                android:background="@drawable/btn_border_left_fill_mint"
                 android:fontFamily="@font/bmjua_font"
                 android:text="@string/confirm"
-                android:background="@drawable/btn_border_left_fill_mint"
                 android:textColor="@color/white"
                 android:textSize="22sp" />
 
@@ -67,10 +66,10 @@
                 android:layout_width="wrap_content"
                 android:layout_height="55dp"
                 android:layout_weight="1"
-                android:fontFamily="@font/bmjua_font"
                 android:background="@drawable/btn_border_right_fill_gray"
+                android:fontFamily="@font/bmjua_font"
                 android:text="@string/cancel"
-                android:textColor="@color/black"
+                android:textColor="@color/white"
                 android:textSize="22sp" />
 
         </LinearLayout>

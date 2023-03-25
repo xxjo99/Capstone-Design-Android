@@ -9,6 +9,30 @@
     android:orientation="vertical"
     tools:context=".register.PrivacyRegisterActivity">
 
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/registerToolbar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:contentInsetStart="0dp">
+
+        <ImageButton
+            android:id="@+id/closeBtn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="right"
+            android:layout_marginEnd="20dp"
+            android:background="@color/white"
+            android:src="@drawable/icon_close"
+            tools:ignore="RtlHardcoded" />
+
+    </androidx.appcompat.widget.Toolbar>
+
+    <View
+        android:layout_width="wrap_content"
+        android:layout_height="3dp"
+        android:layout_marginTop="10dp"
+        android:background="@color/black" />
+
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -20,24 +44,6 @@
             android:layout_height="wrap_content"
             android:orientation="vertical">
 
-            <androidx.appcompat.widget.Toolbar
-                android:id="@+id/registerToolbar"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                app:contentInsetStart="0dp">
-
-                <ImageButton
-                    android:id="@+id/closeBtn"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="right"
-                    android:layout_marginEnd="20dp"
-                    android:background="@color/white"
-                    android:src="@drawable/icon_close"
-                    tools:ignore="RtlHardcoded" />
-
-            </androidx.appcompat.widget.Toolbar>
-
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -48,7 +54,7 @@
                 android:lineSpacingExtra="8dp"
                 android:text="@string/privacyText"
                 android:textColor="@color/black"
-                android:textSize="25sp" />
+                android:textSize="24sp" />
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -185,8 +191,9 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="0dp"
+        android:layout_gravity="center"
         android:layout_weight="1"
-        android:gravity="center_horizontal|bottom"
+        android:gravity="bottom"
         android:padding="10dp">
 
         <Button
@@ -194,9 +201,7 @@
             style="?android:attr/borderlessButtonStyle"
             android:layout_width="match_parent"
             android:layout_height="55dp"
-            android:layout_marginLeft="10dp"
-            android:layout_marginRight="10dp"
-            android:layout_marginBottom="5dp"
+            android:layout_marginBottom="10dp"
             android:background="@color/mint"
             android:fontFamily="@font/bmjua_font"
             android:text="@string/completeRegister"
