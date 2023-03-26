@@ -1,7 +1,5 @@
 package com.delivery.mydelivery.point;
 
-import com.delivery.mydelivery.order.OrderVO;
-
 import java.util.List;
 
 import retrofit2.Call;

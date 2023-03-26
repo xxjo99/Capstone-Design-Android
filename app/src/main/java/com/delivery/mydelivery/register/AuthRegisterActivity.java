@@ -31,7 +31,7 @@ import retrofit2.Response;
 public class AuthRegisterActivity extends AppCompatActivity {
 
     // 회원가입 종료 dialog
-    RegisterDialog registerDialog;
+    RegisterCancelDialog registerCancelDialog;
 
     // 툴바, 툴바 버튼
     Toolbar toolbar;
@@ -60,7 +60,7 @@ public class AuthRegisterActivity extends AppCompatActivity {
         context = this;
 
         // dialog
-        registerDialog = new RegisterDialog(this);
+        registerCancelDialog = new RegisterCancelDialog(this);
 
         // 툴바
         toolbar = findViewById(R.id.registerToolbar);
@@ -69,7 +69,7 @@ public class AuthRegisterActivity extends AppCompatActivity {
 
         // 회원가입 종료 버튼
         closeBtn = findViewById(R.id.closeBtn);
-        closeBtn.setOnClickListener(view -> registerDialog.callDialog());
+        closeBtn.setOnClickListener(view -> registerCancelDialog.callDialog());
 
         // 이전 액티비티에서 넘어온 값을 객체에 저장
         userVO = (UserVO) getIntent().getSerializableExtra("userVO");
@@ -172,7 +172,7 @@ public class AuthRegisterActivity extends AppCompatActivity {
     public boolean onKeyDown(int keycode, KeyEvent event) {
 
         if (keycode == KeyEvent.KEYCODE_BACK) {
-            registerDialog.callDialog();
+            registerCancelDialog.callDialog();
             return true;
         }
 

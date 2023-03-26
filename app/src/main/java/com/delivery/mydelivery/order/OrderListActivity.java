@@ -10,7 +10,6 @@ import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.LinearLayout;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -36,6 +35,7 @@ import java.sql.Timestamp;
 import java.util.List;
 import java.util.Objects;
 
+import io.github.muddz.styleabletoast.StyleableToast;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -255,9 +255,9 @@ public class OrderListActivity extends AppCompatActivity {
         registerBtn.setOnClickListener(view -> {
 
             if (selectTimeTV.getText().toString().equals("시간 선택")) {
-                Toast.makeText(context, "배달 받을 시간을 선택해주세요.", Toast.LENGTH_SHORT).show();
+                StyleableToast.makeText(context, "배달 받을 시간을 선택해주세요.", R.style.warningToast).show();
             } else if (selectPlaceET.length() == 0) {
-                Toast.makeText(context, "배달 받을 장소를 입력해주세요.", Toast.LENGTH_SHORT).show();
+                StyleableToast.makeText(context, "배달 받을 장소를 입력해주세요.", R.style.warningToast).show();
             } else {
                 // 객체 생성, 객체에 필요한 데이터 추가
                 RecruitVO recruit = new RecruitVO();
@@ -402,7 +402,7 @@ public class OrderListActivity extends AppCompatActivity {
                 .enqueue(new Callback<>() {
                     @Override
                     public void onResponse(@NonNull Call<Void> call, @NonNull Response<Void> response) {
-                        Toast.makeText(context, "모집글 등록 완료", Toast.LENGTH_SHORT).show();
+                        StyleableToast.makeText(context, "모집글 등록 완료", R.style.successToast).show();
                         finish();
                     }
 

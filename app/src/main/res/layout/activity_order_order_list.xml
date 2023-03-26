@@ -4,10 +4,10 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
-    tools:context=".order.OrderListActivity"
     android:clickable="false"
-    android:focusable="true">
+    android:focusable="true"
+    android:orientation="vertical"
+    tools:context=".order.OrderListActivity">
 
     <LinearLayout
         android:id="@+id/emptyLayout"
@@ -29,7 +29,7 @@
             android:layout_height="wrap_content"
             android:fontFamily="@font/bmjua_font"
             android:gravity="center"
-            android:text="장바구니에 담긴 상품이 없습니다."
+            android:text="@string/emptyOrderList"
             android:textColor="@color/black"
             android:textSize="23sp" />
 
@@ -44,7 +44,7 @@
             android:background="@drawable/btn_fill2_mint"
             android:backgroundTint="@color/mint"
             android:fontFamily="@font/bmjua_font"
-            android:text="배달음식 보러가기"
+            android:text="@string/moveOrderList"
             android:textColor="@color/white"
             android:textSize="18sp" />
 
@@ -116,7 +116,7 @@
                         android:fontFamily="@font/bmjua_font"
                         android:text="@string/storeName"
                         android:textColor="@color/black"
-                        android:textSize="20sp" />
+                        android:textSize="30sp" />
 
                     <LinearLayout
                         android:layout_width="match_parent"
@@ -139,7 +139,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:fontFamily="@font/bmjua_font"
-                            android:text="@string/deliveryTip"
+                            android:text="@string/minimumDeliveryPrice"
                             android:textColor="@color/black" />
 
                     </LinearLayout>
@@ -172,7 +172,7 @@
 
                     <View
                         android:layout_width="match_parent"
-                        android:layout_height="7dp"
+                        android:layout_height="10dp"
                         android:background="@color/gray" />
 
                     <androidx.recyclerview.widget.RecyclerView
@@ -192,7 +192,7 @@
 
                     <View
                         android:layout_width="match_parent"
-                        android:layout_height="7dp"
+                        android:layout_height="10dp"
                         android:background="@color/gray" />
 
                     <LinearLayout
@@ -280,7 +280,7 @@
                         android:layout_height="wrap_content"
                         android:layout_marginLeft="20dp"
                         android:fontFamily="@font/bmjua_font"
-                        android:text="시간 선택"
+                        android:text="@string/selectTime"
                         android:textColor="@color/black"
                         android:textSize="20sp" />
 
@@ -296,7 +296,7 @@
                         android:layout_marginEnd="20dp"
                         android:background="@drawable/btn_fill_mint"
                         android:fontFamily="@font/bmjua_font"
-                        android:text="시간 선택"
+                        android:text="@string/selectTime"
                         android:textColor="@color/white"
                         android:textSize="19sp" />
 
@@ -314,7 +314,7 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginLeft="20dp"
+                    android:layout_marginStart="20dp"
                     android:fontFamily="@font/bmjua_font"
                     android:text="@string/selectPerson"
                     android:textColor="@color/black"

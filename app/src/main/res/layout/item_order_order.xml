@@ -7,12 +7,11 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="17dp"
+        android:layout_marginTop="20dp"
         android:layout_marginRight="17dp"
         android:layout_marginLeft="17dp"
-        android:layout_marginBottom="12dp"
-        android:orientation="vertical"
-        android:paddingBottom="8dp">
+        android:layout_marginBottom="20dp"
+        android:orientation="vertical">
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -48,7 +47,7 @@
             android:id="@+id/optionListTV"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="18dp"
+            android:layout_marginBottom="23dp"
             android:fontFamily="@font/bmjua_font"
             android:text="@string/option"
             android:textSize="12sp" />
@@ -100,6 +99,7 @@
                 android:src="@drawable/icon_plus" />
 
         </LinearLayout>
+
 
     </LinearLayout>
 

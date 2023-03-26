@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical">
@@ -36,25 +37,28 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginLeft="25dp"
-        android:layout_marginTop="50dp"
+        android:layout_marginTop="40dp"
         android:layout_marginRight="25dp"
-        android:layout_marginBottom="10dp"
+        android:layout_marginBottom="20dp"
         android:background="@drawable/et_border2"
         android:drawableEnd="@drawable/icon_cancel"
         android:fontFamily="@font/bmjua_font"
-        android:hint="충전할 금액을 입력해 주세요."
-        android:inputType="number"
-        android:padding="5dp"
-        android:textSize="25sp" />
+        android:hint="@string/addPointAmount"
+        android:paddingLeft="15dp"
+        android:paddingTop="25dp"
+        android:paddingRight="15dp"
+        android:paddingBottom="25dp"
+        android:textSize="20sp"
+        tools:ignore="RtlSymmetry" />
 
     <TextView
         android:id="@+id/pointCkTV"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="25dp"
-        android:layout_marginRight="25dp"
+        android:layout_marginStart="35dp"
+        android:layout_marginEnd="25dp"
         android:fontFamily="@font/bmjua_font"
-        android:text="최소 1000원 이상 충전가능"
+        android:text="@string/minimumPointAmount"
         android:textColor="@color/red"
         android:visibility="gone" />
 
@@ -71,8 +75,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:fontFamily="@font/bmjua_font"
-            android:text="거래 후 잔액"
-            android:textSize="13sp" />
+            android:text="@string/currentPoint" />
 
         <View
             android:layout_width="0dp"
@@ -84,82 +87,246 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:fontFamily="@font/bmjua_font"
-            android:text="point"
-            android:textColor="@color/black"
-            android:textSize="13sp" />
+            android:text="@string/currentPoint"
+            android:textColor="@color/black" />
 
     </LinearLayout>
 
-    <!-- 금액추가 -->
-    <GridLayout
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:layout_marginStart="5dp"
-        android:layout_marginTop="12dp"
-        android:foregroundGravity="center"
-        android:orientation="horizontal"
-        android:rowCount="4">
-
-        <Button
-            android:id="@+id/add1Btn"
-            android:layout_width="80dp"
-            android:layout_height="40dp"
-            android:layout_marginEnd="10dp"
-            android:background="@drawable/btn_border_fill_gray"
-            android:fontFamily="@font/bmjua_font"
-            android:text="+1만" />
-
-        <Button
-            android:id="@+id/add3Btn"
-            android:layout_width="80dp"
-            android:layout_height="40dp"
-            android:layout_marginEnd="10dp"
-            android:background="@drawable/btn_border_fill_gray"
-            android:fontFamily="@font/bmjua_font"
-            android:text="+3만" />
-
-        <Button
-            android:id="@+id/add5Btn"
-            android:layout_width="80dp"
-            android:layout_height="40dp"
-            android:layout_marginEnd="10dp"
-            android:background="@drawable/btn_border_fill_gray"
-            android:fontFamily="@font/bmjua_font"
-            android:text="+5만" />
-
-        <Button
-            android:id="@+id/add10Btn"
-            android:layout_width="80dp"
-            android:layout_height="40dp"
-            android:layout_marginEnd="10dp"
-            android:background="@drawable/btn_border_fill_gray"
-            android:fontFamily="@font/bmjua_font"
-            android:text="+10만" />
-
-
-    </GridLayout>
-
     <View
-        android:layout_width="match_parent"
+        android:layout_width="wrap_content"
         android:layout_height="0dp"
         android:layout_weight="1" />
 
-    <!-- 충전 버튼 -->
-    <Button
-        android:id="@+id/addPointBtn"
-        style="?android:attr/borderlessButtonStyle"
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="55dp"
-        android:layout_gravity="bottom"
-        android:layout_marginLeft="20dp"
-        android:layout_marginRight="20dp"
-        android:layout_marginBottom="20dp"
-        android:background="@drawable/btn_fill_gray"
-        android:enabled="false"
-        android:fontFamily="@font/bmjua_font"
-        android:text="@string/addPoint"
-        android:textColor="@color/white"
-        android:textSize="23sp" />
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <!-- 금액추가 -->
+        <GridLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="20dp"
+            android:layout_marginBottom="5dp"
+            android:columnCount="4"
+            android:foregroundGravity="center"
+            android:orientation="horizontal">
+
+            <Button
+                android:id="@+id/add1Btn"
+                style="?android:attr/borderlessButtonStyle"
+                android:layout_width="70dp"
+                android:layout_height="40dp"
+                android:layout_marginEnd="10dp"
+                android:background="@drawable/btn_border_fill_gray"
+                android:fontFamily="@font/bmjua_font"
+                android:text="@string/plus1"
+                android:textSize="12sp" />
+
+            <Button
+                android:id="@+id/add3Btn"
+                style="?android:attr/borderlessButtonStyle"
+                android:layout_width="70dp"
+                android:layout_height="40dp"
+                android:layout_marginEnd="10dp"
+                android:background="@drawable/btn_border_fill_gray"
+                android:fontFamily="@font/bmjua_font"
+                android:text="@string/plus3"
+                android:textSize="12sp" />
+
+            <Button
+                android:id="@+id/add5Btn"
+                style="?android:attr/borderlessButtonStyle"
+                android:layout_width="70dp"
+                android:layout_height="40dp"
+                android:layout_marginEnd="10dp"
+                android:background="@drawable/btn_border_fill_gray"
+                android:fontFamily="@font/bmjua_font"
+                android:text="@string/plus5"
+                android:textSize="12sp" />
+
+            <Button
+                android:id="@+id/add10Btn"
+                style="?android:attr/borderlessButtonStyle"
+                android:layout_width="70dp"
+                android:layout_height="40dp"
+                android:background="@drawable/btn_border_fill_gray"
+                android:fontFamily="@font/bmjua_font"
+                android:text="@string/plus10"
+                android:textSize="12sp" />
+
+        </GridLayout>
+
+        <View
+            android:layout_width="wrap_content"
+            android:layout_height="20dp" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:background="#f8f9fa"
+            android:gravity="center"
+            android:orientation="vertical">
+
+            <GridLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:columnCount="3"
+                android:foregroundGravity="center">
+
+                <TextView
+                    android:id="@+id/oneTV"
+                    android:layout_rowWeight="1"
+                    android:layout_columnWeight="1"
+                    android:layout_gravity="center"
+                    android:fontFamily="@font/bmjua_font"
+                    android:padding="17dp"
+                    android:text="@string/one"
+                    android:textColor="@color/black"
+                    android:textSize="28sp" />
+
+                <TextView
+                    android:id="@+id/twoTV"
+                    android:layout_rowWeight="1"
+                    android:layout_columnWeight="1"
+                    android:layout_gravity="center"
+                    android:fontFamily="@font/bmjua_font"
+                    android:padding="17dp"
+                    android:text="@string/two"
+                    android:textColor="@color/black"
+                    android:textSize="28sp" />
+
+                <TextView
+                    android:id="@+id/threeTV"
+                    android:layout_rowWeight="1"
+                    android:layout_columnWeight="1"
+                    android:layout_gravity="center"
+                    android:fontFamily="@font/bmjua_font"
+                    android:padding="17dp"
+                    android:text="@string/three"
+                    android:textColor="@color/black"
+                    android:textSize="28sp" />
+
+                <TextView
+                    android:id="@+id/fourTV"
+                    android:layout_rowWeight="1"
+                    android:layout_columnWeight="1"
+                    android:layout_gravity="center"
+                    android:fontFamily="@font/bmjua_font"
+                    android:padding="17dp"
+                    android:text="@string/four"
+                    android:textColor="@color/black"
+                    android:textSize="28sp" />
+
+                <TextView
+                    android:id="@+id/fiveTV"
+                    android:layout_rowWeight="1"
+                    android:layout_columnWeight="1"
+                    android:layout_gravity="center"
+                    android:fontFamily="@font/bmjua_font"
+                    android:padding="17dp"
+                    android:text="@string/five"
+                    android:textColor="@color/black"
+                    android:textSize="28sp" />
+
+                <TextView
+                    android:id="@+id/sixTV"
+                    android:layout_rowWeight="1"
+                    android:layout_columnWeight="1"
+                    android:layout_gravity="center"
+                    android:fontFamily="@font/bmjua_font"
+                    android:padding="17dp"
+                    android:text="@string/six"
+                    android:textColor="@color/black"
+                    android:textSize="28sp" />
+
+                <TextView
+                    android:id="@+id/sevenTV"
+                    android:layout_rowWeight="1"
+                    android:layout_columnWeight="1"
+                    android:layout_gravity="center"
+                    android:fontFamily="@font/bmjua_font"
+                    android:padding="17dp"
+                    android:text="@string/seven"
+                    android:textColor="@color/black"
+                    android:textSize="28sp" />
+
+                <TextView
+                    android:id="@+id/eightTV"
+                    android:layout_rowWeight="1"
+                    android:layout_columnWeight="1"
+                    android:layout_gravity="center"
+                    android:fontFamily="@font/bmjua_font"
+                    android:padding="17dp"
+                    android:text="@string/eight"
+                    android:textColor="@color/black"
+                    android:textSize="28sp" />
+
+                <TextView
+                    android:id="@+id/nineTV"
+                    android:layout_rowWeight="1"
+                    android:layout_columnWeight="1"
+                    android:layout_gravity="center"
+                    android:fontFamily="@font/bmjua_font"
+                    android:padding="17dp"
+                    android:text="@string/nine"
+                    android:textColor="@color/black"
+                    android:textSize="28sp" />
+
+                <TextView
+                    android:id="@+id/doubleZeroTV"
+                    android:layout_rowWeight="1"
+                    android:layout_columnWeight="1"
+                    android:layout_gravity="center"
+                    android:fontFamily="@font/bmjua_font"
+                    android:padding="17dp"
+                    android:text="@string/doubleZero"
+                    android:textColor="@color/black"
+                    android:textSize="28sp" />
+
+                <TextView
+                    android:id="@+id/zeroTV"
+                    android:layout_rowWeight="1"
+                    android:layout_columnWeight="1"
+                    android:layout_gravity="center"
+                    android:fontFamily="@font/bmjua_font"
+                    android:padding="17dp"
+                    android:text="@string/zero"
+                    android:textColor="@color/black"
+                    android:textSize="28sp" />
+
+                <ImageButton
+                    android:id="@+id/backSpaceBtn"
+                    android:layout_rowWeight="1"
+                    android:layout_columnWeight="1"
+                    android:layout_gravity="center"
+                    android:background="@color/gray5"
+                    android:padding="17dp"
+                    android:src="@drawable/icon_backspace" />
+
+            </GridLayout>
+
+            <!-- 충전 버튼 -->
+            <Button
+                android:id="@+id/addPointBtn"
+                style="?android:attr/borderlessButtonStyle"
+                android:layout_width="match_parent"
+                android:layout_height="55dp"
+                android:layout_gravity="bottom"
+                android:layout_margin="20dp"
+                android:background="@drawable/btn_fill2_gray"
+                android:enabled="false"
+                android:fontFamily="@font/bmjua_font"
+                android:text="@string/addPoint"
+                android:textColor="@color/white"
+                android:textSize="23sp" />
+
+        </LinearLayout>
+
+    </LinearLayout>
 
 </LinearLayout>

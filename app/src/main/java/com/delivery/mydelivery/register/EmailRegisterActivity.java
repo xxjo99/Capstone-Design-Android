@@ -7,7 +7,6 @@ import android.text.Editable;
 import android.text.TextWatcher;
 import android.util.Patterns;
 import android.view.KeyEvent;
-import android.view.View;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.EditText;
@@ -34,7 +33,7 @@ import retrofit2.Response;
 public class EmailRegisterActivity extends AppCompatActivity {
 
     // 회원가입 종료 dialog
-    RegisterDialog registerDialog;
+    RegisterCancelDialog registerCancelDialog;
 
     // 툴바, 버튼, 진행뷰
     Toolbar toolbar;
@@ -63,7 +62,7 @@ public class EmailRegisterActivity extends AppCompatActivity {
         context = this;
 
         // dialog
-        registerDialog = new RegisterDialog(this);
+        registerCancelDialog = new RegisterCancelDialog(this);
 
         // 툴바
         toolbar = findViewById(R.id.registerToolbar);
@@ -72,7 +71,7 @@ public class EmailRegisterActivity extends AppCompatActivity {
 
         // 회원가입 종료 버튼
         closeBtn = findViewById(R.id.closeBtn);
-        closeBtn.setOnClickListener(view -> registerDialog.callDialog());
+        closeBtn.setOnClickListener(view -> registerCancelDialog.callDialog());
 
         // 초기화
         emailET = findViewById(R.id.emailET);
@@ -188,7 +187,7 @@ public class EmailRegisterActivity extends AppCompatActivity {
     public boolean onKeyDown(int keycode, KeyEvent event) {
 
         if (keycode == KeyEvent.KEYCODE_BACK) {
-            registerDialog.callDialog();
+            registerCancelDialog.callDialog();
             return true;
         }
 

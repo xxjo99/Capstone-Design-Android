@@ -13,11 +13,11 @@ import android.widget.Button;
 import com.delivery.mydelivery.R;
 
 @SuppressLint("SetTextI18n")
-public class RegisterDialog {
+public class RegisterCancelDialog {
 
     private final Context context;
 
-    public RegisterDialog(Context context) {
+    public RegisterCancelDialog(Context context) {
         this.context = context;
     }
 

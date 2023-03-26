@@ -70,6 +70,12 @@ public class RecruitOrderListAdapter extends RecyclerView.Adapter<RecruitOrderLi
         holder.menuPriceTV.setText(price + "원");// 가격
         holder.amountTV.setText(amount + "개");// 개수
 
+        if (order.getAmount() == 1) {
+            holder.decreaseBtn.setImageResource(R.drawable.icon_minus_gray);
+        } else {
+            holder.decreaseBtn.setImageResource(R.drawable.icon_minus);
+        }
+
         // 결제 완료되었다면 메뉴 변경 불가
         if (paymentStatus == 1) {
             holder.deleteBtn.setVisibility(View.GONE);
@@ -91,6 +97,12 @@ public class RecruitOrderListAdapter extends RecyclerView.Adapter<RecruitOrderLi
 
                 RecruitOrderListActivity.totalPrice -= (order.getTotalPrice() / order.getAmount());
                 RecruitOrderListActivity.totalPriceTV.setText(RecruitOrderListActivity.totalPrice + "원");
+
+                if (order.getAmount() == 1) {
+                    holder.decreaseBtn.setImageResource(R.drawable.icon_minus_gray);
+                } else {
+                    holder.decreaseBtn.setImageResource(R.drawable.icon_minus);
+                }
             }
         });
 
@@ -106,6 +118,12 @@ public class RecruitOrderListAdapter extends RecyclerView.Adapter<RecruitOrderLi
 
             RecruitOrderListActivity.totalPrice += (order.getTotalPrice() / order.getAmount());
             RecruitOrderListActivity.totalPriceTV.setText(RecruitOrderListActivity.totalPrice + "원");
+
+            if (order.getAmount() == 1) {
+                holder.decreaseBtn.setImageResource(R.drawable.icon_minus_gray);
+            } else {
+                holder.decreaseBtn.setImageResource(R.drawable.icon_minus);
+            }
         });
 
         // 메뉴 삭제
