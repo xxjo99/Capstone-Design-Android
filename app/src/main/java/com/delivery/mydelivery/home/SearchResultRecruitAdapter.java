@@ -79,7 +79,7 @@ public class SearchResultRecruitAdapter extends RecyclerView.Adapter<SearchResul
         holder.placeTV.setText(place); // 배달 장소
 
         // 참가자수
-        getParticipantCount(recruit.getRecruitId(), holder);
+        getParticipantCount(recruit.getRecruitId(), person, holder);
 
         // 클릭시 다이얼로그 열기
         holder.itemView.setOnClickListener(view -> {
@@ -107,6 +107,7 @@ public class SearchResultRecruitAdapter extends RecyclerView.Adapter<SearchResul
 
     public static class ViewHolder extends RecyclerView.ViewHolder {
         TextView storeNameTV;
+        TextView participationPossibleStatusTV;
         TextView registrantTV;
         TextView deliveryTimeTV;
         TextView recruitPersonTV;
@@ -120,6 +121,7 @@ public class SearchResultRecruitAdapter extends RecyclerView.Adapter<SearchResul
             super(itemView);
 
             storeNameTV = itemView.findViewById(R.id.storeNameTV);
+            participationPossibleStatusTV = itemView.findViewById(R.id.participationPossibleStatusTV);
             registrantTV = itemView.findViewById(R.id.registrantTV);
             deliveryTimeTV = itemView.findViewById(R.id.deliveryTimeTV);
             recruitPersonTV = itemView.findViewById(R.id.recruitPersonTV);
@@ -134,7 +136,7 @@ public class SearchResultRecruitAdapter extends RecyclerView.Adapter<SearchResul
         storeApi = retrofitService.getRetrofit().create(StoreApi.class);
 
         storeApi.getStore(storeId)
-                .enqueue(new Callback<StoreVO>() {
+                .enqueue(new Callback<>() {
                     @Override
                     public void onResponse(@NonNull Call<StoreVO> call, @NonNull Response<StoreVO> response) {
                         StoreVO store = response.body();
@@ -155,7 +157,7 @@ public class SearchResultRecruitAdapter extends RecyclerView.Adapter<SearchResul
         userApi = retrofitService.getRetrofit().create(UserApi.class);
 
         userApi.getUser(userId)
-                .enqueue(new Callback<UserVO>() {
+                .enqueue(new Callback<>() {
                     @Override
                     public void onResponse(@NonNull Call<UserVO> call, @NonNull Response<UserVO> response) {
                         UserVO user = response.body();
@@ -171,15 +173,23 @@ public class SearchResultRecruitAdapter extends RecyclerView.Adapter<SearchResul
     }
 
     // 해당 등록글의 현재 참가자수 반환
-    private void getParticipantCount(int recruitId, SearchResultRecruitAdapter.ViewHolder holder) {
+    private void getParticipantCount(int recruitId, int person, SearchResultRecruitAdapter.ViewHolder holder) {
         retrofitService = new RetrofitService();
         recruitApi = retrofitService.getRetrofit().create(RecruitApi.class);
 
         recruitApi.getParticipantCount(recruitId)
-                .enqueue(new Callback<Integer>() {
+                .enqueue(new Callback<>() {
                     @Override
                     public void onResponse(@NonNull Call<Integer> call, @NonNull Response<Integer> response) {
                         holder.participantCount = response.body();
+
+                        if (response.body() >= person) {
+                            holder.participationPossibleStatusTV.setText("참가 불가");
+                            holder.participationPossibleStatusTV.setBackgroundResource(R.drawable.tv_border_fill_red);
+                        } else {
+                            holder.participationPossibleStatusTV.setText("참가 가능");
+                            holder.participationPossibleStatusTV.setBackgroundResource(R.drawable.tv_border_fill_green);
+                        }
                     }
 
                     @Override
@@ -194,7 +204,7 @@ public class SearchResultRecruitAdapter extends RecyclerView.Adapter<SearchResul
         recruitApi = retrofitService.getRetrofit().create(RecruitApi.class);
 
         recruitApi.findUserInRecruit(recruitId, participateUserId)
-                .enqueue(new Callback<Boolean>() {
+                .enqueue(new Callback<>() {
                     @Override
                     public void onResponse(@NonNull Call<Boolean> call, @NonNull Response<Boolean> response) {
 
@@ -220,7 +230,7 @@ public class SearchResultRecruitAdapter extends RecyclerView.Adapter<SearchResul
         userApi = retrofitService.getRetrofit().create(UserApi.class);
 
         userApi.checkRestriction(participateUserId)
-                .enqueue(new Callback<Boolean>() {
+                .enqueue(new Callback<>() {
                     @Override
                     public void onResponse(@NonNull Call<Boolean> call, @NonNull Response<Boolean> response) {
                         Boolean checkRestrictionFlag = response.body();
@@ -255,7 +265,7 @@ public class SearchResultRecruitAdapter extends RecyclerView.Adapter<SearchResul
         userApi = retrofitService.getRetrofit().create(UserApi.class);
 
         userApi.getParticipationRestriction(userId)
-                .enqueue(new Callback<ParticipationRestrictionVO>() {
+                .enqueue(new Callback<>() {
                     @Override
                     public void onResponse(@NonNull Call<ParticipationRestrictionVO> call, @NonNull Response<ParticipationRestrictionVO> response) {
                         ParticipationRestrictionVO participationRestriction = response.body();

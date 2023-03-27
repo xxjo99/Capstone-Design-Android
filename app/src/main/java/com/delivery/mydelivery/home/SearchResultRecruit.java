@@ -70,7 +70,7 @@ public class SearchResultRecruit extends Fragment {
         recruitApi = retrofitService.getRetrofit().create(RecruitApi.class);
 
         recruitApi.searchRecruit(keyword, deliveryAvailablePlace)
-                .enqueue(new Callback<List<RecruitVO>>() {
+                .enqueue(new Callback<>() {
                     @Override
                     public void onResponse(@NonNull Call<List<RecruitVO>> call, @NonNull Response<List<RecruitVO>> response) {
                         recruitList = response.body();

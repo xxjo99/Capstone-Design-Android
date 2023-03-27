@@ -80,7 +80,7 @@ public class RecruitListAdapter extends RecyclerView.Adapter<RecruitListAdapter.
         holder.placeTV.setText(place); // 배달 장소
 
         // 참가자수 구하기
-        getParticipantCount(recruit.getRecruitId(), holder);
+        getParticipantCount(recruit.getRecruitId(), person, holder);
 
         // 클릭시 다이얼로그 열기
         holder.itemView.setOnClickListener(view -> {
@@ -108,6 +108,7 @@ public class RecruitListAdapter extends RecyclerView.Adapter<RecruitListAdapter.
 
     public static class ViewHolder extends RecyclerView.ViewHolder {
         TextView storeNameTV;
+        TextView participationPossibleStatusTV;
         TextView registrantTV;
         TextView deliveryTimeTV;
         TextView recruitPersonTV;
@@ -121,6 +122,7 @@ public class RecruitListAdapter extends RecyclerView.Adapter<RecruitListAdapter.
             super(itemView);
 
             storeNameTV = itemView.findViewById(R.id.storeNameTV);
+            participationPossibleStatusTV = itemView.findViewById(R.id.participationPossibleStatusTV);
             registrantTV = itemView.findViewById(R.id.registrantTV);
             deliveryTimeTV = itemView.findViewById(R.id.deliveryTimeTV);
             recruitPersonTV = itemView.findViewById(R.id.recruitPersonTV);
@@ -172,7 +174,7 @@ public class RecruitListAdapter extends RecyclerView.Adapter<RecruitListAdapter.
     }
 
     // 해당 등록글의 현재 참가자수 반환
-    private void getParticipantCount(int recruitId, RecruitListAdapter.ViewHolder holder) {
+    private void getParticipantCount(int recruitId, int person, RecruitListAdapter.ViewHolder holder) {
         retrofitService = new RetrofitService();
         recruitApi = retrofitService.getRetrofit().create(RecruitApi.class);
 
@@ -181,6 +183,14 @@ public class RecruitListAdapter extends RecyclerView.Adapter<RecruitListAdapter.
                     @Override
                     public void onResponse(@NonNull Call<Integer> call, @NonNull Response<Integer> response) {
                         holder.participantCount = response.body();
+
+                        if (response.body() >= person) {
+                            holder.participationPossibleStatusTV.setText("참가 불가");
+                            holder.participationPossibleStatusTV.setBackgroundResource(R.drawable.tv_border_fill_red);
+                        } else {
+                            holder.participationPossibleStatusTV.setText("참가 가능");
+                            holder.participationPossibleStatusTV.setBackgroundResource(R.drawable.tv_border_fill_green);
+                        }
                     }
 
                     @Override

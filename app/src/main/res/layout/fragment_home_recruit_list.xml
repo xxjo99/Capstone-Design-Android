@@ -20,7 +20,7 @@
             android:layout_height="wrap_content"
             android:fontFamily="@font/bmjua_font"
             android:gravity="center"
-            android:text="참여가능한 게시글이 없습니다."
+            android:text="@string/noRecruitList"
             android:textColor="@color/gray4"
             android:textSize="23sp" />
 
@@ -30,7 +30,7 @@
             android:layout_marginTop="5dp"
             android:fontFamily="@font/bmjua_font"
             android:gravity="center"
-            android:text="모집글을 작성해보세요!"
+            android:text="@string/noParticipant2"
             android:textColor="@color/gray4"
             android:textSize="19sp" />
 
@@ -45,7 +45,7 @@
             android:background="@drawable/btn_fill2_mint"
             android:backgroundTint="@color/mint"
             android:fontFamily="@font/bmjua_font"
-            android:text="배달음식 보러가기"
+            android:text="@string/moveOrderList"
             android:textColor="@color/white"
             android:textSize="18sp" />
 
@@ -55,6 +55,7 @@
         android:id="@+id/recruitLayout"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:layout_marginTop="10dp"
         android:visibility="visible">
 
         <LinearLayout

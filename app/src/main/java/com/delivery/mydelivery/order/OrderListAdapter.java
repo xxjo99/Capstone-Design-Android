@@ -175,7 +175,8 @@ public class OrderListAdapter extends RecyclerView.Adapter<OrderListAdapter.View
 
                         // 사용자가 가진 포인트보다 배달비가 더 높은지 확인
                         int deliveryTip = Integer.parseInt(deliveryTipStr);
-                        OrderListActivity.deliveryAvailableFlag = deliveryTip > point;
+
+                        OrderListActivity.deliveryAvailableFlag = deliveryTip <= point;
                     }
 
                     @Override

@@ -41,6 +41,12 @@
     <string name="completeModifyPw">비밀번호 변경이\n완료되었습니다</string>
     <string name="moveLogin">로그인 페이지로 이동</string>
 
+    <!-- 모집글 -->
+    <string name="noRecruitList">등록된 모집글이 없습니다.</string>
+    <string name="noParticipant1">참가한 모집글이 없습니다.</string>
+    <string name="noParticipant2">모집글을 작성해보세요!</string>
+    <string name="possibleParticipate">참가 가능</string>
+
     <!-- 장바구니 -->
     <string name="totalPrice">총 주문금액</string>
     <string name="upload">글 등록하기</string>
@@ -49,7 +55,7 @@
     <string name="selectPlace">장소 선택</string>
     <string name="cart">장바구니</string>
     <string name="emptyOrderList">장바구니가 비어있습니다.</string>
-    <string name="moveOrderList">상품 담으러 가기</string>
+    <string name="moveOrderList">음식 담으러 가기</string>
     <string name="insufficientPointText1">포인트 부족</string>
     <string name="insufficientPointText2">포인트가 부족합니다.\n포인트를 충전하시겠습니까?</string>
 
