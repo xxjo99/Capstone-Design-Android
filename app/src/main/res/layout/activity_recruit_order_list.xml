@@ -55,7 +55,7 @@
             android:layout_height="wrap_content"
             android:fontFamily="@font/bmjua_font"
             android:gravity="center"
-            android:text="장바구니에 담긴 상품이 없습니다."
+            android:text="@string/emptyOrderList"
             android:textColor="@color/black"
             android:textSize="23sp" />
 
@@ -70,7 +70,7 @@
             android:background="@drawable/btn_fill2_mint"
             android:backgroundTint="@color/mint"
             android:fontFamily="@font/bmjua_font"
-            android:text="메뉴 보러가기"
+            android:text="@string/moveOrderList"
             android:textColor="@color/white"
             android:textSize="18sp" />
 
@@ -103,7 +103,7 @@
 
             <View
                 android:layout_width="match_parent"
-                android:layout_height="7dp"
+                android:layout_height="10dp"
                 android:background="@color/gray" />
 
             <androidx.recyclerview.widget.RecyclerView
@@ -128,7 +128,7 @@
 
             <View
                 android:layout_width="match_parent"
-                android:layout_height="7dp"
+                android:layout_height="10dp"
                 android:background="@color/gray" />
 
             <LinearLayout

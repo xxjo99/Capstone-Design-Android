@@ -3,6 +3,8 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:layout_gravity="center"
+    android:layout_marginLeft="10dp"
+    android:layout_marginRight="10dp"
     android:gravity="center"
     android:orientation="vertical">
 
@@ -25,13 +27,14 @@
         android:gravity="center_horizontal"
         android:text="@string/completeRegisterText"
         android:textColor="@color/black"
-        android:textSize="20dp" />
+        android:textSize="20sp" />
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="0dp"
+        android:layout_gravity="center"
         android:layout_weight="1"
-        android:gravity="center_horizontal|bottom"
+        android:gravity="bottom"
         android:padding="10dp">
 
         <Button
@@ -39,10 +42,8 @@
             style="?android:attr/borderlessButtonStyle"
             android:layout_width="match_parent"
             android:layout_height="55dp"
-            android:layout_marginLeft="10dp"
-            android:layout_marginRight="10dp"
-            android:layout_marginBottom="5dp"
-            android:background="@drawable/btn_fill2_mint"
+            android:layout_marginBottom="10dp"
+            android:background="@color/mint"
             android:fontFamily="@font/bmjua_font"
             android:text="@string/goLogin"
             android:textColor="@color/white"

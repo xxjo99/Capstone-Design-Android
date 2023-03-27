@@ -9,12 +9,12 @@ import android.text.TextWatcher;
 import android.util.Log;
 import android.view.MotionEvent;
 import android.view.View;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.LinearLayout;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -30,6 +30,7 @@ import com.google.gson.GsonBuilder;
 
 import java.util.Objects;
 
+import io.github.muddz.styleabletoast.StyleableToast;
 import kr.co.bootpay.android.Bootpay;
 import kr.co.bootpay.android.events.BootpayEventListener;
 import kr.co.bootpay.android.models.BootUser;
@@ -49,9 +50,11 @@ public class PointActivity extends AppCompatActivity {
     TextView pointCkTV;
     Button addPointBtn;
 
-    Button add1Btn;
-    Button add3Btn;
-    Button add5Btn;
+    Button add1Btn, add3Btn, add5Btn, add10Btn;
+
+    // 키보드 자판
+    TextView oneTV, twoTV, threeTV, fourTV, fiveTV, sixTV, sevenTV, eightTV, nineTV, doubleZeroTV, zeroTV;
+    ImageButton backSpaceBtn;
 
     LinearLayout afterPointLayout;
     TextView afterPointTV;
@@ -88,9 +91,28 @@ public class PointActivity extends AppCompatActivity {
         pointCkTV = findViewById(R.id.pointCkTV);
         addPointBtn = findViewById(R.id.addPointBtn);
 
+        // 키보드 올라오지 않도록 설정
+        pointET.setInputType(0);
+        InputMethodManager imm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
+        imm.hideSoftInputFromWindow(pointET.getWindowToken(), 0);
+
         add1Btn = findViewById(R.id.add1Btn);
         add3Btn = findViewById(R.id.add3Btn);
         add5Btn = findViewById(R.id.add5Btn);
+        add10Btn = findViewById(R.id.add10Btn);
+
+        oneTV = findViewById(R.id.oneTV);
+        twoTV = findViewById(R.id.twoTV);
+        threeTV = findViewById(R.id.threeTV);
+        fourTV = findViewById(R.id.fourTV);
+        fiveTV = findViewById(R.id.fiveTV);
+        sixTV = findViewById(R.id.sixTV);
+        sevenTV = findViewById(R.id.sevenTV);
+        eightTV = findViewById(R.id.eightTV);
+        nineTV = findViewById(R.id.nineTV);
+        zeroTV = findViewById(R.id.zeroTV);
+        doubleZeroTV = findViewById(R.id.doubleZeroTV);
+        backSpaceBtn = findViewById(R.id.backSpaceBtn);
 
         afterPointLayout = findViewById(R.id.afterPointLayout);
         afterPointTV = findViewById(R.id.afterPointTV);
@@ -109,7 +131,7 @@ public class PointActivity extends AppCompatActivity {
 
         if (addPoint != 0) {
             pointET.setText(addPoint + "");
-            addPointBtn.setBackgroundResource(R.drawable.btn_fill_green);
+            addPointBtn.setBackgroundResource(R.drawable.btn_fill2_mint);
             addPointBtn.setEnabled(true);
         }
 
@@ -162,11 +184,124 @@ public class PointActivity extends AppCompatActivity {
             pointET.setText(Integer.toString(point));
         });
 
+        add10Btn.setOnClickListener(view -> {
+            int point = 0;
+
+            if (!pointET.getText().toString().isEmpty()) {
+                point = Integer.parseInt(pointET.getText().toString());
+            }
+
+            point += 100000;
+            pointET.setText(Integer.toString(point));
+        });
+
+        // 자판 이벤트
+        oneTV.setOnClickListener(view -> {
+            if (!pointET.getText().toString().isEmpty()) {
+                String point = pointET.getText().toString();
+                pointET.setText(point + "1");
+            } else {
+                pointET.setText("1");
+            }
+        });
+
+        twoTV.setOnClickListener(view -> {
+            if (!pointET.getText().toString().isEmpty()) {
+                String point = pointET.getText().toString();
+                pointET.setText(point + "2");
+            } else {
+                pointET.setText("1");
+            }
+        });
+
+        threeTV.setOnClickListener(view -> {
+            if (!pointET.getText().toString().isEmpty()) {
+                String point = pointET.getText().toString();
+                pointET.setText(point + "3");
+            } else {
+                pointET.setText("3");
+            }
+        });
+
+        fourTV.setOnClickListener(view -> {
+            if (!pointET.getText().toString().isEmpty()) {
+                String point = pointET.getText().toString();
+                pointET.setText(point + "4");
+            } else {
+                pointET.setText("4");
+            }
+        });
+
+        fiveTV.setOnClickListener(view -> {
+            if (!pointET.getText().toString().isEmpty()) {
+                String point = pointET.getText().toString();
+                pointET.setText(point + "5");
+            } else {
+                pointET.setText("5");
+            }
+        });
+
+        sixTV.setOnClickListener(view -> {
+            if (!pointET.getText().toString().isEmpty()) {
+                String point = pointET.getText().toString();
+                pointET.setText(point + "6");
+            } else {
+                pointET.setText("6");
+            }
+        });
+
+        sevenTV.setOnClickListener(view -> {
+            if (!pointET.getText().toString().isEmpty()) {
+                String point = pointET.getText().toString();
+                pointET.setText(point + "7");
+            } else {
+                pointET.setText("7");
+            }
+        });
+
+        eightTV.setOnClickListener(view -> {
+            if (!pointET.getText().toString().isEmpty()) {
+                String point = pointET.getText().toString();
+                pointET.setText(point + "8");
+            } else {
+                pointET.setText("8");
+            }
+        });
+
+        nineTV.setOnClickListener(view -> {
+            if (!pointET.getText().toString().isEmpty()) {
+                String point = pointET.getText().toString();
+                pointET.setText(point + "9");
+            } else {
+                pointET.setText("9");
+            }
+        });
+
+        zeroTV.setOnClickListener(view -> {
+            if (!pointET.getText().toString().isEmpty()) {
+                String point = pointET.getText().toString();
+                pointET.setText(point + "0");
+            }
+        });
+
+        doubleZeroTV.setOnClickListener(view -> {
+            if (!pointET.getText().toString().isEmpty()) {
+                String point = pointET.getText().toString();
+                pointET.setText(point + "00");
+            }
+        });
+
+        backSpaceBtn.setOnClickListener(view -> {
+            if (!pointET.getText().toString().isEmpty()) {
+                String point = pointET.getText().toString();
+                pointET.setText(point.substring(0, point.length() - 1));
+            }
+        });
+
         // 포인트 충전
         addPointBtn.setOnClickListener(view -> {
-
             if (pointET.getText().toString().isEmpty()) {
-                Toast.makeText(context, "금액 입력", Toast.LENGTH_SHORT).show();
+                StyleableToast.makeText(context, "충전할 금액을 입력해주세요.", R.style.warningToast).show();
             } else {
                 int point = Integer.parseInt(pointET.getText().toString());
                 goRequest(point);
@@ -189,12 +324,13 @@ public class PointActivity extends AppCompatActivity {
                 if (!pointET.getText().toString().isEmpty()) {
                     point = Integer.parseInt(pointET.getText().toString());
                 }
+
                 boolean flag = point >= 1000;
 
                 if (flag) { // 입력한 금액 1000원 이상
                     pointET.setBackgroundResource(R.drawable.et_border2);
                     pointCkTV.setVisibility(View.GONE);
-                    addPointBtn.setBackgroundResource(R.drawable.btn_fill_green);
+                    addPointBtn.setBackgroundResource(R.drawable.btn_fill2_mint);
                     addPointBtn.setEnabled(true);
 
                     // 충전 후 잔액 변경
@@ -202,13 +338,14 @@ public class PointActivity extends AppCompatActivity {
                     int afterPoint = userPoint + point;
                     afterPointTV.setText(afterPoint + "P");
                 } else { // 1000원 미만
-                    pointET.setBackgroundResource(R.drawable.et_border_red_bottom);
+                    pointET.setBackgroundResource(R.drawable.et_border_red2);
                     pointCkTV.setVisibility(View.VISIBLE);
-                    addPointBtn.setBackgroundResource(R.drawable.btn_fill_gray);
+                    addPointBtn.setBackgroundResource(R.drawable.btn_fill2_gray);
                     addPointBtn.setEnabled(false);
 
                     afterPointLayout.setVisibility(View.GONE);
                 }
+
             }
 
             @Override
@@ -243,7 +380,6 @@ public class PointActivity extends AppCompatActivity {
                 .setEventListener(new BootpayEventListener() {
                     @Override
                     public void onCancel(String data) {
-                        Toast.makeText(context, "결제창 닫기", Toast.LENGTH_SHORT).show();
                     }
 
                     @Override
@@ -325,7 +461,7 @@ public class PointActivity extends AppCompatActivity {
                         gson = new GsonBuilder().create();
                         String userInfoJson = gson.toJson(user, UserVO.class);
                         PreferenceManager.setLoginInfo(context, userInfoJson);
-                        Toast.makeText(context, "포인트 충전 완료", Toast.LENGTH_SHORT).show();
+                        StyleableToast.makeText(context, "포인트 충전이 완료되었습니다.", R.style.successToast).show();
                     }
 
                     @Override

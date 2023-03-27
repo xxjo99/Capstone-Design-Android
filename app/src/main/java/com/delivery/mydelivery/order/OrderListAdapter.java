@@ -7,7 +7,6 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageButton;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
@@ -61,12 +60,20 @@ public class OrderListAdapter extends RecyclerView.Adapter<OrderListAdapter.View
     public void onBindViewHolder(@NonNull OrderListAdapter.ViewHolder holder, int position) {
         OrderVO order = orderList.get(position);
         OrderListActivity.storeId = order.getStoreId();
+
         // 매장이름, 선택한 옵션, 가격, 개수 세팅
         setStoreName(order.getStoreId(), point); // 매장 이름
         setMenuName(order.getMenuId(), holder); // 메뉴 이름
         setContentNameList(order.getSelectOption(), holder);// 선택 옵션 리스트
+
         holder.menuPriceTV.setText(order.getTotalPrice() + "원"); // 메뉴 총 가격
         holder.amountTV.setText(order.getAmount() + "개"); // 메뉴 개수
+
+        if (order.getAmount() == 1) {
+            holder.decreaseBtn.setImageResource(R.drawable.icon_minus_gray);
+        } else {
+            holder.decreaseBtn.setImageResource(R.drawable.icon_minus);
+        }
 
         // 메뉴 개수 수정
         holder.decreaseBtn.setOnClickListener(view -> {
@@ -83,6 +90,12 @@ public class OrderListAdapter extends RecyclerView.Adapter<OrderListAdapter.View
                 OrderListActivity.totalPrice -= (order.getTotalPrice() / order.getAmount());
                 OrderListActivity.totalPriceTV.setText(OrderListActivity.totalPrice + "원");
             }
+
+            if (order.getAmount() == 1) {
+                holder.decreaseBtn.setImageResource(R.drawable.icon_minus_gray);
+            } else {
+                holder.decreaseBtn.setImageResource(R.drawable.icon_minus);
+            }
         });
 
         holder.increaseBtn.setOnClickListener(view -> {
@@ -97,6 +110,12 @@ public class OrderListAdapter extends RecyclerView.Adapter<OrderListAdapter.View
 
             OrderListActivity.totalPrice += (order.getTotalPrice() / order.getAmount());
             OrderListActivity.totalPriceTV.setText(OrderListActivity.totalPrice + "원");
+
+            if (order.getAmount() == 1) {
+                holder.decreaseBtn.setImageResource(R.drawable.icon_minus_gray);
+            } else {
+                holder.decreaseBtn.setImageResource(R.drawable.icon_minus);
+            }
         });
 
         // 메뉴 삭제
@@ -156,7 +175,7 @@ public class OrderListAdapter extends RecyclerView.Adapter<OrderListAdapter.View
 
                         // 사용자가 가진 포인트보다 배달비가 더 높은지 확인
                         int deliveryTip = Integer.parseInt(deliveryTipStr);
-                        OrderListActivity.deliveryAvailableFlag = deliveryTip <= point;
+                        OrderListActivity.deliveryAvailableFlag = deliveryTip > point;
                     }
 
                     @Override
@@ -244,7 +263,6 @@ public class OrderListAdapter extends RecyclerView.Adapter<OrderListAdapter.View
                     @SuppressLint("NotifyDataSetChanged")
                     @Override
                     public void onResponse(@NonNull Call<Void> call, @NonNull Response<Void> response) {
-                        Toast.makeText(context, "삭제 성공", Toast.LENGTH_SHORT).show();
                         OrderListActivity.totalPrice -= orderPrice;
                         OrderListActivity.totalPriceTV.setText(OrderListActivity.totalPrice + "원");
                         orderList.remove(position);

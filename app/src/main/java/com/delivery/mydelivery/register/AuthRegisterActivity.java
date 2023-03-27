@@ -1,12 +1,16 @@
 package com.delivery.mydelivery.register;
 
+import android.app.AlertDialog;
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.view.KeyEvent;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
+import android.widget.ProgressBar;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -27,7 +31,7 @@ import retrofit2.Response;
 public class AuthRegisterActivity extends AppCompatActivity {
 
     // 회원가입 종료 dialog
-    RegisterDialog registerDialog;
+    RegisterCancelDialog registerCancelDialog;
 
     // 툴바, 툴바 버튼
     Toolbar toolbar;
@@ -56,7 +60,7 @@ public class AuthRegisterActivity extends AppCompatActivity {
         context = this;
 
         // dialog
-        registerDialog = new RegisterDialog(this);
+        registerCancelDialog = new RegisterCancelDialog(this);
 
         // 툴바
         toolbar = findViewById(R.id.registerToolbar);
@@ -65,7 +69,7 @@ public class AuthRegisterActivity extends AppCompatActivity {
 
         // 회원가입 종료 버튼
         closeBtn = findViewById(R.id.closeBtn);
-        closeBtn.setOnClickListener(view -> registerDialog.callDialog());
+        closeBtn.setOnClickListener(view -> registerCancelDialog.callDialog());
 
         // 이전 액티비티에서 넘어온 값을 객체에 저장
         userVO = (UserVO) getIntent().getSerializableExtra("userVO");
@@ -84,7 +88,6 @@ public class AuthRegisterActivity extends AppCompatActivity {
         // 인증번호 전송
         sendAuthNumBtn.setOnClickListener(view -> {
             sendAuthNum(email); // 해당 이메일로 인증번호 전송
-            StyleableToast.makeText(context, "이메일이 전송되었습니다.", R.style.messageToast).show();
         });
 
         // 인증번호 일치 여부 확인
@@ -128,10 +131,22 @@ public class AuthRegisterActivity extends AppCompatActivity {
         authNumET = findViewById(R.id.authNumET);
         checkAuthNumBtn = findViewById(R.id.checkAuthNumBtn);
 
+        // 로딩바 구현
+        ProgressBar progressBar = new ProgressBar(context, null, android.R.attr.progressBarStyleLarge);
+        progressBar.setIndeterminate(true);
+
+        AlertDialog.Builder builder = new AlertDialog.Builder(context)
+                .setView(progressBar)
+                .setCancelable(false);
+        AlertDialog dialog = builder.create();
+        dialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
+        dialog.show();
+
         api.sendAuthNum(email)
                 .enqueue(new Callback<>() {
                     @Override
                     public void onResponse(@NonNull Call<String> call, @NonNull Response<String> response) {
+                        StyleableToast.makeText(context, "이메일이 전송되었습니다.", R.style.messageToast).show();
                         sentAuthNum = response.body();
 
                         // 인증번호 입력, 전송 비활성화, 인증번호 검증버튼 활성화, 색 변경
@@ -141,10 +156,13 @@ public class AuthRegisterActivity extends AppCompatActivity {
 
                         checkAuthNumBtn.setEnabled(true);
                         checkAuthNumBtn.setBackgroundColor(getColor(R.color.mint));
+
+                        dialog.dismiss();
                     }
 
                     @Override
                     public void onFailure(@NonNull Call<String> call, @NonNull Throwable t) {
+                        dialog.dismiss();
                     }
                 });
     }
@@ -154,7 +172,7 @@ public class AuthRegisterActivity extends AppCompatActivity {
     public boolean onKeyDown(int keycode, KeyEvent event) {
 
         if (keycode == KeyEvent.KEYCODE_BACK) {
-            registerDialog.callDialog();
+            registerCancelDialog.callDialog();
             return true;
         }
 

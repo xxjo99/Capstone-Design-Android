@@ -8,39 +8,43 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="vertical"
-        android:background="@drawable/layout_shadow">
+        android:background="@drawable/layout_shadow"
+        android:gravity="center"
+        android:orientation="vertical">
 
         <TextView
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_gravity="center"
             android:fontFamily="@font/bmjua_font"
             android:gravity="center"
             android:includeFontPadding="false"
-            android:paddingLeft="50dp"
-            android:paddingRight="50dp"
-            android:paddingBottom="50dp"
-            android:paddingTop="30dp"
-            android:text="비밀번호 변경이\n완료되었습니다."
+            android:paddingTop="40dp"
+            android:paddingBottom="40dp"
+            android:text="@string/completeModifyPw"
             android:textColor="@color/black"
             android:textSize="25sp" />
+
         <View
             android:layout_width="match_parent"
             android:layout_height="1dp"
             android:background="@color/gray" />
 
-        <Button
-            android:id="@+id/finishBtn"
-            style="?android:attr/buttonBarButtonStyle"
+        <LinearLayout
             android:layout_width="match_parent"
-            android:background="@drawable/btn_border_left_right_fill_mint"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:fontFamily="@font/bmjua_font"
-            android:text="로그인하기"
-            android:textColor="@color/white"
-            android:textSize="22sp" />
+            android:layout_height="wrap_content">
+
+            <Button
+                android:id="@+id/finishBtn"
+                android:layout_width="0dp"
+                android:layout_height="55dp"
+                android:layout_weight="1"
+                android:background="@drawable/btn_border_left_right_fill_mint"
+                android:fontFamily="@font/bmjua_font"
+                android:text="@string/moveLogin"
+                android:textColor="@color/white"
+                android:textSize="22sp" />
+
+        </LinearLayout>
 
     </LinearLayout>
 

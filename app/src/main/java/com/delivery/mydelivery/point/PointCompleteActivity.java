@@ -27,8 +27,8 @@ public class PointCompleteActivity extends AppCompatActivity {
         context = this;
 
         Intent intent = getIntent();
-        int addPoint = intent.getIntExtra("addPoint", 0);
-        int afterPoint = intent.getIntExtra("afterPoint", 0);
+        int addPoint = intent.getIntExtra("addPoint", 10000);
+        int afterPoint = intent.getIntExtra("afterPoint", 10000);
 
         addPointTV = findViewById(R.id.addPointTV);
         afterPointTV = findViewById(R.id.afterPointTV);

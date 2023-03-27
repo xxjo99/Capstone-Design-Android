@@ -7,7 +7,6 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -15,11 +14,9 @@ import androidx.appcompat.widget.Toolbar;
 
 import com.delivery.mydelivery.MainActivity;
 import com.delivery.mydelivery.R;
-import com.delivery.mydelivery.firebase.FirebaseMessagingService;
 import com.delivery.mydelivery.home.HomeActivity;
 import com.delivery.mydelivery.preferenceManager.PreferenceManager;
 import com.delivery.mydelivery.register.EmailRegisterActivity;
-import com.delivery.mydelivery.user.UserApi;
 import com.delivery.mydelivery.user.UserVO;
 import com.delivery.mydelivery.retrofit.RetrofitService;
 import com.google.gson.Gson;
@@ -27,6 +24,7 @@ import com.google.gson.GsonBuilder;
 
 import java.util.Objects;
 
+import io.github.muddz.styleabletoast.StyleableToast;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -55,8 +53,7 @@ public class LoginActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login_login);
-
-        context = this; // context 지정
+        context = this;
 
         // 툴바
         toolbar = findViewById(R.id.loginToolbar);
@@ -81,11 +78,11 @@ public class LoginActivity extends AppCompatActivity {
 
             // 유효성 검사
             if (email.isEmpty() && pw.isEmpty()) {
-                Toast.makeText(LoginActivity.this, "이메일과 비밀번호를 입력해주세요.", Toast.LENGTH_SHORT).show();
+                StyleableToast.makeText(context, "이메일과 비밀번호를 입력해주세요.", R.style.warningToast).show();
             } else if (email.isEmpty()) {
-                Toast.makeText(LoginActivity.this, "이메일을 입력해주세요.", Toast.LENGTH_SHORT).show();
+                StyleableToast.makeText(context, "이메일을 입력해주세요.", R.style.warningToast).show();
             } else if (pw.isEmpty()) {
-                Toast.makeText(LoginActivity.this, "비밀번호를 입력해주세요.", Toast.LENGTH_SHORT).show();
+                StyleableToast.makeText(context, "비밀번호를 입력해주세요.", R.style.warningToast).show();
             } else { // 유효성 검사 통과시 로그인 진행
                 login(email, pw);
             }
@@ -114,11 +111,9 @@ public class LoginActivity extends AppCompatActivity {
         loginApi = retrofitService.getRetrofit().create(LoginApi.class);
 
         loginApi.login(email, pw)
-                .enqueue(new Callback<UserVO>() {
+                .enqueue(new Callback<>() {
                     @Override
                     public void onResponse(@NonNull Call<UserVO> call, @NonNull Response<UserVO> response) {
-                        // 토큰 생성후 저장
-                        FirebaseMessagingService firebaseMessagingService = new FirebaseMessagingService(email);
 
                         UserVO userInfo = response.body(); // 유저 정보를 받아옴
 
@@ -139,7 +134,7 @@ public class LoginActivity extends AppCompatActivity {
 
                     @Override
                     public void onFailure(@NonNull Call<UserVO> call, @NonNull Throwable t) { // 로그인 실패시
-                        Toast.makeText(LoginActivity.this, "이메일 또는 비밀번호를 다시 입력해주세요.", Toast.LENGTH_SHORT).show();
+                        StyleableToast.makeText(context, "이메일 또는 비밀번호를 다시 입력해주세요.", R.style.errorToast).show();
                     }
                 });
     }
