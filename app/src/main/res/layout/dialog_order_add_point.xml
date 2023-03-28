@@ -33,7 +33,7 @@
             android:paddingBottom="40dp"
             android:text="@string/insufficientPointText2"
             android:textColor="@color/gray4"
-            android:textSize="20sp" />
+            android:textSize="22sp" />
 
         <View
             android:layout_width="match_parent"
