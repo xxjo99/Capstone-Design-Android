@@ -106,7 +106,7 @@ public class AuthRegisterActivity extends AppCompatActivity {
                     checkAuthNumBtn.setBackgroundColor(getColor(R.color.gray2));
 
                     nextBtn.setEnabled(true);
-                    nextBtn.setBackgroundColor(getColor(R.color.mint));
+                    nextBtn.setBackgroundColor(getColor(R.color.mint1));
                 } else { // 인증 실패
                     StyleableToast.makeText(context, "인증번호를 확인해주세요.", R.style.errorToast).show();
                 }
@@ -155,7 +155,7 @@ public class AuthRegisterActivity extends AppCompatActivity {
                         sendAuthNumBtn.setBackgroundColor(getColor(R.color.gray2));
 
                         checkAuthNumBtn.setEnabled(true);
-                        checkAuthNumBtn.setBackgroundColor(getColor(R.color.mint));
+                        checkAuthNumBtn.setBackgroundColor(getColor(R.color.mint1));
 
                         dialog.dismiss();
                     }

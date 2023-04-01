@@ -43,7 +43,7 @@
             android:layout_marginTop="15dp"
             android:layout_marginRight="105dp"
             android:background="@drawable/btn_fill2_mint"
-            android:backgroundTint="@color/mint"
+            android:backgroundTint="@color/mint1"
             android:fontFamily="@font/bmjua_font"
             android:text="@string/moveOrderList"
             android:textColor="@color/white"

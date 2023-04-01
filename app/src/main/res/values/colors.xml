@@ -19,8 +19,11 @@
     <color name="green">#00ff00</color>
     <color name="purple">#c5c5e6</color>
     <color name="blue2">#0000ff</color>
-    <color name="mint">#2bf7ca</color>
     <color name="orange">#FF8C00</color>
     <color name="violet">#5F4B8B</color>
+
+    <color name="mint1">#2bf7ca</color>
+    <color name="mint2">#89cfd3</color>
+    <color name="mint3">#6fb6ba</color>
 
 </resources>

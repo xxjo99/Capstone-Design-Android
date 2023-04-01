@@ -48,7 +48,6 @@ public class OptionActivity extends AppCompatActivity {
     // 메뉴정보
     ImageView menuIV;
     TextView menuNameTV;
-    TextView menuInfoTV;
 
     // 리사이클러뷰, 어댑터, 리스트
     RecyclerView optionRecyclerView;
@@ -101,27 +100,22 @@ public class OptionActivity extends AppCompatActivity {
         int menuId = intent.getIntExtra("menuId", 0); // 메뉴Id
         String menuImage = intent.getStringExtra("menuImageUrl"); // 메뉴 이미지 주소
         String menuName = intent.getStringExtra("menuName"); // 메뉴 이름
-        String menuInfo = intent.getStringExtra("menuInfo"); // 메뉴 정보
         String participantType = intent.getStringExtra("participantType"); // 참가 타입
         int recruitId = intent.getIntExtra("recruitId", 0); // 모집글 아이디
 
         // 초기화
         menuIV = findViewById(R.id.menuIV);
         menuNameTV = findViewById(R.id.menuNameTV);
-        menuInfoTV = findViewById(R.id.menuInfoTV);
         amountTV = findViewById(R.id.amountTV);
         decreaseBtn = findViewById(R.id.decreaseBtn);
         increaseBtn = findViewById(R.id.increaseBtn);
-
-        String text = "https://img1.daumcdn.net/thumb/R1280x0/?scode=mtistory&fname=https://k.kakaocdn.net/dn/EShJF/btquPLT192D/SRxSvXqcWjHRTju3kHcOQK/img.png";
 
         // 디바이스 넓이
         int width = getWidth(this);
 
         // 메뉴 이미지, 이름, 설명 삽입
-        Glide.with(this).load(/*menuImage*/text).placeholder(R.drawable.ic_launcher_background).override(width, 600).into(menuIV);
+        Glide.with(this).load(menuImage).placeholder(R.drawable.ic_launcher_background).override(width, 600).into(menuIV);
         menuNameTV.setText(menuName);
-        menuInfoTV.setText(menuInfo);
 
         // 리사이클러뷰 설정
         optionRecyclerView = findViewById(R.id.optionRecyclerView);

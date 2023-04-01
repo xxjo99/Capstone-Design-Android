@@ -65,6 +65,8 @@ public class OptionAdapter extends RecyclerView.Adapter<OptionAdapter.ViewHolder
         // 최소, 최대 선택 개수에 따른 텍스트와 타입 설정
         if (minimumSelection == 0 && maximumSelection != 0) {
             holder.optionNameTV.setText(optionName + " (최대 " + maximumSelection + "개)");
+        } else if (minimumSelection == 1 && maximumSelection == 1) {
+            holder.optionNameTV.setText(optionName + " (필수)");
         } else if (minimumSelection != 0 && maximumSelection == 0 || minimumSelection == maximumSelection) {
             holder.optionNameTV.setText(optionName + " (최소 " + minimumSelection + "개 선택)");
         } else {

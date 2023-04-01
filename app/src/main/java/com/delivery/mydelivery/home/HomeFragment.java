@@ -103,9 +103,8 @@ public class HomeFragment extends Fragment {
 
         // 카테고리 리사이클러뷰 설정
         categoryRecyclerView = view.findViewById(R.id.categoryRecyclerView);
-        categoryRecyclerView.setLayoutManager(new GridLayoutManager(context, 5));
+        categoryRecyclerView.setLayoutManager(new LinearLayoutManager(context, RecyclerView.HORIZONTAL, false));
         categoryRecyclerView.setHasFixedSize(true);
-        categoryRecyclerView.addItemDecoration(new ItemDecoration()); // 여백 설정
 
         // 어댑터 추가, 카테고리 추가
         homeCategoryAdapter = new HomeCategoryAdapter();
@@ -137,9 +136,8 @@ public class HomeFragment extends Fragment {
 
                         // 이미지 추가
                         int[] categoryImgList = {
-                                R.drawable.category_icon_meat, R.drawable.category_icon_lunch_box, R.drawable.category_icon_japanese_food, R.drawable.category_icon_baekban, R.drawable.category_icon_snack,
-                                R.drawable.category_icon_asian, R.drawable.category_icon_midnight_snack, R.drawable.category_icon_western_food, R.drawable.category_icon_jokbal_bossam, R.drawable.category_icon_chinese,
-                                R.drawable.category_icon_stew, R.drawable.category_icon_chicken, R.drawable.category_icon_cafe_dessert, R.drawable.category_icon_fast_food, R.drawable.category_icon_pizza
+                                R.drawable.img_korean, R.drawable.img_chicken, R.drawable.img_chicken, R.drawable.img_chicken, R.drawable.img_chicken,
+                                R.drawable.img_chicken, R.drawable.img_chicken, R.drawable.img_chicken, R.drawable.img_chicken, R.drawable.img_chicken
                         };
 
 
@@ -172,17 +170,6 @@ public class HomeFragment extends Fragment {
 
                     }
                 });
-    }
-
-    // 여백 설정
-    public static class ItemDecoration extends RecyclerView.ItemDecoration {
-        @Override
-        public void getItemOffsets(@NonNull Rect outRect, @NonNull View view, @NonNull RecyclerView parent, @NonNull RecyclerView.State state) {
-            super.getItemOffsets(outRect, view, parent, state);
-            outRect.left = 40;
-            outRect.right = 40;
-            outRect.bottom = 60;
-        }
     }
 
 }

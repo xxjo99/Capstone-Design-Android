@@ -24,8 +24,9 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-public class StoreListLunchBoxFragment extends Fragment {
+public class StoreListKoreanFragment extends Fragment {
 
+    // 리사이클러뷰, 어댑터, 리스트
     // 리사이클러뷰, 어댑터, 리스트
     RecyclerView openedStoreListRecyclerView;
     RecyclerView closedStoreListRecyclerView;
@@ -76,8 +77,8 @@ public class StoreListLunchBoxFragment extends Fragment {
         retrofitService = new RetrofitService();
         storeApi = retrofitService.getRetrofit().create(StoreApi.class);
 
-        storeApi.getOpenedStoreList("도시락", deliveryAvailablePlace)
-                .enqueue(new Callback<List<StoreVO>>() {
+        storeApi.getOpenedStoreList("한식", deliveryAvailablePlace)
+                .enqueue(new Callback<>() {
                     @Override
                     public void onResponse(@NonNull Call<List<StoreVO>> call, @NonNull Response<List<StoreVO>> response) {
                         openedStoreList = response.body();
@@ -97,7 +98,7 @@ public class StoreListLunchBoxFragment extends Fragment {
         retrofitService = new RetrofitService();
         storeApi = retrofitService.getRetrofit().create(StoreApi.class);
 
-        storeApi.getClosedStoreList("도시락", deliveryAvailablePlace)
+        storeApi.getClosedStoreList("한식", deliveryAvailablePlace)
                 .enqueue(new Callback<List<StoreVO>>() {
                     @Override
                     public void onResponse(@NonNull Call<List<StoreVO>> call, @NonNull Response<List<StoreVO>> response) {

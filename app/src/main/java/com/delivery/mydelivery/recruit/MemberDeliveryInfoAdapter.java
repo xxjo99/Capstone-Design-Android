@@ -67,7 +67,7 @@ public class MemberDeliveryInfoAdapter extends RecyclerView.Adapter<MemberDelive
             holder.paymentStatusTV.setTextColor(ContextCompat.getColor(context.getApplicationContext(), R.color.red));
         } else {
             holder.paymentStatusTV.setText("결제완료");
-            holder.paymentStatusTV.setTextColor(ContextCompat.getColor(context.getApplicationContext(), R.color.mint));
+            holder.paymentStatusTV.setTextColor(ContextCompat.getColor(context.getApplicationContext(), R.color.mint1));
         }
     }
 

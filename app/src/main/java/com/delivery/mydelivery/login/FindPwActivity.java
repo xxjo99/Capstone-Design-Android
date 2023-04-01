@@ -95,7 +95,7 @@ public class FindPwActivity extends AppCompatActivity {
                 checkAuthNumBtn.setBackgroundColor(getColor(R.color.gray2));
 
                 modifyPwBtn.setEnabled(true);
-                modifyPwBtn.setBackgroundColor(getColor(R.color.mint));
+                modifyPwBtn.setBackgroundColor(getColor(R.color.mint1));
             } else {
                 StyleableToast.makeText(context, "인증번호를 확인해주세요.", R.style.errorToast).show();
                 modifyPwBtn.setEnabled(false);
@@ -157,7 +157,7 @@ public class FindPwActivity extends AppCompatActivity {
                                             // 인증번호 입력, 비교버튼 활성화, 색 변경
                                             authNumET.setEnabled(true);
                                             checkAuthNumBtn.setEnabled(true);
-                                            checkAuthNumBtn.setBackgroundColor(getColor(R.color.mint));
+                                            checkAuthNumBtn.setBackgroundColor(getColor(R.color.mint1));
 
                                             dialog.dismiss();
                                         }

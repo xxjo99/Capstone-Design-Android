@@ -59,4 +59,6 @@ dependencies {
     implementation 'me.relex:circleindicator:2.1.6'
     // toast
     implementation 'io.github.muddz:styleabletoast:2.4.0'
+    // roundImageView
+    implementation 'com.makeramen:roundedimageview:2.3.0'
 }

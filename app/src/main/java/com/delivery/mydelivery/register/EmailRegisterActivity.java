@@ -167,7 +167,7 @@ public class EmailRegisterActivity extends AppCompatActivity {
                         if (duplicateCkResult) { // 중복되지 않은 이메일
                             StyleableToast.makeText(context, "사용가능한 이메일입니다.", R.style.successToast).show();
                             nextBtn.setEnabled(true);
-                            nextBtn.setBackgroundColor(getColor(R.color.mint));
+                            nextBtn.setBackgroundColor(getColor(R.color.mint1));
                             imm.hideSoftInputFromWindow(emailET.getWindowToken(), 0);
                         } else {
                             StyleableToast.makeText(context, "중복된 이메일입니다.", R.style.errorToast).show();

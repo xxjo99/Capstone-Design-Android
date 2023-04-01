@@ -117,7 +117,7 @@ public class ModifyPwActivity extends AppCompatActivity {
 
                 if (pwFlag && pwCkFlag) {
                     modifyPwBtn.setEnabled(true);
-                    modifyPwBtn.setBackgroundColor(getColor(R.color.mint));
+                    modifyPwBtn.setBackgroundColor(getColor(R.color.mint1));
                 } else {
                     modifyPwBtn.setEnabled(false);
                     modifyPwBtn.setBackgroundColor(getColor(R.color.gray2));
@@ -158,7 +158,7 @@ public class ModifyPwActivity extends AppCompatActivity {
 
                 if (pwFlag && pwCkFlag) {
                     modifyPwBtn.setEnabled(true);
-                    modifyPwBtn.setBackgroundColor(getColor(R.color.mint));
+                    modifyPwBtn.setBackgroundColor(getColor(R.color.mint1));
                 } else {
                     modifyPwBtn.setEnabled(false);
                     modifyPwBtn.setBackgroundColor(getColor(R.color.gray2));

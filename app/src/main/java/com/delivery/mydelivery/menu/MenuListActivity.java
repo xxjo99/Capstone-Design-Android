@@ -1,12 +1,9 @@
 package com.delivery.mydelivery.menu;
 
 import android.annotation.SuppressLint;
-import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
-import android.graphics.Point;
 import android.os.Bundle;
-import android.view.Display;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.ImageButton;
@@ -46,12 +43,13 @@ public class MenuListActivity extends AppCompatActivity {
 
     // 리사이클러뷰, 어댑터, 리스트
     RecyclerView menuRecyclerView;
-    MenuListAdapter menuListAdapter;
-    List<MenuVO> menuList;
+    MenuCategoryListAdapter menuCategoryListAdapter;
+    List<MenuCategoryVO> menuCategoryList;
 
-    // 툴바, 툴바 버튼
+    // 툴바, 툴바 텍스트 버튼
     Toolbar toolbar;
     ImageButton backBtn;
+    TextView toolbarStoreNameTV;
 
     // 레트로핏, api
     RetrofitService retrofitService;
@@ -90,35 +88,34 @@ public class MenuListActivity extends AppCompatActivity {
         menuRecyclerView.setLayoutManager(new LinearLayoutManager(this, RecyclerView.VERTICAL, false));
 
         // 어댑터, 메뉴 추가
-        menuListAdapter = new MenuListAdapter();
-        menuRecyclerView.setAdapter(menuListAdapter);
-        setMenu(storeId);
+        menuCategoryListAdapter = new MenuCategoryListAdapter();
+        menuRecyclerView.setAdapter(menuCategoryListAdapter);
+        setMenuCategory(storeId);
     }
 
-    // 매장 상세정보 가져오는 Api
+    // 매장 상세정보 Api
     private void setStore(int storeId) {
         retrofitService = new RetrofitService();
         storeApi = retrofitService.getRetrofit().create(StoreApi.class);
 
         storeApi.getStore(storeId)
-                .enqueue(new Callback<StoreVO>() {
+                .enqueue(new Callback<>() {
                     @Override
                     public void onResponse(@NonNull Call<StoreVO> call, @NonNull Response<StoreVO> response) {
                         StoreVO store = response.body();
 
                         storeIV = findViewById(R.id.storeIV);
                         storeNameTV = findViewById(R.id.storeNameTV);
+                        toolbarStoreNameTV = findViewById(R.id.toolbarStoreNameTV);
                         deliveryTimeTV = findViewById(R.id.deliveryTimeTV);
                         deliveryTipTV = findViewById(R.id.deliveryTipTV);
                         minimumDeliveryPriceTV = findViewById(R.id.minimumDeliveryPriceTV);
 
                         assert store != null;
 
-                        String text = "https://img1.daumcdn.net/thumb/R1280x0/?scode=mtistory&fname=https://k.kakaocdn.net/dn/EShJF/btquPLT192D/SRxSvXqcWjHRTju3kHcOQK/img.png";
-                        int width = getWidth((Activity) context);
-                        Glide.with(context).load(/*menuImage*/text).placeholder(R.drawable.ic_launcher_background).override(width, 600).into(storeIV);
-
+                        Glide.with(context).load(store.getStoreImageUrl()).placeholder(R.drawable.ic_launcher_background).into(storeIV);
                         storeNameTV.setText(store.getStoreName());
+                        toolbarStoreNameTV.setText(store.getStoreName());
                         deliveryTimeTV.setText(store.getDeliveryTime() + "분");
                         deliveryTipTV.setText(store.getDeliveryTip() + "원");
                         minimumDeliveryPriceTV.setText(store.getMinimumDeliveryPrice() + "원");
@@ -130,21 +127,22 @@ public class MenuListActivity extends AppCompatActivity {
                 });
     }
 
-    // 매장의 메뉴 리스트를 가져오는 api
-    private void setMenu(int storeId) {
+    // 매장의 메뉴 카테고리 리스트 api
+    private void setMenuCategory(int storeId) {
         retrofitService = new RetrofitService();
         menuApi = retrofitService.getRetrofit().create(MenuApi.class);
 
-        menuApi.getMenuList(storeId)
-                .enqueue(new Callback<List<MenuVO>>() {
+        menuApi.getMenuCategoryList(storeId)
+                .enqueue(new Callback<>() {
                     @Override
-                    public void onResponse(@NonNull Call<List<MenuVO>> call, @NonNull Response<List<MenuVO>> response) {
-                        menuList = response.body();
-                        menuListAdapter.setMenuList(menuList);
+                    public void onResponse(@NonNull Call<List<MenuCategoryVO>> call, @NonNull Response<List<MenuCategoryVO>> response) {
+                        menuCategoryList = response.body();
+                        menuCategoryListAdapter.setMenuCategoryList(menuCategoryList);
                     }
 
                     @Override
-                    public void onFailure(@NonNull Call<List<MenuVO>> call, @NonNull Throwable t) {
+                    public void onFailure(@NonNull Call<List<MenuCategoryVO>> call, @NonNull Throwable t) {
+
                     }
                 });
     }
@@ -161,23 +159,12 @@ public class MenuListActivity extends AppCompatActivity {
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
 
-        switch (item.getItemId()) {
-            case R.id.cartBtn:
-                Intent intent = new Intent(this, OrderListActivity.class);
-                startActivity(intent);
-                break;
-
+        if (item.getItemId() == R.id.cartBtn) {
+            Intent intent = new Intent(this, OrderListActivity.class);
+            startActivity(intent);
         }
 
         return super.onOptionsItemSelected(item);
-    }
-
-    // 디바이스 넓이 구하기
-    public int getWidth(Activity activity) {
-        Display display = activity.getWindowManager().getDefaultDisplay();  // in Activity
-        Point size = new Point();
-        display.getRealSize(size); // or getSize(size)
-        return size.x;
     }
 
 }
