@@ -59,6 +59,9 @@
     <string name="insufficientPointText1">포인트 부족</string>
     <string name="insufficientPointText2">포인트가 부족합니다.\n포인트를 충전하시겠습니까?</string>
 
+    <!-- 매장 -->
+    <string name="price">가격</string>
+
     <!-- 포인트 -->
     <string name="addPoint">충전하기</string>
     <string name="point">포인트</string>

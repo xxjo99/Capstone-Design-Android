@@ -28,7 +28,7 @@
             android:fontFamily="@font/bmjua_font"
             android:text="@string/storeName"
             android:textColor="@color/black"
-            android:textSize="18sp"/>
+            android:textSize="18sp" />
 
     </androidx.appcompat.widget.Toolbar>
 
@@ -45,8 +45,8 @@
             <ImageView
                 android:id="@+id/storeIV"
                 android:layout_width="match_parent"
-                android:layout_height="180dp"
-                android:scaleType="centerCrop" />
+                android:layout_height="190dp"
+                android:scaleType="fitXY" />
 
             <LinearLayout
                 android:layout_width="match_parent"

@@ -16,11 +16,8 @@ import androidx.viewpager2.widget.ViewPager2;
 
 import com.delivery.mydelivery.R;
 import com.delivery.mydelivery.order.OrderListActivity;
-import com.delivery.mydelivery.preferenceManager.PreferenceManager;
-import com.delivery.mydelivery.user.UserVO;
 import com.google.android.material.tabs.TabLayout;
 import com.google.android.material.tabs.TabLayoutMediator;
-import com.google.gson.Gson;
 
 import java.util.Objects;
 
@@ -47,11 +44,6 @@ public class StoreActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_store_store);
         context = this; // context 지정
-
-        // 유저 정보
-        String loginInfo = PreferenceManager.getLoginInfo(this);
-        Gson gson = new Gson();
-        UserVO user = gson.fromJson(loginInfo, UserVO.class);
 
         // 툴바
         toolbar = findViewById(R.id.storeToolbar);

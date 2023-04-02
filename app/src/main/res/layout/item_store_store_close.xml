@@ -17,6 +17,7 @@
             android:layout_height="180dp"
             android:layout_gravity="center"
             android:adjustViewBounds="true"
+            android:scaleType="fitXY"
             android:src="@drawable/meat_test" />
 
         <LinearLayout

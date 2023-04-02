@@ -14,6 +14,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.bumptech.glide.Glide;
 import com.delivery.mydelivery.R;
 
+import java.text.NumberFormat;
 import java.util.List;
 
 public class ClosedStoreListAdapter extends RecyclerView.Adapter<ClosedStoreListAdapter.ViewHolder> {
@@ -41,11 +42,14 @@ public class ClosedStoreListAdapter extends RecyclerView.Adapter<ClosedStoreList
     public void onBindViewHolder(@NonNull ClosedStoreListAdapter.ViewHolder holder, int position) {
         StoreVO store = storeList.get(position);
 
-        // 매장 정보들
+        NumberFormat numberFormat = NumberFormat.getInstance();
+        String deliveryTip = numberFormat.format(Integer.parseInt(store.getDeliveryTip()));
+
+        // 매장 정보
         String storeImage = store.getStoreImageUrl();
         String storeName = store.getStoreName();
         String storeInfo = store.getStoreInfo();
-        String deliveryPrice = "배달팁 " + store.getDeliveryTip() + "원";
+        String deliveryPrice = "배달팁 " + deliveryTip + "원";
         String deliveryTime = store.getDeliveryTime();
 
         // 매장정보 삽입

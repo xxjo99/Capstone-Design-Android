@@ -23,6 +23,7 @@ import com.delivery.mydelivery.retrofit.RetrofitService;
 import com.delivery.mydelivery.store.StoreApi;
 import com.delivery.mydelivery.store.StoreVO;
 
+import java.text.NumberFormat;
 import java.util.List;
 import java.util.Objects;
 
@@ -117,8 +118,13 @@ public class MenuListActivity extends AppCompatActivity {
                         storeNameTV.setText(store.getStoreName());
                         toolbarStoreNameTV.setText(store.getStoreName());
                         deliveryTimeTV.setText(store.getDeliveryTime() + "분");
-                        deliveryTipTV.setText(store.getDeliveryTip() + "원");
-                        minimumDeliveryPriceTV.setText(store.getMinimumDeliveryPrice() + "원");
+
+                        NumberFormat numberFormat = NumberFormat.getInstance();
+                        String deliveryTip = numberFormat.format(Integer.parseInt(store.getDeliveryTip()));
+                        deliveryTipTV.setText(deliveryTip + "원");
+
+                        String minimumDeliveryPrice = numberFormat.format(store.getMinimumDeliveryPrice());
+                        minimumDeliveryPriceTV.setText(minimumDeliveryPrice + "원");
                     }
 
                     @Override

@@ -99,7 +99,7 @@ public class StoreListKoreanFragment extends Fragment {
         storeApi = retrofitService.getRetrofit().create(StoreApi.class);
 
         storeApi.getClosedStoreList("한식", deliveryAvailablePlace)
-                .enqueue(new Callback<List<StoreVO>>() {
+                .enqueue(new Callback<>() {
                     @Override
                     public void onResponse(@NonNull Call<List<StoreVO>> call, @NonNull Response<List<StoreVO>> response) {
                         closedStoreList = response.body();

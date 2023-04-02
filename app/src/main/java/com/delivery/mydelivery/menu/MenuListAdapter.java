@@ -3,7 +3,6 @@ package com.delivery.mydelivery.menu;
 import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.Intent;
-import android.graphics.Color;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -16,6 +15,7 @@ import com.bumptech.glide.Glide;
 import com.delivery.mydelivery.R;
 import com.makeramen.roundedimageview.RoundedImageView;
 
+import java.text.NumberFormat;
 import java.util.List;
 
 // 카테고리 어댑터
@@ -108,7 +108,10 @@ public class MenuListAdapter extends RecyclerView.Adapter<MenuListAdapter.ViewHo
                 Glide.with(itemView).load(menu.getMenuPicUrl()).placeholder(R.drawable.ic_launcher_background).into(menuIV);
             }
             menuNameTV.setText(menu.getMenuName());
-            menuPriceTV.setText(menu.getMenuPrice() + "원");
+
+            NumberFormat numberFormat = NumberFormat.getInstance();
+            String menuPrice = numberFormat.format(menu.getMenuPrice());
+            menuPriceTV.setText(menuPrice + "원");
 
             if (position == getItemCount() - 1) {
                 divisionLineView.setVisibility(View.GONE);

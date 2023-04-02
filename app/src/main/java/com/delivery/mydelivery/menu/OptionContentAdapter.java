@@ -7,14 +7,16 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.CheckBox;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.delivery.mydelivery.R;
 
+import java.text.NumberFormat;
 import java.util.List;
+
+import io.github.muddz.styleabletoast.StyleableToast;
 
 @SuppressLint("SetTextI18n")
 public class OptionContentAdapter extends RecyclerView.Adapter<OptionContentAdapter.ViewHolder> {
@@ -42,7 +44,7 @@ public class OptionContentAdapter extends RecyclerView.Adapter<OptionContentAdap
     @Override
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         LayoutInflater inflater = LayoutInflater.from(parent.getContext());
-        View view = inflater.inflate(R.layout.item_menu_option_content, parent, false);
+        View view = inflater.inflate(R.layout.item_menu_option_content_check, parent, false);
         return new ViewHolder(view);
     }
 
@@ -52,24 +54,26 @@ public class OptionContentAdapter extends RecyclerView.Adapter<OptionContentAdap
         OptionContentVO optionContent = optionContentList.get(position);
 
         String optionContentName = optionContent.getOptionContentName(); // 옵션내용
-        int optionPrice = optionContent.getOptionPrice(); // 옵션 가격
+        int optionPrice = optionContent.getOptionPrice();
 
         holder.optionCheckBox.setText(optionContentName);
-        holder.optionPriceTV.setText("+" + optionPrice + "원");
+        NumberFormat numberFormat = NumberFormat.getInstance();
+        String optionPriceFormat = numberFormat.format(optionContent.getOptionPrice());
+        holder.optionPriceTV.setText("+" + optionPriceFormat + "원");
         holder.optionCheckBox.setChecked(false);
 
         checkOption();
-        deliveryAvabilableCheck();
+        deliveryAvailableCheck();
         // 옵션 선택 이벤트
         holder.optionCheckBox.setOnClickListener(view -> {
-            int price = OptionActivity.menuPrice;
+            int price = OptionActivity.finalMenuPrice;
             int optionContentId = optionContent.getMenuOptionContentId();
 
             if (((CheckBox) view).isChecked()) { // 옵션 선택
 
                 if (maximumSelection <= selectedCount && maximumSelection != 0) {
                     holder.optionCheckBox.setChecked(false);
-                    Toast.makeText(context, "최대 " + maximumSelection + "개 선택 가능합니다.", Toast.LENGTH_SHORT).show();
+                    StyleableToast.makeText(context, "최대 " + maximumSelection + "개 선택 가능합니다.", R.style.messageToast).show();
                 } else {
                     price += optionPrice;
                     OptionActivity.modifyPrice(price, optionContentId, 1);
@@ -83,7 +87,7 @@ public class OptionContentAdapter extends RecyclerView.Adapter<OptionContentAdap
             }
 
             checkOption();
-            deliveryAvabilableCheck();
+            deliveryAvailableCheck();
         });
     }
 
@@ -130,7 +134,7 @@ public class OptionContentAdapter extends RecyclerView.Adapter<OptionContentAdap
     }
 
     // 배달 가능한지 체크
-    public void deliveryAvabilableCheck() {
+    public void deliveryAvailableCheck() {
         boolean result = true;
 
         for (Boolean bool : OptionActivity.selectedOptionFlagList) {
