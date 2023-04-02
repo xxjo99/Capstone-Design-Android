@@ -8,10 +8,11 @@
     <androidx.appcompat.widget.Toolbar
         android:id="@+id/menuToolbar"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="@color/white"
-        app:contentInsetStart="0dp"
-        app:menu="@menu/menu_toolbar">
+        android:layout_height="?attr/actionBarSize"
+        android:background="@android:color/transparent"
+        android:clipToPadding="true"
+        android:fitsSystemWindows="true"
+        app:contentInsetStart="0dp">
 
         <ImageButton
             android:id="@+id/backBtn"
@@ -19,6 +20,15 @@
             android:layout_height="wrap_content"
             android:backgroundTint="@color/white"
             android:src="@drawable/back" />
+
+        <TextView
+            android:id="@+id/toolbarStoreNameTV"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/bmjua_font"
+            android:text="@string/storeName"
+            android:textColor="@color/black"
+            android:textSize="18sp" />
 
     </androidx.appcompat.widget.Toolbar>
 
@@ -35,9 +45,8 @@
             <ImageView
                 android:id="@+id/storeIV"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="20dp"
-                android:scaleType="centerCrop" />
+                android:layout_height="190dp"
+                android:scaleType="fitXY" />
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -50,40 +59,39 @@
                     android:id="@+id/storeNameTV"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:fontFamily="@font/bmjua_font"
+                    android:layout_marginStart="10dp"
+                    android:layout_marginTop="15dp"
+                    android:layout_marginBottom="20dp"
+                    android:fontFamily="@font/nanum_square_extra_bold"
                     android:text="@string/storeName"
                     android:textColor="@color/black"
-                    android:textSize="25sp" />
-
-                <View
-                    android:layout_width="match_parent"
-                    android:layout_height="1dp"
-                    android:layout_marginTop="10dp"
-                    android:layout_marginBottom="10dp"
-                    android:background="@color/gray" />
+                    android:textSize="23sp" />
 
                 <!-- 배달 시간 -->
                 <LinearLayout
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_marginStart="10dp"
                     android:layout_marginBottom="10dp"
                     android:orientation="horizontal">
 
                     <TextView
                         android:layout_width="80dp"
                         android:layout_height="wrap_content"
-                        android:layout_marginEnd="20dp"
-                        android:fontFamily="@font/bmjua_font"
+                        android:layout_marginEnd="30dp"
+                        android:fontFamily="@font/nanum_square_bold"
                         android:text="@string/deliveryTime"
-                        android:textColor="@color/black" />
+                        android:textColor="@color/black"
+                        android:textSize="13sp" />
 
                     <TextView
                         android:id="@+id/deliveryTimeTV"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:fontFamily="@font/bmjua_font"
+                        android:fontFamily="@font/nanum_square_bold"
                         android:text="@string/deliveryTime"
-                        android:textColor="@color/black" />
+                        android:textColor="@color/black"
+                        android:textSize="13sp" />
 
                 </LinearLayout>
 
@@ -91,24 +99,27 @@
                 <LinearLayout
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_marginStart="10dp"
                     android:layout_marginBottom="10dp"
                     android:orientation="horizontal">
 
                     <TextView
                         android:layout_width="80dp"
                         android:layout_height="wrap_content"
-                        android:layout_marginEnd="20dp"
-                        android:fontFamily="@font/bmjua_font"
+                        android:layout_marginEnd="30dp"
+                        android:fontFamily="@font/nanum_square_bold"
                         android:text="@string/deliveryTip"
-                        android:textColor="@color/black" />
+                        android:textColor="@color/black"
+                        android:textSize="13sp" />
 
                     <TextView
                         android:id="@+id/deliveryTipTV"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:fontFamily="@font/bmjua_font"
+                        android:fontFamily="@font/nanum_square_bold"
                         android:text="@string/deliveryTip"
-                        android:textColor="@color/black" />
+                        android:textColor="@color/black"
+                        android:textSize="13sp" />
 
                 </LinearLayout>
 
@@ -116,24 +127,27 @@
                 <LinearLayout
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_marginStart="10dp"
                     android:layout_marginBottom="10dp"
                     android:orientation="horizontal">
 
                     <TextView
                         android:layout_width="80dp"
                         android:layout_height="wrap_content"
-                        android:layout_marginEnd="20dp"
-                        android:fontFamily="@font/bmjua_font"
+                        android:layout_marginEnd="30dp"
+                        android:fontFamily="@font/nanum_square_bold"
                         android:text="@string/minimumDeliveryPrice"
-                        android:textColor="@color/black" />
+                        android:textColor="@color/black"
+                        android:textSize="13sp" />
 
                     <TextView
                         android:id="@+id/minimumDeliveryPriceTV"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:fontFamily="@font/bmjua_font"
+                        android:fontFamily="@font/nanum_square_bold"
                         android:text="@string/minimumDeliveryPrice"
-                        android:textColor="@color/black" />
+                        android:textColor="@color/black"
+                        android:textSize="13sp" />
 
                 </LinearLayout>
 
@@ -141,8 +155,8 @@
 
             <View
                 android:layout_width="match_parent"
-                android:layout_height="7dp"
-                android:layout_marginBottom="10dp"
+                android:layout_height="10dp"
+                android:layout_marginTop="5dp"
                 android:background="@color/gray" />
 
             <!-- 메뉴 리스트 리사이클러뷰 -->
@@ -150,7 +164,6 @@
                 android:id="@+id/menuListRecyclerView"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:layout_margin="10dp"
                 android:nestedScrollingEnabled="false"
                 android:overScrollMode="never" />
 

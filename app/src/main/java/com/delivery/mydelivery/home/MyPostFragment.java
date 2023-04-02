@@ -93,7 +93,7 @@ public class MyPostFragment extends Fragment {
         recruitApi = retrofitService.getRetrofit().create(RecruitApi.class);
 
         recruitApi.findRecruitList(userId)
-                .enqueue(new Callback<List<RecruitVO>>() {
+                .enqueue(new Callback<>() {
                     @Override
                     public void onResponse(@NonNull Call<List<RecruitVO>> call, @NonNull Response<List<RecruitVO>> response) {
                         recruitList = response.body();

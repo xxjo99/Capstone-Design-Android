@@ -117,7 +117,7 @@ public class MyPostAdapter extends RecyclerView.Adapter<MyPostAdapter.ViewHolder
         storeApi = retrofitService.getRetrofit().create(StoreApi.class);
 
         storeApi.getStore(storeId)
-                .enqueue(new Callback<StoreVO>() {
+                .enqueue(new Callback<>() {
                     @Override
                     public void onResponse(@NonNull Call<StoreVO> call, @NonNull Response<StoreVO> response) {
                         StoreVO store = response.body();
@@ -138,7 +138,7 @@ public class MyPostAdapter extends RecyclerView.Adapter<MyPostAdapter.ViewHolder
         userApi = retrofitService.getRetrofit().create(UserApi.class);
 
         userApi.getUser(userId)
-                .enqueue(new Callback<UserVO>() {
+                .enqueue(new Callback<>() {
                     @Override
                     public void onResponse(@NonNull Call<UserVO> call, @NonNull Response<UserVO> response) {
                         UserVO user = response.body();

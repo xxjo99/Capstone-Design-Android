@@ -16,11 +16,8 @@ import androidx.viewpager2.widget.ViewPager2;
 
 import com.delivery.mydelivery.R;
 import com.delivery.mydelivery.order.OrderListActivity;
-import com.delivery.mydelivery.preferenceManager.PreferenceManager;
-import com.delivery.mydelivery.user.UserVO;
 import com.google.android.material.tabs.TabLayout;
 import com.google.android.material.tabs.TabLayoutMediator;
-import com.google.gson.Gson;
 
 import java.util.Objects;
 
@@ -29,7 +26,8 @@ public class StoreActivity extends AppCompatActivity {
     // 툴바, 뒤로가기 버튼, 학교
     Toolbar toolbar;
     ImageButton backBtn;
-    TextView schoolTV;
+    @SuppressLint("StaticFieldLeak")
+    public static TextView categoryTV;
 
     // 탭 레이아웃, 뷰페이저
     TabLayout categoryTab;
@@ -47,11 +45,6 @@ public class StoreActivity extends AppCompatActivity {
         setContentView(R.layout.activity_store_store);
         context = this; // context 지정
 
-        // 유저 정보
-        String loginInfo = PreferenceManager.getLoginInfo(this);
-        Gson gson = new Gson();
-        UserVO user = gson.fromJson(loginInfo, UserVO.class);
-
         // 툴바
         toolbar = findViewById(R.id.storeToolbar);
         setSupportActionBar(toolbar);
@@ -62,8 +55,7 @@ public class StoreActivity extends AppCompatActivity {
         backBtn.setOnClickListener(view -> finish());
 
         // 사용자 학교이름 지정
-        schoolTV = findViewById(R.id.schoolTV);
-        schoolTV.setText(user.getSchool());
+        categoryTV = findViewById(R.id.categoryTV);
 
         // 탭 레이아웃, 뷰페이저 초기화
         categoryTab = findViewById(R.id.categoryTab);
@@ -79,68 +71,59 @@ public class StoreActivity extends AppCompatActivity {
         Intent intent = getIntent();
         int categoryPosition = intent.getIntExtra("categoryPosition", 0);
         storeListViewPager.setCurrentItem(categoryPosition);
+        storeListViewPager.setOffscreenPageLimit(1);
 
         // 탭 추가
         new TabLayoutMediator(categoryTab, storeListViewPager, (tab, position) -> {
             switch (position) {
                 case 0:
-                    tab.setText("고기");
+                    tab.setText("한식");
+                    categoryTV.setText("한식");
                     break;
 
                 case 1:
-                    tab.setText("도시락");
+                    tab.setText("일식");
+                    categoryTV.setText("일식");
                     break;
 
                 case 2:
-                    tab.setText("일식");
+                    tab.setText("중식");
+                    categoryTV.setText("중식");
                     break;
 
                 case 3:
-                    tab.setText("백반, 국수");
+                    tab.setText("양식");
+                    categoryTV.setText("양식");
                     break;
 
                 case 4:
-                    tab.setText("분식");
+                    tab.setText("고기");
+                    categoryTV.setText("고기");
                     break;
 
                 case 5:
-                    tab.setText("아시안");
+                    tab.setText("치킨");
+                    categoryTV.setText("치킨");
                     break;
 
                 case 6:
-                    tab.setText("야식");
+                    tab.setText("햄버거");
+                    categoryTV.setText("햄버거");
                     break;
 
                 case 7:
-                    tab.setText("양식");
+                    tab.setText("피자");
+                    categoryTV.setText("피자");
                     break;
 
                 case 8:
-                    tab.setText("족발, 보쌈");
+                    tab.setText("아시안");
+                    categoryTV.setText("아시안");
                     break;
 
                 case 9:
-                    tab.setText("중식");
-                    break;
-
-                case 10:
-                    tab.setText("찌개");
-                    break;
-
-                case 11:
-                    tab.setText("치킨");
-                    break;
-
-                case 12:
-                    tab.setText("디저트");
-                    break;
-
-                case 13:
-                    tab.setText("패스트 푸드");
-                    break;
-
-                case 14:
-                    tab.setText("피자");
+                    tab.setText("분식");
+                    categoryTV.setText("분식");
                     break;
             }
         }).attach();
@@ -148,6 +131,49 @@ public class StoreActivity extends AppCompatActivity {
         storeListViewPager.registerOnPageChangeCallback(new ViewPager2.OnPageChangeCallback() {
             @Override
             public void onPageSelected(int position) {
+
+                switch (position) {
+                    case 0:
+                        categoryTV.setText("한식");
+                        break;
+
+                    case 1:
+                        categoryTV.setText("일식");
+                        break;
+
+                    case 2:
+                        categoryTV.setText("중식");
+                        break;
+
+                    case 3:
+                        categoryTV.setText("양식");
+                        break;
+
+                    case 4:
+                        categoryTV.setText("고기");
+                        break;
+
+                    case 5:
+                        categoryTV.setText("치킨");
+                        break;
+
+                    case 6:
+                        categoryTV.setText("햄버거");
+                        break;
+
+                    case 7:
+                        categoryTV.setText("피자");
+                        break;
+
+                    case 8:
+                        categoryTV.setText("아시안");
+                        break;
+
+                    case 9:
+                        categoryTV.setText("분식");
+                        break;
+                }
+
                 super.onPageSelected(position);
             }
         });

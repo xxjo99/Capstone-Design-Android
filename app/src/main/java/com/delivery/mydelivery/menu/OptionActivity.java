@@ -1,21 +1,18 @@
 package com.delivery.mydelivery.menu;
 
 import android.annotation.SuppressLint;
-import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
-import android.graphics.Point;
 import android.os.Bundle;
-import android.view.Display;
 import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
+import androidx.core.content.ContextCompat;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -30,10 +27,12 @@ import com.delivery.mydelivery.user.UserVO;
 import com.delivery.mydelivery.retrofit.RetrofitService;
 import com.google.gson.Gson;
 
+import java.text.NumberFormat;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
+import io.github.muddz.styleabletoast.StyleableToast;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -48,14 +47,14 @@ public class OptionActivity extends AppCompatActivity {
     // 메뉴정보
     ImageView menuIV;
     TextView menuNameTV;
-    TextView menuInfoTV;
+    TextView menuPriceTV;
 
     // 리사이클러뷰, 어댑터, 리스트
     RecyclerView optionRecyclerView;
     OptionAdapter optionAdapter;
     List<OptionVO> optionList;
 
-    public static int menuPrice; // 메뉴의 총 가격
+    public static int finalMenuPrice; // 메뉴의 총 가격
     @SuppressLint("StaticFieldLeak")
     public static Button addMenuBtn; // 장바구니 담기 버튼
     public static List<Integer> selectOptionList; // 선택한 옵션의 리스트
@@ -76,6 +75,7 @@ public class OptionActivity extends AppCompatActivity {
 
     Context context;
 
+    @SuppressLint("UseCompatLoadingForDrawables")
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_menu_option);
@@ -101,27 +101,25 @@ public class OptionActivity extends AppCompatActivity {
         int menuId = intent.getIntExtra("menuId", 0); // 메뉴Id
         String menuImage = intent.getStringExtra("menuImageUrl"); // 메뉴 이미지 주소
         String menuName = intent.getStringExtra("menuName"); // 메뉴 이름
-        String menuInfo = intent.getStringExtra("menuInfo"); // 메뉴 정보
+        int menuPrice = intent.getIntExtra("menuPrice", 0);
         String participantType = intent.getStringExtra("participantType"); // 참가 타입
         int recruitId = intent.getIntExtra("recruitId", 0); // 모집글 아이디
 
         // 초기화
         menuIV = findViewById(R.id.menuIV);
         menuNameTV = findViewById(R.id.menuNameTV);
-        menuInfoTV = findViewById(R.id.menuInfoTV);
+        menuPriceTV = findViewById(R.id.menuPriceTV);
         amountTV = findViewById(R.id.amountTV);
         decreaseBtn = findViewById(R.id.decreaseBtn);
         increaseBtn = findViewById(R.id.increaseBtn);
+        decreaseBtn.setEnabled(false);
 
-        String text = "https://img1.daumcdn.net/thumb/R1280x0/?scode=mtistory&fname=https://k.kakaocdn.net/dn/EShJF/btquPLT192D/SRxSvXqcWjHRTju3kHcOQK/img.png";
-
-        // 디바이스 넓이
-        int width = getWidth(this);
-
-        // 메뉴 이미지, 이름, 설명 삽입
-        Glide.with(this).load(/*menuImage*/text).placeholder(R.drawable.ic_launcher_background).override(width, 600).into(menuIV);
+        // 메뉴 이미지, 이름, 가격
+        Glide.with(this).load(menuImage).placeholder(R.drawable.ic_launcher_background).into(menuIV);
         menuNameTV.setText(menuName);
-        menuInfoTV.setText(menuInfo);
+        NumberFormat numberFormat = NumberFormat.getInstance();
+        String deliveryTip = numberFormat.format(menuPrice);
+        menuPriceTV.setText(deliveryTip + "원");
 
         // 리사이클러뷰 설정
         optionRecyclerView = findViewById(R.id.optionRecyclerView);
@@ -137,31 +135,35 @@ public class OptionActivity extends AppCompatActivity {
         amountTV.setText(amount + "개");
 
         // 장바구니 담기 버튼 -> 버튼의 텍스트를 가격으로 변환
-        menuPrice = intent.getIntExtra("menuPrice", 0);
+        finalMenuPrice = intent.getIntExtra("menuPrice", 0);
         addMenuBtn = findViewById(R.id.addMenuBtn);
-        addMenuBtn.setText(menuPrice + "원 담기");
+        addMenuBtn.setText(finalMenuPrice + "원 담기");
 
         selectOptionList = new ArrayList<>();
 
         // 개수 증가, 감소 이벤트
         decreaseBtn.setOnClickListener(view -> {
+            int price = finalMenuPrice / amount;
+            finalMenuPrice -= price;
+            addMenuBtn.setText(finalMenuPrice + "원 담기");
+
+            amount -= 1;
+            amountTV.setText(amount + "개");
 
             if (amount == 1) {
-                Toast.makeText(context, "감소 불가", Toast.LENGTH_SHORT).show();
-            } else {
-                int price = menuPrice / amount;
-                menuPrice -= price;
-                addMenuBtn.setText(menuPrice + "원 담기");
-
-                amount -= 1;
-                amountTV.setText(amount + "개");
+                decreaseBtn.setImageDrawable(ContextCompat.getDrawable(context, R.drawable.icon_minus_gray));
+                decreaseBtn.setEnabled(false);
             }
+
         });
 
         increaseBtn.setOnClickListener(view -> {
-            int price = menuPrice / amount;
-            menuPrice += price;
-            addMenuBtn.setText(menuPrice + "원 담기");
+            decreaseBtn.setImageDrawable(ContextCompat.getDrawable(context, R.drawable.icon_minus));
+            decreaseBtn.setEnabled(true);
+
+            int price = finalMenuPrice / amount;
+            finalMenuPrice += price;
+            addMenuBtn.setText(finalMenuPrice + "원 담기");
 
             amount += 1;
             amountTV.setText(amount + "개");
@@ -181,7 +183,7 @@ public class OptionActivity extends AppCompatActivity {
                 order.setUserId(userId); // 사용자 아이디
                 order.setMenuId(menuId); // 메뉴id
                 order.setAmount(amount); // 메뉴 개수
-                order.setTotalPrice(menuPrice); // 최종 메뉴 가격
+                order.setTotalPrice(finalMenuPrice); // 최종 메뉴 가격
 
                 // 선택한 옵션을 텍스트로 변환후 저장
                 String selectOptionStr = String.join(",", selectOptionList.stream().map(String::valueOf).toArray(String[]::new));
@@ -197,7 +199,7 @@ public class OptionActivity extends AppCompatActivity {
                 order.setStoreId(storeId);
                 order.setMenuId(menuId);
                 order.setAmount(amount);
-                order.setTotalPrice(menuPrice);
+                order.setTotalPrice(finalMenuPrice);
 
                 String selectOptionStr = String.join(",", selectOptionList.stream().map(String::valueOf).toArray(String[]::new));
                 order.setSelectOption(selectOptionStr);
@@ -205,14 +207,6 @@ public class OptionActivity extends AppCompatActivity {
                 addMenuInRecruit(order);
             }
         });
-    }
-
-    // 디바이스 넓이 구하기
-    public int getWidth(Activity activity) {
-        Display display = activity.getWindowManager().getDefaultDisplay();  // in Activity
-        Point size = new Point();
-        display.getRealSize(size); // or getSize(size)
-        return size.x;
     }
 
     // 옵션 목록을 가져오는 api
@@ -223,7 +217,7 @@ public class OptionActivity extends AppCompatActivity {
         optionList = new ArrayList<>();
 
         menuApi.getMenuOptionList(menuId)
-                .enqueue(new Callback<List<OptionVO>>() {
+                .enqueue(new Callback<>() {
                     @Override
                     public void onResponse(@NonNull Call<List<OptionVO>> call, @NonNull Response<List<OptionVO>> response) {
                         optionList = response.body();
@@ -239,8 +233,8 @@ public class OptionActivity extends AppCompatActivity {
 
     // 가격 수정
     public static void modifyPrice(int modifyPrice, int optionContentId, int flag) {
-        menuPrice = modifyPrice;
-        addMenuBtn.setText(menuPrice + "원 담기");
+        finalMenuPrice = modifyPrice;
+        addMenuBtn.setText(finalMenuPrice + "원 담기");
 
         // 옵션 추가
         if (flag == 1) {
@@ -261,20 +255,20 @@ public class OptionActivity extends AppCompatActivity {
         orderApi = retrofitService.getRetrofit().create(OrderApi.class);
 
         orderApi.findStoreInCart(userId, storeId)
-                .enqueue(new Callback<List<OrderVO>>() {
+                .enqueue(new Callback<>() {
                     @Override
                     public void onResponse(@NonNull Call<List<OrderVO>> call, @NonNull Response<List<OrderVO>> response) {
                         List<OrderVO> orderList = response.body();
 
                         assert orderList != null;
                         if (orderList.size() != 0) {
-                            Toast.makeText(context, "다른 매장의 메뉴 추가 불가", Toast.LENGTH_SHORT).show();
+                            StyleableToast.makeText(context, "장바구니에 다른 매장의 메뉴가 담겨있습니다.", R.style.errorToast).show();
                         } else {
                             orderApi.addMenu(order)
-                                    .enqueue(new Callback<OrderVO>() {
+                                    .enqueue(new Callback<>() {
                                         @Override
                                         public void onResponse(@NonNull Call<OrderVO> call, @NonNull Response<OrderVO> response) {
-                                            Toast.makeText(OptionActivity.this, "장바구니에 메뉴 추가 완료", Toast.LENGTH_SHORT).show();
+                                            StyleableToast.makeText(context, "장바구니에 추가되었습니다.", R.style.successToast).show();
                                             finish();
                                         }
 
@@ -297,10 +291,10 @@ public class OptionActivity extends AppCompatActivity {
         recruitApi = retrofitService.getRetrofit().create(RecruitApi.class);
 
         recruitApi.addMenu(order)
-                .enqueue(new Callback<ParticipantOrderVO>() {
+                .enqueue(new Callback<>() {
                     @Override
                     public void onResponse(@NonNull Call<ParticipantOrderVO> call, @NonNull Response<ParticipantOrderVO> response) {
-                        Toast.makeText(OptionActivity.this, "추가완료", Toast.LENGTH_SHORT).show();
+                        StyleableToast.makeText(context, "장바구니에 추가되었습니다.", R.style.successToast).show();
                         finish();
                     }
 

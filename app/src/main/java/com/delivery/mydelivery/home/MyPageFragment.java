@@ -20,7 +20,6 @@ import com.delivery.mydelivery.myInfo.ModifyPwActivity;
 import com.delivery.mydelivery.myInfo.MyInfoActivity;
 import com.delivery.mydelivery.myInfo.OrderHistoryActivity;
 import com.delivery.mydelivery.point.PointActivity;
-import com.delivery.mydelivery.point.PointCompleteActivity;
 import com.delivery.mydelivery.point.PointHistoryActivity;
 import com.delivery.mydelivery.preferenceManager.PreferenceManager;
 import com.delivery.mydelivery.retrofit.RetrofitService;

@@ -77,7 +77,7 @@ public class StoreListPizzaFragment extends Fragment {
         storeApi = retrofitService.getRetrofit().create(StoreApi.class);
 
         storeApi.getOpenedStoreList("피자", deliveryAvailablePlace)
-                .enqueue(new Callback<List<StoreVO>>() {
+                .enqueue(new Callback<>() {
                     @Override
                     public void onResponse(@NonNull Call<List<StoreVO>> call, @NonNull Response<List<StoreVO>> response) {
                         openedStoreList = response.body();
@@ -98,7 +98,7 @@ public class StoreListPizzaFragment extends Fragment {
         storeApi = retrofitService.getRetrofit().create(StoreApi.class);
 
         storeApi.getClosedStoreList("피자", deliveryAvailablePlace)
-                .enqueue(new Callback<List<StoreVO>>() {
+                .enqueue(new Callback<>() {
                     @Override
                     public void onResponse(@NonNull Call<List<StoreVO>> call, @NonNull Response<List<StoreVO>> response) {
                         closedStoreList = response.body();

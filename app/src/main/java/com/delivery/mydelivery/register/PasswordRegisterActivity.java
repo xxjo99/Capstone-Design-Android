@@ -113,7 +113,7 @@ public class PasswordRegisterActivity extends AppCompatActivity {
 
                 if (pwFlag && pwCkFlag) {
                     nextBtn.setEnabled(true);
-                    nextBtn.setBackgroundColor(getColor(R.color.mint));
+                    nextBtn.setBackgroundColor(getColor(R.color.mint1));
                 } else {
                     nextBtn.setEnabled(false);
                     nextBtn.setBackgroundColor(getColor(R.color.gray2));
@@ -154,7 +154,7 @@ public class PasswordRegisterActivity extends AppCompatActivity {
 
                 if (pwFlag && pwCkFlag) {
                     nextBtn.setEnabled(true);
-                    nextBtn.setBackgroundColor(getColor(R.color.mint));
+                    nextBtn.setBackgroundColor(getColor(R.color.mint1));
                 } else {
                     nextBtn.setEnabled(false);
                     nextBtn.setBackgroundColor(getColor(R.color.gray2));

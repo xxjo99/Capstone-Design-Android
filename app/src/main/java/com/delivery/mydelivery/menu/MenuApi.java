@@ -8,9 +8,13 @@ import retrofit2.http.Path;
 
 public interface MenuApi {
 
-    // storeId를 통해 매장의 메뉴 검색
-    @GET("/menu/{storeId}")
-    Call<List<MenuVO>> getMenuList(@Path("storeId") int storeId);
+    // storeId를 통해 매장의 메뉴카테고리 검색
+    @GET("/menu/category/{storeId}")
+    Call<List<MenuCategoryVO>> getMenuCategoryList(@Path("storeId") int storeId);
+
+    // storeId, menuCategoryId를 통해 매장의 메뉴 검색
+    @GET("/menu/{storeId}/{menuCategoryId}")
+    Call<List<MenuVO>> getMenuList(@Path("storeId") int storeId, @Path("menuCategoryId") int menuCategoryId);
 
     // menuId를 통해 해당 메뉴의 옵션 종류를 검색
     @GET("/menu/option/{menuId}")

@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:layout_marginBottom="10dp"
     android:orientation="vertical">
 
     <LinearLayout
@@ -10,61 +10,58 @@
         android:layout_height="match_parent"
         android:orientation="horizontal">
 
-        <!-- 메뉴 이미지 ImageView -->
-        <ImageView
-            android:id="@+id/menuIV"
+        <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:adjustViewBounds="true"
-            android:background="@drawable/iv_round" />
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="10dp"
+            android:layout_gravity="center"
             android:orientation="vertical">
 
             <!-- 메뉴 이름 -->
             <TextView
                 android:id="@+id/menuNameTV"
-                android:layout_width="wrap_content"
+                android:maxLines="2"
+                android:layout_width="180dp"
                 android:layout_height="wrap_content"
-                android:layout_marginBottom="8dp"
-                android:fontFamily="@font/bmjua_font"
+                android:fontFamily="@font/nanum_square_regular"
                 android:text="@string/menuName"
                 android:textColor="@color/black"
-                android:textSize="20sp"
+                android:textSize="16sp"
+                android:layout_marginBottom="13dp"
                 android:textStyle="bold" />
-
-            <!-- 메뉴 설명 -->
-            <TextView
-                android:id="@+id/menuInfoTV"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="8dp"
-                android:fontFamily="@font/bmjua_font"
-                android:text="@string/menuInfo"
-                android:textSize="12sp" />
 
             <!-- 메뉴 가격 -->
             <TextView
                 android:id="@+id/menuPriceTV"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:fontFamily="@font/bmjua_font"
+                android:fontFamily="@font/nanum_square_bold"
                 android:text="@string/menuPrice"
                 android:textColor="@color/black"
-                android:textSize="17sp"
-                android:textStyle="" />
+                android:textSize="16sp" />
 
         </LinearLayout>
+
+        <View
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_weight="1" />
+
+        <com.makeramen.roundedimageview.RoundedImageView
+            android:id="@+id/menuIV"
+            android:layout_width="170dp"
+            android:layout_height="90dp"
+            android:src="@drawable/meat_test"
+            app:riv_corner_radius="5dp"
+            app:riv_mutate_background="true"/>
 
     </LinearLayout>
 
     <View
+        android:id="@+id/divisionLineView"
         android:layout_width="match_parent"
         android:layout_height="1dp"
-        android:background="@color/gray"
-        android:layout_marginTop="15dp"/>
+        android:layout_marginTop="20dp"
+        android:layout_marginBottom="20dp"
+        android:background="@color/gray" />
 
 </LinearLayout>

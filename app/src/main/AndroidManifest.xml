@@ -67,7 +67,7 @@
         <activity android:name=".store.StoreActivity" />
 
         <!-- menu -->
-        <activity android:name=".menu.MenuListActivity" />
+        <activity android:name=".menu.MenuListActivity"/>
         <activity android:name=".menu.OptionActivity" />
 
         <!-- order -->

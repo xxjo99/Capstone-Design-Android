@@ -35,9 +35,9 @@
             <ImageView
                 android:id="@+id/menuIV"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="20dp"
-                android:scaleType="centerCrop" />
+                android:layout_height="190dp"
+                android:layout_marginBottom="25dp"
+                android:scaleType="fitXY" />
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -47,37 +47,58 @@
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginLeft="12dp"
-                    android:layout_marginRight="12dp"
-                    android:layout_marginBottom="20dp"
+                    android:layout_marginStart="15dp"
+                    android:layout_marginBottom="25dp"
                     android:orientation="vertical">
 
                     <!-- 메뉴 이름 -->
                     <TextView
                         android:id="@+id/menuNameTV"
-                        android:layout_width="match_parent"
+                        android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginBottom="10dp"
-                        android:fontFamily="@font/bmjua_font"
+                        android:layout_marginBottom="20dp"
+                        android:fontFamily="@font/nanum_square_extra_bold"
                         android:text="@string/menuName"
                         android:textColor="@color/black"
-                        android:textSize="25sp" />
+                        android:textSize="17sp" />
 
-                    <!-- 메뉴 설명 -->
-                    <TextView
-                        android:id="@+id/menuInfoTV"
+                    <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:fontFamily="@font/bmjua_font"
-                        android:text="@string/menuInfo"
-                        android:textColor="@color/black"
-                        android:textSize="15sp" />
+                        android:orientation="horizontal">
+
+                        <!-- 메뉴 이름 -->
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:fontFamily="@font/nanum_square_extra_bold"
+                            android:text="@string/price"
+                            android:textColor="@color/black"
+                            android:textSize="14sp" />
+
+                        <View
+                            android:layout_width="0dp"
+                            android:layout_height="0dp"
+                            android:layout_weight="1" />
+
+                        <!-- 메뉴 이름 -->
+                        <TextView
+                            android:id="@+id/menuPriceTV"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginEnd="15dp"
+                            android:fontFamily="@font/nanum_square_extra_bold"
+                            android:text="@string/price"
+                            android:textColor="@color/black"
+                            android:textSize="14sp" />
+
+                    </LinearLayout>
 
                 </LinearLayout>
 
                 <View
                     android:layout_width="match_parent"
-                    android:layout_height="1dp"
+                    android:layout_height="7dp"
                     android:background="@color/gray" />
 
                 <!-- 옵션 리사이클러뷰 -->
@@ -94,15 +115,15 @@
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:layout_marginTop="15dp"
+                    android:layout_marginBottom="15dp"
                     android:gravity="center"
-                    android:layout_marginTop="10dp"
-                    android:layout_marginBottom="10dp"
                     android:orientation="horizontal">
 
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="match_parent"
-                        android:layout_marginStart="15dp"
+                        android:layout_marginStart="20dp"
                         android:fontFamily="@font/bmjua_font"
                         android:gravity="center"
                         android:text="@string/amount"
@@ -117,15 +138,18 @@
                     <LinearLayout
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:layout_marginEnd="20dp"
+                        android:background="@drawable/layout_border"
                         android:gravity="center"
-                        android:orientation="horizontal">
+                        android:orientation="horizontal"
+                        android:padding="9dp">
 
                         <ImageButton
                             android:id="@+id/decreaseBtn"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:background="@color/white"
-                            android:src="@drawable/icon_minus" />
+                            android:src="@drawable/icon_minus_gray" />
 
                         <TextView
                             android:id="@+id/amountTV"
@@ -143,7 +167,6 @@
                             android:id="@+id/increaseBtn"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:layout_marginEnd="20dp"
                             android:background="@color/white"
                             android:src="@drawable/icon_plus" />
 
@@ -165,7 +188,10 @@
             android:id="@+id/addMenuBtn"
             android:layout_width="0dp"
             android:layout_height="59dp"
-            android:layout_margin="10dp"
+            android:layout_marginLeft="10dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginRight="15dp"
+            android:layout_marginBottom="10dp"
             android:layout_weight="1"
             android:background="@drawable/btn_fill_gray"
             android:fontFamily="@font/bmjua_font"

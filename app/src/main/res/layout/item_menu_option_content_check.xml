@@ -2,17 +2,19 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:layout_marginLeft="10dp"
-    android:layout_marginTop="7dp"
-    android:layout_marginRight="15dp"
-    android:layout_marginBottom="7dp"
+    android:layout_marginBottom="13dp"
     android:orientation="horizontal">
 
     <CheckBox
+        android:paddingStart="8dp"
         android:id="@+id/optionCheckBox"
+        android:layout_gravity="center"
+        android:gravity="center"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:fontFamily="@font/bmjua_font"
+        android:button="@drawable/checkbox"
+        android:fontFamily="@font/nanum_square_bold"
+        android:textSize="14sp"
         android:text="@string/option" />
 
     <View
@@ -23,8 +25,10 @@
     <TextView
         android:id="@+id/optionPrice"
         android:layout_width="wrap_content"
+        android:layout_gravity="center"
         android:layout_height="wrap_content"
         android:fontFamily="@font/bmjua_font"
+        android:textSize="14sp"
         android:text="@string/optionPrice"
         android:textColor="@color/black" />
 

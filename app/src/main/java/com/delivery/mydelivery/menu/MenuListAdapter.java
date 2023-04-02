@@ -6,7 +6,6 @@ import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -14,7 +13,9 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
 import com.delivery.mydelivery.R;
+import com.makeramen.roundedimageview.RoundedImageView;
 
+import java.text.NumberFormat;
 import java.util.List;
 
 // 카테고리 어댑터
@@ -33,7 +34,7 @@ public class MenuListAdapter extends RecyclerView.Adapter<MenuListAdapter.ViewHo
 
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
-        holder.onBind(menuList.get(position));
+        holder.onBind(menuList.get(position), position);
     }
 
     @Override
@@ -55,10 +56,10 @@ public class MenuListAdapter extends RecyclerView.Adapter<MenuListAdapter.ViewHo
     }
 
     class ViewHolder extends RecyclerView.ViewHolder {
-        ImageView menuIV;
+        RoundedImageView menuIV;
         TextView menuNameTV;
-        TextView menuInfoTV;
         TextView menuPriceTV;
+        View divisionLineView;
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
@@ -66,8 +67,8 @@ public class MenuListAdapter extends RecyclerView.Adapter<MenuListAdapter.ViewHo
             // xml변수 초기화
             menuIV = itemView.findViewById(R.id.menuIV);
             menuNameTV = itemView.findViewById(R.id.menuNameTV);
-            menuInfoTV = itemView.findViewById(R.id.menuInfoTV);
             menuPriceTV = itemView.findViewById(R.id.menuPriceTV);
+            divisionLineView = itemView.findViewById(R.id.divisionLineView);
 
             menuIV.setClipToOutline(true);
             // 클릭 이벤트
@@ -84,14 +85,12 @@ public class MenuListAdapter extends RecyclerView.Adapter<MenuListAdapter.ViewHo
                     int menuId = menu.getMenuId();
                     String menuImageUrl = menu.getMenuPicUrl();
                     String menuName = menu.getMenuName();
-                    String menuInfo = menu.getMenuInfo();
                     int menuPrice = menu.getMenuPrice();
 
                     intent.putExtra("storeId", storeId);
                     intent.putExtra("menuId", menuId);
                     intent.putExtra("menuImageUrl", menuImageUrl);
                     intent.putExtra("menuName", menuName);
-                    intent.putExtra("menuInfo", menuInfo);
                     intent.putExtra("menuPrice", menuPrice);
                     intent.putExtra("participantType", MenuListActivity.participantType);
                     intent.putExtra("recruitId", MenuListActivity.recruitId);
@@ -102,12 +101,21 @@ public class MenuListAdapter extends RecyclerView.Adapter<MenuListAdapter.ViewHo
         }
 
         // 메뉴 정보 출력
-        void onBind(MenuVO menu) {
-            String text = "https://img1.daumcdn.net/thumb/R1280x0/?scode=mtistory&fname=https://k.kakaocdn.net/dn/EShJF/btquPLT192D/SRxSvXqcWjHRTju3kHcOQK/img.png";
-            Glide.with(itemView).load(/*menu.getMenuPicUrl()*/ text).placeholder(R.drawable.ic_launcher_background).into(menuIV);
+        void onBind(MenuVO menu, int position) {
+            if (menu.getMenuPicUrl() == null) {
+                menuIV.setVisibility(View.GONE);
+            } else {
+                Glide.with(itemView).load(menu.getMenuPicUrl()).placeholder(R.drawable.ic_launcher_background).into(menuIV);
+            }
             menuNameTV.setText(menu.getMenuName());
-            menuInfoTV.setText(menu.getMenuInfo());
-            menuPriceTV.setText(menu.getMenuPrice() + "원");
+
+            NumberFormat numberFormat = NumberFormat.getInstance();
+            String menuPrice = numberFormat.format(menu.getMenuPrice());
+            menuPriceTV.setText(menuPrice + "원");
+
+            if (position == getItemCount() - 1) {
+                divisionLineView.setVisibility(View.GONE);
+            }
         }
     }
 

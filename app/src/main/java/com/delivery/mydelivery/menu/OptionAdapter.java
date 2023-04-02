@@ -14,7 +14,6 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.delivery.mydelivery.R;
 import com.delivery.mydelivery.retrofit.RetrofitService;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import retrofit2.Call;
@@ -26,11 +25,7 @@ import retrofit2.Response;
 public class OptionAdapter extends RecyclerView.Adapter<OptionAdapter.ViewHolder> {
 
     private final List<OptionVO> optionList; // 옵션 리스트
-
-    private List<OptionContentVO> optionContentList; // 옵션 내용 리스트
     Context context; // context
-
-    OptionContentAdapter optionContentAdapter; // 옵션 내용 어댑터
 
     // 최소, 최대 선택 개수
     public static int minimumSelection;
@@ -55,7 +50,7 @@ public class OptionAdapter extends RecyclerView.Adapter<OptionAdapter.ViewHolder
     @Override
     public void onBindViewHolder(@NonNull OptionAdapter.ViewHolder holder, int position) {
         OptionVO option = optionList.get(position);
-        
+
         OptionActivity.selectedOptionFlagList.add(false); // 옵션 선택 flag 추가
 
         String optionName = option.getOptionName(); // 옵션 이름
@@ -65,6 +60,8 @@ public class OptionAdapter extends RecyclerView.Adapter<OptionAdapter.ViewHolder
         // 최소, 최대 선택 개수에 따른 텍스트와 타입 설정
         if (minimumSelection == 0 && maximumSelection != 0) {
             holder.optionNameTV.setText(optionName + " (최대 " + maximumSelection + "개)");
+        } else if (minimumSelection == 1 && maximumSelection == 1) {
+            holder.optionNameTV.setText(optionName + " (필수)");
         } else if (minimumSelection != 0 && maximumSelection == 0 || minimumSelection == maximumSelection) {
             holder.optionNameTV.setText(optionName + " (최소 " + minimumSelection + "개 선택)");
         } else {
@@ -78,7 +75,12 @@ public class OptionAdapter extends RecyclerView.Adapter<OptionAdapter.ViewHolder
 
         // 데이터 추가, 어댑터 적용
         int menuOptionId = option.getMenuOptionId();
-        setOptionContent(menuOptionId, minimumSelection, maximumSelection, position, holder);
+        setCheckOptionContent(menuOptionId, minimumSelection, maximumSelection, position, holder);
+
+        if (position == getItemCount() - 1) {
+            holder.divisionLineView1.setVisibility(View.GONE);
+            holder.divisionLineView2.setVisibility(View.VISIBLE);
+        }
     }
 
     @Override
@@ -93,30 +95,35 @@ public class OptionAdapter extends RecyclerView.Adapter<OptionAdapter.ViewHolder
     public static class ViewHolder extends RecyclerView.ViewHolder {
         TextView optionNameTV;
         RecyclerView optionContentRecyclerView;
+        View divisionLineView1;
+        View divisionLineView2;
+
+        OptionContentAdapter optionContentAdapter; // 옵션 내용 어댑터, 체크박스
+        private List<OptionContentVO> optionContentList; // 옵션 내용 리스트
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
 
             optionNameTV = itemView.findViewById(R.id.optionNameTV);
             optionContentRecyclerView = itemView.findViewById(R.id.optionContentRecyclerView);
+            divisionLineView1 = itemView.findViewById(R.id.divisionLineView1);
+            divisionLineView2 = itemView.findViewById(R.id.divisionLineView2);
         }
 
     }
 
-    // 옵션 내용 가져오는 api, 어댑터 생성
-    private void setOptionContent(int menuOptionId, int minimumSelection, int maximumSelection, int optionPosition, @NonNull OptionAdapter.ViewHolder holder) {
+    // 옵션 내용 api, checkbox 어댑터 생성
+    private void setCheckOptionContent(int menuOptionId, int minimumSelection, int maximumSelection, int optionPosition, @NonNull OptionAdapter.ViewHolder holder) {
         RetrofitService retrofitService = new RetrofitService();
         MenuApi api = retrofitService.getRetrofit().create(MenuApi.class);
 
-        optionContentList = new ArrayList<>();
-
         api.getMenuOptionContentList(menuOptionId)
-                .enqueue(new Callback<List<OptionContentVO>>() {
+                .enqueue(new Callback<>() {
                     @Override
                     public void onResponse(@NonNull Call<List<OptionContentVO>> call, @NonNull Response<List<OptionContentVO>> response) {
-                        optionContentList = response.body();
-                        optionContentAdapter = new OptionContentAdapter(optionContentList, minimumSelection, maximumSelection, optionPosition, context);
-                        holder.optionContentRecyclerView.setAdapter(optionContentAdapter);
+                        holder.optionContentList = response.body();
+                        holder.optionContentAdapter = new OptionContentAdapter(holder.optionContentList, minimumSelection, maximumSelection, optionPosition, context);
+                        holder.optionContentRecyclerView.setAdapter(holder.optionContentAdapter);
                     }
 
                     @Override

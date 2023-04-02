@@ -7,7 +7,7 @@ public class MenuVO {
     private String menuName; // 메뉴 이름
     private int menuPrice; // 메뉴 가격
     private String menuPicUrl; // 메뉴 이미지 주소
-    private String menuInfo; // 메뉴 설명
+    private int menuCategoryId;
 
     public int getMenuId() {
         return menuId;
@@ -49,12 +49,11 @@ public class MenuVO {
         this.menuPicUrl = menuPicUrl;
     }
 
-    public String getMenuInfo() {
-        return menuInfo;
+    public int getMenuCategoryId() {
+        return menuCategoryId;
     }
 
-    public void setMenuInfo(String menuInfo) {
-        this.menuInfo = menuInfo;
+    public void setMenuCategoryId(int menuCategoryId) {
+        this.menuCategoryId = menuCategoryId;
     }
-
 }

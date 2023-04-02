@@ -33,7 +33,6 @@
             android:layout_gravity="center"
             android:fontFamily="@font/bmjua_font"
             android:text="@string/info"
-            android:textColor="@color/black"
             android:textSize="20sp" />
 
     </androidx.appcompat.widget.Toolbar>
