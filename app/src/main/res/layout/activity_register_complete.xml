@@ -43,7 +43,7 @@
             android:layout_width="match_parent"
             android:layout_height="55dp"
             android:layout_marginBottom="10dp"
-            android:background="@color/mint1"
+            android:background="@drawable/btn_fill_mint"
             android:fontFamily="@font/bmjua_font"
             android:text="@string/goLogin"
             android:textColor="@color/white"

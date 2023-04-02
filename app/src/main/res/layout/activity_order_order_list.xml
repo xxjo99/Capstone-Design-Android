@@ -113,7 +113,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_margin="15dp"
-                        android:fontFamily="@font/bmjua_font"
+                        android:fontFamily="@font/nanum_square_extra_bold"
                         android:text="@string/storeName"
                         android:textColor="@color/black"
                         android:textSize="30sp" />
@@ -130,7 +130,7 @@
                             android:layout_width="80dp"
                             android:layout_height="wrap_content"
                             android:layout_marginEnd="20dp"
-                            android:fontFamily="@font/bmjua_font"
+                            android:fontFamily="@font/nanum_square_extra_bold"
                             android:text="@string/minimumDeliveryPrice"
                             android:textColor="@color/black" />
 
@@ -138,7 +138,7 @@
                             android:id="@+id/minimumDeliveryPriceTV"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:fontFamily="@font/bmjua_font"
+                            android:fontFamily="@font/nanum_square_extra_bold"
                             android:text="@string/minimumDeliveryPrice"
                             android:textColor="@color/black" />
 
@@ -156,7 +156,7 @@
                             android:layout_width="80dp"
                             android:layout_height="wrap_content"
                             android:layout_marginEnd="20dp"
-                            android:fontFamily="@font/bmjua_font"
+                            android:fontFamily="@font/nanum_square_extra_bold"
                             android:text="@string/deliveryTip"
                             android:textColor="@color/black" />
 
@@ -164,7 +164,7 @@
                             android:id="@+id/deliveryTipTV"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:fontFamily="@font/bmjua_font"
+                            android:fontFamily="@font/nanum_square_extra_bold"
                             android:text="@string/deliveryTip"
                             android:textColor="@color/black" />
 
@@ -186,7 +186,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="50dp"
                         android:background="@color/white"
-                        android:fontFamily="@font/bmjua_font"
+                        android:fontFamily="@font/nanum_square_extra_bold"
                         android:stateListAnimator="@null"
                         android:text="@string/addMenu" />
 
@@ -206,7 +206,7 @@
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:fontFamily="@font/bmjua_font"
+                            android:fontFamily="@font/nanum_square_extra_bold"
                             android:text="@string/totalPrice"
                             android:textColor="@color/black"
                             android:textSize="18sp" />

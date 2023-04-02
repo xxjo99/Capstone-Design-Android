@@ -19,7 +19,7 @@
         <EditText
             android:id="@+id/searchET"
             android:layout_width="match_parent"
-            android:layout_height="45dp"
+            android:layout_height="50dp"
             android:background="@drawable/et_fill_gray"
             android:drawableStart="@drawable/icon_search"
             android:drawablePadding="10dp"
@@ -46,11 +46,12 @@
         <ImageView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:src="@drawable/icon_search2" />
+            android:src="@drawable/icon_search2"/>
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
             android:fontFamily="@font/bmjua_font"
             android:text="가게를 검색해보세요"
             android:textColor="@color/gray2"

@@ -101,7 +101,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="55dp"
                 android:layout_marginBottom="10dp"
-                android:background="@color/gray2"
+                android:background="@drawable/btn_fill_gray"
                 android:enabled="false"
                 android:fontFamily="@font/bmjua_font"
                 android:text="@string/modifyPw"
