@@ -2,6 +2,7 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
+    android:weightSum="2"
     android:layout_height="match_parent"
     android:orientation="vertical">
 
@@ -36,19 +37,19 @@
     <ImageView
         android:id="@+id/pictureIV"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
+        android:layout_height="wrap_content"
+        android:layout_weight="1"/>
 
     <Button
         android:id="@+id/takePictureBtn"
         android:layout_width="120dp"
         android:layout_height="55dp"
         android:layout_gravity="center"
-        android:layout_marginTop="50dp"
         android:layout_marginBottom="50dp"
-        android:background="@drawable/btn_fill_mint"
-        android:fontFamily="@font/bmjua_font"
+        android:background="@drawable/btn_fill_white_blackborder"
+        android:fontFamily="@font/nanum_square_extra_bold"
         android:text="촬영"
-        android:textColor="@color/white"
+        android:textColor="@color/black"
         android:textSize="22sp" />
 
     <LinearLayout
@@ -68,9 +69,9 @@
 
             <EditText
                 android:id="@+id/messageET"
-                android:layout_width="match_parent"
-                android:layout_height="52dp"
-                android:layout_marginBottom="15dp"
+                android:layout_width="350dp"
+                android:layout_height="55dp"
+                android:layout_marginBottom="10dp"
                 android:background="@drawable/et_border"
                 android:fontFamily="@font/bmjua_font"
                 android:hint="알림내용 입력"
@@ -83,13 +84,13 @@
         <Button
             android:id="@+id/deliveryFinishBtn"
             style="?android:attr/borderlessButtonStyle"
-            android:layout_width="match_parent"
+            android:layout_width="350dp"
             android:layout_height="60dp"
-            android:background="@drawable/btn_fill2_mint"
-            android:fontFamily="@font/bmjua_font"
+            android:background="@drawable/btn_fill_white_blackborder"
+            android:fontFamily="@font/nanum_square_extra_bold"
             android:text="배달 완료"
-            android:textColor="@color/white"
-            android:textSize="25sp" />
+            android:textColor="@color/black"
+            android:textSize="22sp" />
     </LinearLayout>
 
 </LinearLayout>

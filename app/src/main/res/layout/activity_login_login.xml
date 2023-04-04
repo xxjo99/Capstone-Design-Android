@@ -87,11 +87,11 @@
                 style="?android:attr/borderlessButtonStyle"
                 android:layout_width="match_parent"
                 android:layout_height="60dp"
-                android:background="@drawable/btn_fill_mint"
-                android:fontFamily="@font/bmjua_font"
+                android:background="@drawable/btn_fill_white_blackborder"
+                android:fontFamily="@font/nanum_square_extra_bold"
                 android:text="@string/login"
-                android:textColor="@color/white"
-                android:textSize="25sp" />
+                android:textColor="@color/black"
+                android:textSize="23sp" />
 
         </LinearLayout>
 

@@ -42,11 +42,11 @@
             android:layout_height="70dp"
             android:layout_gravity="center"
             android:layout_marginBottom="30dp"
-            android:background="@drawable/btn_fill_mint"
-            android:fontFamily="@font/bmjua_font"
+            android:background="@drawable/btn_fill_white_blackborder"
+            android:fontFamily="@font/nanum_square_extra_bold"
             android:padding="20dp"
             android:text="배달 접수"
-            android:textColor="@color/white"
+            android:textColor="@color/black"
             android:textSize="22sp" />
 
         <Button
@@ -54,11 +54,11 @@
             android:layout_width="200dp"
             android:layout_height="70dp"
             android:layout_gravity="center"
-            android:background="@drawable/btn_fill_mint"
-            android:fontFamily="@font/bmjua_font"
+            android:background="@drawable/btn_fill_white_blackborder"
+            android:fontFamily="@font/nanum_square_extra_bold"
             android:padding="20dp"
             android:text="접수한 배달"
-            android:textColor="@color/white"
+            android:textColor="@color/black"
             android:textSize="22sp" />
     </LinearLayout>
 
