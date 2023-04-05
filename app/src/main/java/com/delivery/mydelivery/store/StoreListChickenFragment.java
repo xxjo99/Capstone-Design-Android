@@ -92,7 +92,7 @@ public class StoreListChickenFragment extends Fragment {
                 });
     }
 
-    // 마감한 매장리스트 추가, 어댑터 연결
+    // 마감한 매장 리스트 추가, 어댑터 연결
     private void setClosedStoreList(String deliveryAvailablePlace) {
         retrofitService = new RetrofitService();
         storeApi = retrofitService.getRetrofit().create(StoreApi.class);

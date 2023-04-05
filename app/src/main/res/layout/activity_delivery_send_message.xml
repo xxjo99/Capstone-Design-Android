@@ -26,29 +26,29 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
-            android:fontFamily="@font/bmjua_font"
+            android:fontFamily="@font/nanum_square_bold"
             android:text="배달 완료 알림 전송"
             android:textColor="@color/black"
-            android:textSize="20sp" />
+            android:textSize="18sp" />
 
     </androidx.appcompat.widget.Toolbar>
 
     <ImageView
         android:id="@+id/pictureIV"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
+        android:layout_height="wrap_content"
+        android:layout_weight="1" />
 
     <Button
         android:id="@+id/takePictureBtn"
         android:layout_width="120dp"
         android:layout_height="55dp"
         android:layout_gravity="center"
-        android:layout_marginTop="50dp"
         android:layout_marginBottom="50dp"
-        android:background="@drawable/btn_fill_mint"
-        android:fontFamily="@font/bmjua_font"
+        android:background="@drawable/btn_fill_white_blackborder"
+        android:fontFamily="@font/nanum_square_extra_bold"
         android:text="촬영"
-        android:textColor="@color/white"
+        android:textColor="@color/black"
         android:textSize="22sp" />
 
     <LinearLayout
@@ -68,9 +68,9 @@
 
             <EditText
                 android:id="@+id/messageET"
-                android:layout_width="match_parent"
-                android:layout_height="52dp"
-                android:layout_marginBottom="15dp"
+                android:layout_width="350dp"
+                android:layout_height="55dp"
+                android:layout_marginBottom="10dp"
                 android:background="@drawable/et_border"
                 android:fontFamily="@font/bmjua_font"
                 android:hint="알림내용 입력"
@@ -83,13 +83,13 @@
         <Button
             android:id="@+id/deliveryFinishBtn"
             style="?android:attr/borderlessButtonStyle"
-            android:layout_width="match_parent"
+            android:layout_width="350dp"
             android:layout_height="60dp"
-            android:background="@drawable/btn_fill2_mint"
-            android:fontFamily="@font/bmjua_font"
+            android:background="@drawable/btn_fill_white_blackborder"
+            android:fontFamily="@font/nanum_square_extra_bold"
             android:text="배달 완료"
-            android:textColor="@color/white"
-            android:textSize="25sp" />
+            android:textColor="@color/black"
+            android:textSize="22sp" />
     </LinearLayout>
 
 </LinearLayout>

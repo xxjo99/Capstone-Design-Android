@@ -18,6 +18,7 @@ import com.delivery.mydelivery.retrofit.RetrofitService;
 import com.delivery.mydelivery.store.StoreApi;
 import com.delivery.mydelivery.store.StoreVO;
 
+import java.text.NumberFormat;
 import java.util.List;
 import java.util.Objects;
 
@@ -66,7 +67,9 @@ public class OrderListAdapter extends RecyclerView.Adapter<OrderListAdapter.View
         setMenuName(order.getMenuId(), holder); // 메뉴 이름
         setContentNameList(order.getSelectOption(), holder);// 선택 옵션 리스트
 
-        holder.menuPriceTV.setText(order.getTotalPrice() + "원"); // 메뉴 총 가격
+        NumberFormat numberFormat = NumberFormat.getInstance();
+        String menuTotalPrice = numberFormat.format(order.getTotalPrice());
+        holder.menuPriceTV.setText(menuTotalPrice + "원"); // 메뉴 총 가격
         holder.amountTV.setText(order.getAmount() + "개"); // 메뉴 개수
 
         if (order.getAmount() == 1) {
@@ -88,7 +91,8 @@ public class OrderListAdapter extends RecyclerView.Adapter<OrderListAdapter.View
                 notifyItemChanged(position);
 
                 OrderListActivity.totalPrice -= (order.getTotalPrice() / order.getAmount());
-                OrderListActivity.totalPriceTV.setText(OrderListActivity.totalPrice + "원");
+                String totalPrice = numberFormat.format(OrderListActivity.totalPrice);
+                OrderListActivity.totalPriceTV.setText(totalPrice + "원");
             }
 
             if (order.getAmount() == 1) {
@@ -109,7 +113,8 @@ public class OrderListAdapter extends RecyclerView.Adapter<OrderListAdapter.View
             notifyItemChanged(position);
 
             OrderListActivity.totalPrice += (order.getTotalPrice() / order.getAmount());
-            OrderListActivity.totalPriceTV.setText(OrderListActivity.totalPrice + "원");
+            String totalPrice = numberFormat.format(OrderListActivity.totalPrice);
+            OrderListActivity.totalPriceTV.setText(totalPrice + "원");
 
             if (order.getAmount() == 1) {
                 holder.decreaseBtn.setImageResource(R.drawable.icon_minus_gray);
@@ -166,12 +171,12 @@ public class OrderListAdapter extends RecyclerView.Adapter<OrderListAdapter.View
                         assert store != null;
 
                         String storeName = store.getStoreName();
-                        int minimumDeliveryPrice = store.getMinimumDeliveryPrice();
                         String deliveryTipStr = store.getDeliveryTip();
 
                         OrderListActivity.storeNameTV.setText(storeName);
-                        OrderListActivity.minimumDeliveryPriceTV.setText(minimumDeliveryPrice + "원");
-                        OrderListActivity.deliveryTipTV.setText(deliveryTipStr + "원");
+                        NumberFormat numberFormat = NumberFormat.getInstance();
+                        String deliveryTipFormat = numberFormat.format(Integer.parseInt(deliveryTipStr));
+                        OrderListActivity.deliveryTipTV.setText(deliveryTipFormat + "원");
 
                         // 사용자가 가진 포인트보다 배달비가 더 높은지 확인
                         int deliveryTip = Integer.parseInt(deliveryTipStr);
@@ -265,7 +270,9 @@ public class OrderListAdapter extends RecyclerView.Adapter<OrderListAdapter.View
                     @Override
                     public void onResponse(@NonNull Call<Void> call, @NonNull Response<Void> response) {
                         OrderListActivity.totalPrice -= orderPrice;
-                        OrderListActivity.totalPriceTV.setText(OrderListActivity.totalPrice + "원");
+                        NumberFormat numberFormat = NumberFormat.getInstance();
+                        String totalPrice = numberFormat.format(OrderListActivity.totalPrice);
+                        OrderListActivity.totalPriceTV.setText(totalPrice + "원");
                         orderList.remove(position);
                         notifyDataSetChanged();
 

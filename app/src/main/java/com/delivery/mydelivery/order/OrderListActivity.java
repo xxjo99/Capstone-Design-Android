@@ -32,6 +32,7 @@ import com.google.gson.Gson;
 import com.sothree.slidinguppanel.SlidingUpPanelLayout;
 
 import java.sql.Timestamp;
+import java.text.NumberFormat;
 import java.util.List;
 import java.util.Objects;
 
@@ -47,8 +48,6 @@ public class OrderListActivity extends AppCompatActivity {
     public static int storeId;
     @SuppressLint("StaticFieldLeak")
     public static TextView storeNameTV;
-    @SuppressLint("StaticFieldLeak")
-    public static TextView minimumDeliveryPriceTV;
     @SuppressLint("StaticFieldLeak")
     public static TextView deliveryTipTV;
     public static boolean deliveryAvailableFlag = false;
@@ -117,7 +116,6 @@ public class OrderListActivity extends AppCompatActivity {
         // 초기화
         storeNameTV = findViewById(R.id.storeNameTV);
         totalPriceTV = findViewById(R.id.totalPriceTV);
-        minimumDeliveryPriceTV = findViewById(R.id.minimumDeliveryPriceTV);
         deliveryTipTV = findViewById(R.id.deliveryTipTV);
         slidingUpPanelLayout = findViewById(R.id.slidingUpPanelLayout);
         emptyLayout = findViewById(R.id.emptyLayout);
@@ -303,7 +301,9 @@ public class OrderListActivity extends AppCompatActivity {
                             for (OrderVO order : orderList) {
                                 totalPrice += order.getTotalPrice();
                             }
-                            totalPriceTV.setText(totalPrice + "원");
+                            NumberFormat numberFormat = NumberFormat.getInstance();
+                            String totalPriceFormat = numberFormat.format(totalPrice);
+                            totalPriceTV.setText(totalPriceFormat + "원");
                         }
 
                     }

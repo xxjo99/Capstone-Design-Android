@@ -30,10 +30,10 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
-            android:fontFamily="@font/bmjua_font"
+            android:fontFamily="@font/nanum_square_bold"
             android:text="@string/modifyPw"
             android:textColor="@color/black"
-            android:textSize="25sp" />
+            android:textSize="18sp" />
 
     </androidx.appcompat.widget.Toolbar>
 

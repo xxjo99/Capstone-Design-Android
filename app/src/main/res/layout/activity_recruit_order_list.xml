@@ -23,10 +23,10 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
-            android:fontFamily="@font/bmjua_font"
+            android:fontFamily="@font/nanum_square_bold"
             android:text="@string/cart"
             android:textColor="@color/black"
-            android:textSize="20sp" />
+            android:textSize="18sp" />
 
     </androidx.appcompat.widget.Toolbar>
 
@@ -88,18 +88,25 @@
             android:layout_height="match_parent"
             android:orientation="vertical">
 
-            <TextView
-                android:id="@+id/storeNameTV"
+            <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="15dp"
-                android:layout_marginTop="15dp"
+                android:layout_marginTop="20dp"
                 android:layout_marginRight="15dp"
-                android:layout_marginBottom="25dp"
-                android:fontFamily="@font/bmjua_font"
-                android:text="@string/storeName"
-                android:textColor="@color/black"
-                android:textSize="20sp" />
+                android:layout_marginBottom="20dp"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/storeNameTV"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/nanum_square_extra_bold"
+                    android:text="@string/storeName"
+                    android:textColor="@color/black"
+                    android:textSize="18sp" />
+
+            </LinearLayout>
 
             <View
                 android:layout_width="match_parent"
@@ -119,12 +126,18 @@
 
             <Button
                 android:id="@+id/addMenuBtn"
-                android:layout_width="match_parent"
+                android:layout_width="wrap_content"
                 android:layout_height="50dp"
+                android:layout_gravity="center"
                 android:background="@color/white"
-                android:fontFamily="@font/bmjua_font"
+                android:drawableStart="@drawable/icon_plus_mint"
+                android:drawablePadding="2dp"
+                android:fontFamily="@font/nanum_square_bold"
+                android:gravity="center"
                 android:stateListAnimator="@null"
-                android:text="@string/addMenu" />
+                android:text="@string/addMenu"
+                android:textColor="@color/mint1"
+                android:textSize="14sp" />
 
             <View
                 android:layout_width="match_parent"
@@ -142,10 +155,10 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:fontFamily="@font/bmjua_font"
+                    android:fontFamily="@font/nanum_square_extra_bold"
                     android:text="@string/totalPrice"
                     android:textColor="@color/black"
-                    android:textSize="18sp" />
+                    android:textSize="16sp" />
 
                 <View
                     android:layout_width="0dp"
@@ -156,9 +169,9 @@
                     android:id="@+id/totalPriceTV"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:fontFamily="@font/bmjua_font"
+                    android:fontFamily="@font/nanum_square_extra_bold"
                     android:textColor="@color/black"
-                    android:textSize="18sp" />
+                    android:textSize="17sp" />
 
             </LinearLayout>
 

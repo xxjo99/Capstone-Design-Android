@@ -44,7 +44,7 @@ public class OptionContentAdapter extends RecyclerView.Adapter<OptionContentAdap
     @Override
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         LayoutInflater inflater = LayoutInflater.from(parent.getContext());
-        View view = inflater.inflate(R.layout.item_menu_option_content_check, parent, false);
+        View view = inflater.inflate(R.layout.item_menu_option_content, parent, false);
         return new ViewHolder(view);
     }
 

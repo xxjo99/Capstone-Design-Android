@@ -46,7 +46,7 @@ public class FirebaseMessagingService extends com.google.firebase.messaging.Fire
         UserApi userApi = retrofitService.getRetrofit().create(UserApi.class);
 
         userApi.saveToken(email, token)
-                .enqueue(new Callback<Void>() {
+                .enqueue(new Callback<>() {
                     @Override
                     public void onResponse(@NonNull Call<Void> call, @NonNull Response<Void> response) {
                     }

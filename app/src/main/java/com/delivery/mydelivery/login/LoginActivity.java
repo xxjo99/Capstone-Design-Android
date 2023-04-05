@@ -14,6 +14,7 @@ import androidx.appcompat.widget.Toolbar;
 
 import com.delivery.mydelivery.MainActivity;
 import com.delivery.mydelivery.R;
+import com.delivery.mydelivery.firebase.FirebaseMessagingService;
 import com.delivery.mydelivery.home.HomeActivity;
 import com.delivery.mydelivery.preferenceManager.PreferenceManager;
 import com.delivery.mydelivery.register.EmailRegisterActivity;
@@ -114,7 +115,6 @@ public class LoginActivity extends AppCompatActivity {
                 .enqueue(new Callback<>() {
                     @Override
                     public void onResponse(@NonNull Call<UserVO> call, @NonNull Response<UserVO> response) {
-
                         UserVO userInfo = response.body(); // 유저 정보를 받아옴
 
                         // api를 통해 받아온 유저정보가 들어있는 객체를 json으로 변환
@@ -123,6 +123,8 @@ public class LoginActivity extends AppCompatActivity {
 
                         // 변환된 데이터를 sharedPreference에 저장 -> 로그인 유지 기능
                         PreferenceManager.setLoginInfo(context, userInfoJson);
+
+                        FirebaseMessagingService firebaseMessagingService = new FirebaseMessagingService(email);
 
                         // 어플 홈화면 진입후 로그인 종료
                         Intent intent = new Intent(LoginActivity.this, HomeActivity.class);
