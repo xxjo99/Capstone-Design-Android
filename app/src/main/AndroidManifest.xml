@@ -100,10 +100,6 @@
             android:name=".myInfo.OrderHistoryDetailActivity"
             android:windowSoftInputMode="adjustResize" />
 
-        <!-- notice -->
-        <activity
-            android:name=".notice.NoticeActivity"
-            android:windowSoftInputMode="adjustResize" />
 
         <!-- delivery -->
         <activity

@@ -38,6 +38,10 @@ public interface OrderApi {
     @DELETE("/order/delete/{orderId}")
     Call<Void> deleteOrder(@Path("orderId") int orderId);
 
+    // 장소 리스트
+    @GET("/order/place")
+    Call<List<String>> getDeliveryPlaceList();
+
     // 모집글 등록
     @POST("/order/register/recruit")
     Call<Void> registerRecruit(@Body RecruitVO recruit, @Query("deliveryTime") String deliveryTime);

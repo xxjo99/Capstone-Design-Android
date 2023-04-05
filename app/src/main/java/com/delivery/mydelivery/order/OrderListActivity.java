@@ -5,8 +5,9 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.ArrayAdapter;
+import android.widget.AutoCompleteTextView;
 import android.widget.Button;
-import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.LinearLayout;
 import android.widget.TextView;
@@ -89,8 +90,10 @@ public class OrderListActivity extends AppCompatActivity {
     TextView selectPersonTV;
     Button minusPersonBtn;
     Button addPersonBtn;
-    EditText selectPlaceET;
+    AutoCompleteTextView deliveryPlaceAutoCompleteTV;
     Button registerBtn;
+
+    List<String> deliveryPlaceList; // 배달장소 리스트
 
     // 시간 선택 다이얼로그
     DeliveryTimePickerDialog deliveryTimePickerDialog;
@@ -107,6 +110,7 @@ public class OrderListActivity extends AppCompatActivity {
 
     Context context;
 
+    @SuppressLint("ClickableViewAccessibility")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -195,13 +199,16 @@ public class OrderListActivity extends AppCompatActivity {
         selectPersonTV = findViewById(R.id.selectPersonTV);
         minusPersonBtn = findViewById(R.id.minusBtn);
         addPersonBtn = findViewById(R.id.addBtn);
-        selectPlaceET = findViewById(R.id.selectPlaceET);
+        deliveryPlaceAutoCompleteTV = findViewById(R.id.deliveryPlaceAutoCompleteTV);
         registerBtn = findViewById(R.id.registerBtn);
 
         // 초기인원수 지정
         selectPersonTV.setText(person + "명");
         minusPersonBtn.setBackgroundResource(R.drawable.icon_minus_gray);
         minusPersonBtn.setEnabled(false);
+
+        // 학교리스트 추가, 어댑터 연결
+        setDeliveryPlace();
 
         // 배달시간 선택 다이얼로그
         datePickerBtn.setOnClickListener(view -> createDeliveryTimePickerDialog());
@@ -254,20 +261,10 @@ public class OrderListActivity extends AppCompatActivity {
 
             if (selectTimeTV.getText().toString().equals("시간 선택")) {
                 StyleableToast.makeText(context, "배달 받을 시간을 선택해주세요.", R.style.warningToast).show();
-            } else if (selectPlaceET.length() == 0) {
+            } else if (deliveryPlaceAutoCompleteTV.length() == 0) {
                 StyleableToast.makeText(context, "배달 받을 장소를 입력해주세요.", R.style.warningToast).show();
             } else {
-                // 객체 생성, 객체에 필요한 데이터 추가
-                RecruitVO recruit = new RecruitVO();
-
-                recruit.setUserId(userId); // 회원 아이디
-                recruit.setRegistrantPlace(user.getSchool()); // 등록자 위치
-                recruit.setStoreId(storeId); // 매장 아이디
-                recruit.setPlace(selectPlaceET.getText().toString()); // 배달장소
-                recruit.setPerson(person); // 모집인원
-                recruit.setReceiptState(0); // 배달 시작 구분, 초기값 0
-
-                registerRecruit(recruit);// 모집글 등록
+                checkDeliveryPlace(deliveryPlaceAutoCompleteTV.getText().toString(), user); // 배달장소를 정확히 입력했는지 확인
             }
         });
 
@@ -341,8 +338,85 @@ public class OrderListActivity extends AppCompatActivity {
                 });
     }
 
+    // 배달시간 선택 다이얼로그 생성
+    private void createDeliveryTimePickerDialog() {
+        retrofitService = new RetrofitService();
+        storeApi = retrofitService.getRetrofit().create(StoreApi.class);
+
+        storeApi.getStore(storeId)
+                .enqueue(new Callback<>() {
+                    @Override
+                    public void onResponse(@NonNull Call<StoreVO> call, @NonNull Response<StoreVO> response) {
+                        StoreVO store = new StoreVO();
+                        Timestamp openTime = store.getOpenTime();
+                        Timestamp closeTime = store.getCloseTime();
+
+                        deliveryTimePickerDialog = new DeliveryTimePickerDialog(openTime, closeTime, context);
+                        deliveryTimePickerDialog.callDialog();
+                    }
+
+                    @Override
+                    public void onFailure(@NonNull Call<StoreVO> call, @NonNull Throwable t) {
+                    }
+                });
+    }
+
+    // 배달장소 추가
+    private void setDeliveryPlace() {
+        retrofitService = new RetrofitService();
+        orderApi = retrofitService.getRetrofit().create(OrderApi.class);
+
+        orderApi.getDeliveryPlaceList()
+                .enqueue(new Callback<>() {
+                    @Override
+                    public void onResponse(@NonNull Call<List<String>> call, @NonNull Response<List<String>> response) {
+                        deliveryPlaceList = response.body();
+                        deliveryPlaceAutoCompleteTV.setAdapter(new ArrayAdapter<>(context, android.R.layout.simple_dropdown_item_1line, deliveryPlaceList));
+                    }
+
+                    @Override
+                    public void onFailure(@NonNull Call<List<String>> call, @NonNull Throwable t) {
+                    }
+                });
+    }
+
+    // 정확한 배달장소
+    private void checkDeliveryPlace(String deliveryPlace, UserVO user) {
+        retrofitService = new RetrofitService();
+        orderApi = retrofitService.getRetrofit().create(OrderApi.class);
+
+        orderApi.getDeliveryPlaceList()
+                .enqueue(new Callback<>() {
+                    @Override
+                    public void onResponse(@NonNull Call<List<String>> call, @NonNull Response<List<String>> response) {
+                        deliveryPlaceList = response.body();
+
+                        if (!Objects.requireNonNull(deliveryPlaceList).contains(deliveryPlace)) {
+                            StyleableToast.makeText(context, "배달 장소를 정확하게 선택해주세요.", R.style.warningToast).show();
+                        } else {
+                            // 객체 생성, 객체에 필요한 데이터 추가
+                            RecruitVO recruit = new RecruitVO();
+
+                            recruit.setUserId(user.getUserId()); // 회원 아이디
+                            recruit.setRegistrantPlace(user.getSchool()); // 등록자 위치
+                            recruit.setStoreId(storeId); // 매장 아이디
+                            recruit.setPlace(deliveryPlaceAutoCompleteTV.getText().toString()); // 배달장소
+                            recruit.setPerson(person); // 모집인원
+                            recruit.setReceiptState(0); // 배달 시작 구분, 초기값 0
+
+                            registerRecruit(recruit);// 모집글 등록
+                        }
+                    }
+
+                    @Override
+                    public void onFailure(@NonNull Call<List<String>> call, @NonNull Throwable t) {
+
+                    }
+                });
+    }
+
     // 해당 사용자의 등록글이 있는지 검색 후 없다면 등록
-    public void findRecruit(int userId) {
+    private void findRecruit(int userId) {
         retrofitService = new RetrofitService();
         recruitApi = retrofitService.getRetrofit().create(RecruitApi.class);
 
@@ -366,29 +440,6 @@ public class OrderListActivity extends AppCompatActivity {
                     @Override
                     public void onFailure(@NonNull Call<Boolean> call, @NonNull Throwable t) {
 
-                    }
-                });
-    }
-
-    // 배달시간 선택 다이얼로그 생성
-    private void createDeliveryTimePickerDialog() {
-        retrofitService = new RetrofitService();
-        storeApi = retrofitService.getRetrofit().create(StoreApi.class);
-
-        storeApi.getStore(storeId)
-                .enqueue(new Callback<>() {
-                    @Override
-                    public void onResponse(@NonNull Call<StoreVO> call, @NonNull Response<StoreVO> response) {
-                        StoreVO store = new StoreVO();
-                        Timestamp openTime = store.getOpenTime();
-                        Timestamp closeTime = store.getCloseTime();
-
-                        deliveryTimePickerDialog = new DeliveryTimePickerDialog(openTime, closeTime, context);
-                        deliveryTimePickerDialog.callDialog();
-                    }
-
-                    @Override
-                    public void onFailure(@NonNull Call<StoreVO> call, @NonNull Throwable t) {
                     }
                 });
     }
