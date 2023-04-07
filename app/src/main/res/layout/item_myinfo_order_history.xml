@@ -2,124 +2,119 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
+    android:background="@drawable/layout_border"
+    android:layout_margin="10dp"
     android:orientation="vertical">
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_margin="12dp"
+        android:layout_margin="18dp"
         android:orientation="vertical">
 
         <!-- 배달 일자 -->
         <TextView
-            android:textColor="@color/gray4"
             android:id="@+id/deliveryDateTV"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="10dp"
+            android:layout_marginBottom="13dp"
             android:fontFamily="@font/bmjua_font"
             android:text="배달일자" />
 
+        <!-- 매장 이미지 ImageView -->
+        <ImageView
+            android:id="@+id/storeIV"
+            android:layout_width="match_parent"
+            android:layout_height="180dp"
+            android:layout_gravity="center"
+            android:adjustViewBounds="true"
+            android:scaleType="fitXY"
+            android:src="@drawable/meat_test" />
+
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal">
-
-            <!-- 매장 이미지 ImageView -->
-            <ImageView
-                android:id="@+id/storeIV"
-                android:layout_width="80dp"
-                android:layout_height="80dp"
-                android:layout_marginEnd="5dp"
-                android:adjustViewBounds="true"
-                android:background="@drawable/icon_search" />
+            android:layout_height="match_parent"
+            android:layout_marginTop="3dp"
+            android:orientation="vertical">
 
             <LinearLayout
-                android:layout_gravity="center"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_marginStart="5dp"
-                android:layout_marginTop="3dp"
-                android:orientation="vertical">
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:layout_marginBottom="12dp">
 
-                <!-- 매장 이름 TextView -->
                 <TextView
                     android:id="@+id/storeNameTV"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginBottom="7dp"
-                    android:fontFamily="@font/bmjua_font"
+                    android:fontFamily="@font/nanum_square_extra_bold"
                     android:text="@string/storeName"
                     android:textColor="@color/black"
-                    android:textSize="17sp"
-                    android:textStyle="bold" />
+                    android:textSize="20sp" />
 
-                <!-- 참가인원 수 -->
-                <LinearLayout
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="5dp"
+                android:gravity="center">
+
+                <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginBottom="5dp"
-                    android:orientation="horizontal">
+                    android:fontFamily="@font/nanum_square_bold"
+                    android:text="참가인원"
+                    android:textColor="@color/black"
+                    android:textSize="12sp" />
 
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:fontFamily="@font/bmjua_font"
-                        android:text="참가인원"
-                        android:textColor="@color/black" />
+                <View
+                    android:layout_width="0dp"
+                    android:layout_height="0dp"
+                    android:layout_weight="1" />
 
-                    <View
-                        android:layout_width="0dp"
-                        android:layout_height="0dp"
-                        android:layout_weight="1" />
-
-                    <TextView
-                        android:id="@+id/participantCountTV"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_gravity="center"
-                        android:fontFamily="@font/bmjua_font"
-                        android:text="참가인원 수"
-                        android:textColor="@color/black" />
-
-                </LinearLayout>
-
-                <LinearLayout
+                <TextView
+                    android:id="@+id/participantCountTV"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:orientation="horizontal">
+                    android:fontFamily="@font/nanum_square_extra_bold"
+                    android:text="참가인원"
+                    android:textColor="@color/black"
+                    android:textSize="12sp" />
 
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:fontFamily="@font/bmjua_font"
-                        android:text="지불 금액"
-                        android:textColor="@color/black" />
+            </LinearLayout>
 
-                    <View
-                        android:layout_width="0dp"
-                        android:layout_height="0dp"
-                        android:layout_weight="1" />
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center">
 
-                    <TextView
-                        android:id="@+id/paymentMoneyTV"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_gravity="center"
-                        android:fontFamily="@font/bmjua_font"
-                        android:text="지불 금액"
-                        android:textColor="@color/black" />
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/nanum_square_bold"
+                    android:text="지불 금액"
+                    android:textColor="@color/black"
+                    android:textSize="12sp" />
 
-                </LinearLayout>
+                <View
+                    android:layout_width="0dp"
+                    android:layout_height="0dp"
+                    android:layout_weight="1" />
+
+                <TextView
+                    android:id="@+id/paymentMoneyTV"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/nanum_square_extra_bold"
+                    android:text="지불 금액"
+                    android:textColor="@color/black"
+                    android:textSize="12sp" />
 
             </LinearLayout>
 
         </LinearLayout>
-    </LinearLayout>
 
-    <View
-        android:layout_width="match_parent"
-        android:layout_height="1dp"
-        android:background="@color/gray" />
+    </LinearLayout>
 
 </LinearLayout>

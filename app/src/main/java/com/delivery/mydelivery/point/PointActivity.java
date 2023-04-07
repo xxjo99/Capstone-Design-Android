@@ -28,6 +28,7 @@ import com.delivery.mydelivery.user.UserVO;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 
+import java.text.NumberFormat;
 import java.util.Objects;
 
 import io.github.muddz.styleabletoast.StyleableToast;
@@ -336,7 +337,9 @@ public class PointActivity extends AppCompatActivity {
                     // 충전 후 잔액 변경
                     afterPointLayout.setVisibility(View.VISIBLE);
                     int afterPoint = userPoint + point;
-                    afterPointTV.setText(afterPoint + "P");
+                    NumberFormat numberFormat = NumberFormat.getInstance();
+                    String afterPointFormat = numberFormat.format(afterPoint);
+                    afterPointTV.setText(afterPointFormat + "P");
                 } else { // 1000원 미만
                     pointET.setBackgroundResource(R.drawable.et_border_red2);
                     pointCkTV.setVisibility(View.VISIBLE);

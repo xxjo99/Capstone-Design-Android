@@ -19,6 +19,7 @@ import com.delivery.mydelivery.store.StoreApi;
 import com.delivery.mydelivery.store.StoreVO;
 
 import java.sql.Timestamp;
+import java.text.NumberFormat;
 import java.text.SimpleDateFormat;
 import java.util.List;
 import java.util.Locale;
@@ -63,18 +64,16 @@ public class OrderHistoryAdapter extends RecyclerView.Adapter<OrderHistoryAdapte
         // 배달 일자
         Timestamp dateTime = orderHistory.getDeliveryDate();
         SimpleDateFormat dateFormat = new SimpleDateFormat("MM/dd (E요일)", Locale.KOREAN);
-        String time = dateFormat.format(dateTime);
-        holder.deliveryDateTV.setText(time);
+        String deliveryDate = dateFormat.format(dateTime);
+        holder.deliveryDateTV.setText(deliveryDate);
 
         holder.participantCountTV.setText(orderHistory.getParticipantCount() + "명"); // 참여인원
-        holder.paymentMoneyTV.setText(orderHistory.getPaymentMoney() + "P"); // 지불금액
+        NumberFormat numberFormat = NumberFormat.getInstance();
+        String paymentMoney = numberFormat.format(orderHistory.getPaymentMoney());
+        holder.paymentMoneyTV.setText(paymentMoney + "P"); // 지불금액
 
         // 상세주문내역으로 이동
-        holder.itemView.setOnClickListener(view -> {
-            Intent intent = new Intent(context, OrderHistoryDetailActivity.class);
-            intent.putExtra("recruitId", orderHistory.getRecruitId());
-            context.startActivity(intent);
-        });
+        holder.itemView.setOnClickListener(view -> moveOrderHistoryDetail(orderHistory.getStoreId(), orderHistory.getRecruitId(), deliveryDate, orderHistory.getParticipantCount(), paymentMoney));
     }
 
     @Override
@@ -115,9 +114,35 @@ public class OrderHistoryAdapter extends RecyclerView.Adapter<OrderHistoryAdapte
                     public void onResponse(@NonNull Call<StoreVO> call, @NonNull Response<StoreVO> response) {
                         StoreVO store = response.body();
 
-                        String text = "https://img1.daumcdn.net/thumb/R1280x0/?scode=mtistory&fname=https://k.kakaocdn.net/dn/EShJF/btquPLT192D/SRxSvXqcWjHRTju3kHcOQK/img.png";
-                        Glide.with(context).load(/*storeImage*/ text).placeholder(R.drawable.ic_launcher_background).override(100, 100).into(holder.storeIV);
+                        Glide.with(context).load(Objects.requireNonNull(store).getStoreImageUrl()).placeholder(R.drawable.ic_launcher_background).into(holder.storeIV);
                         holder.storeNameTV.setText(Objects.requireNonNull(store).getStoreName());
+                    }
+
+                    @Override
+                    public void onFailure(@NonNull Call<StoreVO> call, @NonNull Throwable t) {
+
+                    }
+                });
+    }
+
+    private void moveOrderHistoryDetail(int storeId, int recruitId, String deliveryDate, int participantCount, String paymentMoney) {
+        retrofitService = new RetrofitService();
+        storeApi = retrofitService.getRetrofit().create(StoreApi.class);
+
+        storeApi.getStore(storeId)
+                .enqueue(new Callback<>() {
+                    @Override
+                    public void onResponse(@NonNull Call<StoreVO> call, @NonNull Response<StoreVO> response) {
+                        StoreVO store = response.body();
+                        Intent intent = new Intent(context, OrderHistoryDetailActivity.class);
+
+                        intent.putExtra("recruitId", recruitId);
+                        intent.putExtra("storeName", Objects.requireNonNull(store).getStoreName());
+                        intent.putExtra("deliveryDate", deliveryDate);
+                        intent.putExtra("participantCount", participantCount);
+                        intent.putExtra("paymentMoney", paymentMoney);
+
+                        context.startActivity(intent);
                     }
 
                     @Override

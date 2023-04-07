@@ -17,6 +17,10 @@ public interface OrderHistoryApi {
     @GET("/order/history/detail/{recruitId}/{userId}")
     Call<List<OrderHistoryDetailVO>> getOrderHistoryDetail(@Path("recruitId") int recruitId, @Path("userId") int userId);
 
+    // 절약한 배달비
+    @GET("/order/history/save/{recruitId}/{userId}")
+    Call<Integer> getSaveMoney(@Path("recruitId") int recruitId, @Path("userId") int userId);
+
     // 이미지
     @GET("/order/image/{recruitId}/{userId}")
     Call<ResponseBody> getImage(@Path("recruitId") int recruitId, @Path("userId") int userId);

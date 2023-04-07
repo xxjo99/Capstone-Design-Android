@@ -2,8 +2,8 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
-    android:orientation="vertical"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:orientation="vertical">
 
     <androidx.appcompat.widget.Toolbar
         android:id="@+id/orderHistoryToolbar"
@@ -22,7 +22,6 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_gravity="center"
             android:fontFamily="@font/nanum_square_bold"
             android:text="상세 주문 내역"
             android:textColor="@color/black"
@@ -30,12 +29,164 @@
 
     </androidx.appcompat.widget.Toolbar>
 
-    <ImageView
-        android:id="@+id/pictureIV"
-        android:layout_width="200dp"
-        android:layout_height="200dp"
-        android:layout_gravity="center" />
+    <androidx.core.widget.NestedScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/deliveryDateTV"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="20dp"
+                android:layout_marginBottom="20dp"
+                android:fontFamily="@font/nanum_square_extra_bold"
+                android:text="주문일시"
+                android:textColor="@color/mint3"
+                android:textSize="15sp" />
+
+            <ImageView
+                android:id="@+id/pictureIV"
+                android:layout_width="match_parent"
+                android:layout_height="210dp"
+                android:scaleType="fitXY" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="10dp"
+                    android:orientation="vertical">
+
+                    <!-- 매장 이름 -->
+                    <TextView
+                        android:id="@+id/storeNameTV"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="10dp"
+                        android:layout_marginTop="20dp"
+                        android:layout_marginBottom="20dp"
+                        android:fontFamily="@font/nanum_square_extra_bold"
+                        android:text="@string/storeName"
+                        android:textColor="@color/black"
+                        android:textSize="23sp" />
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="10dp"
+                        android:layout_marginBottom="10dp"
+                        android:orientation="horizontal">
+
+                        <TextView
+                            android:layout_width="80dp"
+                            android:layout_height="wrap_content"
+                            android:layout_marginEnd="30dp"
+                            android:fontFamily="@font/nanum_square_extra_bold"
+                            android:text="참여 인원"
+                            android:textSize="13sp" />
+
+                        <TextView
+                            android:id="@+id/participantCountTV"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:fontFamily="@font/nanum_square_extra_bold"
+                            android:text="참여 인원"
+                            android:textSize="13sp" />
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="10dp"
+                        android:layout_marginBottom="15dp"
+                        android:orientation="horizontal">
+
+                        <TextView
+                            android:layout_width="80dp"
+                            android:layout_height="wrap_content"
+                            android:layout_marginEnd="30dp"
+                            android:fontFamily="@font/nanum_square_extra_bold"
+                            android:text="지불 금액"
+                            android:textSize="13sp" />
+
+                        <TextView
+                            android:id="@+id/paymentMoneyTV"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:fontFamily="@font/nanum_square_extra_bold"
+                            android:text="지불 금액"
+                            android:textSize="13sp" />
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="10dp"
+                        android:layout_marginBottom="20dp"
+                        android:orientation="horizontal">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:fontFamily="@font/nanum_square_extra_bold"
+                            android:text="배달비  "
+                            android:textColor="@color/black"
+                            android:textSize="14sp" />
+
+                        <TextView
+                            android:id="@+id/saveMoneyTV"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:fontFamily="@font/bmjua_font"
+                            android:text="할인된 배달비"
+                            android:textColor="@color/mint1"
+                            android:textSize="16sp" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:fontFamily="@font/nanum_square_extra_bold"
+                            android:text="  을 절약했습니다."
+                            android:textColor="@color/black"
+                            android:textSize="14sp" />
+
+                    </LinearLayout>
+
+                </LinearLayout>
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="10dp"
+                    android:layout_marginBottom="10dp"
+                    android:background="@color/gray" />
+
+                <!-- 메뉴 리스트 리사이클러뷰 -->
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/orderHistoryRecyclerView"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginRight="10dp"
+                    android:nestedScrollingEnabled="false"
+                    android:overScrollMode="never" />
+
+            </LinearLayout>
 
 
+        </LinearLayout>
+
+    </androidx.core.widget.NestedScrollView>
 
 </LinearLayout>

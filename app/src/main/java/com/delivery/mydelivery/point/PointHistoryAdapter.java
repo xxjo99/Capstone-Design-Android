@@ -13,6 +13,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.delivery.mydelivery.R;
 
 import java.sql.Timestamp;
+import java.text.NumberFormat;
 import java.text.SimpleDateFormat;
 import java.util.List;
 import java.util.Locale;
@@ -45,13 +46,14 @@ public class PointHistoryAdapter extends RecyclerView.Adapter<PointHistoryAdapte
 
         // 일자
         Timestamp dateTime = pointHistory.getDateTime();
-        SimpleDateFormat dateFormat = new SimpleDateFormat("MM-dd\nHH:mm", Locale.getDefault());
+        SimpleDateFormat dateFormat = new SimpleDateFormat("M월 d일 HH:mm", Locale.getDefault());
         String time = dateFormat.format(dateTime);
 
         String content = pointHistory.getContent(); // 내용
-        int point = pointHistory.getPoint(); // 사용 or 충전 포인트
+        NumberFormat numberFormat = NumberFormat.getInstance();
+        String point = numberFormat.format(pointHistory.getPoint()); // 사용 or 충전 포인트
         String type = pointHistory.getType(); // 사용 or 충전
-        int balance = pointHistory.getBalance(); // 잔액
+        String balance = numberFormat.format(pointHistory.getBalance()); // 잔액
 
         holder.dateTimeTV.setText(time); // 일자
         holder.pointHistoryTV.setText(content); // 내용
@@ -64,7 +66,7 @@ public class PointHistoryAdapter extends RecyclerView.Adapter<PointHistoryAdapte
         }
 
         holder.typeTV.setText(type); // 포인트 이용 타입
-        holder.balanceTV.setText("잔액 " + balance + "P"); // 포인트 이용 후 남은 잔액
+        holder.balanceTV.setText(balance + "P"); // 포인트 이용 후 남은 잔액
     }
 
     @Override

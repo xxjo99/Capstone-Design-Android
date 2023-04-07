@@ -23,7 +23,6 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_gravity="center"
             android:fontFamily="@font/nanum_square_bold"
             android:text="@string/addPoint"
             android:textColor="@color/black"

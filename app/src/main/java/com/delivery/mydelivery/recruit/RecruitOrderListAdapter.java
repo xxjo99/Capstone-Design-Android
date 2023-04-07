@@ -2,14 +2,17 @@ package com.delivery.mydelivery.recruit;
 
 import android.annotation.SuppressLint;
 import android.content.Context;
+import android.content.res.ColorStateList;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageButton;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
+import androidx.core.content.ContextCompat;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.delivery.mydelivery.R;
@@ -81,6 +84,9 @@ public class RecruitOrderListAdapter extends RecyclerView.Adapter<RecruitOrderLi
             holder.deleteBtn.setVisibility(View.GONE);
             holder.decreaseBtn.setVisibility(View.GONE);
             holder.increaseBtn.setVisibility(View.GONE);
+
+            ColorStateList colorStateList = ColorStateList.valueOf(ContextCompat.getColor(context, R.color.white));
+            holder.amountLayout.setBackgroundTintList(colorStateList);
         }
 
         // 메뉴 개수 수정
@@ -144,6 +150,7 @@ public class RecruitOrderListAdapter extends RecyclerView.Adapter<RecruitOrderLi
         TextView optionListTV;
         TextView menuPriceTV;
         TextView amountTV;
+        LinearLayout amountLayout;
         ImageButton decreaseBtn;
         ImageButton increaseBtn;
         ImageButton deleteBtn;
@@ -155,6 +162,7 @@ public class RecruitOrderListAdapter extends RecyclerView.Adapter<RecruitOrderLi
             optionListTV = itemView.findViewById(R.id.optionListTV);
             menuPriceTV = itemView.findViewById(R.id.menuPriceTV);
             amountTV = itemView.findViewById(R.id.amountTV);
+            amountLayout = itemView.findViewById(R.id.amountLayout);
             decreaseBtn = itemView.findViewById(R.id.decreaseBtn);
             increaseBtn = itemView.findViewById(R.id.increaseBtn);
             deleteBtn = itemView.findViewById(R.id.deleteBtn);

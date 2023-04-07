@@ -5,6 +5,7 @@ public class OrderHistoryDetailVO {
     private int recruitId;
     private int userId;
     private int storeId;
+    private int menuId;
     private String selectOption;
     private int amount;
     private int totalPrice;
@@ -39,6 +40,14 @@ public class OrderHistoryDetailVO {
 
     public void setStoreId(int storeId) {
         this.storeId = storeId;
+    }
+
+    public int getMenuId() {
+        return menuId;
+    }
+
+    public void setMenuId(int menuId) {
+        this.menuId = menuId;
     }
 
     public String getSelectOption() {

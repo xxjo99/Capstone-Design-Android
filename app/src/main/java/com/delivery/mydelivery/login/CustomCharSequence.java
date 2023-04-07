@@ -25,4 +25,6 @@ public class CustomCharSequence implements CharSequence {
     public CharSequence subSequence(int startIndex, int endIndex) {
         return source.subSequence(startIndex, endIndex);
     }
+
+
 }
