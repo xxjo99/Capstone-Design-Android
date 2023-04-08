@@ -7,7 +7,7 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -27,6 +27,7 @@ import com.delivery.mydelivery.user.UserApi;
 import com.delivery.mydelivery.user.UserVO;
 import com.google.gson.Gson;
 
+import java.text.NumberFormat;
 import java.util.Objects;
 
 import retrofit2.Call;
@@ -36,21 +37,16 @@ import retrofit2.Response;
 // 내정보 프래그먼트
 public class MyPageFragment extends Fragment {
 
-    // 닉네임, 로그아웃
+    // 닉네임, 포인트
     TextView userNameTV;
-    Button logoutBtn;
-
-    // 포인트
     TextView pointTV;
-    Button addPointBtn;
-    Button pointHistoryBtn;
 
-    // 주문내역
-    TextView orderHistoryTV;
-
-    // 개인정보
-    TextView myInfoTV;
-    TextView modifyPwTV;
+    LinearLayout addPointLayout;
+    LinearLayout pointHistoryLayout;
+    LinearLayout orderHistoryLayout;
+    LinearLayout myInfoLayout;
+    LinearLayout modifyPwLayout;
+    LinearLayout logoutLayout;
 
     // view, context
     View view;
@@ -76,60 +72,55 @@ public class MyPageFragment extends Fragment {
 
         // 초기화
         userNameTV = view.findViewById(R.id.userNameTV);
-        logoutBtn = view.findViewById(R.id.logoutBtn);
+        pointTV = view.findViewById(R.id.pointTV);
+
+        addPointLayout = view.findViewById(R.id.addPointLayout);
+        pointHistoryLayout = view.findViewById(R.id.pointHistoryLayout);
+        orderHistoryLayout = view.findViewById(R.id.orderHistoryLayout);
+        myInfoLayout = view.findViewById(R.id.myInfoLayout);
+        modifyPwLayout = view.findViewById(R.id.modifyPwLayout);
+        logoutLayout = view.findViewById(R.id.logoutLayout);
+
+        setUserInfo(user.getUserId()); // 유저정보 추가
+
+        // 포인트 충전 페이지
+        addPointLayout.setOnClickListener(view -> {
+            Intent intent = new Intent(getActivity(), PointActivity.class);
+            startActivity(intent);
+        });
+
+        // 포인트 이용내역 페이지 이동
+        pointHistoryLayout.setOnClickListener(view -> {
+            Intent intent = new Intent(getActivity(), PointHistoryActivity.class);
+            startActivity(intent);
+        });
+
+        // 주문내역 액티비티 이동
+        orderHistoryLayout.setOnClickListener(view -> {
+            Intent intent = new Intent(getActivity(), OrderHistoryActivity.class);
+            startActivity(intent);
+        });
+
+        // 내정보 페이지 이동
+        myInfoLayout.setOnClickListener(view -> {
+            Intent intent = new Intent(getActivity(), MyInfoActivity.class);
+            startActivity(intent);
+        });
+
+        // 비밀번호 변경 페이지 이동
+        modifyPwLayout.setOnClickListener(view -> {
+            Intent intent = new Intent(getActivity(), ModifyPwActivity.class);
+            startActivity(intent);
+        });
 
         // 토큰 삭제 후 로그아웃
-        logoutBtn.setOnClickListener(view -> {
+        logoutLayout.setOnClickListener(view -> {
             deleteToken(user.getUserId());
             PreferenceManager.logout(context);
 
             Intent intent = new Intent(getActivity(), MainActivity.class);
             startActivity(intent);
             requireActivity().finish();
-        });
-
-        // 초기화
-        pointTV = view.findViewById(R.id.pointTV);
-        addPointBtn = view.findViewById(R.id.addPointBtn);
-        pointHistoryBtn = view.findViewById(R.id.pointHistoryBtn);
-
-        setUserInfo(user.getUserId()); // 유저정보 추가
-
-        // 충전페이지 이동
-        addPointBtn.setOnClickListener(view -> {
-            Intent intent = new Intent(getActivity(), PointActivity.class);
-            startActivity(intent);
-        });
-
-        // 포인트 이용내역 페이지 이동
-        pointHistoryBtn.setOnClickListener(view -> {
-            Intent intent = new Intent(getActivity(), PointHistoryActivity.class);
-            startActivity(intent);
-        });
-
-        // 초기화
-        orderHistoryTV = view.findViewById(R.id.orderHistoryTV);
-
-        // 주문내역 액티비티 이동
-        orderHistoryTV.setOnClickListener(view -> {
-            Intent intent = new Intent(getActivity(), OrderHistoryActivity.class);
-            startActivity(intent);
-        });
-
-        // 초기화
-        myInfoTV = view.findViewById(R.id.myInfoTV);
-        modifyPwTV = view.findViewById(R.id.modifyPwTV);
-
-        // 내정보 페이지 이동
-        myInfoTV.setOnClickListener(view -> {
-            Intent intent = new Intent(getActivity(), MyInfoActivity.class);
-            startActivity(intent);
-        });
-
-        // 비밀번호 변경 페이지 이동
-        modifyPwTV.setOnClickListener(view -> {
-            Intent intent = new Intent(getActivity(), ModifyPwActivity.class);
-            startActivity(intent);
         });
 
         return view;
@@ -148,7 +139,10 @@ public class MyPageFragment extends Fragment {
                         UserVO user = response.body();
 
                         userNameTV.setText(Objects.requireNonNull(user).getName());
-                        pointTV.setText(user.getPoint() + "P");
+
+                        NumberFormat numberFormat = NumberFormat.getInstance();
+                        String point = numberFormat.format(user.getPoint());
+                        pointTV.setText(point);
                     }
 
                     @Override

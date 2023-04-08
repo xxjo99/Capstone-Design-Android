@@ -1,184 +1,244 @@
 <?xml version="1.0" encoding="utf-8"?> <!-- 내정보 -->
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
     tools:context=".home.MyPageFragment">
 
-    <!-- 닉네임, 로그아웃 -->
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="30dp"
-        android:layout_marginTop="10dp"
-        android:layout_marginRight="30dp"
-        android:layout_marginBottom="15dp"
-        android:orientation="horizontal">
-
-        <TextView
-            android:id="@+id/userNameTV"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:fontFamily="@font/bmjua_font"
-            android:text="@string/name"
-            android:textColor="@color/black"
-            android:textSize="20sp" />
-
-        <View
-            android:layout_width="0dp"
-            android:layout_height="0dp"
-            android:layout_weight="1" />
-
-        <Button
-            android:id="@+id/logoutBtn"
-            style="?android:attr/borderlessButtonStyle"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:backgroundTint="@color/white"
-            android:fontFamily="@font/bmjua_font"
-            android:text="@string/logout"
-            android:textColor="@color/red"
-            android:textSize="20sp" />
-
-    </LinearLayout>
-
     <!-- 포인트, 충전, 충전내역 -->
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="25dp"
-        android:layout_marginTop="15dp"
-        android:layout_marginRight="25dp"
-        android:layout_marginBottom="15dp"
+        android:layout_marginLeft="20dp"
+        android:layout_marginTop="20dp"
+        android:layout_marginRight="20dp"
+        android:layout_marginBottom="50dp"
         android:background="@drawable/layout_shadow"
-        android:orientation="vertical">
-
-        <TextView
-            android:id="@+id/pointTV"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_margin="40dp"
-            android:fontFamily="@font/bmjua_font"
-            android:gravity="center"
-            android:paddingTop="10dp"
-            android:text="@string/point"
-            android:textColor="@color/black"
-            android:textSize="35sp" />
-
-        <View
-            android:layout_width="match_parent"
-            android:layout_height="1dp"
-            android:background="@color/gray" />
+        android:orientation="horizontal">
 
         <LinearLayout
-            android:layout_width="match_parent"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
-            android:orientation="horizontal">
+            android:layout_marginTop="35dp"
+            android:layout_marginBottom="35dp"
+            android:orientation="vertical">
 
-            <Button
-                android:id="@+id/addPointBtn"
-                style="?android:attr/borderlessButtonStyle"
-                android:layout_width="0dp"
+            <TextView
+                android:id="@+id/userNameTV"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:backgroundTint="@color/white"
+                android:layout_marginStart="25dp"
+                android:layout_marginBottom="10dp"
+                android:fontFamily="@font/bmjua_font"
+                android:text="@string/name"
+                android:textColor="@color/black"
+                android:textSize="20sp" />
+
+            <TextView
+                android:id="@+id/pointTV"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="22dp"
+                android:drawablePadding="2dp"
                 android:fontFamily="@font/bmjua_font"
                 android:gravity="center"
-                android:padding="20dp"
-                android:text="@string/addPoint"
-                android:textSize="15sp" />
-
-            <View
-                android:layout_width="1dp"
-                android:layout_height="55dp"
-                android:layout_gravity="center"
-                android:background="@color/gray" />
-
-            <Button
-                android:id="@+id/pointHistoryBtn"
-                style="?android:attr/borderlessButtonStyle"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:backgroundTint="@color/white"
-                android:fontFamily="@font/bmjua_font"
-                android:gravity="center"
-                android:padding="20dp"
-                android:stateListAnimator="@null"
-                android:text="내역"
-                android:textSize="15sp" />
+                android:text="@string/point"
+                android:textColor="@color/black"
+                android:textSize="16sp"
+                app:drawableLeftCompat="@drawable/icon_coin" />
 
         </LinearLayout>
 
     </LinearLayout>
 
-    <View
-        android:layout_width="match_parent"
-        android:layout_height="7dp"
-        android:layout_marginTop="5dp"
-        android:background="@color/gray" />
-
-    <LinearLayout
-        android:layout_width="match_parent"
+    <GridLayout
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:orientation="vertical">
+        android:layout_gravity="center"
+        android:columnCount="6"
+        android:rowCount="2">
 
-        <TextView
-            android:id="@+id/orderHistoryTV"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="25dp"
-            android:layout_marginTop="15dp"
-            android:layout_marginRight="25dp"
-            android:layout_marginBottom="15dp"
-            android:fontFamily="@font/bmjua_font"
-            android:text="주문내역"
-            android:textColor="@color/black"
-            android:textSize="18sp" />
+        <LinearLayout
+            android:id="@+id/addPointLayout"
+            android:layout_row="0"
+            android:layout_rowWeight="0"
+            android:layout_column="0"
+            android:layout_columnWeight="1"
+            android:layout_gravity="center"
+            android:background="@drawable/grid_line_bottom"
+            android:orientation="vertical"
+            android:padding="15dp">
 
-        <View
-            android:layout_width="match_parent"
-            android:layout_height="1dp"
-            android:background="@color/gray" />
+            <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginBottom="20dp"
+                android:src="@drawable/icon_point" />
 
-        <TextView
-            android:id="@+id/myInfoTV"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="25dp"
-            android:layout_marginTop="15dp"
-            android:layout_marginRight="25dp"
-            android:layout_marginBottom="15dp"
-            android:fontFamily="@font/bmjua_font"
-            android:text="내정보"
-            android:textColor="@color/black"
-            android:textSize="18sp" />
+            <TextView
+                android:layout_width="80dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:fontFamily="@font/nanum_square_extra_bold"
+                android:gravity="center"
+                android:text="포인트 충전"
+                android:textColor="@color/black"
+                android:textSize="14sp" />
 
-        <View
-            android:layout_width="match_parent"
-            android:layout_height="1dp"
-            android:background="@color/gray" />
+        </LinearLayout>
 
-        <TextView
-            android:id="@+id/modifyPwTV"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="25dp"
-            android:layout_marginTop="15dp"
-            android:layout_marginRight="25dp"
-            android:layout_marginBottom="15dp"
-            android:fontFamily="@font/bmjua_font"
-            android:text="비밀번호 변경"
-            android:textColor="@color/black"
-            android:textSize="18sp" />
+        <LinearLayout
+            android:id="@+id/pointHistoryLayout"
+            android:layout_row="0"
+            android:layout_rowWeight="0"
+            android:layout_column="1"
+            android:layout_columnWeight="1"
+            android:layout_gravity="center"
+            android:background="@drawable/grid_line_right_left_bottom"
+            android:orientation="vertical"
+            android:padding="15dp">
 
-        <View
-            android:layout_width="match_parent"
-            android:layout_height="1dp"
-            android:background="@color/gray" />
+            <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginBottom="20dp"
+                android:src="@drawable/icon_add_point" />
 
-    </LinearLayout>
+            <TextView
+                android:layout_width="80dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:fontFamily="@font/nanum_square_extra_bold"
+                android:gravity="center"
+                android:text="포인트 내역"
+                android:textColor="@color/black"
+                android:textSize="14sp" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/orderHistoryLayout"
+            android:layout_row="0"
+            android:layout_rowWeight="0"
+            android:layout_column="2"
+            android:layout_columnWeight="1"
+            android:layout_gravity="center"
+            android:background="@drawable/grid_line_bottom"
+            android:orientation="vertical"
+            android:padding="15dp">
+
+            <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginBottom="20dp"
+                android:src="@drawable/icon_order_history" />
+
+            <TextView
+                android:layout_width="80dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:fontFamily="@font/nanum_square_extra_bold"
+                android:gravity="center"
+                android:text="주문 내역"
+                android:textColor="@color/black"
+                android:textSize="14sp" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/myInfoLayout"
+            android:layout_row="1"
+            android:layout_rowWeight="0"
+            android:layout_column="0"
+            android:layout_columnWeight="1"
+            android:layout_gravity="center"
+            android:orientation="vertical"
+            android:padding="15dp">
+
+            <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginBottom="20dp"
+                android:src="@drawable/icon_person" />
+
+            <TextView
+                android:layout_width="80dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:fontFamily="@font/nanum_square_extra_bold"
+                android:gravity="center"
+                android:text="내정보"
+                android:textColor="@color/black"
+                android:textSize="14sp" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/modifyPwLayout"
+            android:layout_row="1"
+            android:layout_rowWeight="0"
+            android:layout_column="1"
+            android:layout_columnWeight="1"
+            android:layout_gravity="center"
+            android:background="@drawable/grid_line_right_left"
+            android:orientation="vertical"
+            android:padding="15dp">
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginBottom="20dp"
+                android:src="@drawable/icon_password" />
+
+            <TextView
+                android:layout_width="80dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:fontFamily="@font/nanum_square_extra_bold"
+                android:gravity="center"
+                android:text="비밀번호 변경"
+                android:textColor="@color/black"
+                android:textSize="14sp" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/logoutLayout"
+            android:layout_row="1"
+            android:layout_rowWeight="0"
+            android:layout_column="2"
+            android:layout_columnWeight="1"
+            android:layout_gravity="center"
+            android:orientation="vertical"
+            android:padding="15dp">
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginBottom="20dp"
+                android:src="@drawable/icon_logout" />
+
+            <TextView
+                android:layout_width="80dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:fontFamily="@font/nanum_square_extra_bold"
+                android:gravity="center"
+                android:text="로그아웃"
+                android:textColor="@color/black"
+                android:textSize="14sp" />
+
+        </LinearLayout>
+
+    </GridLayout>
 
 </LinearLayout>

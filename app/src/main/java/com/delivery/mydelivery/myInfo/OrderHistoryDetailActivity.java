@@ -178,5 +178,4 @@ public class OrderHistoryDetailActivity extends AppCompatActivity {
                 });
     }
 
-
 }

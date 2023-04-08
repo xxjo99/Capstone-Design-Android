@@ -17,6 +17,7 @@ import androidx.fragment.app.FragmentManager;
 import com.delivery.mydelivery.R;
 import com.delivery.mydelivery.delivery.CheckDeliveryActivity;
 import com.delivery.mydelivery.order.OrderListActivity;
+import com.delivery.mydelivery.point.PointHistoryActivity;
 import com.delivery.mydelivery.preferenceManager.PreferenceManager;
 import com.delivery.mydelivery.user.UserVO;
 import com.google.android.material.navigation.NavigationBarView;
