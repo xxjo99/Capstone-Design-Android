@@ -99,6 +99,7 @@ public class OrderHistoryActivity extends AppCompatActivity {
 
                     @Override
                     public void onFailure(@NonNull Call<List<OrderHistoryVO2>> call, @NonNull Throwable t) {
+                        System.out.println("fkslkflsfklsfklsf " + t);
                     }
                 });
 

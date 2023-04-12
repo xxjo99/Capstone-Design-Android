@@ -9,10 +9,10 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
-        android:layout_marginTop="10dp"
+        android:layout_marginTop="15dp"
         android:layout_marginBottom="10dp"
         android:fontFamily="@font/bmjua_font"
-        android:text="배달 시간"
+        android:text="배달 시간 선택"
         android:textColor="@color/black"
         android:textSize="18sp" />
 

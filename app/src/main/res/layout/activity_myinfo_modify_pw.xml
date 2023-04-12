@@ -10,7 +10,7 @@
         android:id="@+id/modifyPwToolbar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="10dp"
+        android:layout_marginBottom="20dp"
         android:background="@color/white"
         app:contentInsetStart="0dp">
 
@@ -27,7 +27,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:fontFamily="@font/nanum_square_bold"
-            android:text="@string/myInfo"
+            android:text="비밀번호 재설정"
             android:textColor="@color/black"
             android:textSize="18sp" />
 
@@ -36,76 +36,88 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="50dp"
+        android:layout_marginStart="20dp"
+        android:layout_marginEnd="20dp"
+        android:layout_marginBottom="50dp"
         android:orientation="vertical">
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:fontFamily="@font/bmjua_font"
-            android:text="현재 비밀번호와 변경할"
+            android:layout_marginBottom="9dp"
+            android:fontFamily="@font/nanum_square_extra_bold"
+            android:text="현재 비밀번호"
             android:textColor="@color/black"
-            android:textSize="25sp" />
+            android:textSize="12sp" />
+
+        <EditText
+            android:id="@+id/currentPwET"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/et_border"
+            android:fontFamily="@font/nanum_square_extra_bold"
+            android:hint="비밀번호를 입력해주세요."
+            android:padding="18dp"
+            android:singleLine="true"
+            android:textColor="@color/black"
+            android:textSize="16sp"
+            tools:ignore="RtlSymmetry" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="20dp"
+        android:layout_marginEnd="20dp"
+        android:orientation="vertical">
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:fontFamily="@font/bmjua_font"
-            android:text="비밀번호를 입력해주세요."
+            android:layout_marginBottom="7dp"
+            android:fontFamily="@font/nanum_square_extra_bold"
+            android:text="새로운 비밀번호"
             android:textColor="@color/black"
-            android:textSize="25sp" />
+            android:textSize="13sp" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="9dp"
+            android:fontFamily="@font/nanum_square_extra_bold"
+            android:text="8자 이상 영어, 숫자 및 특수문자를 사용하세요"
+            android:textColor="@color/gray4"
+            android:textSize="12sp" />
+
+        <EditText
+            android:id="@+id/modifyPwET"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="10dp"
+            android:background="@drawable/et_border"
+            android:fontFamily="@font/nanum_square_extra_bold"
+            android:hint="변경하실 비밀번호를 입력해주세요."
+            android:padding="18dp"
+            android:singleLine="true"
+            android:textColor="@color/black"
+            android:textSize="16sp"
+            tools:ignore="RtlSymmetry" />
+
+        <EditText
+            android:id="@+id/modifyPwCkET"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/et_border"
+            android:fontFamily="@font/nanum_square_extra_bold"
+            android:hint="@string/pwCk"
+            android:padding="18dp"
+            android:singleLine="true"
+            android:textColor="@color/black"
+            android:textSize="16sp"
+            tools:ignore="RtlSymmetry" />
 
     </LinearLayout>
-
-    <EditText
-        android:id="@+id/currentPwET"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="10dp"
-        android:layout_marginTop="30dp"
-        android:layout_marginEnd="10dp"
-        android:background="@drawable/et_border"
-        android:fontFamily="@font/bmjua_font"
-        android:hint="현재 비밀번호"
-        android:padding="18dp"
-        android:singleLine="true"
-        android:textColor="@color/black"
-        android:textSize="18sp"
-        tools:ignore="RtlSymmetry" />
-
-    <EditText
-        android:id="@+id/modifyPwET"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="10dp"
-        android:layout_marginTop="10dp"
-        android:layout_marginEnd="10dp"
-        android:background="@drawable/et_border"
-        android:fontFamily="@font/bmjua_font"
-        android:hint="@string/newPw"
-        android:padding="18dp"
-        android:singleLine="true"
-        android:textColor="@color/black"
-        android:textSize="18sp"
-        tools:ignore="RtlSymmetry" />
-
-    <EditText
-        android:id="@+id/modifyPwCkET"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="10dp"
-        android:layout_marginTop="10dp"
-        android:layout_marginEnd="10dp"
-        android:background="@drawable/et_border"
-        android:fontFamily="@font/bmjua_font"
-        android:hint="@string/pwCk"
-        android:padding="18dp"
-        android:singleLine="true"
-        android:textColor="@color/black"
-        android:textSize="18sp"
-        tools:ignore="RtlSymmetry" />
 
     <View
         android:layout_width="match_parent"
@@ -123,7 +135,7 @@
         android:background="@drawable/btn_fill_gray"
         android:enabled="false"
         android:fontFamily="@font/bmjua_font"
-        android:text="@string/confirm"
+        android:text="@string/modifyPw"
         android:textColor="@color/white"
         android:textSize="23sp" />
 

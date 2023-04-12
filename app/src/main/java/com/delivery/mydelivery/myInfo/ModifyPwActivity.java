@@ -7,7 +7,6 @@ import android.text.TextWatcher;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -24,6 +23,7 @@ import com.google.gson.GsonBuilder;
 import java.util.Objects;
 import java.util.regex.Pattern;
 
+import io.github.muddz.styleabletoast.StyleableToast;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -80,7 +80,7 @@ public class ModifyPwActivity extends AppCompatActivity {
         modifyPwBtn.setOnClickListener(view -> {
             // 비밀번호 변경
             if (!currentPwET.getText().toString().equals(user.getPw())) {
-                Toast.makeText(context, "비밀번호를 정확하게 입력해주세요.", Toast.LENGTH_SHORT).show();
+                StyleableToast.makeText(context, "비밀번호를 정확하게 입력해주세요.", R.style.errorToast).show();
             } else {
                 user.setPw(modifyPwET.getText().toString());
                 modifyPw(user);
@@ -180,14 +180,14 @@ public class ModifyPwActivity extends AppCompatActivity {
         userApi = retrofitService.getRetrofit().create(UserApi.class);
 
         userApi.modify(user)
-                .enqueue(new Callback<UserVO>() {
+                .enqueue(new Callback<>() {
                     @Override
                     public void onResponse(@NonNull Call<UserVO> call, @NonNull Response<UserVO> response) {
                         gson = new GsonBuilder().create();
                         String userInfoJson = gson.toJson(user, UserVO.class);
                         PreferenceManager.setLoginInfo(context, userInfoJson);
 
-                        Toast.makeText(ModifyPwActivity.this, "비밀번호 변경이 완료되었습니다.", Toast.LENGTH_SHORT).show();
+                        StyleableToast.makeText(ModifyPwActivity.this, "비밀번호 변경이 완료되었습니다.", R.style.successToast).show();
                         finish();
                     }
 

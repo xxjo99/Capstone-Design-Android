@@ -60,6 +60,7 @@
         android:visibility="visible"
         app:umanoDragView="@id/recruitLayout"
         app:umanoOverlay="false"
+        app:umanoPanelHeight="60dp"
         app:umanoShadowHeight="4dp">
 
         <LinearLayout
@@ -244,10 +245,7 @@
                 style="?android:attr/borderlessButtonStyle"
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
-                android:layout_marginLeft="20dp"
-                android:layout_marginTop="15dp"
-                android:layout_marginRight="20dp"
-                android:layout_marginBottom="15dp"
+                android:layout_margin="10dp"
                 android:layout_weight="1"
                 android:background="@drawable/btn_fill_mint"
                 android:fontFamily="@font/bmjua_font"
@@ -257,43 +255,39 @@
 
             <!-- 시간선택 -->
             <LinearLayout
-                android:layout_width="match_parent"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_margin="10dp"
+                android:layout_marginLeft="15dp"
+                android:layout_marginTop="15dp"
+                android:layout_marginRight="15dp"
+                android:layout_marginBottom="20dp"
                 android:orientation="horizontal">
 
-                <LinearLayout
+                <TextView
+                    android:id="@+id/selectTimeTV"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:orientation="horizontal">
+                    android:layout_gravity="center"
+                    android:fontFamily="@font/nanum_square_extra_bold"
+                    android:gravity="center"
+                    android:text="배달 시간을 선택해주세요."
+                    android:textColor="@color/black"
+                    android:textSize="17sp" />
 
-                    <TextView
-                        android:id="@+id/selectTimeTV"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginLeft="20dp"
-                        android:fontFamily="@font/bmjua_font"
-                        android:text="@string/selectTime"
-                        android:textColor="@color/black"
-                        android:textSize="20sp" />
+                <View
+                    android:layout_width="0dp"
+                    android:layout_height="0dp"
+                    android:layout_weight="1" />
 
-                    <View
-                        android:layout_width="0dp"
-                        android:layout_height="0dp"
-                        android:layout_weight="1" />
-
-                    <Button
-                        android:id="@+id/datePickerBtn"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginEnd="20dp"
-                        android:background="@drawable/btn_fill_mint"
-                        android:fontFamily="@font/bmjua_font"
-                        android:text="@string/selectTime"
-                        android:textColor="@color/white"
-                        android:textSize="19sp" />
-
-                </LinearLayout>
+                <ImageButton
+                    android:id="@+id/datePickerBtn"
+                    android:src="@drawable/icon_clock"
+                    android:layout_width="match_parent"
+                    android:layout_marginEnd="32dp"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:background="@color/white"
+                    android:gravity="center" />
 
             </LinearLayout>
 
@@ -301,17 +295,19 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_margin="10dp"
+                android:layout_marginLeft="15dp"
+                android:layout_marginTop="20dp"
+                android:layout_marginRight="15dp"
+                android:layout_marginBottom="20dp"
                 android:orientation="horizontal">
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="20dp"
-                    android:fontFamily="@font/bmjua_font"
-                    android:text="@string/selectPerson"
+                    android:fontFamily="@font/nanum_square_extra_bold"
+                    android:text="모집 인원을 선택해주세요."
                     android:textColor="@color/black"
-                    android:textSize="20sp" />
+                    android:textSize="17sp" />
 
                 <View
                     android:layout_width="0dp"
@@ -328,19 +324,18 @@
                     android:id="@+id/selectPersonTV"
                     android:layout_width="50dp"
                     android:layout_height="wrap_content"
-                    android:layout_marginLeft="10dp"
-                    android:layout_marginRight="10dp"
+                    android:layout_marginLeft="8dp"
+                    android:layout_marginRight="8dp"
                     android:fontFamily="@font/bmjua_font"
                     android:gravity="center"
                     android:text="@string/selectPerson"
                     android:textColor="@color/black"
-                    android:textSize="20sp" />
+                    android:textSize="17sp" />
 
                 <Button
                     android:id="@+id/addBtn"
                     android:layout_width="24dp"
                     android:layout_height="24dp"
-                    android:layout_marginEnd="20dp"
                     android:background="@drawable/icon_plus" />
 
             </LinearLayout>
@@ -349,18 +344,26 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
-                android:layout_marginLeft="30dp"
-                android:layout_marginTop="10dp"
-                android:layout_marginRight="30dp"
-                android:layout_marginBottom="10dp"
-                android:gravity="center"
-                android:orientation="horizontal">
+                android:layout_marginLeft="15dp"
+                android:layout_marginTop="20dp"
+                android:layout_marginRight="15dp"
+                android:layout_marginBottom="15dp"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/nanum_square_extra_bold"
+                    android:text="배달받을 장소를 입력해주세요."
+                    android:textColor="@color/black"
+                    android:layout_marginBottom="10dp"
+                    android:textSize="17sp" />
 
                 <AutoCompleteTextView
                     android:id="@+id/deliveryPlaceAutoCompleteTV"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:background="@drawable/et_border"
+                    android:background="@drawable/et_border_place"
                     android:completionThreshold="1"
                     android:fontFamily="@font/bmjua_font"
                     android:gravity="center_vertical"
@@ -377,10 +380,10 @@
                 style="?android:attr/borderlessButtonStyle"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="20dp"
-                android:layout_marginTop="15dp"
-                android:layout_marginRight="20dp"
-                android:layout_marginBottom="15dp"
+                android:layout_marginLeft="15dp"
+                android:layout_marginTop="20dp"
+                android:layout_marginRight="15dp"
+                android:layout_marginBottom="20dp"
                 android:background="@drawable/btn_fill2_mint"
                 android:fontFamily="@font/bmjua_font"
                 android:text="@string/upload"

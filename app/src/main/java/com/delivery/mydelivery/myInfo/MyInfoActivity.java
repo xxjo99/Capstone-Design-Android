@@ -10,7 +10,6 @@ import android.widget.AutoCompleteTextView;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -27,6 +26,7 @@ import com.google.gson.GsonBuilder;
 import java.util.List;
 import java.util.Objects;
 
+import io.github.muddz.styleabletoast.StyleableToast;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -248,8 +248,7 @@ public class MyInfoActivity extends AppCompatActivity {
                         gson = new GsonBuilder().create();
                         String userInfoJson = gson.toJson(user, UserVO.class);
                         PreferenceManager.setLoginInfo(context, userInfoJson);
-
-                        Toast.makeText(context, "변경 완료", Toast.LENGTH_SHORT).show();
+                        StyleableToast.makeText(context, "변경이 완료되었습니다.", R.style.successToast).show();
                         finish();
                     }
 

@@ -86,7 +86,7 @@ public class OrderListActivity extends AppCompatActivity {
     // 시간, 인원, 장소선택, 등록 버튼
     @SuppressLint("StaticFieldLeak")
     public static TextView selectTimeTV;
-    Button datePickerBtn;
+    ImageButton datePickerBtn;
     TextView selectPersonTV;
     Button minusPersonBtn;
     Button addPersonBtn;
