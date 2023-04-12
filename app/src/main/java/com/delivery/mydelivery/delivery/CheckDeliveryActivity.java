@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.widget.Button;
 import android.widget.ImageButton;
+import android.widget.LinearLayout;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
@@ -19,8 +20,8 @@ public class CheckDeliveryActivity extends AppCompatActivity {
     Toolbar toolbar;
     ImageButton backBtn;
 
-    Button checkDeliveryBtn; // 배달 확인
-    Button receivedDeliveryBtn; // 접수한 배달 확인
+    LinearLayout checkDeliveryBtn; // 배달 확인
+    LinearLayout receivedDeliveryBtn; // 접수한 배달 확인
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

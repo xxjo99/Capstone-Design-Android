@@ -32,63 +32,65 @@
 
     </androidx.appcompat.widget.Toolbar>
 
-    <ImageView
-        android:id="@+id/pictureIV"
+    <LinearLayout
+        android:id="@+id/ivLayout"
+        android:layout_margin="20dp"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_weight="1" />
-
-    <Button
-        android:id="@+id/takePictureBtn"
-        android:layout_width="120dp"
-        android:layout_height="55dp"
+        android:layout_height="match_parent"
         android:layout_gravity="center"
-        android:layout_marginBottom="50dp"
-        android:background="@drawable/btn_fill_white_blackborder"
-        android:fontFamily="@font/nanum_square_extra_bold"
-        android:text="촬영"
-        android:textColor="@color/black"
-        android:textSize="22sp" />
+        android:layout_weight="1"
+        android:orientation="vertical">
+
+        <ImageButton
+            android:id="@+id/pictureIV"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_gravity="center"
+            android:background="@color/white"
+            android:src="@drawable/icon_camera" />
+
+    </LinearLayout>
+
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_marginBottom="15dp"
-        android:layout_weight="1"
-        android:gravity="center_horizontal|bottom"
-        android:orientation="vertical"
-        android:padding="10dp">
+        android:layout_height="match_parent"
+        android:layout_gravity="center"
+        android:layout_weight="2"
+        android:gravity="center"
+        android:orientation="vertical">
 
-        <com.google.android.material.textfield.TextInputLayout
+        <EditText
+            android:id="@+id/messageET"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_margin="10dp"
-            android:gravity="center_horizontal|bottom">
-
-            <EditText
-                android:id="@+id/messageET"
-                android:layout_width="350dp"
-                android:layout_height="55dp"
-                android:layout_marginBottom="10dp"
-                android:background="@drawable/et_border"
-                android:fontFamily="@font/bmjua_font"
-                android:hint="알림내용 입력"
-                android:padding="18dp"
-                android:singleLine="true"
-                android:textSize="18sp" />
-
-        </com.google.android.material.textfield.TextInputLayout>
+            android:layout_marginLeft="25dp"
+            android:layout_marginTop="30dp"
+            android:layout_marginBottom="40dp"
+            android:layout_marginRight="25dp"
+            android:background="@drawable/et_border2"
+            android:drawableEnd="@drawable/icon_cancel"
+            android:fontFamily="@font/bmjua_font"
+            android:hint="배달이 완료된 장소를 입력해주세요."
+            android:paddingLeft="15dp"
+            android:paddingTop="25dp"
+            android:paddingRight="15dp"
+            android:paddingBottom="25dp"
+            android:textSize="15sp" />
 
         <Button
             android:id="@+id/deliveryFinishBtn"
             style="?android:attr/borderlessButtonStyle"
-            android:layout_width="350dp"
-            android:layout_height="60dp"
-            android:background="@drawable/btn_fill_white_blackborder"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_gravity="center"
+            android:background="@color/mint1"
             android:fontFamily="@font/nanum_square_extra_bold"
             android:text="배달 완료"
-            android:textColor="@color/black"
+            android:textColor="@color/white"
             android:textSize="22sp" />
+
     </LinearLayout>
+
 
 </LinearLayout>

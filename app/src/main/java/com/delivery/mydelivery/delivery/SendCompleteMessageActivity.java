@@ -9,7 +9,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.ImageView;
-import android.widget.Toast;
+import android.widget.LinearLayout;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -21,6 +21,7 @@ import com.delivery.mydelivery.retrofit.RetrofitService;
 import java.io.ByteArrayOutputStream;
 import java.util.Objects;
 
+import io.github.muddz.styleabletoast.StyleableToast;
 import okhttp3.MediaType;
 import okhttp3.MultipartBody;
 import okhttp3.RequestBody;
@@ -34,8 +35,8 @@ public class SendCompleteMessageActivity extends AppCompatActivity {
     Toolbar toolbar;
     ImageButton backBtn;
 
+    LinearLayout ivLayout;
     ImageView pictureIV;
-    Button takePictureBtn;
     Button deliveryFinishBtn;
 
     Bitmap pictureBitmap;
@@ -63,12 +64,12 @@ public class SendCompleteMessageActivity extends AppCompatActivity {
         int recruitId = intent.getIntExtra("recruitId", 0);
 
         // 초기화
+        ivLayout = findViewById(R.id.ivLayout);
         pictureIV = findViewById(R.id.pictureIV);
-        takePictureBtn = findViewById(R.id.takePictureBtn);
         deliveryFinishBtn = findViewById(R.id.deliveryFinishBtn);
 
         // 사진 촬영
-        takePictureBtn.setOnClickListener(view -> {
+        pictureIV.setOnClickListener(view -> {
             Intent cameraIntent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
             startActivityForResult(cameraIntent, 0);
         });
@@ -79,7 +80,7 @@ public class SendCompleteMessageActivity extends AppCompatActivity {
             if (pictureBitmap != null) {
                 completeDelivery(recruitId, pictureBitmap);
             } else {
-                Toast.makeText(context, "먼저 촬영을 완료해주세요.", Toast.LENGTH_SHORT).show();
+                StyleableToast.makeText(context, "먼저 촬영을 완료해주세요.", R.style.warningToast).show();
             }
         });
 
@@ -95,9 +96,12 @@ public class SendCompleteMessageActivity extends AppCompatActivity {
             Bundle extras = data.getExtras(); // Bundle로 데이터를 입력
             pictureBitmap = (Bitmap) extras.get("data"); // Bitmap으로 변환
 
-            // 이미지뷰에 이미지 저장
-            pictureIV.setVisibility(View.VISIBLE);
-            pictureIV.setImageBitmap(pictureBitmap);
+            // 레이아웃의 크기에 맞춰서 이미지 저장
+            int width = ivLayout.getWidth();
+            int height = ivLayout.getHeight();
+
+            Bitmap resizedPicture = Bitmap.createScaledBitmap(pictureBitmap, width, height, true);
+            pictureIV.setImageBitmap(resizedPicture);
         }
     }
 
@@ -118,7 +122,7 @@ public class SendCompleteMessageActivity extends AppCompatActivity {
                     @Override
                     public void onResponse(@NonNull Call<Void> call, @NonNull Response<Void> response) {
                         System.out.println(response);
-                        Toast.makeText(context, "배달이 완료되었습니다.", Toast.LENGTH_SHORT).show();
+                        StyleableToast.makeText(context, "배달이 완료되었습니다.", R.style.successToast).show();
                         finish();
                     }
 

@@ -8,7 +8,6 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
@@ -24,6 +23,7 @@ import com.delivery.mydelivery.user.UserVO;
 import java.util.List;
 import java.util.Objects;
 
+import io.github.muddz.styleabletoast.StyleableToast;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -149,7 +149,7 @@ public class ReceiptDeliveryListAdapter extends RecyclerView.Adapter<ReceiptDeli
                 .enqueue(new Callback<>() {
                     @Override
                     public void onResponse(@NonNull Call<Void> call, @NonNull Response<Void> response) {
-                        Toast.makeText(context, "배달이 접수되었습니다.", Toast.LENGTH_SHORT).show();
+                        StyleableToast.makeText(context, "배달이 접수되었습니다.", R.style.successToast).show();
                         ((Activity) context).finish();
                     }
 
