@@ -32,13 +32,13 @@
     <View
         android:layout_width="match_parent"
         android:layout_height="1dp"
-        android:background="@color/gray" />
+        android:background="@color/gray1" />
 
     <LinearLayout
         android:id="@+id/emptyLayout"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="@color/gray"
+        android:background="@color/gray1"
         android:gravity="center"
         android:orientation="vertical"
         android:visibility="gone">
@@ -110,7 +110,7 @@
             <View
                 android:layout_width="match_parent"
                 android:layout_height="10dp"
-                android:background="@color/gray" />
+                android:background="@color/gray1" />
 
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/recruitOrderListRecyclerView"
@@ -121,7 +121,7 @@
             <View
                 android:layout_width="match_parent"
                 android:layout_height="1dp"
-                android:background="@color/gray" />
+                android:background="@color/gray1" />
 
             <Button
                 android:id="@+id/addMenuBtn"
@@ -141,7 +141,7 @@
             <View
                 android:layout_width="match_parent"
                 android:layout_height="10dp"
-                android:background="@color/gray" />
+                android:background="@color/gray1" />
 
             <LinearLayout
                 android:layout_width="match_parent"

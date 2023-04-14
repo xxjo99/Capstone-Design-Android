@@ -334,6 +334,7 @@ public class RecruitActivity extends AppCompatActivity {
 
                             recruitScrollView.setVisibility(View.GONE);
                             paymentLayout.setVisibility(View.GONE);
+                            deleteBtn.setVisibility(View.GONE);
                         } else { // 배달 출발 (2)
                             receiptLayout.setVisibility(View.VISIBLE);
                             deliveryStateTV.setText("배달이 시작되었습니다.");
@@ -341,6 +342,7 @@ public class RecruitActivity extends AppCompatActivity {
                             checkOrderBtn.setVisibility(View.GONE);
                             recruitScrollView.setVisibility(View.GONE);
                             paymentLayout.setVisibility(View.GONE);
+                            deleteBtn.setVisibility(View.GONE);
                         }
                     }
 

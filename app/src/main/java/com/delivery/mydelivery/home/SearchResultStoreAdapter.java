@@ -50,11 +50,10 @@ public class SearchResultStoreAdapter extends RecyclerView.Adapter<SearchResultS
     public void onBindViewHolder(@NonNull SearchResultStoreAdapter.ViewHolder holder, int position) {
         StoreVO store = storeList.get(position);
 
-        String text = "https://img1.daumcdn.net/thumb/R1280x0/?scode=mtistory&fname=https://k.kakaocdn.net/dn/EShJF/btquPLT192D/SRxSvXqcWjHRTju3kHcOQK/img.png";
         String storeDeliveryPrice = "최소주문 " + store.getMinimumDeliveryPrice() + "원, 배달팁 " + store.getDeliveryTip() + "원";
 
         // store의 지정된 데이터들을 뷰에 세팅
-        Glide.with(context).load(/*store.getStoreImageUrl()*/ text).placeholder(R.drawable.ic_launcher_background).override(100, 100).into(holder.storeIV);
+        Glide.with(context).load(store.getStoreImageUrl()).placeholder(R.drawable.ic_launcher_background).into(holder.storeIV);
         holder.storeNameTV.setText(store.getStoreName());
         holder.storeInfoTV.setText(store.getStoreInfo());
         holder.storeDeliveryPriceTV.setText(storeDeliveryPrice);

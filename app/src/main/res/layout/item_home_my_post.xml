@@ -4,7 +4,10 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:layout_marginLeft="10dp"
+    android:layout_marginTop="5dp"
     android:layout_marginRight="10dp"
+    android:layout_marginBottom="5dp"
+    android:outlineSpotShadowColor="@color/mint1"
     card_view:cardCornerRadius="15dp"
     card_view:cardElevation="9dp"
     card_view:cardUseCompatPadding="true"
@@ -20,24 +23,29 @@
 
         <TextView
             android:id="@+id/storeNameTV"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:fontFamily="@font/bmjua_font"
+            android:ellipsize="marquee"
+            android:focusable="true"
+            android:fontFamily="@font/nanum_square_extra_bold"
+            android:marqueeRepeatLimit="marquee_forever"
+            android:singleLine="true"
             android:text="@string/storeName"
             android:textColor="@color/black"
-            android:textSize="22sp"
-            android:textStyle="bold" />
+            android:textSize="19sp" />
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="18dp">
+            android:layout_marginTop="30dp">
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:fontFamily="@font/bmjua_font"
-                android:text="@string/registrant" />
+                android:fontFamily="@font/nanum_square_bold"
+                android:text="@string/registrant"
+                android:textSize="13sp"
+                android:textStyle="bold" />
 
             <View
                 android:layout_width="0dp"
@@ -48,21 +56,25 @@
                 android:id="@+id/registrantTV"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:fontFamily="@font/bmjua_font"
-                android:text="@string/registrant" />
+                android:fontFamily="@font/nanum_square_bold"
+                android:text="@string/registrant"
+                android:textSize="13sp"
+                android:textStyle="bold" />
 
         </LinearLayout>
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="6dp">
+            android:layout_marginTop="8dp">
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:fontFamily="@font/bmjua_font"
-                android:text="@string/deliveryTime" />
+                android:fontFamily="@font/nanum_square_bold"
+                android:text="@string/deliveryTime"
+                android:textSize="13sp"
+                android:textStyle="bold" />
 
             <View
                 android:layout_width="0dp"
@@ -73,21 +85,25 @@
                 android:id="@+id/deliveryTimeTV"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:fontFamily="@font/bmjua_font"
-                android:text="@string/deliveryTime" />
+                android:fontFamily="@font/nanum_square_bold"
+                android:text="@string/deliveryTime"
+                android:textSize="13sp"
+                android:textStyle="bold" />
 
         </LinearLayout>
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="6dp">
+            android:layout_marginTop="8dp">
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:fontFamily="@font/bmjua_font"
-                android:text="@string/recruitPerson" />
+                android:fontFamily="@font/nanum_square_bold"
+                android:text="@string/recruitPerson"
+                android:textSize="13sp"
+                android:textStyle="bold" />
 
             <View
                 android:layout_width="0dp"
@@ -98,21 +114,25 @@
                 android:id="@+id/recruitPersonTV"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:fontFamily="@font/bmjua_font"
-                android:text="@string/recruitPerson" />
+                android:fontFamily="@font/nanum_square_bold"
+                android:text="@string/recruitPerson"
+                android:textSize="13sp"
+                android:textStyle="bold" />
 
         </LinearLayout>
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="6dp">
+            android:layout_marginTop="8dp">
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:fontFamily="@font/bmjua_font"
-                android:text="@string/place" />
+                android:fontFamily="@font/nanum_square_bold"
+                android:text="@string/place"
+                android:textSize="13sp"
+                android:textStyle="bold" />
 
             <View
                 android:layout_width="0dp"
@@ -123,8 +143,10 @@
                 android:id="@+id/placeTV"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:fontFamily="@font/bmjua_font"
-                android:text="@string/place" />
+                android:fontFamily="@font/nanum_square_bold"
+                android:text="@string/place"
+                android:textSize="13sp"
+                android:textStyle="bold" />
 
         </LinearLayout>
 

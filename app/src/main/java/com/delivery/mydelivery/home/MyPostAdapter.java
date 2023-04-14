@@ -93,7 +93,7 @@ public class MyPostAdapter extends RecyclerView.Adapter<MyPostAdapter.ViewHolder
     }
 
     public static class ViewHolder extends RecyclerView.ViewHolder {
-        TextView storeNameTv;
+        TextView storeNameTV;
         TextView registrantTV;
         TextView deliveryTimeTV;
         TextView recruitPersonTV;
@@ -102,7 +102,7 @@ public class MyPostAdapter extends RecyclerView.Adapter<MyPostAdapter.ViewHolder
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
 
-            storeNameTv = itemView.findViewById(R.id.storeNameTV);
+            storeNameTV = itemView.findViewById(R.id.storeNameTV);
             registrantTV = itemView.findViewById(R.id.registrantTV);
             deliveryTimeTV = itemView.findViewById(R.id.deliveryTimeTV);
             recruitPersonTV = itemView.findViewById(R.id.recruitPersonTV);
@@ -122,7 +122,7 @@ public class MyPostAdapter extends RecyclerView.Adapter<MyPostAdapter.ViewHolder
                     public void onResponse(@NonNull Call<StoreVO> call, @NonNull Response<StoreVO> response) {
                         StoreVO store = response.body();
                         assert store != null;
-                        holder.storeNameTv.setText(store.getStoreName());
+                        holder.storeNameTV.setText(store.getStoreName());
                     }
 
                     @Override

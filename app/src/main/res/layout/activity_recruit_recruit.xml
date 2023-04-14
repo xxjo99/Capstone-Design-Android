@@ -108,7 +108,7 @@
                     android:layout_height="1dp"
                     android:layout_marginTop="10dp"
                     android:layout_marginBottom="10dp"
-                    android:background="@color/gray" />
+                    android:background="@color/gray1" />
 
                 <!-- 배달 시간 -->
                 <LinearLayout
@@ -191,7 +191,7 @@
                 android:layout_height="7dp"
                 android:layout_marginTop="5dp"
                 android:layout_marginBottom="5dp"
-                android:background="@color/gray" />
+                android:background="@color/gray1" />
 
             <!-- 파티원 -->
             <LinearLayout
@@ -223,7 +223,7 @@
                 android:layout_height="7dp"
                 android:layout_marginTop="5dp"
                 android:layout_marginBottom="5dp"
-                android:background="@color/gray" />
+                android:background="@color/gray1" />
 
             <!-- 내 배달정보 -->
             <LinearLayout
@@ -301,7 +301,7 @@
                 android:layout_height="7dp"
                 android:layout_marginTop="5dp"
                 android:layout_marginBottom="5dp"
-                android:background="@color/gray" />
+                android:background="@color/gray1" />
 
             <!-- 파티원 배달 정보 -->
             <LinearLayout
@@ -354,7 +354,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="7dp"
                 android:layout_marginBottom="5dp"
-                android:background="@color/gray" />
+                android:background="@color/gray1" />
 
             <!-- 금액 계산 -->
             <LinearLayout
@@ -427,7 +427,7 @@
                     android:layout_height="1dp"
                     android:layout_marginTop="15dp"
                     android:layout_marginBottom="15dp"
-                    android:background="@color/gray" />
+                    android:background="@color/gray1" />
 
                 <LinearLayout
                     android:layout_width="match_parent"

@@ -172,7 +172,7 @@ public class EmailRegisterActivity extends AppCompatActivity {
                         } else {
                             StyleableToast.makeText(context, "중복된 이메일입니다.", R.style.errorToast).show();
                             nextBtn.setEnabled(false);
-                            nextBtn.setBackgroundColor(getColor(R.color.gray));
+                            nextBtn.setBackgroundColor(getColor(R.color.gray1));
                         }
                     }
 

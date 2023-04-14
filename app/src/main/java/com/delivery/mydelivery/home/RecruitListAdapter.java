@@ -3,12 +3,15 @@ package com.delivery.mydelivery.home;
 import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.Intent;
+import android.os.Build;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
+import androidx.cardview.widget.CardView;
+import androidx.core.content.ContextCompat;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.delivery.mydelivery.R;
@@ -107,6 +110,7 @@ public class RecruitListAdapter extends RecyclerView.Adapter<RecruitListAdapter.
     }
 
     public static class ViewHolder extends RecyclerView.ViewHolder {
+        CardView cardView;
         TextView storeNameTV;
         TextView participationPossibleStatusTV;
         TextView registrantTV;
@@ -121,6 +125,7 @@ public class RecruitListAdapter extends RecyclerView.Adapter<RecruitListAdapter.
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
 
+            cardView = itemView.findViewById(R.id.cardView);
             storeNameTV = itemView.findViewById(R.id.storeNameTV);
             participationPossibleStatusTV = itemView.findViewById(R.id.participationPossibleStatusTV);
             registrantTV = itemView.findViewById(R.id.registrantTV);
@@ -187,9 +192,15 @@ public class RecruitListAdapter extends RecyclerView.Adapter<RecruitListAdapter.
                         if (response.body() >= person) {
                             holder.participationPossibleStatusTV.setText("참가 불가");
                             holder.participationPossibleStatusTV.setBackgroundResource(R.drawable.tv_border_fill_red);
+                            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.P) {
+                                holder.cardView.setOutlineSpotShadowColor(ContextCompat.getColor(context, R.color.red));
+                            }
                         } else {
                             holder.participationPossibleStatusTV.setText("참가 가능");
                             holder.participationPossibleStatusTV.setBackgroundResource(R.drawable.tv_border_fill_green);
+                            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.P) {
+                                holder.cardView.setOutlineSpotShadowColor(ContextCompat.getColor(context, R.color.mint1));
+                            }
                         }
                     }
 
