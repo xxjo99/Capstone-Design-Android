@@ -22,4 +22,5 @@
         <!-- 배경색 설정 - 하얀색 -->
         <item name="android:windowBackground">@color/white</item>
     </style>
+
 </resources>

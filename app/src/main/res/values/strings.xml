@@ -41,6 +41,15 @@
     <string name="completeModifyPw">비밀번호 변경이\n완료되었습니다</string>
     <string name="moveLogin">로그인 페이지로 이동</string>
 
+    <!-- 네비게이션 -->
+    <string name="home">홈</string>
+    <string name="find">검색</string>
+    <string name="post">모집글</string>
+    <string name="myPost">나의 참가글</string>
+    <string name="myInfo">마이페이지</string>
+
+    <!-- 마이페이지 -->
+
     <!-- 모집글 -->
     <string name="noRecruitList">등록된 모집글이 없습니다.</string>
     <string name="noParticipant1">참가한 모집글이 없습니다.</string>
@@ -61,6 +70,7 @@
 
     <!-- 매장 -->
     <string name="price">가격</string>
+    <string name="category">카테고리</string>
 
     <!-- 포인트 -->
     <string name="addPoint">충전하기</string>
@@ -91,14 +101,6 @@
     <string name="logout">로그아웃</string>
     <string name="quit">나가기</string>
     <string name="division">|</string>
-
-    <string name="home">홈</string>
-    <string name="find">검색</string>
-    <string name="category">카테고리</string>
-    <string name="post">등록글 리스트</string>
-    <string name="myPost">나의 참가/등록글</string>
-    <string name="myInfo">내정보</string>
-    <string name="info">정보</string>
 
     <string name="minimumDeliveryPrice">최소주문금액</string>
     <string name="storeName">매장 이름</string>

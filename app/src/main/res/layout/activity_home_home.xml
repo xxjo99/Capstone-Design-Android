@@ -12,27 +12,14 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@color/white"
-        app:contentInsetStart="0dp"
+        app:contentInsetStart="25dp"
         app:menu="@menu/home_toolbar">
-
-        <ImageButton
-            android:id="@+id/checkDeliveryBtn"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="10dp"
-            android:src="@drawable/icon_bell"
-            android:background="@color/white"
-            android:fontFamily="@font/bmjua_font"
-            android:textColor="@color/white"
-            android:textSize="15sp" />
 
         <TextView
             android:id="@+id/infoTV"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:fontFamily="@font/nanum_square_bold"
-            android:text="@string/info"
+            android:fontFamily="@font/nanum_square_extra_bold"
             android:textColor="@color/black"
             android:textSize="18sp" />
 
@@ -54,6 +41,7 @@
         app:itemBackground="@color/white"
         app:itemIconTint="@drawable/home_menu_select_color"
         app:itemTextColor="@drawable/home_menu_select_color"
+        app:labelVisibilityMode="labeled"
         app:menu="@menu/home_menu" />
 
 </LinearLayout>

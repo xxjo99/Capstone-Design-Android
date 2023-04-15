@@ -3,6 +3,13 @@
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <item
+        android:id="@+id/deliveryBtn"
+        android:enabled="true"
+        android:icon="@drawable/icon_bell"
+        android:title="배달"
+        app:showAsAction="always" />
+
+    <item
         android:id="@+id/cartBtn"
         android:enabled="true"
         android:icon="@drawable/icon_cart"

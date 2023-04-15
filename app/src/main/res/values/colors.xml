@@ -29,4 +29,7 @@
     <color name="green1">#00ff00</color>
     <color name="green2">#69f0ae</color>
 
+    <color name="gradation1">#5f7af6</color>
+    <color name="gradation2">#c8fdca</color>
+
 </resources>
