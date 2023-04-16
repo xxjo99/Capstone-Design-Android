@@ -5,7 +5,7 @@
     android:layout_height="match_parent"
     android:layout_marginStart="25dp"
     android:layout_marginEnd="25dp"
-    android:background="@drawable/dialog_participate"
+    android:background="@drawable/dialog_participate_possible"
     android:orientation="vertical">
 
     <LinearLayout
@@ -20,20 +20,20 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="25dp"
-            android:layout_marginBottom="35dp"
+            android:layout_marginBottom="40dp"
             android:fontFamily="@font/bmjua_font"
             android:text="@string/storeName"
-            android:textColor="@color/black"
+            android:textColor="@color/black2"
             android:textSize="22sp" />
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="30dp">
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginBottom="25dp"
                 android:fontFamily="@font/nanum_square_extra_bold"
                 android:text="@string/recruitPerson"
                 android:textColor="@color/gray3"
@@ -58,7 +58,7 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="25dp">
+            android:layout_marginBottom="30dp">
 
             <TextView
                 android:layout_width="wrap_content"
@@ -87,7 +87,7 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="25dp">
+            android:layout_marginBottom="30dp">
 
             <TextView
                 android:layout_width="wrap_content"
@@ -148,7 +148,8 @@
             android:layout_height="wrap_content"
             android:layout_marginBottom="25dp"
             android:gravity="center_horizontal"
-            android:orientation="horizontal">
+            android:orientation="horizontal"
+            android:visibility="gone">
 
             <Button
                 android:id="@+id/participateBtn"
@@ -181,15 +182,19 @@
             android:id="@+id/participateCompleteLayout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="12dp"
-            android:layout_marginBottom="12dp"
-            android:visibility="gone">
+            android:layout_marginBottom="25dp"
+            android:visibility="visible">
 
             <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_width="0dp"
+                android:layout_height="50dp"
+                android:layout_weight="1"
+                android:fontFamily="@font/nanum_square_extra_bold"
                 android:gravity="center"
-                android:text="모집완료" />
+                android:text="모집완료"
+                android:background="@drawable/btn_participate_border1"
+                android:textColor="@color/black"
+                android:textSize="18sp" />
 
         </LinearLayout>
 

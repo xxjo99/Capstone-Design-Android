@@ -26,7 +26,7 @@
                 android:layout_gravity="center"
                 android:fontFamily="@font/nanum_square_extra_bold"
                 android:text="@string/menuName"
-                android:textColor="@color/black"
+                android:textColor="@color/black2"
                 android:textSize="15sp" />
 
             <View
@@ -57,7 +57,7 @@
                 android:layout_gravity="center"
                 android:fontFamily="@font/nanum_square_extra_bold"
                 android:text="@string/menuPrice"
-                android:textColor="@color/black"
+                android:textColor="@color/black2"
                 android:textSize="17sp" />
 
             <View
@@ -81,7 +81,7 @@
                     android:fontFamily="@font/bmjua_font"
                     android:gravity="center"
                     android:text="수량"
-                    android:textColor="@color/black"
+                    android:textColor="@color/black2"
                     android:textSize="15sp" />
 
             </LinearLayout>

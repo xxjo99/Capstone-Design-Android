@@ -20,7 +20,7 @@
         android:paddingRight="40dp"
         android:paddingBottom="20dp"
         android:text="삭제가 완료되었습니다.\n24시간동안 등록과 참가가 제한됩니다."
-        android:textColor="@color/black"
+        android:textColor="@color/black2"
         android:textSize="17sp" />
 
     <Button
@@ -31,7 +31,7 @@
         android:layout_gravity="center"
         android:fontFamily="@font/bmjua_font"
         android:text="@string/confirm"
-        android:textColor="@color/black"
+        android:textColor="@color/black2"
         android:textSize="17sp" />
 
 </LinearLayout>

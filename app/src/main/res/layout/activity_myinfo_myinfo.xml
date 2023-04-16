@@ -28,7 +28,7 @@
             android:layout_height="wrap_content"
             android:fontFamily="@font/nanum_square_bold"
             android:text="내정보"
-            android:textColor="@color/black"
+            android:textColor="@color/black2"
             android:textSize="18sp" />
 
     </androidx.appcompat.widget.Toolbar>
@@ -45,7 +45,7 @@
             android:layout_marginBottom="10dp"
             android:fontFamily="@font/bmjua_font"
             android:text="@string/email"
-            android:textColor="@color/gray3"
+            android:textColor="@color/black2"
             android:textSize="17sp" />
 
         <EditText
@@ -76,7 +76,7 @@
             android:layout_marginBottom="10dp"
             android:fontFamily="@font/bmjua_font"
             android:text="@string/name"
-            android:textColor="@color/gray3"
+            android:textColor="@color/black2"
             android:textSize="17sp" />
 
         <LinearLayout
@@ -95,7 +95,7 @@
                 android:paddingBottom="15dp"
                 android:singleLine="true"
                 android:text="@string/name"
-                android:textColor="@color/black"
+                android:textColor="@color/black2"
                 android:textSize="17sp"
                 tools:ignore="RtlSymmetry" />
 
@@ -115,7 +115,7 @@
             android:layout_marginBottom="10dp"
             android:fontFamily="@font/bmjua_font"
             android:text="@string/phoneNum"
-            android:textColor="@color/gray3"
+            android:textColor="@color/black2"
             android:textSize="17sp" />
 
         <EditText
@@ -130,7 +130,7 @@
             android:paddingBottom="15dp"
             android:singleLine="true"
             android:text="@string/phoneNum"
-            android:textColor="@color/black"
+            android:textColor="@color/black2"
             android:textSize="17sp"
             tools:ignore="RtlSymmetry" />
 
@@ -148,7 +148,7 @@
             android:layout_marginBottom="10dp"
             android:fontFamily="@font/bmjua_font"
             android:text="@string/school"
-            android:textColor="@color/gray3"
+            android:textColor="@color/black2"
             android:textSize="17sp" />
 
         <AutoCompleteTextView
@@ -162,7 +162,7 @@
             android:paddingBottom="15dp"
             android:singleLine="true"
             android:text="@string/school"
-            android:textColor="@color/black"
+            android:textColor="@color/black2"
             android:textSize="17sp"
             tools:ignore="RtlSymmetry" />
 

@@ -20,7 +20,7 @@
             android:paddingTop="40dp"
             android:paddingBottom="40dp"
             android:text="@string/completeModifyPw"
-            android:textColor="@color/black"
+            android:textColor="@color/black2"
             android:textSize="25sp" />
 
         <View

@@ -20,7 +20,7 @@
         android:layout_marginBottom="5dp"
         android:fontFamily="@font/bmjua_font"
         android:text="@string/member"
-        android:textColor="@color/black" />
+        android:textColor="@color/black2" />
 
     <TextView
         android:id="@+id/participantTypeTV"
@@ -29,6 +29,6 @@
         android:layout_gravity="center"
         android:fontFamily="@font/bmjua_font"
         android:text="@string/participantType"
-        android:textColor="@color/black" />
+        android:textColor="@color/black2" />
 
 </LinearLayout>

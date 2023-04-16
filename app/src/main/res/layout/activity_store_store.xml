@@ -28,7 +28,7 @@
             android:layout_marginStart="10dp"
             android:fontFamily="@font/nanum_square_bold"
             android:text="@string/category"
-            android:textColor="@color/black"
+            android:textColor="@color/black2"
             android:textSize="18sp" />
 
     </androidx.appcompat.widget.Toolbar>
@@ -49,7 +49,7 @@
             app:tabMode="scrollable"
             app:tabSelectedTextColor="@color/mint2"
             app:tabTextAppearance="@style/tabTextStyle"
-            app:tabTextColor="@color/black" />
+            app:tabTextColor="@color/black2" />
 
         <View
             android:layout_width="match_parent"

@@ -40,7 +40,7 @@
                     android:layout_height="wrap_content"
                     android:fontFamily="@font/nanum_square_otf_ac_eb"
                     android:text="@string/storeName"
-                    android:textColor="@color/black"
+                    android:textColor="@color/black2"
                     android:textSize="20sp"
                     android:textStyle="bold" />
 
@@ -78,7 +78,7 @@
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/bmjua_font"
                 android:text="@string/deliveryTip"
-                android:textColor="@color/black"
+                android:textColor="@color/black2"
                 android:textSize="13sp" />
 
         </LinearLayout>

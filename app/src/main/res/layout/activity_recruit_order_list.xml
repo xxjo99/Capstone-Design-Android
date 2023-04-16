@@ -24,7 +24,7 @@
             android:layout_height="wrap_content"
             android:fontFamily="@font/nanum_square_bold"
             android:text="@string/cart"
-            android:textColor="@color/black"
+            android:textColor="@color/black2"
             android:textSize="18sp" />
 
     </androidx.appcompat.widget.Toolbar>
@@ -55,7 +55,7 @@
             android:fontFamily="@font/bmjua_font"
             android:gravity="center"
             android:text="@string/emptyOrderList"
-            android:textColor="@color/black"
+            android:textColor="@color/black2"
             android:textSize="23sp" />
 
         <Button
@@ -102,7 +102,7 @@
                     android:layout_height="wrap_content"
                     android:fontFamily="@font/nanum_square_extra_bold"
                     android:text="@string/storeName"
-                    android:textColor="@color/black"
+                    android:textColor="@color/black2"
                     android:textSize="18sp" />
 
             </LinearLayout>
@@ -156,7 +156,7 @@
                     android:layout_height="wrap_content"
                     android:fontFamily="@font/nanum_square_extra_bold"
                     android:text="@string/totalPrice"
-                    android:textColor="@color/black"
+                    android:textColor="@color/black2"
                     android:textSize="16sp" />
 
                 <View
@@ -169,7 +169,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:fontFamily="@font/nanum_square_extra_bold"
-                    android:textColor="@color/black"
+                    android:textColor="@color/black2"
                     android:textSize="17sp" />
 
             </LinearLayout>

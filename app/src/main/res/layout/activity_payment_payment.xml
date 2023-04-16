@@ -24,7 +24,7 @@
             android:layout_height="wrap_content"
             android:fontFamily="@font/nanum_square_bold"
             android:text="@string/payment"
-            android:textColor="@color/black"
+            android:textColor="@color/black2"
             android:textSize="18sp" />
 
     </androidx.appcompat.widget.Toolbar>
@@ -58,7 +58,7 @@
                     android:layout_marginBottom="10dp"
                     android:fontFamily="@font/bmjua_font"
                     android:text="@string/place"
-                    android:textColor="@color/black"
+                    android:textColor="@color/black2"
                     android:textSize="18sp" />
 
                 <TextView
@@ -67,7 +67,7 @@
                     android:layout_height="wrap_content"
                     android:fontFamily="@font/bmjua_font"
                     android:text="@string/phoneNum"
-                    android:textColor="@color/black"
+                    android:textColor="@color/black2"
                     android:textSize="18sp" />
 
             </LinearLayout>
@@ -92,7 +92,7 @@
                     android:layout_marginBottom="5dp"
                     android:fontFamily="@font/bmjua_font"
                     android:text="@string/request"
-                    android:textColor="@color/black"
+                    android:textColor="@color/black2"
                     android:textSize="18sp" />
 
                 <!-- 요청 사항 -->
@@ -166,7 +166,7 @@
                     android:layout_marginBottom="15dp"
                     android:fontFamily="@font/bmjua_font"
                     android:text="@string/paymentPrice"
-                    android:textColor="@color/black"
+                    android:textColor="@color/black2"
                     android:textSize="18sp" />
 
                 <LinearLayout
@@ -244,7 +244,7 @@
                         android:layout_height="wrap_content"
                         android:fontFamily="@font/bmjua_font"
                         android:text="@string/finalPayment"
-                        android:textColor="@color/black" />
+                        android:textColor="@color/black2" />
 
                     <View
                         android:layout_width="0dp"
@@ -257,7 +257,7 @@
                         android:layout_height="wrap_content"
                         android:fontFamily="@font/bmjua_font"
                         android:text="@string/finalPayment"
-                        android:textColor="@color/black" />
+                        android:textColor="@color/black2" />
 
                 </LinearLayout>
 
@@ -282,7 +282,7 @@
                     android:layout_marginBottom="15dp"
                     android:fontFamily="@font/bmjua_font"
                     android:text="@string/point"
-                    android:textColor="@color/black"
+                    android:textColor="@color/black2"
                     android:textSize="18sp" />
 
                 <LinearLayout
@@ -331,7 +331,7 @@
                     android:layout_marginBottom="15dp"
                     android:fontFamily="@font/bmjua_font"
                     android:text="결제상세"
-                    android:textColor="@color/black"
+                    android:textColor="@color/black2"
                     android:textSize="18sp" />
 
                 <LinearLayout

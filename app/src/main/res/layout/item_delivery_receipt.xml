@@ -22,7 +22,7 @@
             android:gravity="center"
             android:padding="17dp"
             android:text="@string/storeName"
-            android:textColor="@color/black"
+            android:textColor="@color/black2"
             android:textSize="18sp"
             android:textStyle="bold" />
 
@@ -38,7 +38,7 @@
             android:fontFamily="@font/nanum_square_bold"
             android:padding="20dp"
             android:text="@string/place"
-            android:textColor="@color/black"
+            android:textColor="@color/black2"
             android:textSize="16sp"
             android:textStyle="bold" />
 

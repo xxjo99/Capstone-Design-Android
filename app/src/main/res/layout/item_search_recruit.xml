@@ -38,7 +38,7 @@
                 android:marqueeRepeatLimit="marquee_forever"
                 android:singleLine="true"
                 android:text="@string/storeName"
-                android:textColor="@color/black"
+                android:textColor="@color/black2"
                 android:textSize="19sp" />
 
             <TextView

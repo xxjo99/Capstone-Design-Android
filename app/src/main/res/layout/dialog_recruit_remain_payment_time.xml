@@ -21,7 +21,7 @@
         android:paddingRight="50dp"
         android:paddingBottom="25dp"
         android:text="남은시간"
-        android:textColor="@color/black"
+        android:textColor="@color/black2"
         android:textSize="20sp" />
 
     <View
@@ -42,7 +42,7 @@
             android:layout_weight="1"
             android:fontFamily="@font/bmjua_font"
             android:text="@string/confirm"
-            android:textColor="@color/black"
+            android:textColor="@color/black2"
             android:textSize="20sp" />
 
 

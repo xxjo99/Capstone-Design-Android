@@ -24,7 +24,7 @@
         android:fontFamily="@font/bmjua_font"
         android:gravity="center_horizontal"
         android:text="결제가 완료되었습니다.\n주문이 접수될 때까지 잠시 기다려주세요."
-        android:textColor="@color/black"
+        android:textColor="@color/black2"
         android:textSize="20dp" />
 
     <LinearLayout

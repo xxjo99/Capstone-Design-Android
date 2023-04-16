@@ -91,6 +91,7 @@ public class ParticipateDialog {
         Button participateBtn = dialog.findViewById(R.id.participateBtn);
         Button cancelBtn = dialog.findViewById(R.id.cancelBtn);
 
+        LinearLayout participateDialogLayout = dialog.findViewById(R.id.participateDialogLayout);
         LinearLayout participateBtnLayout = dialog.findViewById(R.id.participateBtnLayout);
         LinearLayout participateCompleteLayout = dialog.findViewById(R.id.participateCompleteLayout);
 
@@ -102,12 +103,14 @@ public class ParticipateDialog {
         deliveryTipTV.setText(deliveryTip + "원");
 
         // 참가 가능 여부
-        if (currentPersonCount == recruitPerson) {
+        if (currentPersonCount == recruitPerson) { // 참가 불가
             participateBtnLayout.setVisibility(View.GONE);
             participateCompleteLayout.setVisibility(View.VISIBLE);
-        } else {
+            participateDialogLayout.setBackgroundResource(R.drawable.dialog_participate_inpossible);
+        } else { // 참가 가능
             participateBtnLayout.setVisibility(View.VISIBLE);
             participateCompleteLayout.setVisibility(View.GONE);
+            participateDialogLayout.setBackgroundResource(R.drawable.dialog_participate_possible);
         }
 
         // 사용자 정보

@@ -30,7 +30,7 @@
             android:fontFamily="@font/bmjua_font"
             android:gravity="center"
             android:text="@string/emptyOrderList"
-            android:textColor="@color/black"
+            android:textColor="@color/black2"
             android:textSize="23sp" />
 
         <Button
@@ -87,7 +87,7 @@
                     android:layout_height="wrap_content"
                     android:fontFamily="@font/nanum_square_bold"
                     android:text="@string/cart"
-                    android:textColor="@color/black"
+                    android:textColor="@color/black2"
                     android:textSize="18sp" />
 
             </androidx.appcompat.widget.Toolbar>
@@ -124,7 +124,7 @@
                             android:layout_marginBottom="18dp"
                             android:fontFamily="@font/nanum_square_extra_bold"
                             android:text="@string/storeName"
-                            android:textColor="@color/black"
+                            android:textColor="@color/black2"
                             android:textSize="18sp" />
 
                         <LinearLayout
@@ -137,7 +137,7 @@
                                 android:layout_height="wrap_content"
                                 android:fontFamily="@font/nanum_square_extra_bold"
                                 android:text="@string/deliveryTip"
-                                android:textColor="@color/black"
+                                android:textColor="@color/black2"
                                 android:textSize="15sp" />
 
                             <View
@@ -151,7 +151,7 @@
                                 android:layout_height="wrap_content"
                                 android:fontFamily="@font/nanum_square_extra_bold"
                                 android:text="@string/deliveryTip"
-                                android:textColor="@color/black"
+                                android:textColor="@color/black2"
                                 android:textSize="15sp" />
 
                         </LinearLayout>
@@ -202,7 +202,7 @@
                             android:layout_height="wrap_content"
                             android:fontFamily="@font/nanum_square_extra_bold"
                             android:text="@string/totalPrice"
-                            android:textColor="@color/black"
+                            android:textColor="@color/black2"
                             android:textSize="16sp" />
 
                         <View
@@ -215,7 +215,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:fontFamily="@font/nanum_square_extra_bold"
-                            android:textColor="@color/black"
+                            android:textColor="@color/black2"
                             android:textSize="17sp" />
 
                     </LinearLayout>
@@ -271,7 +271,7 @@
                     android:fontFamily="@font/nanum_square_extra_bold"
                     android:gravity="center"
                     android:text="배달 시간을 선택해주세요."
-                    android:textColor="@color/black"
+                    android:textColor="@color/black2"
                     android:textSize="17sp" />
 
                 <View
@@ -306,7 +306,7 @@
                     android:layout_height="wrap_content"
                     android:fontFamily="@font/nanum_square_extra_bold"
                     android:text="모집 인원을 선택해주세요."
-                    android:textColor="@color/black"
+                    android:textColor="@color/black2"
                     android:textSize="17sp" />
 
                 <View
@@ -329,7 +329,7 @@
                     android:fontFamily="@font/bmjua_font"
                     android:gravity="center"
                     android:text="@string/selectPerson"
-                    android:textColor="@color/black"
+                    android:textColor="@color/black2"
                     android:textSize="17sp" />
 
                 <Button
@@ -355,7 +355,7 @@
                     android:layout_height="wrap_content"
                     android:fontFamily="@font/nanum_square_extra_bold"
                     android:text="배달받을 장소를 입력해주세요."
-                    android:textColor="@color/black"
+                    android:textColor="@color/black2"
                     android:layout_marginBottom="10dp"
                     android:textSize="17sp" />
 

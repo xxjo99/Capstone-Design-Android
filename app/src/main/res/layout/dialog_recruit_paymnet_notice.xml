@@ -20,7 +20,7 @@
         android:paddingRight="40dp"
         android:paddingBottom="20dp"
         android:text="결제"
-        android:textColor="@color/black"
+        android:textColor="@color/black2"
         android:textSize="17sp" />
 
     <Button
@@ -31,7 +31,7 @@
         android:layout_gravity="center"
         android:fontFamily="@font/bmjua_font"
         android:text="@string/confirm"
-        android:textColor="@color/black"
+        android:textColor="@color/black2"
         android:textSize="17sp" />
 
 </LinearLayout>

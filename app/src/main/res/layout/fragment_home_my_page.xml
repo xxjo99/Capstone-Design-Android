@@ -34,7 +34,7 @@
                 android:layout_marginBottom="10dp"
                 android:fontFamily="@font/bmjua_font"
                 android:text="@string/name"
-                android:textColor="@color/black"
+                android:textColor="@color/black2"
                 android:textSize="20sp" />
 
             <TextView
@@ -46,7 +46,7 @@
                 android:fontFamily="@font/bmjua_font"
                 android:gravity="center"
                 android:text="@string/point"
-                android:textColor="@color/black"
+                android:textColor="@color/black2"
                 android:textSize="16sp"
                 app:drawableLeftCompat="@drawable/icon_coin" />
 
@@ -86,7 +86,7 @@
                 android:fontFamily="@font/nanum_square_extra_bold"
                 android:gravity="center"
                 android:text="포인트 충전"
-                android:textColor="@color/black"
+                android:textColor="@color/black2"
                 android:textSize="14sp" />
 
         </LinearLayout>
@@ -116,7 +116,7 @@
                 android:fontFamily="@font/nanum_square_extra_bold"
                 android:gravity="center"
                 android:text="포인트 내역"
-                android:textColor="@color/black"
+                android:textColor="@color/black2"
                 android:textSize="14sp" />
 
         </LinearLayout>
@@ -146,7 +146,7 @@
                 android:fontFamily="@font/nanum_square_extra_bold"
                 android:gravity="center"
                 android:text="주문 내역"
-                android:textColor="@color/black"
+                android:textColor="@color/black2"
                 android:textSize="14sp" />
 
         </LinearLayout>
@@ -175,7 +175,7 @@
                 android:fontFamily="@font/nanum_square_extra_bold"
                 android:gravity="center"
                 android:text="내정보"
-                android:textColor="@color/black"
+                android:textColor="@color/black2"
                 android:textSize="14sp" />
 
         </LinearLayout>
@@ -205,7 +205,7 @@
                 android:fontFamily="@font/nanum_square_extra_bold"
                 android:gravity="center"
                 android:text="비밀번호 변경"
-                android:textColor="@color/black"
+                android:textColor="@color/black2"
                 android:textSize="14sp" />
 
         </LinearLayout>
@@ -234,7 +234,7 @@
                 android:fontFamily="@font/nanum_square_extra_bold"
                 android:gravity="center"
                 android:text="로그아웃"
-                android:textColor="@color/black"
+                android:textColor="@color/black2"
                 android:textSize="14sp" />
 
         </LinearLayout>

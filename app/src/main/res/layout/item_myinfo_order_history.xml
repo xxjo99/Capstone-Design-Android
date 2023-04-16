@@ -49,7 +49,7 @@
                     android:layout_height="wrap_content"
                     android:fontFamily="@font/nanum_square_extra_bold"
                     android:text="@string/storeName"
-                    android:textColor="@color/black"
+                    android:textColor="@color/black2"
                     android:textSize="20sp" />
 
             </LinearLayout>
@@ -65,7 +65,7 @@
                     android:layout_height="wrap_content"
                     android:fontFamily="@font/nanum_square_bold"
                     android:text="참가인원"
-                    android:textColor="@color/black"
+                    android:textColor="@color/black2"
                     android:textSize="12sp" />
 
                 <View
@@ -79,7 +79,7 @@
                     android:layout_height="wrap_content"
                     android:fontFamily="@font/nanum_square_extra_bold"
                     android:text="참가인원"
-                    android:textColor="@color/black"
+                    android:textColor="@color/black2"
                     android:textSize="12sp" />
 
             </LinearLayout>
@@ -94,7 +94,7 @@
                     android:layout_height="wrap_content"
                     android:fontFamily="@font/nanum_square_bold"
                     android:text="지불 금액"
-                    android:textColor="@color/black"
+                    android:textColor="@color/black2"
                     android:textSize="12sp" />
 
                 <View
@@ -108,7 +108,7 @@
                     android:layout_height="wrap_content"
                     android:fontFamily="@font/nanum_square_extra_bold"
                     android:text="지불 금액"
-                    android:textColor="@color/black"
+                    android:textColor="@color/black2"
                     android:textSize="12sp" />
 
             </LinearLayout>

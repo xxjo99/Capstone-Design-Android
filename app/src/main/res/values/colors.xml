@@ -11,7 +11,7 @@
     <!-- 생성한 컬러 -->
     <color name="gray1">#f2f2f2</color>
     <color name="gray2">#ced4da</color>
-    <color name="gray3">#424242</color>
+    <color name="gray3">#434343</color>
     <color name="gray4">#adb5bd</color>
     <color name="gray5">#f8f9fa</color>
     <color name="blue">#5555FF</color>
@@ -31,5 +31,9 @@
 
     <color name="gradation1">#5f7af6</color>
     <color name="gradation2">#c8fdca</color>
+    <color name="gradation3">#e52d27</color>
+    <color name="gradation4">#b31217</color>
+
+    <color name="black2">#333333</color>
 
 </resources>

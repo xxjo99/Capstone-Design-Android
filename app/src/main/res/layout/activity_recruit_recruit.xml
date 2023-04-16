@@ -48,7 +48,7 @@
             android:layout_height="wrap_content"
             android:fontFamily="@font/bmjua_font"
             android:text="주문이 접수되었습니다."
-            android:textColor="@color/black"
+            android:textColor="@color/black2"
             android:textSize="23sp" />
 
         <Button
@@ -100,7 +100,7 @@
                     android:layout_height="wrap_content"
                     android:fontFamily="@font/bmjua_font"
                     android:text="@string/storeName"
-                    android:textColor="@color/black"
+                    android:textColor="@color/black2"
                     android:textSize="25sp" />
 
                 <View
@@ -123,7 +123,7 @@
                         android:layout_marginEnd="20dp"
                         android:fontFamily="@font/bmjua_font"
                         android:text="@string/deliveryTime"
-                        android:textColor="@color/black" />
+                        android:textColor="@color/black2" />
 
                     <TextView
                         android:id="@+id/deliveryTimeTV"
@@ -131,7 +131,7 @@
                         android:layout_height="wrap_content"
                         android:fontFamily="@font/bmjua_font"
                         android:text="@string/deliveryTime"
-                        android:textColor="@color/black" />
+                        android:textColor="@color/black2" />
 
                 </LinearLayout>
 
@@ -148,7 +148,7 @@
                         android:layout_marginEnd="20dp"
                         android:fontFamily="@font/bmjua_font"
                         android:text="@string/deliveryTip"
-                        android:textColor="@color/black" />
+                        android:textColor="@color/black2" />
 
                     <TextView
                         android:id="@+id/deliveryTipTV"
@@ -156,7 +156,7 @@
                         android:layout_height="wrap_content"
                         android:fontFamily="@font/bmjua_font"
                         android:text="@string/deliveryTip"
-                        android:textColor="@color/black" />
+                        android:textColor="@color/black2" />
 
                 </LinearLayout>
 
@@ -172,7 +172,7 @@
                         android:layout_marginEnd="20dp"
                         android:fontFamily="@font/bmjua_font"
                         android:text="@string/minimumDeliveryPrice"
-                        android:textColor="@color/black" />
+                        android:textColor="@color/black2" />
 
                     <TextView
                         android:id="@+id/minimumDeliveryPriceTV"
@@ -180,7 +180,7 @@
                         android:layout_height="wrap_content"
                         android:fontFamily="@font/bmjua_font"
                         android:text="@string/minimumDeliveryPrice"
-                        android:textColor="@color/black" />
+                        android:textColor="@color/black2" />
 
                 </LinearLayout>
 
@@ -206,7 +206,7 @@
                     android:layout_marginBottom="7dp"
                     android:fontFamily="@font/bmjua_font"
                     android:text="@string/member"
-                    android:textColor="@color/black"
+                    android:textColor="@color/black2"
                     android:textSize="23sp" />
 
                 <androidx.recyclerview.widget.RecyclerView
@@ -238,7 +238,7 @@
                     android:layout_marginBottom="10dp"
                     android:fontFamily="@font/bmjua_font"
                     android:text="@string/myDeliveryInfo"
-                    android:textColor="@color/black"
+                    android:textColor="@color/black2"
                     android:textSize="23sp" />
 
                 <LinearLayout
@@ -265,7 +265,7 @@
                             android:layout_gravity="center"
                             android:fontFamily="@font/bmjua_font"
                             android:text="@string/member"
-                            android:textColor="@color/black" />
+                            android:textColor="@color/black2" />
 
                     </LinearLayout>
 
@@ -276,7 +276,7 @@
                         android:layout_gravity="center"
                         android:fontFamily="@font/bmjua_font"
                         android:text="@string/totalPrice"
-                        android:textColor="@color/black" />
+                        android:textColor="@color/black2" />
 
                     <View
                         android:layout_width="0dp"
@@ -316,7 +316,7 @@
                     android:layout_marginBottom="10dp"
                     android:fontFamily="@font/bmjua_font"
                     android:text="@string/memberDeliveryInfo"
-                    android:textColor="@color/black"
+                    android:textColor="@color/black2"
                     android:textSize="23sp" />
 
                 <!-- 파티원이 없을 때 -->
@@ -438,7 +438,7 @@
                         android:layout_height="wrap_content"
                         android:fontFamily="@font/bmjua_font"
                         android:text="@string/finalPayment"
-                        android:textColor="@color/black" />
+                        android:textColor="@color/black2" />
 
                     <View
                         android:layout_width="0dp"
@@ -451,7 +451,7 @@
                         android:layout_height="wrap_content"
                         android:fontFamily="@font/bmjua_font"
                         android:text="@string/finalPayment"
-                        android:textColor="@color/black" />
+                        android:textColor="@color/black2" />
 
                 </LinearLayout>
 

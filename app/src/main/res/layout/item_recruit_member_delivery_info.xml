@@ -25,7 +25,7 @@
             android:layout_gravity="center"
             android:fontFamily="@font/bmjua_font"
             android:text="@string/member"
-            android:textColor="@color/black" />
+            android:textColor="@color/black2" />
 
     </LinearLayout>
 
@@ -36,7 +36,7 @@
         android:layout_gravity="center"
         android:fontFamily="@font/bmjua_font"
         android:text="@string/totalPrice"
-        android:textColor="@color/black" />
+        android:textColor="@color/black2" />
 
     <View
         android:layout_width="0dp"
@@ -51,6 +51,6 @@
         android:layout_marginEnd="6dp"
         android:fontFamily="@font/bmjua_font"
         android:text="결제상태"
-        android:textColor="@color/black" />
+        android:textColor="@color/black2" />
 
 </LinearLayout>

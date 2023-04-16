@@ -90,7 +90,7 @@
                 android:background="@drawable/btn_fill_white_border_black"
                 android:fontFamily="@font/nanum_square_extra_bold"
                 android:text="@string/login"
-                android:textColor="@color/black"
+                android:textColor="@color/black2"
                 android:textSize="21sp" />
 
         </LinearLayout>

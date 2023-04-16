@@ -21,7 +21,7 @@
             android:includeFontPadding="false"
             android:paddingTop="15dp"
             android:text="@string/modifyPwCancel1"
-            android:textColor="@color/black"
+            android:textColor="@color/black2"
             android:textSize="30sp" />
 
         <TextView

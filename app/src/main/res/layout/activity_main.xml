@@ -21,7 +21,7 @@
             android:layout_marginBottom="10dp"
             android:fontFamily="@font/nanum_square_extra_bold"
             android:text="모이면, 모일수록, 좋은"
-            android:textColor="@color/black"
+            android:textColor="@color/black2"
             android:textSize="25sp" />
 
         <TextView
@@ -29,7 +29,7 @@
             android:layout_height="wrap_content"
             android:fontFamily="@font/nanum_square_extra_bold"
             android:text="배달비 공유 플랫폼"
-            android:textColor="@color/black"
+            android:textColor="@color/black2"
             android:textSize="25sp">
 
         </TextView>
@@ -40,7 +40,7 @@
             android:layout_marginTop="20dp"
             android:fontFamily="@font/nanum_square_extra_bold"
             android:text="배달비공유."
-            android:textColor="@color/black"
+            android:textColor="@color/black2"
             android:textSize="35sp">
 
         </TextView>
@@ -66,7 +66,7 @@
             android:fontFamily="@font/nanum_square_extra_bold"
             android:gravity="center"
             android:text="@string/login"
-            android:textColor="@color/black"
+            android:textColor="@color/black2"
             android:textSize="23sp" />
 
         <!-- 회원가입 Button -->
@@ -81,7 +81,7 @@
             android:background="@drawable/btn_fill_white_border_black"
             android:fontFamily="@font/nanum_square_extra_bold"
             android:text="@string/register"
-            android:textColor="@color/black"
+            android:textColor="@color/black2"
             android:textSize="23sp" />
 
     </LinearLayout>
