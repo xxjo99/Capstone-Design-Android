@@ -20,7 +20,7 @@
             android:includeFontPadding="false"
             android:lineSpacingExtra="8dp"
             android:paddingTop="50dp"
-            android:paddingBottom="35dp"
+            android:paddingBottom="40dp"
             android:text="참여불가"
             android:textColor="@color/red"
             android:textSize="16sp" />

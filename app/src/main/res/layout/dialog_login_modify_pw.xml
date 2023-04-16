@@ -14,34 +14,37 @@
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:fontFamily="@font/bmjua_font"
+            android:fontFamily="@font/nanum_square_extra_bold"
             android:gravity="center"
             android:includeFontPadding="false"
-            android:paddingTop="40dp"
+            android:lineSpacingExtra="8dp"
+            android:paddingTop="50dp"
             android:paddingBottom="40dp"
             android:text="@string/completeModifyPw"
             android:textColor="@color/black2"
-            android:textSize="25sp" />
+            android:textSize="16sp" />
 
         <View
             android:layout_width="match_parent"
-            android:layout_height="1dp"
-            android:background="@color/gray1" />
+            android:layout_height="0dp" />
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="15dp">
 
             <Button
                 android:id="@+id/finishBtn"
-                android:layout_width="0dp"
+                style="?android:attr/buttonBarButtonStyle"
+                android:layout_width="match_parent"
                 android:layout_height="55dp"
-                android:layout_weight="1"
-                android:background="@drawable/btn_border_left_right_fill_mint"
-                android:fontFamily="@font/bmjua_font"
+                android:layout_marginLeft="20dp"
+                android:layout_marginRight="20dp"
+                android:background="@drawable/btn_fill2_mint"
+                android:fontFamily="@font/nanum_square_extra_bold"
                 android:text="@string/moveLogin"
                 android:textColor="@color/white"
-                android:textSize="22sp" />
+                android:textSize="16sp" />
 
         </LinearLayout>
 

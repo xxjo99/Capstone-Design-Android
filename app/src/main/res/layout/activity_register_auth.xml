@@ -5,8 +5,6 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:layout_gravity="center"
-    android:layout_marginLeft="10dp"
-    android:layout_marginRight="10dp"
     android:orientation="vertical"
     tools:context=".register.AuthRegisterActivity">
 
@@ -52,14 +50,14 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="15dp"
+        android:layout_marginStart="25dp"
         android:layout_marginTop="50dp"
-        android:layout_marginBottom="30dp"
-        android:fontFamily="@font/bmjua_font"
+        android:layout_marginBottom="50dp"
+        android:fontFamily="@font/nanum_square_extra_bold"
         android:lineSpacingExtra="8dp"
         android:text="@string/authText"
         android:textColor="@color/black2"
-        android:textSize="24sp" />
+        android:textSize="20sp" />
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -70,6 +68,8 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_gravity="center_vertical"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="20dp"
             android:orientation="horizontal">
 
             <!-- 이메일 TextView -->
@@ -78,16 +78,15 @@
                 android:layout_width="0dp"
                 android:layout_height="60dp"
                 android:layout_gravity="center"
-                android:layout_marginStart="10dp"
                 android:layout_weight="1"
                 android:background="@drawable/et_border"
                 android:enabled="false"
-                android:fontFamily="@font/bmjua_font"
+                android:fontFamily="@font/nanum_square_extra_bold"
                 android:hint="@string/emailInput"
                 android:inputType="textEmailAddress"
                 android:padding="18dp"
                 android:singleLine="true"
-                android:textSize="18sp" />
+                android:textSize="16sp" />
 
             <!-- 인증번호 전송 Button -->
             <Button
@@ -97,13 +96,12 @@
                 android:layout_height="60dp"
                 android:layout_gravity="center"
                 android:layout_marginStart="10dp"
-                android:layout_marginEnd="10dp"
                 android:background="@color/mint1"
                 android:enabled="true"
-                android:fontFamily="@font/bmjua_font"
+                android:fontFamily="@font/nanum_square_extra_bold"
                 android:text="@string/sendAuthNum"
                 android:textColor="@color/white"
-                android:textSize="14sp" />
+                android:textSize="12sp" />
 
         </LinearLayout>
 
@@ -111,7 +109,9 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
+            android:layout_marginLeft="20dp"
             android:layout_marginTop="10dp"
+            android:layout_marginRight="20dp"
             android:orientation="horizontal">
 
             <!-- 인증번호 TextView -->
@@ -120,16 +120,15 @@
                 android:layout_width="0dp"
                 android:layout_height="60dp"
                 android:layout_gravity="center"
-                android:layout_marginStart="10dp"
                 android:layout_weight="1"
                 android:background="@drawable/et_border"
                 android:enabled="false"
-                android:fontFamily="@font/bmjua_font"
+                android:fontFamily="@font/nanum_square_extra_bold"
                 android:hint="@string/authNumInput"
                 android:inputType="number"
                 android:padding="18dp"
                 android:singleLine="true"
-                android:textSize="18sp" />
+                android:textSize="16sp" />
 
             <!-- 인증번호 검사 Button -->
             <Button
@@ -139,13 +138,12 @@
                 android:layout_height="60dp"
                 android:layout_gravity="center"
                 android:layout_marginStart="10dp"
-                android:layout_marginEnd="10dp"
                 android:background="@color/gray2"
                 android:enabled="true"
-                android:fontFamily="@font/bmjua_font"
+                android:fontFamily="@font/nanum_square_extra_bold"
                 android:text="@string/confirm"
                 android:textColor="@color/white"
-                android:textSize="18sp" />
+                android:textSize="16sp" />
 
         </LinearLayout>
 
@@ -154,21 +152,19 @@
             android:layout_height="0dp"
             android:layout_gravity="center"
             android:layout_weight="1"
-            android:gravity="bottom"
-            android:padding="10dp">
+            android:gravity="bottom">
 
             <Button
                 android:id="@+id/nextBtn"
                 style="?android:attr/borderlessButtonStyle"
                 android:layout_width="match_parent"
-                android:layout_height="55dp"
-                android:layout_marginBottom="10dp"
+                android:layout_height="65dp"
                 android:background="@color/gray2"
                 android:enabled="false"
-                android:fontFamily="@font/bmjua_font"
+                android:fontFamily="@font/nanum_square_extra_bold"
                 android:text="@string/next"
                 android:textColor="@color/white"
-                android:textSize="23sp" />
+                android:textSize="20sp" />
 
         </LinearLayout>
 

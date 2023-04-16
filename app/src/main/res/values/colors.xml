@@ -31,8 +31,13 @@
 
     <color name="gradation1">#5f7af6</color>
     <color name="gradation2">#c8fdca</color>
+
     <color name="gradation3">#e52d27</color>
     <color name="gradation4">#b31217</color>
+
+    <color name="gradation5">#A0E5FA</color>
+    <color name="gradation6">#8CDBE3</color>
+    <color name="gradation7">#79D1CD</color>
 
     <color name="black2">#333333</color>
 

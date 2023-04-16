@@ -24,8 +24,8 @@
     <string name="completeRegisterText">회원가입이 완료되었습니다\n서비스를 이용하기 위해 로그인해주세요.</string>
     <string name="goLogin">로그인 화면으로 이동하기</string>
     <string name="next">계속하기</string>
-    <string name="registerCancel1">회원가입 종료</string>
-    <string name="registerCancel2">회원가입을 종료하시겠습니까?</string>
+    <string name="registerCancel">회원가입을 종료하시겠습니까?</string>
+    <string name="end">종료</string>
     <string name="confirm">확인</string>
     <string name="cancel">취소</string>
 
@@ -36,9 +36,10 @@
     <string name="modifyPw">비밀번호 재설정</string>
     <string name="newPw">새 비밀번호</string>
     <string name="newPwCk">새 비밀번호 확인</string>
+    <string name="modifyPw2">로그인에 사용되는 이메일과\n인증번호를 입력해주세요.</string>
     <string name="modifyPwCancel1">비밀번호 재설정</string>
     <string name="modifyPwCancel2">비밀번호 재설정을 취소하시겠습니까?</string>
-    <string name="completeModifyPw">비밀번호 변경이\n완료되었습니다</string>
+    <string name="completeModifyPw">비밀번호 변경이 완료되었습니다</string>
     <string name="moveLogin">로그인 페이지로 이동</string>
 
     <!-- 네비게이션 -->
@@ -65,8 +66,7 @@
     <string name="cart">장바구니</string>
     <string name="emptyOrderList">장바구니가 비어있습니다.</string>
     <string name="moveOrderList">음식 담으러 가기</string>
-    <string name="insufficientPointText1">포인트 부족</string>
-    <string name="insufficientPointText2">포인트가 부족합니다.\n포인트를 충전하시겠습니까?</string>
+    <string name="insufficientPointText">포인트가 부족합니다.\n포인트를 충전하시겠습니까?</string>
 
     <!-- 매장 -->
     <string name="price">가격</string>

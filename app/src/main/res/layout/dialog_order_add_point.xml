@@ -8,71 +8,62 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@drawable/layout_shadow"
         android:gravity="center"
         android:orientation="vertical">
 
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:fontFamily="@font/bmjua_font"
+            android:fontFamily="@font/nanum_square_extra_bold"
             android:gravity="center"
             android:includeFontPadding="false"
-            android:paddingTop="15dp"
-            android:text="@string/insufficientPointText1"
-            android:textColor="@color/black2"
-            android:textSize="30sp" />
-
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:fontFamily="@font/bmjua_font"
-            android:gravity="center"
-            android:includeFontPadding="false"
-            android:paddingTop="40dp"
+            android:lineSpacingExtra="8dp"
+            android:paddingTop="50dp"
             android:paddingBottom="40dp"
-            android:text="@string/insufficientPointText2"
-            android:textColor="@color/gray4"
-            android:textSize="20sp" />
+            android:text="@string/insufficientPointText"
+            android:textColor="@color/black2"
+            android:textSize="16sp" />
 
         <View
             android:layout_width="match_parent"
-            android:layout_height="1dp"
-            android:background="@color/gray1" />
+            android:layout_height="0dp" />
 
         <LinearLayout
+            android:id="@+id/participateBtnLayout"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="20dp"
+            android:layout_marginBottom="20dp"
+            android:gravity="center_horizontal"
+            android:orientation="horizontal">
 
             <Button
                 android:id="@+id/addPointBtn"
-                android:layout_width="wrap_content"
-                android:layout_height="55dp"
+                style="?android:attr/borderlessButtonStyle"
+                android:layout_width="0dp"
+                android:layout_height="50dp"
+                android:layout_marginEnd="20dp"
                 android:layout_weight="1"
-                android:background="@drawable/btn_border_left_fill_mint"
-                android:fontFamily="@font/bmjua_font"
+                android:background="@drawable/btn_participate_border2"
+                android:fontFamily="@font/nanum_square_extra_bold"
                 android:text="@string/addPoint"
                 android:textColor="@color/white"
-                android:textSize="22sp" />
-
-            <View
-                android:layout_width="1dp"
-                android:layout_height="52dp"
-                android:background="@color/gray1" />
+                android:textSize="19sp" />
 
             <Button
                 android:id="@+id/cancelBtn"
-                android:layout_width="wrap_content"
-                android:layout_height="55dp"
+                style="?android:attr/borderlessButtonStyle"
+                android:layout_width="0dp"
+                android:layout_height="50dp"
                 android:layout_weight="1"
-                android:background="@drawable/btn_border_right_fill_gray"
-                android:fontFamily="@font/bmjua_font"
+                android:background="@drawable/btn_participate_border1"
+                android:fontFamily="@font/nanum_square_extra_bold"
                 android:text="@string/cancel"
-                android:textColor="@color/white"
-                android:textSize="22sp" />
+                android:textColor="@color/black"
+                android:textSize="19sp" />
 
         </LinearLayout>
-
 
     </LinearLayout>
 
