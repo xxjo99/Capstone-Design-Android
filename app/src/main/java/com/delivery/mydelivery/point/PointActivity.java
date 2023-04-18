@@ -341,7 +341,7 @@ public class PointActivity extends AppCompatActivity {
                     String afterPointFormat = numberFormat.format(afterPoint);
                     afterPointTV.setText(afterPointFormat + "P");
                 } else { // 1000원 미만
-                    pointET.setBackgroundResource(R.drawable.et_border_red2);
+                    pointET.setBackgroundResource(R.drawable.et_border2_red);
                     pointCkTV.setVisibility(View.VISIBLE);
                     addPointBtn.setBackgroundResource(R.drawable.btn_fill2_gray);
                     addPointBtn.setEnabled(false);

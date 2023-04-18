@@ -58,7 +58,7 @@
         android:layout_marginEnd="25dp"
         android:fontFamily="@font/bmjua_font"
         android:text="@string/minimumPointAmount"
-        android:textColor="@color/red"
+        android:textColor="@color/red1"
         android:visibility="gone" />
 
     <LinearLayout
@@ -119,7 +119,7 @@
                 android:layout_width="70dp"
                 android:layout_height="40dp"
                 android:layout_marginEnd="10dp"
-                android:background="@drawable/btn_border_fill_gray"
+                android:background="@drawable/btn_fill4_gray"
                 android:fontFamily="@font/bmjua_font"
                 android:text="@string/plus1"
                 android:textSize="12sp" />
@@ -130,7 +130,7 @@
                 android:layout_width="70dp"
                 android:layout_height="40dp"
                 android:layout_marginEnd="10dp"
-                android:background="@drawable/btn_border_fill_gray"
+                android:background="@drawable/btn_fill4_gray"
                 android:fontFamily="@font/bmjua_font"
                 android:text="@string/plus3"
                 android:textSize="12sp" />
@@ -141,7 +141,7 @@
                 android:layout_width="70dp"
                 android:layout_height="40dp"
                 android:layout_marginEnd="10dp"
-                android:background="@drawable/btn_border_fill_gray"
+                android:background="@drawable/btn_fill4_gray"
                 android:fontFamily="@font/bmjua_font"
                 android:text="@string/plus5"
                 android:textSize="12sp" />
@@ -151,7 +151,7 @@
                 style="?android:attr/borderlessButtonStyle"
                 android:layout_width="70dp"
                 android:layout_height="40dp"
-                android:background="@drawable/btn_border_fill_gray"
+                android:background="@drawable/btn_fill4_gray"
                 android:fontFamily="@font/bmjua_font"
                 android:text="@string/plus10"
                 android:textSize="12sp" />

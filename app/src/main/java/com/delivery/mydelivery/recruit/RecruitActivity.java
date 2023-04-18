@@ -578,7 +578,7 @@ public class RecruitActivity extends AppCompatActivity {
                         } else {
                             paymentBtn.setText("결제완료");
                             paymentBtn.setEnabled(false);
-                            paymentBtn.setBackgroundResource(R.drawable.btn_fill_gray);
+                            paymentBtn.setBackgroundResource(R.drawable.btn_fill1_gray);
                             deleteBtn.setVisibility(View.GONE);
                         }
 
@@ -615,7 +615,7 @@ public class RecruitActivity extends AppCompatActivity {
                                 isMoreThanTwo(recruitId);
                             } else {
                                 paymentBtn.setEnabled(true);
-                                paymentBtn.setBackgroundResource(R.drawable.btn_fill_mint);
+                                paymentBtn.setBackgroundResource(R.drawable.btn_fill1_mint);
                                 paymentBtn.setText("결제하기");
                                 deleteBtn.setText("탈퇴하기");
                             }
@@ -642,7 +642,7 @@ public class RecruitActivity extends AppCompatActivity {
                             }
 
                             paymentBtn.setEnabled(false);
-                            paymentBtn.setBackgroundResource(R.drawable.btn_fill_gray);
+                            paymentBtn.setBackgroundResource(R.drawable.btn_fill1_gray);
                             paymentBtn.setText(deliveryTimeText);
                         }
 
@@ -668,12 +668,12 @@ public class RecruitActivity extends AppCompatActivity {
 
                         if (participantCount < 2) { // 참가자수 2명 미만일경우 삭제로 변경
                             paymentBtn.setEnabled(false);
-                            paymentBtn.setBackgroundResource(R.drawable.btn_fill_gray);
+                            paymentBtn.setBackgroundResource(R.drawable.btn_fill1_gray);
                             paymentBtn.setText("2명미만, 배달불가");
                             deleteBtn.setText("삭제하기");
                         } else { // 2명 이상일경우 탈퇴
                             paymentBtn.setEnabled(true);
-                            paymentBtn.setBackgroundResource(R.drawable.btn_fill_mint);
+                            paymentBtn.setBackgroundResource(R.drawable.btn_fill1_mint);
                             paymentBtn.setText("결제하기");
                             deleteBtn.setText("탈퇴하기");
                         }

@@ -15,7 +15,6 @@
     <color name="gray4">#adb5bd</color>
     <color name="gray5">#f8f9fa</color>
     <color name="blue">#5555FF</color>
-    <color name="red">#ff0000</color>
     <color name="purple">#c5c5e6</color>
     <color name="blue2">#0000ff</color>
     <color name="orange">#FF8C00</color>
@@ -28,6 +27,8 @@
 
     <color name="green1">#00ff00</color>
     <color name="green2">#69f0ae</color>
+
+    <color name="red1">#ff3b2f</color>
 
     <color name="gradation1">#5f7af6</color>
     <color name="gradation2">#c8fdca</color>

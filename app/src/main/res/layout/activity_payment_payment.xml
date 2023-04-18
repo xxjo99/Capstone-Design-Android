@@ -430,7 +430,7 @@
             android:layout_height="59dp"
             android:layout_margin="10dp"
             android:layout_weight="1"
-            android:background="@drawable/btn_fill_mint"
+            android:background="@drawable/btn_fill1_mint"
             android:fontFamily="@font/bmjua_font"
             android:text="@string/payment"
             android:textColor="@color/white"

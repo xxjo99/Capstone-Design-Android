@@ -104,11 +104,11 @@ public class ModifyPwActivity extends AppCompatActivity {
                 boolean flag = ckPwRegEx(pw); // 정규식 검사 성공 여부 확인
 
                 if (flag) { // 정규식 검사 성공시 초록색으로 색상 변경, 비밀번호 확인 입력창 활성화, pwFlag를 true로 설정
-                    modifyPwET.setBackgroundResource(R.drawable.et_border_green);
+                    modifyPwET.setBackgroundResource(R.drawable.et_border1_green);
                     modifyPwCkET.setEnabled(true);
                     pwFlag = true;
                 } else { // 정규식 검사 실패시 빨간색으로 색상 변경, 비밀번호 확인 입력창 비활성화, pwFlag를 false로 설정
-                    modifyPwET.setBackgroundResource(R.drawable.et_border_red);
+                    modifyPwET.setBackgroundResource(R.drawable.et_border1_red);
                     modifyPwCkET.setEnabled(false);
                     pwFlag = false;
                 }
@@ -116,15 +116,15 @@ public class ModifyPwActivity extends AppCompatActivity {
                 // 비밀번호와 비밀번호 확인이 다르다면 버튼 비활성화
                 if (!pw.equals(pwCk)) {
                     modifyPwBtn.setEnabled(false);
-                    modifyPwBtn.setBackgroundResource(R.drawable.btn_fill_gray);
+                    modifyPwBtn.setBackgroundResource(R.drawable.btn_fill1_gray);
                 }
 
                 if (pwFlag && pwCkFlag) {
                     modifyPwBtn.setEnabled(true);
-                    modifyPwBtn.setBackgroundResource(R.drawable.btn_fill_green);
+                    modifyPwBtn.setBackgroundResource(R.drawable.btn_fill1_green);
                 } else {
                     modifyPwBtn.setEnabled(false);
-                    modifyPwBtn.setBackgroundResource(R.drawable.btn_fill_gray);
+                    modifyPwBtn.setBackgroundResource(R.drawable.btn_fill1_gray);
                 }
             }
 
@@ -152,19 +152,19 @@ public class ModifyPwActivity extends AppCompatActivity {
                 String pwCk = modifyPwCkET.getText().toString();
 
                 if (pwCk.equals(pw)) { // 비밀번호 일치
-                    modifyPwCkET.setBackgroundResource(R.drawable.et_border_green);
+                    modifyPwCkET.setBackgroundResource(R.drawable.et_border1_green);
                     pwCkFlag = true;
                 } else { // 불일치
-                    modifyPwCkET.setBackgroundResource(R.drawable.et_border_red);
+                    modifyPwCkET.setBackgroundResource(R.drawable.et_border1_red);
                     pwCkFlag = false;
                 }
 
                 if (pwFlag && pwCkFlag) {
                     modifyPwBtn.setEnabled(true);
-                    modifyPwBtn.setBackgroundResource(R.drawable.btn_fill_green);
+                    modifyPwBtn.setBackgroundResource(R.drawable.btn_fill1_green);
                 } else {
                     modifyPwBtn.setEnabled(false);
-                    modifyPwBtn.setBackgroundResource(R.drawable.btn_fill_gray);
+                    modifyPwBtn.setBackgroundResource(R.drawable.btn_fill1_gray);
                 }
             }
 

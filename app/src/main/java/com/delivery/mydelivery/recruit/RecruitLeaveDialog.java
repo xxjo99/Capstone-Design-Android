@@ -49,15 +49,15 @@ public class RecruitLeaveDialog {
 
         // 크기 지정
         WindowManager.LayoutParams params = dialog.getWindow().getAttributes();
-        params.width = WindowManager.LayoutParams.MATCH_PARENT;
+        params.width = WindowManager.LayoutParams.WRAP_CONTENT;
         params.height = WindowManager.LayoutParams.WRAP_CONTENT;
         dialog.getWindow().setAttributes(params);
 
         TextView penaltyTV = dialog.findViewById(R.id.penaltyTV);
         if (leaveType == 1) { // 현재시간이 배달시간 이후일경우, 패널티는 포인트 차감
-            penaltyTV.setText("탈퇴하시겠습니까?\n탈퇴 시 배달팁 만큼의\n포인트가 차감됩니다.");
+            penaltyTV.setText("탈퇴하시겠습니까?\n탈퇴 시 배달팁 만큼의 포인트가 차감됩니다.");
         } else { // 현재시간이 배달시간 이전일경우, 패널티는 이용제한
-            penaltyTV.setText("탈퇴하시겠습니까?\n탈퇴 후 24시간 동안\n참가와 등록이 제한됩니다.");
+            penaltyTV.setText("탈퇴하시겠습니까?\n탈퇴 후 6시간 동안 서비스이용이 제한됩니다.");
         }
 
         dialog.show();

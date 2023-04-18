@@ -20,9 +20,9 @@
 
     <style name="errorToast">
         <item name="stTextColor">@android:color/background_light</item>
-        <item name="stColorBackground">@color/red</item>
+        <item name="stColorBackground">@color/red1</item>
         <item name="stIconStart">@drawable/icon_close_white</item>
-        <item name="strokeColor">@color/red</item>
+        <item name="strokeColor">@color/red1</item>
         <item name="strokeWidth">3dp</item>
         <item name="stLength">LONG</item>
         <item name="dialogCornerRadius">3dp</item>

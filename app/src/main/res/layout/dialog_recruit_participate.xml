@@ -154,26 +154,26 @@
                 android:id="@+id/participateBtn"
                 style="?android:attr/borderlessButtonStyle"
                 android:layout_width="0dp"
-                android:layout_height="50dp"
+                android:layout_height="45dp"
                 android:layout_marginEnd="20dp"
                 android:layout_weight="1"
-                android:background="@drawable/btn_participate_border2"
+                android:background="@drawable/btn_fill3_mint"
                 android:fontFamily="@font/nanum_square_extra_bold"
                 android:text="참 가"
                 android:textColor="@color/white"
-                android:textSize="19sp" />
+                android:textSize="17sp" />
 
             <Button
                 android:id="@+id/cancelBtn"
                 style="?android:attr/borderlessButtonStyle"
                 android:layout_width="0dp"
-                android:layout_height="50dp"
+                android:layout_height="45dp"
                 android:layout_weight="1"
-                android:background="@drawable/btn_participate_border1"
+                android:background="@drawable/btn_fill5_gray"
                 android:fontFamily="@font/nanum_square_extra_bold"
                 android:text="취 소"
-                android:textColor="@color/red"
-                android:textSize="19sp" />
+                android:textColor="@color/red1"
+                android:textSize="17sp" />
 
         </LinearLayout>
 
@@ -188,10 +188,10 @@
                 android:layout_width="0dp"
                 android:layout_height="50dp"
                 android:layout_weight="1"
+                android:background="@drawable/btn_fill5_gray"
                 android:fontFamily="@font/nanum_square_extra_bold"
                 android:gravity="center"
                 android:text="모집완료"
-                android:background="@drawable/btn_participate_border1"
                 android:textColor="@color/black"
                 android:textSize="18sp" />
 

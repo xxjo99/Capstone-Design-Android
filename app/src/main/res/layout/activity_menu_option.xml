@@ -193,7 +193,7 @@
             android:layout_marginEnd="15dp"
             android:layout_marginBottom="10dp"
             android:layout_weight="1"
-            android:background="@drawable/btn_fill_gray"
+            android:background="@drawable/btn_fill1_gray"
             android:fontFamily="@font/bmjua_font"
             android:text="@string/addMenu"
             android:textColor="@color/white"

@@ -1,60 +1,70 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:id="@+id/registerDialogLayout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@drawable/dialog"
-    android:layout_margin="30dp"
     android:orientation="vertical">
 
-    <TextView
-        android:id="@+id/penaltyTV"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:fontFamily="@font/bmjua_font"
-        android:gravity="center"
-        android:includeFontPadding="false"
-        android:lineSpacingExtra="5dp"
-        android:paddingLeft="50dp"
-        android:paddingTop="25dp"
-        android:paddingRight="50dp"
-        android:paddingBottom="25dp"
-        android:text="삭제하시겠습니까?\n삭제 후 24시간 동안\n참가와 등록이 제한됩니다."
-        android:textColor="@color/black2"
-        android:textSize="20sp" />
-
-    <View
-        android:layout_width="match_parent"
-        android:layout_height="1dp"
-        android:background="@color/gray1" />
-
     <LinearLayout
-        android:id="@+id/participateBtnLayout"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:orientation="vertical">
 
-        <Button
-            android:id="@+id/deleteBtn"
-            style="?android:attr/buttonBarButtonStyle"
-            android:layout_width="wrap_content"
-            android:layout_height="55dp"
-            android:layout_weight="1"
-            android:fontFamily="@font/bmjua_font"
-            android:text="@string/confirm"
-            android:textColor="@color/red"
-            android:textSize="20sp" />
-
-        <Button
-            android:id="@+id/cancelBtn"
-            style="?android:attr/buttonBarButtonStyle"
-            android:layout_width="wrap_content"
-            android:layout_height="55dp"
-            android:layout_weight="1"
-            android:fontFamily="@font/bmjua_font"
-            android:text="@string/cancel"
+        <TextView
+            android:id="@+id/penaltyTV"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/nanum_square_extra_bold"
+            android:gravity="center"
+            android:includeFontPadding="false"
+            android:lineSpacingExtra="8dp"
+            android:paddingTop="40dp"
+            android:paddingBottom="30dp"
+            android:text="삭제하시겠습니까?\n삭제 후 6시간 동안 서비스이용이 제한됩니다."
             android:textColor="@color/black2"
-            android:textSize="20sp" />
+            android:textSize="16sp" />
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="0dp" />
+
+        <LinearLayout
+            android:id="@+id/participateBtnLayout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="20dp"
+            android:layout_marginBottom="20dp"
+            android:gravity="center_horizontal"
+            android:orientation="horizontal">
+
+            <Button
+                android:id="@+id/deleteBtn"
+                style="?android:attr/borderlessButtonStyle"
+                android:layout_width="0dp"
+                android:layout_height="45dp"
+                android:layout_marginEnd="20dp"
+                android:layout_weight="1"
+                android:background="@drawable/btn_fill1_red"
+                android:fontFamily="@font/nanum_square_extra_bold"
+                android:text="@string/delete"
+                android:textColor="@color/white"
+                android:textSize="16sp" />
+
+            <Button
+                android:id="@+id/cancelBtn"
+                style="?android:attr/borderlessButtonStyle"
+                android:layout_width="0dp"
+                android:layout_height="45dp"
+                android:layout_weight="1"
+                android:background="@drawable/btn_fill5_gray"
+                android:fontFamily="@font/nanum_square_extra_bold"
+                android:text="@string/cancel"
+                android:textColor="@color/black"
+                android:textSize="16sp" />
+
+        </LinearLayout>
 
     </LinearLayout>
 

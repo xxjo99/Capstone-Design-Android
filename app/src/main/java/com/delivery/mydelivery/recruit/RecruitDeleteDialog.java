@@ -51,7 +51,7 @@ public class RecruitDeleteDialog {
 
         // 크기 지정
         WindowManager.LayoutParams params = dialog.getWindow().getAttributes();
-        params.width = WindowManager.LayoutParams.MATCH_PARENT;
+        params.width = WindowManager.LayoutParams.WRAP_CONTENT;
         params.height = WindowManager.LayoutParams.WRAP_CONTENT;
         dialog.getWindow().setAttributes(params);
 
@@ -59,7 +59,7 @@ public class RecruitDeleteDialog {
         if (deleteType == 0) { // 참가인원 2인 미만, 패널티 x
             penaltyTV.setText("삭제하시겠습니까?");
         } else { // 2인 이상, 패널티 o
-            penaltyTV.setText("삭제하시겠습니까?\n삭제 후 24시간 동안\n참가와 등록이 제한됩니다.");
+            penaltyTV.setText("삭제하시겠습니까?\n삭제 후 6시간 동안 서비스이용이 제한됩니다.");
         }
 
         dialog.show();

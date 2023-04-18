@@ -20,7 +20,7 @@
             android:id="@+id/searchET"
             android:layout_width="match_parent"
             android:layout_height="45dp"
-            android:background="@drawable/et_fill_gray"
+            android:background="@drawable/et_border1_gray"
             android:drawableStart="@drawable/icon_search"
             android:drawablePadding="10dp"
             android:drawableTint="@color/gray2"

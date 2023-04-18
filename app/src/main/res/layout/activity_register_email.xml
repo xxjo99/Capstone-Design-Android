@@ -79,7 +79,7 @@
                 android:layout_height="60dp"
                 android:layout_gravity="center"
                 android:layout_weight="1"
-                android:background="@drawable/et_border"
+                android:background="@drawable/et_border1"
                 android:fontFamily="@font/nanum_square_extra_bold"
                 android:hint="@string/emailInput"
                 android:inputType="textEmailAddress"

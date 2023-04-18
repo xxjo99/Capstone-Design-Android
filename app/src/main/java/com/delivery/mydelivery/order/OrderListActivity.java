@@ -183,11 +183,11 @@ public class OrderListActivity extends AppCompatActivity {
             } else {
                 if (slidingUpPanelLayout.getPanelState() == SlidingUpPanelLayout.PanelState.COLLAPSED) {
                     slidingUpPanelLayout.setPanelState(SlidingUpPanelLayout.PanelState.ANCHORED);
-                    slidingOpenBtn.setBackgroundResource(R.drawable.btn_fill_gray);
+                    slidingOpenBtn.setBackgroundResource(R.drawable.btn_fill1_gray);
                     slidingOpenBtn.setText("닫기");
                 } else {
                     slidingUpPanelLayout.setPanelState(SlidingUpPanelLayout.PanelState.COLLAPSED);
-                    slidingOpenBtn.setBackgroundResource(R.drawable.btn_fill_mint);
+                    slidingOpenBtn.setBackgroundResource(R.drawable.btn_fill1_mint);
                     slidingOpenBtn.setText("글 등록하기");
                 }
             }
@@ -325,7 +325,7 @@ public class OrderListActivity extends AppCompatActivity {
                         if (Boolean.TRUE.equals(checkRestrictionFlag)) { // 이용제한 없음, 해당 유저가 등록한 글이 있는지 검사
                             findRecruit(userId);
                         } else { // 등록불가
-                            slidingOpenBtn.setBackgroundResource(R.drawable.btn_fill_gray);
+                            slidingOpenBtn.setBackgroundResource(R.drawable.btn_fill1_gray);
                             slidingOpenBtn.setText("이용제한");
                             slidingOpenBtn.setEnabled(false);
                         }
@@ -427,11 +427,11 @@ public class OrderListActivity extends AppCompatActivity {
                         boolean flag = Boolean.TRUE.equals(response.body());
 
                         if (flag) { // 등록된 글 없음, 등록 가능
-                            slidingOpenBtn.setBackgroundResource(R.drawable.btn_fill_mint);
+                            slidingOpenBtn.setBackgroundResource(R.drawable.btn_fill1_mint);
                             slidingOpenBtn.setText("글 등록하기");
                             slidingOpenBtn.setEnabled(true);
                         } else { // 등록된 글 있음, 등록 불가
-                            slidingOpenBtn.setBackgroundResource(R.drawable.btn_fill_gray);
+                            slidingOpenBtn.setBackgroundResource(R.drawable.btn_fill1_gray);
                             slidingOpenBtn.setText("하나의 글만 등록가능");
                             slidingOpenBtn.setEnabled(false);
                         }

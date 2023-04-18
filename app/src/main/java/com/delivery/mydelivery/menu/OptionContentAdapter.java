@@ -145,10 +145,10 @@ public class OptionContentAdapter extends RecyclerView.Adapter<OptionContentAdap
         }
 
         if (result) {
-            OptionActivity.addMenuBtn.setBackgroundResource(R.drawable.btn_fill_mint);
+            OptionActivity.addMenuBtn.setBackgroundResource(R.drawable.btn_fill1_mint);
             OptionActivity.addMenuBtn.setEnabled(true);
         } else {
-            OptionActivity.addMenuBtn.setBackgroundResource(R.drawable.btn_fill_gray);
+            OptionActivity.addMenuBtn.setBackgroundResource(R.drawable.btn_fill1_gray);
             OptionActivity.addMenuBtn.setEnabled(false);
         }
     }

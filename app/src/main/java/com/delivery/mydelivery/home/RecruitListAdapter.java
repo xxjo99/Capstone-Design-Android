@@ -193,7 +193,7 @@ public class RecruitListAdapter extends RecyclerView.Adapter<RecruitListAdapter.
                             holder.participationPossibleStatusTV.setText("참가 불가");
                             holder.participationPossibleStatusTV.setBackgroundResource(R.drawable.tv_border_fill_red);
                             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.P) {
-                                holder.cardView.setOutlineSpotShadowColor(ContextCompat.getColor(context, R.color.red));
+                                holder.cardView.setOutlineSpotShadowColor(ContextCompat.getColor(context, R.color.red1));
                             }
                         } else {
                             holder.participationPossibleStatusTV.setText("참가 가능");

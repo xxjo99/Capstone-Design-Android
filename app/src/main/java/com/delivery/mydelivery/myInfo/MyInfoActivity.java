@@ -150,17 +150,17 @@ public class MyInfoActivity extends AppCompatActivity {
                 String changedName = nameET.getText().toString();
 
                 if (changedName.isEmpty()) {
-                    modifyBtn.setBackgroundResource(R.drawable.btn_fill_gray);
+                    modifyBtn.setBackgroundResource(R.drawable.btn_fill1_gray);
                     modifyBtn.setEnabled(false);
                     nameFlag = false;
                 } else if (changedName.equals(name)) {
-                    modifyBtn.setBackgroundResource(R.drawable.btn_fill_gray);
+                    modifyBtn.setBackgroundResource(R.drawable.btn_fill1_gray);
                     modifyBtn.setEnabled(false);
                     nameFlag = false;
                 } else {
                     nameFlag = true;
                     if (phoneNumET.length() != 0) {
-                        modifyBtn.setBackgroundResource(R.drawable.btn_fill_green);
+                        modifyBtn.setBackgroundResource(R.drawable.btn_fill1_green);
                         modifyBtn.setEnabled(true);
                     }
                 }
@@ -186,13 +186,13 @@ public class MyInfoActivity extends AppCompatActivity {
                     modifyBtn.setEnabled(false);
                     phoneNumFlag = false;
                 } else if (changedPhoneNum.equals(phoneNum)) {
-                    modifyBtn.setBackgroundResource(R.drawable.btn_fill_gray);
+                    modifyBtn.setBackgroundResource(R.drawable.btn_fill1_gray);
                     modifyBtn.setEnabled(false);
                     phoneNumFlag = false;
                 } else {
                     phoneNumFlag = true;
                     if (nameET.length() != 0) {
-                        modifyBtn.setBackgroundResource(R.drawable.btn_fill_green);
+                        modifyBtn.setBackgroundResource(R.drawable.btn_fill1_green);
                         modifyBtn.setEnabled(true);
                     }
                 }
@@ -218,13 +218,13 @@ public class MyInfoActivity extends AppCompatActivity {
                     modifyBtn.setEnabled(false);
                     schoolFlag = false;
                 } else if (changedSchool.equals(phoneNum)) {
-                    modifyBtn.setBackgroundResource(R.drawable.btn_fill_gray);
+                    modifyBtn.setBackgroundResource(R.drawable.btn_fill1_gray);
                     modifyBtn.setEnabled(false);
                     schoolFlag = false;
                 } else {
                     schoolFlag = true;
                     if (schoolAutoCompleteTV.length() != 0) {
-                        modifyBtn.setBackgroundResource(R.drawable.btn_fill_green);
+                        modifyBtn.setBackgroundResource(R.drawable.btn_fill1_green);
                         modifyBtn.setEnabled(true);
                     }
                 }
