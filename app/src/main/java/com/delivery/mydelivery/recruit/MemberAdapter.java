@@ -4,6 +4,7 @@ import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -58,8 +59,10 @@ public class MemberAdapter extends RecyclerView.Adapter<MemberAdapter.ViewHolder
 
         if (participantType.equals("registrant")) {
             holder.participantTypeTV.setText("파티장");
+            holder.userIV.setImageResource(R.drawable.icon_user_mint);
         } else {
             holder.participantTypeTV.setText("파티원");
+            holder.userIV.setImageResource(R.drawable.icon_user_green);
         }
     }
 
@@ -73,12 +76,14 @@ public class MemberAdapter extends RecyclerView.Adapter<MemberAdapter.ViewHolder
     }
 
     public static class ViewHolder extends RecyclerView.ViewHolder {
+        ImageView userIV;
         TextView memberNameTV;
         TextView participantTypeTV;
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
 
+            userIV = itemView.findViewById(R.id.userIV);
             memberNameTV = itemView.findViewById(R.id.memberNameTV);
             participantTypeTV = itemView.findViewById(R.id.participantTypeTV);
         }
@@ -89,7 +94,7 @@ public class MemberAdapter extends RecyclerView.Adapter<MemberAdapter.ViewHolder
         userApi = retrofitService.getRetrofit().create(UserApi.class);
 
         userApi.getUser(userId)
-                .enqueue(new Callback<UserVO>() {
+                .enqueue(new Callback<>() {
                     @Override
                     public void onResponse(@NonNull Call<UserVO> call, @NonNull Response<UserVO> response) {
                         UserVO user = response.body();

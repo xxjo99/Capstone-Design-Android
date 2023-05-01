@@ -11,6 +11,8 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.delivery.mydelivery.R;
 
+import java.text.NumberFormat;
+
 @SuppressLint("SetTextI18n")
 public class PointCompleteActivity extends AppCompatActivity {
 
@@ -34,10 +36,14 @@ public class PointCompleteActivity extends AppCompatActivity {
         afterPointTV = findViewById(R.id.afterPointTV);
         confirmBtn = findViewById(R.id.confirmBtn);
 
-        addPointTV.setText(addPoint + "P");
-        afterPointTV.setText(afterPoint + "P");
+        NumberFormat numberFormat = NumberFormat.getInstance();
+
+        String addPointFormat = numberFormat.format(addPoint);
+        addPointTV.setText(addPointFormat + "P");
+
+        String afterPointFormat = numberFormat.format(afterPoint);
+        afterPointTV.setText(afterPointFormat + "P");
 
         confirmBtn.setOnClickListener(view -> finish());
-
     }
 }

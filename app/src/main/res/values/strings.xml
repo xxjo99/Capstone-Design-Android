@@ -125,7 +125,7 @@
     <string name="addMenu">메뉴 추가하기</string>
 
     <string name="recruitInfo">모집 안내</string>
-    <string name="member">파티원</string>
+    <string name="member">참가자</string>
     <string name="myDeliveryInfo">나의 배달정보</string>
     <string name="memberDeliveryInfo">파티원 배달정보</string>
     <string name="checkMenu">담은 메뉴 확인하기 > </string>
@@ -147,4 +147,15 @@
     <string name="order_store_History">매장 이름</string>
 
     <string name="goMypage">마이페이지로 이동</string>
+
+    <string name="korean">한식</string>
+    <string name="japanese">일식</string>
+    <string name="chinese">증식</string>
+    <string name="western">양식</string>
+    <string name="meat">고기</string>
+    <string name="chicken">치킨</string>
+    <string name="hamburger">햄버거</string>
+    <string name="pizza">피자</string>
+    <string name="asian">아시안</string>
+    <string name="snack">분식</string>
 </resources>

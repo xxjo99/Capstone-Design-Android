@@ -55,20 +55,20 @@
                     android:id="@+id/placeTV"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginBottom="10dp"
-                    android:fontFamily="@font/bmjua_font"
+                    android:layout_marginBottom="15dp"
+                    android:fontFamily="@font/nanum_square_extra_bold"
                     android:text="@string/place"
                     android:textColor="@color/black2"
-                    android:textSize="18sp" />
+                    android:textSize="15sp" />
 
                 <TextView
                     android:id="@+id/phoneNumTV"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:fontFamily="@font/bmjua_font"
+                    android:fontFamily="@font/nanum_square_extra_bold"
                     android:text="@string/phoneNum"
                     android:textColor="@color/black2"
-                    android:textSize="18sp" />
+                    android:textSize="15sp" />
 
             </LinearLayout>
 
@@ -90,10 +90,10 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginBottom="5dp"
-                    android:fontFamily="@font/bmjua_font"
+                    android:fontFamily="@font/nanum_square_extra_bold"
                     android:text="@string/request"
                     android:textColor="@color/black2"
-                    android:textSize="18sp" />
+                    android:textSize="17sp" />
 
                 <!-- 요청 사항 -->
                 <TextView
@@ -101,10 +101,10 @@
                     android:layout_height="wrap_content"
                     android:layout_marginTop="10dp"
                     android:layout_marginBottom="5dp"
-                    android:fontFamily="@font/bmjua_font"
-                    android:text="가게 사장님께"
+                    android:fontFamily="@font/nanum_square_extra_bold"
+                    android:text="사장님께"
                     android:textColor="@color/gray4"
-                    android:textSize="15sp" />
+                    android:textSize="13sp" />
 
                 <EditText
                     android:id="@+id/storeET"
@@ -112,10 +112,10 @@
                     android:layout_height="45dp"
                     android:layout_marginTop="5dp"
                     android:background="@drawable/btn_fill3_gray"
-                    android:fontFamily="@font/bmjua_font"
+                    android:fontFamily="@font/nanum_square_extra_bold"
                     android:hint="@string/enter_request_store"
                     android:paddingStart="12dp"
-                    android:textSize="15sp" />
+                    android:textSize="13sp" />
 
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -126,10 +126,10 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:fontFamily="@font/bmjua_font"
+                        android:fontFamily="@font/nanum_square_extra_bold"
                         android:text="라이더님께"
                         android:textColor="@color/gray4"
-                        android:textSize="15sp" />
+                        android:textSize="13sp" />
 
                     <EditText
                         android:id="@+id/riderET"
@@ -138,10 +138,10 @@
                         android:layout_marginTop="5dp"
                         android:layout_marginBottom="5dp"
                         android:background="@drawable/btn_fill3_gray"
-                        android:fontFamily="@font/bmjua_font"
+                        android:fontFamily="@font/nanum_square_extra_bold"
                         android:hint="@string/enter_request_rider"
                         android:paddingStart="12dp"
-                        android:textSize="15sp" />
+                        android:textSize="13sp" />
                 </LinearLayout>
 
             </LinearLayout>
@@ -164,10 +164,10 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginBottom="15dp"
-                    android:fontFamily="@font/bmjua_font"
+                    android:fontFamily="@font/nanum_square_extra_bold"
                     android:text="@string/paymentPrice"
                     android:textColor="@color/black2"
-                    android:textSize="18sp" />
+                    android:textSize="17sp" />
 
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -178,8 +178,9 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:fontFamily="@font/bmjua_font"
-                        android:text="@string/orderPrice" />
+                        android:fontFamily="@font/nanum_square_extra_bold"
+                        android:text="@string/orderPrice"
+                        android:textSize="13sp" />
 
                     <View
                         android:layout_width="0dp"
@@ -190,8 +191,9 @@
                         android:id="@+id/orderPriceTV"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:fontFamily="@font/bmjua_font"
-                        android:text="@string/orderPrice" />
+                        android:fontFamily="@font/nanum_square_extra_bold"
+                        android:text="@string/orderPrice"
+                        android:textSize="13sp" />
 
                 </LinearLayout>
 
@@ -203,8 +205,9 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:fontFamily="@font/bmjua_font"
-                        android:text="@string/deliveryTip" />
+                        android:fontFamily="@font/nanum_square_extra_bold"
+                        android:text="@string/deliveryTip"
+                        android:textSize="13sp" />
 
                     <View
                         android:layout_width="0dp"
@@ -216,15 +219,17 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginEnd="10dp"
-                        android:fontFamily="@font/bmjua_font"
-                        android:text="@string/deliveryTip" />
+                        android:fontFamily="@font/nanum_square_extra_bold"
+                        android:text="@string/deliveryTip"
+                        android:textSize="13sp" />
 
                     <TextView
                         android:id="@+id/finalDeliveryTipTV"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:fontFamily="@font/bmjua_font"
-                        android:text="@string/deliveryTip" />
+                        android:fontFamily="@font/nanum_square_extra_bold"
+                        android:text="@string/deliveryTip"
+                        android:textSize="13sp" />
 
                 </LinearLayout>
 
@@ -242,9 +247,10 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:fontFamily="@font/bmjua_font"
+                        android:fontFamily="@font/nanum_square_extra_bold"
                         android:text="@string/finalPayment"
-                        android:textColor="@color/black2" />
+                        android:textColor="@color/black2"
+                        android:textSize="13sp" />
 
                     <View
                         android:layout_width="0dp"
@@ -255,9 +261,10 @@
                         android:id="@+id/finalPaymentTV"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:fontFamily="@font/bmjua_font"
+                        android:fontFamily="@font/nanum_square_extra_bold"
                         android:text="@string/finalPayment"
-                        android:textColor="@color/black2" />
+                        android:textColor="@color/black2"
+                        android:textSize="13sp" />
 
                 </LinearLayout>
 
@@ -280,10 +287,10 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginBottom="15dp"
-                    android:fontFamily="@font/bmjua_font"
+                    android:fontFamily="@font/nanum_square_extra_bold"
                     android:text="@string/point"
                     android:textColor="@color/black2"
-                    android:textSize="18sp" />
+                    android:textSize="17sp" />
 
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -293,8 +300,9 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:fontFamily="@font/bmjua_font"
-                        android:text="보유" />
+                        android:fontFamily="@font/nanum_square_extra_bold"
+                        android:text="보유"
+                        android:textSize="13sp" />
 
                     <View
                         android:layout_width="0dp"
@@ -305,8 +313,9 @@
                         android:id="@+id/pointTV"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:fontFamily="@font/bmjua_font"
-                        android:text="@string/point" />
+                        android:fontFamily="@font/nanum_square_extra_bold"
+                        android:text="@string/point"
+                        android:textSize="13sp" />
 
                 </LinearLayout>
 
@@ -329,10 +338,10 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginBottom="15dp"
-                    android:fontFamily="@font/bmjua_font"
+                    android:fontFamily="@font/nanum_square_extra_bold"
                     android:text="결제상세"
                     android:textColor="@color/black2"
-                    android:textSize="18sp" />
+                    android:textSize="17sp" />
 
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -343,8 +352,9 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:fontFamily="@font/bmjua_font"
-                        android:text="@string/paymentPrice" />
+                        android:fontFamily="@font/nanum_square_extra_bold"
+                        android:text="@string/paymentPrice"
+                        android:textSize="13sp" />
 
                     <View
                         android:layout_width="0dp"
@@ -355,8 +365,9 @@
                         android:id="@+id/paymentTV"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:fontFamily="@font/bmjua_font"
-                        android:text="@string/paymentPrice" />
+                        android:fontFamily="@font/nanum_square_extra_bold"
+                        android:text="@string/paymentPrice"
+                        android:textSize="13sp" />
 
                 </LinearLayout>
 
@@ -370,8 +381,9 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:fontFamily="@font/bmjua_font"
-                        android:text="충전" />
+                        android:fontFamily="@font/nanum_square_extra_bold"
+                        android:text="충전"
+                        android:textSize="13sp" />
 
                     <View
                         android:layout_width="0dp"
@@ -382,8 +394,9 @@
                         android:id="@+id/addPointTV"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:fontFamily="@font/bmjua_font"
-                        android:text="@string/point" />
+                        android:fontFamily="@font/nanum_square_extra_bold"
+                        android:text="@string/point"
+                        android:textSize="13sp" />
 
                 </LinearLayout>
 
@@ -396,8 +409,9 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:fontFamily="@font/bmjua_font"
-                        android:text="결제 후 잔액" />
+                        android:fontFamily="@font/nanum_square_extra_bold"
+                        android:text="결제 후 잔액"
+                        android:textSize="13sp" />
 
                     <View
                         android:layout_width="0dp"
@@ -408,8 +422,9 @@
                         android:id="@+id/remainPointTV"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:fontFamily="@font/bmjua_font"
-                        android:text="@string/point" />
+                        android:fontFamily="@font/nanum_square_extra_bold"
+                        android:text="@string/point"
+                        android:textSize="13sp" />
 
                 </LinearLayout>
 
@@ -421,17 +436,15 @@
     <!-- 결제버튼 -->
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="@drawable/layout_border_gray_top">
+        android:layout_height="wrap_content">
 
         <Button
             android:id="@+id/paymentBtn"
             android:layout_width="0dp"
-            android:layout_height="59dp"
-            android:layout_margin="10dp"
+            android:layout_height="65dp"
             android:layout_weight="1"
             android:background="@drawable/btn_fill1_mint"
-            android:fontFamily="@font/bmjua_font"
+            android:fontFamily="@font/nanum_square_extra_bold"
             android:text="@string/payment"
             android:textColor="@color/white"
             android:textSize="20sp" />

@@ -23,6 +23,7 @@ import com.delivery.mydelivery.retrofit.RetrofitService;
 import com.delivery.mydelivery.store.StoreApi;
 import com.delivery.mydelivery.store.StoreVO;
 
+import java.text.NumberFormat;
 import java.util.List;
 import java.util.Objects;
 
@@ -180,7 +181,10 @@ public class RecruitOrderListActivity extends AppCompatActivity {
                             for (ParticipantOrderVO participantOrderVO : orderList) {
                                 totalPrice += participantOrderVO.getTotalPrice();
                             }
-                            totalPriceTV.setText(totalPrice + "원");
+
+                            NumberFormat numberFormat = NumberFormat.getInstance();
+                            String totalPriceFormat = numberFormat.format(totalPrice);
+                            totalPriceTV.setText(totalPriceFormat + "원");
                         }
                     }
 

@@ -41,11 +41,11 @@
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:fontFamily="@font/bmjua_font"
+            android:fontFamily="@font/nanum_square_extra_bold"
             android:gravity="center"
             android:text="주문내역이 없습니다."
             android:textColor="@color/gray4"
-            android:textSize="23sp" />
+            android:textSize="22sp" />
 
     </LinearLayout>
 

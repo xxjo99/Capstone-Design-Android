@@ -38,7 +38,6 @@
         android:id="@+id/emptyLayout"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="@color/gray1"
         android:gravity="center"
         android:orientation="vertical"
         android:visibility="gone">
@@ -50,13 +49,13 @@
             android:src="@drawable/icon_warn" />
 
         <TextView
-            android:layout_width="match_parent"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:fontFamily="@font/bmjua_font"
-            android:gravity="center"
+            android:layout_marginBottom="20dp"
+            android:fontFamily="@font/nanum_square_extra_bold"
             android:text="@string/emptyOrderList"
             android:textColor="@color/black2"
-            android:textSize="23sp" />
+            android:textSize="22sp" />
 
         <Button
             android:id="@+id/menuListBtn"
@@ -64,7 +63,6 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:layout_marginLeft="45dp"
-            android:layout_marginTop="35dp"
             android:layout_marginRight="45dp"
             android:background="@drawable/btn_fill2_mint"
             android:backgroundTint="@color/mint1"

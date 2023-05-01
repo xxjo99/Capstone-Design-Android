@@ -33,6 +33,7 @@ import com.delivery.mydelivery.user.UserVO;
 import com.google.gson.Gson;
 
 import java.sql.Timestamp;
+import java.text.NumberFormat;
 import java.time.Instant;
 import java.time.LocalDateTime;
 import java.time.ZoneId;
@@ -75,6 +76,7 @@ public class RecruitActivity extends AppCompatActivity {
     int participantCount; // 참가자수
 
     // 나의 배달 정보, 메뉴 확인 텍스트버튼
+    ImageView userIV;
     TextView userNameTV;
     TextView totalPriceTV;
     TextView orderListTV;
@@ -178,6 +180,7 @@ public class RecruitActivity extends AppCompatActivity {
         setMemberList(recruitId);
 
         // 나의 배달 정보 초기화
+        userIV = findViewById(R.id.userIV);
         userNameTV = findViewById(R.id.userNameTV);
         totalPriceTV = findViewById(R.id.totalPriceTV);
         orderListTV = findViewById(R.id.orderListTV);
@@ -185,6 +188,7 @@ public class RecruitActivity extends AppCompatActivity {
         // 담은 메뉴 확인 이동 버튼
         orderListTV.setOnClickListener(view -> moveOrderListActivity(recruitId, user.getUserId(), storeId));
 
+        setUserImage(recruitId, user.getUserId()); // 이미지
         userNameTV.setText(user.getName()); // 사용자 이름
 
         getOrdersTotalPrice(recruitId, user.getUserId()); // 총 주문금액
@@ -338,8 +342,8 @@ public class RecruitActivity extends AppCompatActivity {
                         } else { // 배달 출발 (2)
                             receiptLayout.setVisibility(View.VISIBLE);
                             deliveryStateTV.setText("배달이 시작되었습니다.");
+                            checkOrderBtn.setVisibility(View.VISIBLE);
 
-                            checkOrderBtn.setVisibility(View.GONE);
                             recruitScrollView.setVisibility(View.GONE);
                             paymentLayout.setVisibility(View.GONE);
                             deleteBtn.setVisibility(View.GONE);
@@ -364,12 +368,8 @@ public class RecruitActivity extends AppCompatActivity {
                     public void onResponse(@NonNull Call<StoreVO> call, @NonNull Response<StoreVO> response) {
                         StoreVO store = response.body();
 
-                        // 이미지
-                        String text = "https://img1.daumcdn.net/thumb/R1280x0/?scode=mtistory&fname=https://k.kakaocdn.net/dn/EShJF/btquPLT192D/SRxSvXqcWjHRTju3kHcOQK/img.png";
-                        int width = getWidth((Activity) context);
-                        Glide.with(context).load(/*menuImage*/text).placeholder(R.drawable.ic_launcher_background).override(width, 600).into(storeIV);
-
                         assert store != null;
+                        Glide.with(context).load(store.getStoreImageUrl()).placeholder(R.drawable.ic_launcher_background).into(storeIV);
                         storeNameTV.setText(store.getStoreName());
                         deliveryTimeTV.setText(store.getDeliveryTime() + "분");
                         deliveryTipTV.setText(store.getDeliveryTip() + "원");
@@ -409,6 +409,31 @@ public class RecruitActivity extends AppCompatActivity {
                 });
     }
 
+    // 사용자 이미지 설정
+    private void setUserImage(int recruitId, int userId) {
+        retrofitService = new RetrofitService();
+        recruitApi = retrofitService.getRetrofit().create(RecruitApi.class);
+
+        recruitApi.getParticipant(recruitId, userId)
+                .enqueue(new Callback<>() {
+                    @Override
+                    public void onResponse(@NonNull Call<ParticipantVO> call, @NonNull Response<ParticipantVO> response) {
+                        ParticipantVO participant = response.body();
+
+                        if (Objects.requireNonNull(participant).getParticipantType().equals("registrant")) {
+                            userIV.setImageResource(R.drawable.icon_user_mint);
+                        } else {
+                            userIV.setImageResource(R.drawable.icon_user_green);
+                        }
+                    }
+
+                    @Override
+                    public void onFailure(@NonNull Call<ParticipantVO> call, @NonNull Throwable t) {
+
+                    }
+                });
+    }
+
     // 총 주문금액
     private void getOrdersTotalPrice(int recruitId, int userId) {
         retrofitService = new RetrofitService();
@@ -423,7 +448,9 @@ public class RecruitActivity extends AppCompatActivity {
                         if (totalPrice == null || totalPrice == 0) {
                             totalPriceTV.setText("담은 메뉴 없음");
                         } else {
-                            totalPriceTV.setText("총 주문금액 " + totalPrice + "원");
+                            NumberFormat numberFormat = NumberFormat.getInstance();
+                            String totalPriceFormat = numberFormat.format(totalPrice);
+                            totalPriceTV.setText("총 주문금액 " + totalPriceFormat + "원");
                         }
                     }
 
@@ -476,8 +503,9 @@ public class RecruitActivity extends AppCompatActivity {
                 .enqueue(new Callback<>() {
                     @Override
                     public void onResponse(@NonNull Call<Integer> call, @NonNull Response<Integer> response) {
-                        Integer orderPriceResult = response.body();
-                        orderPriceTV.setText(orderPriceResult + "원");
+                        NumberFormat numberFormat = NumberFormat.getInstance();
+                        String orderPrice = numberFormat.format(response.body());
+                        orderPriceTV.setText(orderPrice + "원");
                     }
 
                     @Override
@@ -492,10 +520,13 @@ public class RecruitActivity extends AppCompatActivity {
                     @Override
                     public void onResponse(@NonNull Call<StoreVO> call, @NonNull Response<StoreVO> response) {
                         StoreVO store = response.body();
-
                         assert store != null;
+                        NumberFormat numberFormat = NumberFormat.getInstance();
+
                         String deliveryTip = store.getDeliveryTip();
-                        beforeDeliveryTipTV.setText(deliveryTip + "원");
+
+                        String deliveryTipFormat = numberFormat.format(Integer.parseInt(deliveryTip));
+                        beforeDeliveryTipTV.setText(deliveryTipFormat + "원");
                         beforeDeliveryTipTV.setPaintFlags(beforeDeliveryTipTV.getPaintFlags() | Paint.STRIKE_THRU_TEXT_FLAG);
 
                         if (participantCount == 0) {
@@ -503,7 +534,14 @@ public class RecruitActivity extends AppCompatActivity {
                         }
 
                         int finalDeliveryTipResult = Integer.parseInt(deliveryTip) / participantCount;
-                        finalDeliveryTipTV.setText(finalDeliveryTipResult + "원");
+                        String finalDeliveryTipFormat = numberFormat.format(finalDeliveryTipResult);
+                        finalDeliveryTipTV.setText(finalDeliveryTipFormat + "원");
+
+                        if (finalDeliveryTipResult == Integer.parseInt(deliveryTip)) {
+                            beforeDeliveryTipTV.setVisibility(View.GONE);
+                        } else {
+                            beforeDeliveryTipTV.setVisibility(View.VISIBLE);
+                        }
 
                         // 삭제, 탈퇴 다이얼로그 추가
                         recruitLeaveDialog = new RecruitLeaveDialog(context, recruitId, userId, finalDeliveryTipResult);
@@ -521,7 +559,8 @@ public class RecruitActivity extends AppCompatActivity {
                 .enqueue(new Callback<>() {
                     @Override
                     public void onResponse(@NonNull Call<Integer> call, @NonNull Response<Integer> response) {
-                        Integer finalPayment = response.body();
+                        NumberFormat numberFormat = NumberFormat.getInstance();
+                        String finalPayment = numberFormat.format(response.body());
                         finalPaymentTV.setText(finalPayment + "원");
                     }
 

@@ -2,15 +2,15 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
-    android:layout_marginLeft="10dp"
-    android:layout_marginRight="10dp"
+    android:layout_marginEnd="10dp"
     android:orientation="vertical">
 
     <ImageView
-        android:layout_width="50dp"
-        android:layout_height="50dp"
-        android:layout_marginBottom="8dp"
-        android:src="@drawable/icon_star" />
+        android:id="@+id/userIV"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="5dp"
+        android:src="@drawable/icon_user_mint" />
 
     <TextView
         android:id="@+id/memberNameTV"
@@ -18,7 +18,8 @@
         android:layout_height="wrap_content"
         android:layout_gravity="center"
         android:layout_marginBottom="5dp"
-        android:fontFamily="@font/bmjua_font"
+        android:textSize="12sp"
+        android:fontFamily="@font/nanum_square_extra_bold"
         android:text="@string/member"
         android:textColor="@color/black2" />
 
@@ -27,7 +28,8 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
-        android:fontFamily="@font/bmjua_font"
+        android:textSize="13sp"
+        android:fontFamily="@font/nanum_square_extra_bold"
         android:text="@string/participantType"
         android:textColor="@color/black2" />
 

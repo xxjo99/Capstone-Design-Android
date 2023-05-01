@@ -5,6 +5,7 @@ import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -17,6 +18,7 @@ import com.delivery.mydelivery.user.UserApi;
 import com.delivery.mydelivery.user.UserVO;
 
 import java.util.List;
+import java.util.Objects;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -51,13 +53,16 @@ public class MemberDeliveryInfoAdapter extends RecyclerView.Adapter<MemberDelive
     @Override
     public void onBindViewHolder(@NonNull MemberDeliveryInfoAdapter.ViewHolder holder, int position) {
         ParticipantVO participant = participantList.get(position);
+        int recruitId = participant.getRecruitId();
+        int userId = participant.getUserId();
+
+        // 유저 이미지
+        setUserImage(recruitId, userId, holder);
 
         // 유저 이름
-        int userId = participant.getUserId();
         setParticipantName(userId, holder);
 
         // 해당 유저의 총 주문금액
-        int recruitId = participant.getRecruitId();
         serParticipantTotalPrice(recruitId, userId, holder);
 
         // 결제 상태
@@ -81,6 +86,7 @@ public class MemberDeliveryInfoAdapter extends RecyclerView.Adapter<MemberDelive
     }
 
     public static class ViewHolder extends RecyclerView.ViewHolder {
+        ImageView userIV;
         TextView userNameTV;
         TextView totalPriceTV;
         TextView paymentStatusTV;
@@ -88,18 +94,45 @@ public class MemberDeliveryInfoAdapter extends RecyclerView.Adapter<MemberDelive
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
 
+            userIV = itemView.findViewById(R.id.userIV);
             userNameTV = itemView.findViewById(R.id.userNameTV);
             totalPriceTV = itemView.findViewById(R.id.totalPriceTV);
             paymentStatusTV = itemView.findViewById(R.id.paymentStatusTV);
         }
     }
 
+    // 사용자 이미지 설정
+    private void setUserImage(int recruitId, int userId, MemberDeliveryInfoAdapter.ViewHolder holder) {
+        retrofitService = new RetrofitService();
+        recruitApi = retrofitService.getRetrofit().create(RecruitApi.class);
+
+        recruitApi.getParticipant(recruitId, userId)
+                .enqueue(new Callback<>() {
+                    @Override
+                    public void onResponse(@NonNull Call<ParticipantVO> call, @NonNull Response<ParticipantVO> response) {
+                        ParticipantVO participant = response.body();
+
+                        if (Objects.requireNonNull(participant).getParticipantType().equals("registrant")) {
+                            holder.userIV.setImageResource(R.drawable.icon_user_mint);
+                        } else {
+                            holder.userIV.setImageResource(R.drawable.icon_user_green);
+                        }
+                    }
+
+                    @Override
+                    public void onFailure(@NonNull Call<ParticipantVO> call, @NonNull Throwable t) {
+
+                    }
+                });
+    }
+
+
     private void setParticipantName(int userId, MemberDeliveryInfoAdapter.ViewHolder holder) {
         retrofitService = new RetrofitService();
         userApi = retrofitService.getRetrofit().create(UserApi.class);
 
         userApi.getUser(userId)
-                .enqueue(new Callback<UserVO>() {
+                .enqueue(new Callback<>() {
                     @Override
                     public void onResponse(@NonNull Call<UserVO> call, @NonNull Response<UserVO> response) {
                         UserVO user = response.body();
@@ -120,7 +153,7 @@ public class MemberDeliveryInfoAdapter extends RecyclerView.Adapter<MemberDelive
         recruitApi = retrofitService.getRetrofit().create(RecruitApi.class);
 
         recruitApi.getOrdersTotalPrice(recruitId, userId)
-                .enqueue(new Callback<Integer>() {
+                .enqueue(new Callback<>() {
                     @Override
                     public void onResponse(@NonNull Call<Integer> call, @NonNull Response<Integer> response) {
                         Integer totalPrice = response.body();

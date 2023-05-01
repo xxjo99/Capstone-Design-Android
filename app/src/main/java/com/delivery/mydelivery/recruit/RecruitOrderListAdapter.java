@@ -2,25 +2,24 @@ package com.delivery.mydelivery.recruit;
 
 import android.annotation.SuppressLint;
 import android.content.Context;
-import android.content.res.ColorStateList;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageButton;
 import android.widget.LinearLayout;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
-import androidx.core.content.ContextCompat;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.delivery.mydelivery.R;
 import com.delivery.mydelivery.menu.MenuApi;
 import com.delivery.mydelivery.menu.MenuVO;
 import com.delivery.mydelivery.order.OrderApi;
+import com.delivery.mydelivery.order.OrderListActivity;
 import com.delivery.mydelivery.retrofit.RetrofitService;
 
+import java.text.NumberFormat;
 import java.util.List;
 import java.util.Objects;
 
@@ -70,7 +69,9 @@ public class RecruitOrderListAdapter extends RecyclerView.Adapter<RecruitOrderLi
 
         setMenuName(menuId, holder);// 메뉴 이름
         setContentNameList(selectedOptionList, holder);// 선택한 옵션 목록
-        holder.menuPriceTV.setText(price + "원");// 가격
+        NumberFormat numberFormat = NumberFormat.getInstance();
+        String priceFormat = numberFormat.format(price);
+        holder.menuPriceTV.setText(priceFormat + "원");// 가격
         holder.amountTV.setText(amount + "개");// 개수
 
         if (order.getAmount() == 1) {
@@ -82,11 +83,12 @@ public class RecruitOrderListAdapter extends RecyclerView.Adapter<RecruitOrderLi
         // 결제 완료되었다면 메뉴 변경 불가
         if (paymentStatus == 1) {
             holder.deleteBtn.setVisibility(View.GONE);
-            holder.decreaseBtn.setVisibility(View.GONE);
-            holder.increaseBtn.setVisibility(View.GONE);
 
-            ColorStateList colorStateList = ColorStateList.valueOf(ContextCompat.getColor(context, R.color.white));
-            holder.amountLayout.setBackgroundTintList(colorStateList);
+            holder.decreaseBtn.setImageResource(R.drawable.icon_minus_gray);
+            holder.decreaseBtn.setEnabled(false);
+
+            holder.increaseBtn.setImageResource(R.drawable.icon_plus_gray);
+            holder.increaseBtn.setEnabled(false);
         }
 
         // 메뉴 개수 수정
@@ -102,7 +104,8 @@ public class RecruitOrderListAdapter extends RecyclerView.Adapter<RecruitOrderLi
                 notifyItemChanged(position);
 
                 RecruitOrderListActivity.totalPrice -= (order.getTotalPrice() / order.getAmount());
-                RecruitOrderListActivity.totalPriceTV.setText(RecruitOrderListActivity.totalPrice + "원");
+                String totalPrice = numberFormat.format(RecruitOrderListActivity.totalPrice);
+                RecruitOrderListActivity.totalPriceTV.setText(totalPrice + "원");
 
                 if (order.getAmount() == 1) {
                     holder.decreaseBtn.setImageResource(R.drawable.icon_minus_gray);
@@ -123,7 +126,8 @@ public class RecruitOrderListAdapter extends RecyclerView.Adapter<RecruitOrderLi
             notifyItemChanged(position);
 
             RecruitOrderListActivity.totalPrice += (order.getTotalPrice() / order.getAmount());
-            RecruitOrderListActivity.totalPriceTV.setText(RecruitOrderListActivity.totalPrice + "원");
+            String totalPrice = numberFormat.format(RecruitOrderListActivity.totalPrice);
+            RecruitOrderListActivity.totalPriceTV.setText(totalPrice + "원");
 
             if (order.getAmount() == 1) {
                 holder.decreaseBtn.setImageResource(R.drawable.icon_minus_gray);
@@ -248,9 +252,11 @@ public class RecruitOrderListAdapter extends RecyclerView.Adapter<RecruitOrderLi
                     @SuppressLint("NotifyDataSetChanged")
                     @Override
                     public void onResponse(@NonNull Call<Void> call, @NonNull Response<Void> response) {
-                        Toast.makeText(context, "삭제 성공", Toast.LENGTH_SHORT).show();
                         RecruitOrderListActivity.totalPrice -= orderPrice;
-                        RecruitOrderListActivity.totalPriceTV.setText(RecruitOrderListActivity.totalPrice + "원");
+
+                        NumberFormat numberFormat = NumberFormat.getInstance();
+                        String totalPrice = numberFormat.format(RecruitOrderListActivity.totalPrice);
+                        RecruitOrderListActivity.totalPriceTV.setText(totalPrice + "원");
                         orderList.remove(position);
                         notifyDataSetChanged();
 

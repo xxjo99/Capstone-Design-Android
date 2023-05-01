@@ -67,7 +67,7 @@
         <activity android:name=".store.StoreActivity" />
 
         <!-- menu -->
-        <activity android:name=".menu.MenuListActivity"/>
+        <activity android:name=".menu.MenuListActivity" />
         <activity android:name=".menu.OptionActivity" />
 
         <!-- order -->
@@ -82,7 +82,7 @@
         <!-- point -->
         <activity
             android:name=".point.PointActivity"
-            android:windowSoftInputMode="stateAlwaysHidden"/>
+            android:windowSoftInputMode="stateAlwaysHidden" />
         <activity android:name=".point.PointHistoryActivity" />
         <activity android:name=".point.PointCompleteActivity" />
 
@@ -115,6 +115,10 @@
             android:name=".delivery.SendCompleteMessageActivity"
             android:windowSoftInputMode="adjustResize" />
 
+        <!-- keyword -->
+        <activity
+            android:name=".keyword.KeywordActivity"
+            android:windowSoftInputMode="adjustResize" />
 
     </application>
 

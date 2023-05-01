@@ -7,32 +7,44 @@
     android:orientation="vertical">
 
     <View
-        android:layout_width="match_parent"
+        android:layout_width="0dp"
         android:layout_height="0dp"
         android:layout_weight="1" />
 
-    <ImageView
-        android:layout_width="80dp"
-        android:layout_height="80dp"
-        android:layout_gravity="center"
-        android:src="@drawable/checked" />
-
-    <TextView
-        android:layout_width="match_parent"
+    <LinearLayout
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="15dp"
-        android:fontFamily="@font/bmjua_font"
-        android:gravity="center_horizontal"
-        android:text="결제가 완료되었습니다.\n주문이 접수될 때까지 잠시 기다려주세요."
-        android:textColor="@color/black2"
-        android:textSize="20dp" />
+        android:layout_gravity="center"
+        android:orientation="vertical">
+
+        <ImageView
+            android:layout_width="80dp"
+            android:layout_height="80dp"
+            android:layout_gravity="center"
+            android:src="@drawable/checked" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginTop="20dp"
+            android:fontFamily="@font/nanum_square_extra_bold"
+            android:gravity="center_horizontal"
+            android:text="결제가 완료되었습니다.\n주문이 접수될 때까지 잠시 기다려주세요."
+            android:textColor="@color/black2"
+            android:textSize="17sp" />
+
+    </LinearLayout>
+
+    <View
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_weight="1" />
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="1"
-        android:gravity="center_horizontal|bottom"
-        android:padding="10dp">
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
 
         <Button
             android:id="@+id/backBtn"
@@ -40,8 +52,9 @@
             android:layout_width="match_parent"
             android:layout_height="55dp"
             android:layout_marginLeft="10dp"
+            android:layout_marginTop="25dp"
             android:layout_marginRight="10dp"
-            android:layout_marginBottom="5dp"
+            android:layout_marginBottom="15dp"
             android:background="@drawable/btn_fill2_mint"
             android:fontFamily="@font/bmjua_font"
             android:text="돌아가기"

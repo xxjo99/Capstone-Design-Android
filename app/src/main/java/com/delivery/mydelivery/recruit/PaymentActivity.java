@@ -24,6 +24,7 @@ import com.delivery.mydelivery.user.UserVO;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 
+import java.text.NumberFormat;
 import java.util.Objects;
 
 import retrofit2.Call;
@@ -86,10 +87,10 @@ public class PaymentActivity extends AppCompatActivity {
         String storeName = intent.getStringExtra("storeName");
         String place = intent.getStringExtra("place");
         String phoneNum = intent.getStringExtra("phoneNum");
-        String orderPrice = intent.getStringExtra("orderPrice");
-        String deliveryTip = intent.getStringExtra("deliveryTip");
-        String finalDeliveryTip = intent.getStringExtra("finalDeliveryTip");
-        String finalPayment = intent.getStringExtra("finalPayment");
+        String orderPriceFormat = intent.getStringExtra("orderPrice");
+        String deliveryTipFormat = intent.getStringExtra("deliveryTip");
+        String finalDeliveryTipFormat = intent.getStringExtra("finalDeliveryTip");
+        String finalPaymentFormat = intent.getStringExtra("finalPayment");
 
         // 남은시간 다이얼로그 생성
         backBtn.setOnClickListener(view -> createRemainPaymentTimeDialog(recruitId));
@@ -121,20 +122,24 @@ public class PaymentActivity extends AppCompatActivity {
         placeTV.setText(place);
         phoneNumTV.setText(phoneNum);
 
-        orderPriceTV.setText(orderPrice);
-        beforeDeliveryTipTV.setText(deliveryTip);
+        orderPriceTV.setText(orderPriceFormat);
+        beforeDeliveryTipTV.setText(deliveryTipFormat);
         beforeDeliveryTipTV.setPaintFlags(beforeDeliveryTipTV.getPaintFlags() | Paint.STRIKE_THRU_TEXT_FLAG);
-        finalDeliveryTipTV.setText(finalDeliveryTip);
-        finalPaymentTV.setText(finalPayment);
+        finalDeliveryTipTV.setText(finalDeliveryTipFormat);
+        finalPaymentTV.setText(finalPaymentFormat);
 
-        pointTV.setText(user.getPoint() + "P");
+        NumberFormat numberFormat = NumberFormat.getInstance();
+        String pointFormat = numberFormat.format(user.getPoint());
+        pointTV.setText(pointFormat + "P");
 
-        int finalPaymentInt = Integer.parseInt(finalPayment.substring(0, finalPayment.length() - 1));
-        paymentTV.setText(finalPaymentInt + "P");
+        int finalPaymentInt = Integer.parseInt((finalPaymentFormat.substring(0, finalPaymentFormat.length() - 1)).replace(",", ""));
+        String finalPaymentIntFormat = numberFormat.format(finalPaymentInt);
+        paymentTV.setText(finalPaymentIntFormat + "P");
 
         if (user.getPoint() >= finalPaymentInt) {
             addPointLayout.setVisibility(View.GONE);
-            remainPointTV.setText(user.getPoint() - finalPaymentInt + "P");
+            String remainPointFormat = numberFormat.format(user.getPoint() - finalPaymentInt);
+            remainPointTV.setText(remainPointFormat + "P");
 
             paymentBtn.setText("결제하기");
         } else {
@@ -143,11 +148,15 @@ public class PaymentActivity extends AppCompatActivity {
 
             if (addPoint < 1000) {
                 addPoint = 1000;
-                addPointTV.setText(addPoint + "P");
+                String addPointFormat = numberFormat.format(addPoint);
+                addPointTV.setText(addPointFormat + "P");
             } else {
-                addPointTV.setText(addPoint + "P");
+                String addPointFormat = numberFormat.format(addPoint);
+                addPointTV.setText(addPointFormat + "P");
             }
-            remainPointTV.setText((user.getPoint() + addPoint) - finalPaymentInt + "P");
+
+            String remainPointFormat = numberFormat.format((user.getPoint() + addPoint) - finalPaymentInt);
+            remainPointTV.setText(remainPointFormat + "P");
 
             paymentBtn.setText("충전하기");
         }
