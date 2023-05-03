@@ -3,35 +3,24 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
-    android:layout_marginLeft="10dp"
-    android:layout_marginRight="10dp"
     android:orientation="vertical">
 
-    <FrameLayout
+    <de.hdodenhof.circleimageview.CircleImageView
+        android:id="@+id/categoryIV"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:layout_gravity="center"
+        app:civ_circle_background_color="@color/mint1"
+        android:src="@drawable/sampleimg"
+        app:civ_border_color="@color/white"
+        app:civ_border_overlay="true" />
+
+    <TextView
+        android:id="@+id/categoryTV"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content">
-
-        <com.makeramen.roundedimageview.RoundedImageView
-            android:id="@+id/categoryIV"
-            android:layout_width="150dp"
-            android:layout_height="250dp"
-            android:scaleType="centerCrop"
-            android:src="@drawable/img_chicken"
-            app:riv_corner_radius="25dp" />
-
-        <TextView
-            android:id="@+id/categoryTV"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="bottom"
-            android:layout_marginBottom="15dp"
-            android:layout_marginStart="15dp"
-            android:fontFamily="@font/nanum_square_bold"
-            android:text="고기"
-            android:textColor="@color/white"
-            android:textSize="20sp" />
-
-    </FrameLayout>
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:text="카테고리" />
 
 
 </LinearLayout>

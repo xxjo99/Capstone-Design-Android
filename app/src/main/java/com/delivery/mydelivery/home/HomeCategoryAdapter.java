@@ -18,6 +18,8 @@ import com.makeramen.roundedimageview.RoundedImageView;
 
 import java.util.List;
 
+import de.hdodenhof.circleimageview.CircleImageView;
+
 // 카테고리 어댑터
 public class HomeCategoryAdapter extends RecyclerView.Adapter<HomeCategoryAdapter.ViewHolder> {
 
@@ -58,7 +60,7 @@ public class HomeCategoryAdapter extends RecyclerView.Adapter<HomeCategoryAdapte
 
     class ViewHolder extends RecyclerView.ViewHolder {
 
-        RoundedImageView categoryIV;
+        CircleImageView categoryIV;
         TextView categoryTV;
 
         public ViewHolder(@NonNull View itemView) {

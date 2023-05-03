@@ -1,7 +1,6 @@
 package com.delivery.mydelivery.home;
 
 import android.content.Context;
-import android.graphics.Rect;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -10,7 +9,6 @@ import android.view.ViewGroup;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
-import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.viewpager2.widget.ViewPager2;
@@ -136,8 +134,8 @@ public class HomeFragment extends Fragment {
 
                         // 이미지 추가
                         int[] categoryImgList = {
-                                R.drawable.img_korean, R.drawable.img_chicken, R.drawable.img_chicken, R.drawable.img_chicken, R.drawable.img_chicken,
-                                R.drawable.img_chicken, R.drawable.img_chicken, R.drawable.img_chicken, R.drawable.img_chicken, R.drawable.img_chicken
+                                R.drawable.sampleimg, R.drawable.sampleimg, R.drawable.sampleimg, R.drawable.sampleimg, R.drawable.sampleimg,
+                                R.drawable.sampleimg, R.drawable.sampleimg, R.drawable.sampleimg, R.drawable.sampleimg, R.drawable.sampleimg
                         };
 
 

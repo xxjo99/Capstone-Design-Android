@@ -50,7 +50,6 @@
             android:id="@+id/menuIV"
             android:layout_width="170dp"
             android:layout_height="90dp"
-            android:src="@drawable/meat_test"
             app:riv_corner_radius="5dp"
             app:riv_mutate_background="true"/>
 
