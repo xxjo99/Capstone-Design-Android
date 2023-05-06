@@ -7,6 +7,7 @@ import retrofit2.http.DELETE;
 import retrofit2.http.GET;
 import retrofit2.http.POST;
 import retrofit2.http.Path;
+import retrofit2.http.Query;
 
 public interface KeywordApi {
 
@@ -21,5 +22,9 @@ public interface KeywordApi {
     // 등록한 키워드 조회
     @GET("/keyword/list/{userId}")
     Call<List<KeywordVO>> getKeywordList(@Path("userId") int userId);
+
+    // 키워드 알림 전송
+    @POST("/keyword/send/message")
+    Call<Void> sendKeywordMessage(@Query("keyword") String keyword, @Query("storeName") String storeName);
 
 }

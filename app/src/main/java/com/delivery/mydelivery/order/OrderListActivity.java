@@ -19,6 +19,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.delivery.mydelivery.R;
+import com.delivery.mydelivery.keyword.KeywordApi;
 import com.delivery.mydelivery.menu.MenuListActivity;
 import com.delivery.mydelivery.recruit.RecruitApi;
 import com.delivery.mydelivery.recruit.RecruitVO;
@@ -107,6 +108,7 @@ public class OrderListActivity extends AppCompatActivity {
     RecruitApi recruitApi;
     UserApi userApi;
     StoreApi storeApi;
+    KeywordApi keywordApi;
 
     Context context;
 
@@ -453,6 +455,8 @@ public class OrderListActivity extends AppCompatActivity {
                 .enqueue(new Callback<>() {
                     @Override
                     public void onResponse(@NonNull Call<Void> call, @NonNull Response<Void> response) {
+                        findStore(recruit.getStoreId()); // 매장 검색 -> 키워드 메시지 전송
+
                         StyleableToast.makeText(context, "모집글 등록 완료", R.style.successToast).show();
                         finish();
                     }
@@ -460,6 +464,46 @@ public class OrderListActivity extends AppCompatActivity {
                     @Override
                     public void onFailure(@NonNull Call<Void> call, @NonNull Throwable t) {
 
+                    }
+                });
+    }
+
+    // 매장 검색
+    private void findStore(int storeId) {
+        retrofitService = new RetrofitService();
+        storeApi = retrofitService.getRetrofit().create(StoreApi.class);
+
+        storeApi.getStore(storeId)
+                .enqueue(new Callback<>() {
+                    @Override
+                    public void onResponse(@NonNull Call<StoreVO> call, @NonNull Response<StoreVO> response) {
+                        StoreVO store = response.body();
+                        String category = Objects.requireNonNull(store).getCategory();
+                        String storeName = store.getStoreName();
+
+                        sendKeywordMessage(category, storeName); // 키워드 메시지 전송
+                    }
+
+                    @Override
+                    public void onFailure(@NonNull Call<StoreVO> call, @NonNull Throwable t) {
+
+                    }
+                });
+    }
+
+    // 키워드 메시지 전송
+    private void sendKeywordMessage(String keyword, String storeName) {
+        retrofitService = new RetrofitService();
+        keywordApi = retrofitService.getRetrofit().create(KeywordApi.class);
+
+        keywordApi.sendKeywordMessage(keyword, storeName)
+                .enqueue(new Callback<>() {
+                    @Override
+                    public void onResponse(@NonNull Call<Void> call, @NonNull Response<Void> response) {
+                    }
+
+                    @Override
+                    public void onFailure(@NonNull Call<Void> call, @NonNull Throwable t) {
                     }
                 });
     }

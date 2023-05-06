@@ -9,7 +9,7 @@
         android:id="@+id/keywordToolbar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="10dp"
+        android:layout_marginBottom="8dp"
         android:background="@color/white"
         app:contentInsetStart="0dp">
 
@@ -37,7 +37,8 @@
         android:layout_height="wrap_content"
         android:layout_margin="20dp"
         android:fontFamily="@font/nanum_square_extra_bold"
-        android:text="알림을 받을 카테고리를 설정해주세요."
+        android:lineSpacingExtra="10sp"
+        android:text="알림을 받을 카테고리를 설정해주세요.\n최대 3개까지 등록이 가능합니다."
         android:textColor="@color/black2"
         android:textSize="17sp" />
 
@@ -316,12 +317,11 @@
         android:layout_weight="1" />
 
     <Button
-        android:id="@+id/nextBtn"
+        android:id="@+id/saveBtn"
         style="?android:attr/borderlessButtonStyle"
         android:layout_width="match_parent"
         android:layout_height="65dp"
-        android:background="@color/gray2"
-        android:enabled="false"
+        android:background="@color/mint1"
         android:fontFamily="@font/nanum_square_extra_bold"
         android:text="저장"
         android:textColor="@color/white"
