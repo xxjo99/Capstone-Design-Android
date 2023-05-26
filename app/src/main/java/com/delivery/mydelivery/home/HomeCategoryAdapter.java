@@ -6,6 +6,7 @@ import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -60,7 +61,7 @@ public class HomeCategoryAdapter extends RecyclerView.Adapter<HomeCategoryAdapte
 
     class ViewHolder extends RecyclerView.ViewHolder {
 
-        CircleImageView categoryIV;
+        ImageView categoryIV;
         TextView categoryTV;
 
         public ViewHolder(@NonNull View itemView) {

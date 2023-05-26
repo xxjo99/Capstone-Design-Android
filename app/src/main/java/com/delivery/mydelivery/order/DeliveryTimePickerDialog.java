@@ -49,7 +49,7 @@ public class DeliveryTimePickerDialog {
         final Dialog dialog = new Dialog(context);
 
         dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
-        dialog.setContentView(R.layout.dialog_delivery_time_picker);
+        dialog.setContentView(R.layout.dialog_order_time_picker);
         dialog.getWindow().setGravity(Gravity.BOTTOM);
 
         // 크기 지정

@@ -56,6 +56,10 @@ public interface RecruitApi {
     @GET("/recruit/participants/except/{recruitId}/{userId}")
     Call<List<ParticipantVO>> getParticipantListExceptMine(@Path("recruitId") int recruitId, @Path("userId") int userId);
 
+    // 배달팁
+    @GET("/recruit/get/tip/{recruitId}")
+    Call<Integer> getDeliveryTip(@Path("recruitId") int recruitId);
+
     // 최종결제금액
     @GET("/recruit/payment/{recruitId}/{storeId}/{userId}")
     Call<Integer> getFinalPayment(@Path("recruitId") int recruitId, @Path("storeId") int storeId, @Path("userId") int userId);
@@ -103,5 +107,9 @@ public interface RecruitApi {
     // 마감시간이 지나고, 결제가 완료되지 않은 유저가 있다면 포인트 차감 후 강퇴
     @POST("/recruit/check/paymentStatus")
     Call<Void> checkParticipantPaymentStatus(@Query("recruitId") int recruitId);
+
+    // 추가요금
+    @GET("/recruit/surcharge/{recruitId}")
+    Call<Integer> getSurcharge(@Path("recruitId") int recruitId);
 
 }

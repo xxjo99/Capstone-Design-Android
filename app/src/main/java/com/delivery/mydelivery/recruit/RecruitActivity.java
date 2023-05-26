@@ -1,13 +1,10 @@
 package com.delivery.mydelivery.recruit;
 
 import android.annotation.SuppressLint;
-import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.Paint;
-import android.graphics.Point;
 import android.os.Bundle;
-import android.view.Display;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageButton;
@@ -96,6 +93,7 @@ public class RecruitActivity extends AppCompatActivity {
     Button checkOrderBtn;
     NestedScrollView recruitScrollView;
     LinearLayout paymentLayout;
+    TextView surchargeTV;
 
     // 레트로핏, api
     RetrofitService retrofitService;
@@ -154,11 +152,15 @@ public class RecruitActivity extends AppCompatActivity {
         checkOrderBtn = findViewById(R.id.checkOrderBtn);
         recruitScrollView = findViewById(R.id.recruitScrollView);
         paymentLayout = findViewById(R.id.paymentLayout);
+        surchargeTV = findViewById(R.id.surchargeTV);
 
         checkDeliveryState(recruitId); // 배달상태 확인 (접수 전, 후, 배달 시작)
 
         // 담은 메뉴 확인 액티비티 이동
         checkOrderBtn.setOnClickListener(view -> moveOrderListActivity(recruitId, user.getUserId(), storeId));
+
+        // 추가요금 텍스트 설정
+
 
         // 매장정보 초기화
         storeIV = findViewById(R.id.storeIV);
@@ -339,6 +341,8 @@ public class RecruitActivity extends AppCompatActivity {
                             recruitScrollView.setVisibility(View.GONE);
                             paymentLayout.setVisibility(View.GONE);
                             deleteBtn.setVisibility(View.GONE);
+
+                            checkSurcharge(recruitId); // 추가요금발생 체크
                         } else { // 배달 출발 (2)
                             receiptLayout.setVisibility(View.VISIBLE);
                             deliveryStateTV.setText("배달이 시작되었습니다.");
@@ -347,11 +351,40 @@ public class RecruitActivity extends AppCompatActivity {
                             recruitScrollView.setVisibility(View.GONE);
                             paymentLayout.setVisibility(View.GONE);
                             deleteBtn.setVisibility(View.GONE);
+
+                            checkSurcharge(recruitId); // 추가요금발생 체크
                         }
                     }
 
                     @Override
                     public void onFailure(@NonNull Call<RecruitVO> call, @NonNull Throwable t) {
+
+                    }
+                });
+    }
+
+    // 추가 요금 발생시 텍스트 추가
+    private void checkSurcharge(int recruitId) {
+        retrofitService = new RetrofitService();
+        recruitApi = retrofitService.getRetrofit().create(RecruitApi.class);
+
+        recruitApi.getSurcharge(recruitId)
+                .enqueue(new Callback<>() {
+                    @Override
+                    public void onResponse(@NonNull Call<Integer> call, @NonNull Response<Integer> response) {
+                        Integer surcharge = response.body();
+
+                        if (surcharge == 0) {
+                            surchargeTV.setVisibility(View.GONE);
+                        } else {
+                            NumberFormat numberFormat = NumberFormat.getInstance();
+                            String surchargeFormat = numberFormat.format(surcharge);
+                            surchargeTV.setText("인원이 모두 모이지 않아 추가 요금 " + surchargeFormat + "원이 발생했습니다.");
+                        }
+                    }
+
+                    @Override
+                    public void onFailure(@NonNull Call<Integer> call, @NonNull Throwable t) {
 
                     }
                 });
@@ -534,14 +567,6 @@ public class RecruitActivity extends AppCompatActivity {
                         }
 
                         int finalDeliveryTipResult = Integer.parseInt(deliveryTip) / participantCount;
-                        String finalDeliveryTipFormat = numberFormat.format(finalDeliveryTipResult);
-                        finalDeliveryTipTV.setText(finalDeliveryTipFormat + "원");
-
-                        if (finalDeliveryTipResult == Integer.parseInt(deliveryTip)) {
-                            beforeDeliveryTipTV.setVisibility(View.GONE);
-                        } else {
-                            beforeDeliveryTipTV.setVisibility(View.VISIBLE);
-                        }
 
                         // 삭제, 탈퇴 다이얼로그 추가
                         recruitLeaveDialog = new RecruitLeaveDialog(context, recruitId, userId, finalDeliveryTipResult);
@@ -553,6 +578,23 @@ public class RecruitActivity extends AppCompatActivity {
 
                     }
                 });
+
+        // 예상 배달비
+        recruitApi.getDeliveryTip(recruitId)
+                        .enqueue(new Callback<>() {
+                            @Override
+                            public void onResponse(@NonNull Call<Integer> call, @NonNull Response<Integer> response) {
+                                Integer deliveryTip = response.body();
+                                NumberFormat numberFormat = NumberFormat.getInstance();
+                                String finalDeliveryTipFormat = numberFormat.format(deliveryTip);
+                                finalDeliveryTipTV.setText(finalDeliveryTipFormat + "원");
+                            }
+
+                            @Override
+                            public void onFailure(@NonNull Call<Integer> call, @NonNull Throwable t) {
+
+                            }
+                        });
 
         // 최종결제금액
         recruitApi.getFinalPayment(recruitId, storeId, userId)
@@ -668,21 +710,8 @@ public class RecruitActivity extends AppCompatActivity {
                             }
 
                         } else {
-                            int month = deliveryTime.getMonthValue(); // 월
-                            int day = deliveryTime.getDayOfMonth(); // 일
-                            int hour = deliveryTime.getHour(); // 시간
-                            int minute = deliveryTime.getMinute(); // 분
-
-                            String deliveryTimeText;
-                            if (currentTime.getMonthValue() == month && currentTime.getDayOfMonth() == day) {
-                                deliveryTimeText = hour + "시 " + minute + "분 이후 결제 가능";
-                            } else {
-                                deliveryTimeText = month + "/" + day + " " + hour + "시 " + minute + "분 이후 결제 가능";
-                            }
-
-                            paymentBtn.setEnabled(false);
-                            paymentBtn.setBackgroundResource(R.drawable.btn_fill1_gray);
-                            paymentBtn.setText(deliveryTimeText);
+                            paymentBtn.setEnabled(true);
+                            paymentBtn.setBackgroundResource(R.drawable.btn_fill1_mint);
                         }
 
                     }
@@ -775,10 +804,8 @@ public class RecruitActivity extends AppCompatActivity {
                         Instant instant = timestamp.toInstant();
                         LocalDateTime deliveryTime = instant.atZone(ZoneId.of("Asia/Seoul")).toLocalDateTime();
 
-                        LocalDateTime paymentDeadline = deliveryTime.plusMinutes(10); // 결제마감시간 = 배달시간 + 10분
-
                         // 결제마감시간이 지났을 때 참가인원 수 검사
-                        if (currentTime.isAfter(paymentDeadline)) {
+                        if (currentTime.isAfter(deliveryTime)) {
                             checkParticipantCount(recruitId);
                         }
                     }
@@ -830,14 +857,6 @@ public class RecruitActivity extends AppCompatActivity {
                     public void onFailure(@NonNull Call<Void> call, @NonNull Throwable t) {
                     }
                 });
-    }
-
-    // 디바이스 넓이
-    private int getWidth(Activity activity) {
-        Display display = activity.getWindowManager().getDefaultDisplay();
-        Point size = new Point();
-        display.getRealSize(size);
-        return size.x;
     }
 
     // 재시작

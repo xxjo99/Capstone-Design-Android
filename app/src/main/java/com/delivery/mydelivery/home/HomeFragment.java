@@ -1,10 +1,12 @@
 package com.delivery.mydelivery.home;
 
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.LinearLayout;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -14,6 +16,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import androidx.viewpager2.widget.ViewPager2;
 
 import com.delivery.mydelivery.R;
+import com.delivery.mydelivery.keyword.KeywordActivity;
 import com.delivery.mydelivery.preferenceManager.PreferenceManager;
 import com.delivery.mydelivery.recruit.RecruitApi;
 import com.delivery.mydelivery.recruit.RecruitVO;
@@ -46,6 +49,8 @@ public class HomeFragment extends Fragment {
     HomeRecruitListAdapter homeRecruitListAdapter;
     List<RecruitVO> recruitList;
 
+    LinearLayout keywordLayout;
+
     // 레트로핏, api
     RetrofitService retrofitService;
     HomeApi homeApi;
@@ -68,6 +73,8 @@ public class HomeFragment extends Fragment {
         Gson gson = new Gson();
         UserVO user = gson.fromJson(loginInfo, UserVO.class);
 
+        keywordLayout = view.findViewById(R.id.keywordLayout);
+
         // 뷰페이저
         slideViewPager = view.findViewById(R.id.slideViewPager);
         // 어댑터 연결
@@ -81,6 +88,12 @@ public class HomeFragment extends Fragment {
         slideViewPager.setOrientation(ViewPager2.ORIENTATION_HORIZONTAL);
         slideViewPager.setCurrentItem(1000); //시작 지점
         slideViewPager.setOffscreenPageLimit(2); //최대 이미지 수
+
+        // 키워드 설정 액티비티 이동
+        keywordLayout.setOnClickListener(view -> {
+            Intent intent = new Intent(context, KeywordActivity.class);
+            startActivity(intent);
+        });
 
         // 페이지 슬라이드 시 Indicator 변경, 마지막 이미지에서 슬라이드할 경우 첫 슬라이드로 이동
         slideViewPager.registerOnPageChangeCallback(new ViewPager2.OnPageChangeCallback() {
@@ -134,8 +147,11 @@ public class HomeFragment extends Fragment {
 
                         // 이미지 추가
                         int[] categoryImgList = {
-                                R.drawable.sampleimg, R.drawable.sampleimg, R.drawable.sampleimg, R.drawable.sampleimg, R.drawable.sampleimg,
-                                R.drawable.sampleimg, R.drawable.sampleimg, R.drawable.sampleimg, R.drawable.sampleimg, R.drawable.sampleimg
+                                R.drawable.icon_category_korean, R.drawable.icon_category_japanese,
+                                R.drawable.icon_category_chinese, R.drawable.icon_category_western,
+                                R.drawable.icon_category_meat, R.drawable.icon_category_chicken,
+                                R.drawable.icon_category_hamburger, R.drawable.icon_category_pizza,
+                                R.drawable.icon_category_asian, R.drawable.icon_category_snack
                         };
 
 

@@ -428,6 +428,23 @@
 
                 </LinearLayout>
 
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:layout_marginBottom="15dp"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/nanum_square_extra_bold"
+                        android:textSize="11sp"
+                        android:textColor="@color/red1"
+                        android:text="모집인원이 모두 모이지 않으면 추가적인 금액이 발생할 수 있습니다."/>
+
+                </LinearLayout>
+
             </LinearLayout>
 
         </LinearLayout>

@@ -69,10 +69,9 @@ public class RecruitRemainPaymentTimeDialog {
         Timestamp timestamp = recruit.getDeliveryTime();
         LocalDateTime deliveryTime = timestamp.toInstant().atZone(ZoneId.of("Asia/Seoul")).toLocalDateTime(); // 배달시간
         LocalDateTime currentTime = LocalDateTime.now(); // 현재시간
-        LocalDateTime paymentDeadLine = deliveryTime.plusMinutes(10); // 결제마감시간 = 배달시간 + 10분
 
         // 남은시간, 분, 초를 밀리초로 변경 후 반환
-        Duration remainPaymentTime = Duration.between(currentTime, paymentDeadLine);
+        Duration remainPaymentTime = Duration.between(currentTime, deliveryTime);
         long minute = remainPaymentTime.toMinutes();
         long seconds = (remainPaymentTime.toMillis() / 1000) % 60;
         return (minute * 60 * 1000) + (seconds * 1000);
